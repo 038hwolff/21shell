@@ -53,16 +53,16 @@
 
 # Bonus
 - Edition de l'historique
-(Avance sur 42:)
-- Rendre les builtins POSIX
-- Operateurs logiques && et ||
-- Auto-completion (dynamique?)
-(Recommandé sujet 21:)
-- Rechercher dans l’historique avec ctrl+R
-- Implémentation d’une table de hash pour les binaires
-- La complétion simple ou avancée avec tab
-- Mode bindings Emacs et/ou Vim activable et désactivable à loisir
-- Coloration syntaxique du shell activable et désactivable à loisir
+  - (Avance sur 42:)
+    - Rendre les builtins POSIX
+    - Operateurs logiques && et ||
+    - Auto-completion (dynamique?)
+  - (Recommandé sujet 21:)
+    - Rechercher dans l’historique avec ctrl+R
+    - Implémentation d’une table de hash pour les binaires
+    - La complétion simple ou avancée avec tab
+    - Mode bindings Emacs et/ou Vim activable et désactivable à loisir
+    - Coloration syntaxique du shell activable et désactivable à loisir
 
 # Last minute to-do
 - Norminette?
