@@ -5,6 +5,7 @@
 - Analyse sémantique
 - Génération d'un Arbre de Syntaxe Abstraite (Abstract Syntax Tree, AST)
 - Evaluation d'un AST 
+- Job control
 
 # Sources et recherches
 - https://fr.wikipedia.org/wiki/Arbre_de_la_syntaxe_abstraite
