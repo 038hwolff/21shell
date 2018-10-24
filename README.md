@@ -1,40 +1,40 @@
 # TODO GROUPE
---> OBLIGATOIRE (21sh a 100%)
-    - BUILTINS POSIX:
-      - cd
-      - cd path/to/dir
-      - exit
-      - echo
-      - env
-      - setenv
-      - unsetenv
-    - GESTION DU PATH + VIM .c + MESSAGES ERREUR SHELL + PROMPT
-    - GESTION DES SIGNAUX
-    - LEXEUR PARSEUR
-    - PIPES ET REDIRECTIONS (> < >> << | ; &> &<)
-    - EDITION DE LIGNES (deplacement gauche droite, fin debut, historique fleches; copier coller; edition sur plusieurs lignes)
-    - GESTION DES PARENTHESES: si non fermées, le shell attend
---> BONUS (+5% pour chaque)
-    - Droits dans le path (notre programme ne doit pas chercher a executer des fichier qui ne sont pas des binaires)
-    - Completion
-    - Table de hashage pour les binaires
-    - Recherche dans l'historique avec ctrl + R
-    - +5 bonus au choix pour les 5 derniers points, partie obligatoire 42sh: (vaudra un 42sh a 125%)
-      - opérateurs logiques
-      - multi commandes avec ;
-      [OPTIONNEL 42SH]
-      - Inhibiteurs "" '' \
-      - Heredoc
-      - Agregation des fd de sortie (2>&- par exemple)
-      - Gestion des backquotes
-      - Globing (* [] {})
-      - Variables locales + builtins unset et export
-      - Sous shell ()
-      - Builtin read avec toutes ses options
-      - Job control (20 points sur le 42sh)
-      [BONUS 42sh]
-       - scripts shell (20 points sur le 42sh)
-       + autres (inutile pour les points)
+- OBLIGATOIRE (21sh a 100%)
+  - BUILTINS POSIX:
+    - cd
+    - cd path/to/dir
+    - exit
+    - echo
+    - env
+    - setenv
+    - unsetenv
+  - GESTION DU PATH + VIM .c + MESSAGES ERREUR SHELL + PROMPT
+  - GESTION DES SIGNAUX
+  - LEXEUR PARSEUR
+  - PIPES ET REDIRECTIONS (> < >> << | ; &> &<)
+  - EDITION DE LIGNES (deplacement gauche droite, fin debut, historique fleches; copier coller; edition sur plusieurs lignes)
+  - GESTION DES PARENTHESES: si non fermées, le shell attend
+- BONUS (+5% pour chaque)
+  - Droits dans le path (notre programme ne doit pas chercher a executer des fichier qui ne sont pas des binaires)
+  - Completion
+  - Table de hashage pour les binaires
+  - Recherche dans l'historique avec ctrl + R
+  - +5 bonus au choix pour les 5 derniers points, partie obligatoire 42sh: (vaudra un 42sh a 125%)
+    - opérateurs logiques
+    - multi commandes avec ;
+   - [OPTIONNEL 42SH]
+    - Inhibiteurs "" '' \
+    - Heredoc
+    - Agregation des fd de sortie (2>&- par exemple)
+    - Gestion des backquotes
+    - Globing (* [] {})
+    - Variables locales + builtins unset et export
+    - Sous shell ()
+    - Builtin read avec toutes ses options
+    - Job control (20 points sur le 42sh)
+   - [BONUS 42sh]
+     - scripts shell (20 points sur le 42sh)
+     + autres (inutile pour les points)
 
 
 # 21sh - Points-clés
