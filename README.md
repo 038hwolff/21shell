@@ -25,6 +25,9 @@
     - Inhibiteurs "" '' \
     - Gestion des backquotes
     - Variables locales + builtins unset et export
+    - Pour un 42sh à 75% déjà prêt:
+    - Agregation des fd de sortie (2>&- par exemple)
+     - Globing (* [] {})
   
   - Pour info, les points du corrigé de 42sh:
     - opérateurs logiques
