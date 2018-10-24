@@ -19,15 +19,14 @@
   - Completion
   - Table de hashage pour les binaires
   - Recherche dans l'historique avec ctrl + R
-  - +5 bonus que je suggère (qui nous valident 42sh directement):
+  - +7 bonus que je suggère (qui nous valident 42sh directement):
     - opérateurs logiques
     - multi commandes avec ;
     - Inhibiteurs "" '' \
     - Gestion des backquotes
     - Variables locales + builtins unset et export
-    - Pour un 42sh à 75% déjà prêt:
     - Agregation des fd de sortie (2>&- par exemple)
-     - Globing (* [] {})
+    - Globing (* [] {})
   
   - Pour info, les points du corrigé de 42sh:
     - opérateurs logiques
