@@ -19,7 +19,14 @@
   - Completion
   - Table de hashage pour les binaires
   - Recherche dans l'historique avec ctrl + R
-  - +5 bonus au choix pour les 5 derniers points, partie obligatoire 42sh: (vaudra un 42sh a 125%)
+  - +5 bonus que je suggère (qui nous valident 42sh directement):
+    - opérateurs logiques
+    - multi commandes avec ;
+    - Inhibiteurs "" '' \
+    - Gestion des backquotes
+    - Variables locales + builtins unset et export
+  
+  - Pour info, les points du corrigé de 42sh:
     - opérateurs logiques
     - multi commandes avec ;
     - [OPTIONNEL 42SH]
