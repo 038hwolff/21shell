@@ -22,7 +22,7 @@
   - +5 bonus au choix pour les 5 derniers points, partie obligatoire 42sh: (vaudra un 42sh a 125%)
     - opérateurs logiques
     - multi commandes avec ;
-   - [OPTIONNEL 42SH]
+    - [OPTIONNEL 42SH]
     - Inhibiteurs "" '' \
     - Heredoc
     - Agregation des fd de sortie (2>&- par exemple)
@@ -32,9 +32,9 @@
     - Sous shell ()
     - Builtin read avec toutes ses options
     - Job control (20 points sur le 42sh)
-   - [BONUS 42sh]
-     - scripts shell (20 points sur le 42sh)
-     + autres (inutile pour les points)
+    - [BONUS 42sh]
+    - scripts shell (20 points sur le 42sh)
+    + autres (inutile pour les points)
 
 
 # 21sh - Points-clés
