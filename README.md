@@ -1,6 +1,6 @@
 # TODO GROUPE
 - OBLIGATOIRE (21sh a 100%)
-  - BUILTINS POSIX:
+  - BUILTINS POSIX: <p><font color="fuchsia">Hélène</font></p>
     - cd
     - cd path/to/dir
     - exit
@@ -9,10 +9,10 @@
     - setenv
     - unsetenv
   - GESTION DU PATH + VIM .c + MESSAGES ERREUR SHELL + PROMPT
-  - GESTION DES SIGNAUX
-  - LEXEUR PARSEUR
+  - GESTION DES SIGNAUX <p><font color="fuchsia">Pauline</font></p>
+  - LEXEUR PARSEUR <p><font color="fuchsia">Heidy</font></p>
   - PIPES ET REDIRECTIONS (> < >> << | ; &> &<)
-  - EDITION DE LIGNES (deplacement gauche droite, fin debut, historique fleches; copier coller; edition sur plusieurs lignes)
+  - EDITION DE LIGNES (deplacement gauche droite, fin debut, historique fleches; copier coller; edition sur plusieurs lignes) <p><font color="fuchsia">Pauline</font></p>
   - GESTION DES PARENTHESES: si non fermées, le shell attend
 - BONUS (+5% pour chaque)
   - Droits dans le path (notre programme ne doit pas chercher a executer des fichier qui ne sont pas des binaires)
