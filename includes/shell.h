@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 14:46:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/09/24 17:12:55 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/10/25 15:16:00 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 ** Libft
 */
 
-# include "libft.h"
+# include "../libft/includes/libft.h"
 # include "termios.h"
 # include "term.h"
 
@@ -46,6 +46,13 @@ typedef struct	s_sh_data
 	int			childpid;
 }				t_sh_data;
 
+typedef struct	s_built
+{
+	char		**av;
+	int			ac;
+	t_sh_data	*env;
+}				t_built;
+
 /*
 ** Prototypes
 */
@@ -57,5 +64,13 @@ typedef struct	s_sh_data
 */
 
 t_sh_data		g_sh_data;
+
+/*
+** BUILTINS
+*/
+
+int    			is_builtins(t_built *built);
+int     		b_exit();
+int     		b_echo(t_built *built);
 
 #endif
