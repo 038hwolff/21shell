@@ -1,4 +1,4 @@
-# TODO GROUPE
+# TODO GROUPE (voir onglet PROJECTS - "Valider 21/42sh")
 - OBLIGATOIRE (21sh a 100%)
   - BUILTINS POSIX: (Hélène)
     - cd
@@ -85,7 +85,7 @@
 - tgoto
 - tputs
 
-# Last minute to-do avant push
+# Last minute to-do avant push (voir PROJECT "Check last minute")
 - Norminette?
 - Auteur?
 - Leaks?
