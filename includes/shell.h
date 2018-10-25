@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 14:46:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/10/25 15:16:00 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/10/25 17:17:41 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ typedef struct	s_built
 */
 
 t_sh_data		g_sh_data;
+
+int				main(int ac, char **av, char **env);
 
 /*
 ** BUILTINS
