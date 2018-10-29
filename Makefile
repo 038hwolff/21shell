@@ -6,21 +6,27 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/09/24 17:12:36 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/10/29 20:12:36 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	21sh
 
 COMP			=	clang
-FLAG			=	-Wall -Wextra -Werror -g3 -O3 -fsanitize=address
+FLAG			=	-Wall -Wextra -Werror -g3
+FLAGDEGUG		=	$(FLAG) -fsanitize=address
 
 # Sources paths
-FILES_C			=	shell.c
+FILES_C			=	shell.c \
+builtins/echo.c \
+builtins/exit.c \
+builtins/main.c
+
 FILES_O			=	$(FILES_C:.c=.o)
 FILES_H			=	shell.h
 
 # Directories
+SRCS_SD			= 	builtins
 SRCS_D			=	./srcs/
 OBJS_D			=   ./objs/
 INCL_D 			=	./includes/
@@ -61,7 +67,7 @@ $(NAME)			:	$(OBJS)
 $(OBJS_D)%.o	:	$(SRCS_D)%.c $(addprefix $(LFT_I), $(LFT_H)) $(INCL)
 					@echo -e "\033[2K\c"
 					@echo "\rCréation de l'objet $@\c"
-					@mkdir -p $(OBJS_D)
+					@mkdir -p $(addprefix $(OBJS_D), $(SRCS_SD))
 					@$(COMP) $(FLAG) -I $(LFT_I) -I $(INCL_D) -o $@ -c $<
 
 clean			:
@@ -76,9 +82,14 @@ fclean			:
 					@echo "Nettoyage de l'exécutable $(NAME)"
 					@rm -f $(NAME)
 
+test			:	@$(COMP) $(FLAGDEBUG) ${INC} ${LIB} ${FWS} -o ${NAME} ${SRCS}
+
+debug			:	test
+					lldb ./${NAME}
+
 re				:	fclean all
 
 force			:
 					@true
 
-.PHONY			:	all clean fclean re force
+.PHONY			:	all clean fclean test debug libs re force

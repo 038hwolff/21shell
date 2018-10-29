@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_echo.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:14:28 by hwolff            #+#    #+#             */
-/*   Updated: 2018/10/25 17:08:20 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/10/29 20:01:33 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/shell.h"
+#include "shell.h"
 
-inline int     valid_flag_n(char *flag)
+static int     valid_flag_n(char *flag)
 {
     int len;
     int j;
@@ -32,7 +32,7 @@ inline int     valid_flag_n(char *flag)
 int     b_echo(t_built *built)
 {
     int i;
-    int j;
+    //int j;
 
     if (built && built->av[1])
     {
