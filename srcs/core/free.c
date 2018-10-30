@@ -1,25 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lft_other.h                                        :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 17:58:50 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/10/30 17:43:58 by hwolff           ###   ########.fr       */
+/*   Created: 2018/08/25 12:17:27 by hwolff            #+#    #+#             */
+/*   Updated: 2018/10/30 15:22:34 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LFT_OTHER_H
-# define LFT_OTHER_H
+#include "../includes/shell.h"
 
-# define BUFF_SIZE 100
-# define FD_MAX 16384
+void		free_tab(char ***table)
+{
+	int	f;
 
-int		ft_indexof(char c, char *str);
-int		ft_lininterp(int p1, int p2, double ratio);
-double	ft_rlininterp(double px, double p1, double p2);
-int		get_next_line(const int fd, char **line);
-char	**ft_split(const char *cmd);
+	if (table && *table)
+	{
+		f = 0;
+		while ((*table)[f])
+		{
+			ft_strdel(&((*table)[f]));
+			f++;
+		}
+		free(*table);
+		*table = NULL;
+	}
+}
 
-#endif
+void		free_table_content(char ***table)
+{
+	int	f;
+
+	if (table && *table)
+	{
+		f = 0;
+		while ((*table)[f])
+		{
+			ft_strdel(&((*table)[f]));
+			f++;
+		}
+	}
+}

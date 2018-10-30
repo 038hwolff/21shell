@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lft_other.h                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 17:58:50 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/10/30 17:43:58 by hwolff           ###   ########.fr       */
+/*   Created: 2018/08/25 16:22:35 by hwolff            #+#    #+#             */
+/*   Updated: 2018/10/30 15:17:02 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LFT_OTHER_H
-# define LFT_OTHER_H
+#include "../includes/shell.h"
 
-# define BUFF_SIZE 100
-# define FD_MAX 16384
+void	trial(int i)
+{
+	if (!i)
+		exit(EXIT_FAILURE);
+}
 
-int		ft_indexof(char c, char *str);
-int		ft_lininterp(int p1, int p2, double ratio);
-double	ft_rlininterp(double px, double p1, double p2);
-int		get_next_line(const int fd, char **line);
-char	**ft_split(const char *cmd);
-
-#endif
+void	cmd_not_found(t_data *data)
+{
+	ft_putstr("21sh: command not found: ");
+	ft_putendl(data->args[0]);
+	exit(EXIT_FAILURE);
+}

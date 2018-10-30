@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lft_array.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 17:57:06 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/09/19 19:27:43 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/10/30 16:41:23 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@ char	**ft_strtabncpy(char **dst, char **src, size_t size);
 char	**ft_strtabnew(size_t size);
 char	**ft_strtabrealloc(char ***tab, size_t size);
 void	ft_tabdel(void ***ap);
+void    ft_print_words_tables(char **tab);
+char	**ft_split_whitespaces(char *str);
 
 #endif

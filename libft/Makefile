@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
+#    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/09/20 11:13:41 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/10/30 17:43:42 by hwolff           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,14 +18,16 @@ FLAG			=	-Wall -Wextra -Werror
 # Files names
 ARR_FILES_N		=	ft_sortinttab.c ft_sortstrtab.c ft_strtabdup.c \
 					ft_strtablen.c ft_strtabncpy.c ft_strtabnew.c \
-					ft_strtabrealloc.c ft_tabdel.c
+					ft_strtabrealloc.c ft_tabdel.c ft_print_words_tables.c \
+					ft_split_whitespaces.c
 ARRLST_FILES_N	=	arraylist.c
 BOOL_FILES_N	=	ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 					ft_ishexa.c ft_islower.c ft_isprime.c ft_isprint.c \
 					ft_isspace.c ft_isspace_wnt.c ft_isupper.c
 CONV_FILES_N	=	ft_atoi.c ft_atoi_base.c ft_convert_base.c ft_itoa.c \
 					ft_itoa_base.c
-OTH_FILES_N		=	ft_indexof.c ft_linear_interpolate.c get_next_line.c
+OTH_FILES_N		=	ft_indexof.c ft_linear_interpolate.c get_next_line.c \
+					ft_split.c
 INT_FILES_N		=	ft_intswap.c ft_nbrlen.c
 LST_FILES_N		=	ft_lstadd.c ft_lstcnt.c ft_lstdel.c ft_lstdelone.c \
 					ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_lstrev.c
