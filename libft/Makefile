@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
+#    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/09/20 11:13:41 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/10/30 13:44:43 by hwolff           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAG			=	-Wall -Wextra -Werror
 # Files names
 ARR_FILES_N		=	ft_sortinttab.c ft_sortstrtab.c ft_strtabdup.c \
 					ft_strtablen.c ft_strtabncpy.c ft_strtabnew.c \
-					ft_strtabrealloc.c ft_tabdel.c
+					ft_strtabrealloc.c ft_tabdel.c ft_print_word_table.c
 ARRLST_FILES_N	=	arraylist.c
 BOOL_FILES_N	=	ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 					ft_ishexa.c ft_islower.c ft_isprime.c ft_isprint.c \

@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_word_table.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/24 14:47:05 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/10/25 18:33:54 by hwolff           ###   ########.fr       */
+/*   Created: 2018/08/20 18:13:50 by hwolff            #+#    #+#             */
+/*   Updated: 2018/08/25 23:13:25 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/shell.h"
+#include "libft.h"
 
-int		main(int ac, char **av, char **env)
+void		ft_print_words_tables(char **tab)
 {
-	t_built built;
-	(void)ac;
-	(void)av;
+	int i;
+	int	index;
 
-	if (ac && av && env)
+	if (tab)
 	{
-		is_builtins(&built);
+		index = 0;
+		while (tab[index])
+		{
+			i = 0;
+			while (tab[index][i])
+			{
+				ft_putchar(tab[index][i]);
+				i++;
+			}
+			index++;
+			ft_putchar('\n');
+		}
 	}
-	return (0);
 }
