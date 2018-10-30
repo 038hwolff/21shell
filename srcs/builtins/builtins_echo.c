@@ -6,44 +6,52 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:14:28 by hwolff            #+#    #+#             */
-/*   Updated: 2018/10/30 17:03:47 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/10/30 19:12:52 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/shell.h"
 
-static int     valid_flag_n(char *flag)
+static int     valid_flag_n(char **flag, int *i)
 {
-    int len;
     int j;
+    int state;
 
-    len = ft_strlen(flag);
-    j = 1;
-    while (flag)
+    state = 1;
+    while (flag[*i])
     {
-        if (flag[j] != 'n')
-            return (1);
-        else
+        j = 0;
+        if (flag[*i][j] != '-')
+            return (state);
+        j = 1;
+        while (flag[*i][j])
+        {
+            if (flag[*i][j] != 'n')
+                return (state);
             j++;
+        }
+        state = 2;
+        (*i)++;
     }
-    return (2);
+    return (state);
 }
 
 int     b_echo(t_data *data)
 {
     int i;
+    int flag;
 
     if (data && data->args[1])
     {
         i = 1;
-        if (ft_strncmp(data->args[1], "-n", 2) == 0)
-            i = valid_flag_n(data->args[1]);
-        while (data->args)
+        flag = valid_flag_n(data->args, &i);
+        while (data->args[i])
         {
             ft_putstr(data->args[i]);
-            i++;
+            if (data->args[++i])
+                ft_putchar(' ');
         }
-        if (i == 1)
+        if (flag == 1)
             ft_putchar('\n');
     }
     else

@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 14:47:05 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/10/30 17:38:14 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/10/30 19:48:59 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int		main(int argc, char **argv, char **envp)
 	signal(SIGINT, handle_signal);
 	while (1)
 	{
-		ft_putstr("$> ");
+		display_prompt();
 		if ((z = read_entry(&data)) > 0)
 		{
 			global_parse(&data);

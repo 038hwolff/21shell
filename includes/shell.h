@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 14:46:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/10/30 18:03:49 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/10/30 19:19:54 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,7 +266,7 @@ int				b_env(t_data *data);
 ** builtins_exit.c
 */
 
-int  		   b_exit();
+int  		   b_exit(t_data *data);
 
 /*
 ** builtins_setenv.c
