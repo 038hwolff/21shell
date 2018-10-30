@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_print_words_tables.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 18:00:17 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/10/30 16:41:26 by hwolff           ###   ########.fr       */
+/*   Created: 2018/08/20 18:13:50 by hwolff            #+#    #+#             */
+/*   Updated: 2018/10/30 17:11:19 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <stdlib.h>
+void		ft_print_words_tables(char **tab)
+{
+	int i;
+	int	index;
 
-# include "lft_list.h"
-# include "lft_arraylist.h"
-# include "lft_stringbuffer.h"
-# include "lft_array.h"
-# include "lft_boolean.h"
-# include "lft_convert.h"
-# include "lft_other.h"
-# include "lft_integer.h"
-# include "lft_math.h"
-# include "lft_memory.h"
-# include "lft_printf.h"
-# include "lft_put.h"
-# include "lft_string.h"
-
-#endif
+	if (tab)
+	{
+		index = 0;
+		while (tab[index])
+		{
+			i = 0;
+			while (tab[index][i])
+			{
+				ft_putchar(tab[index][i]);
+				i++;
+			}
+			index++;
+			ft_putchar('\n');
+		}
+	}
+}

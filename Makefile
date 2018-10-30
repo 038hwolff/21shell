@@ -6,7 +6,7 @@
 #    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/10/30 14:48:33 by hwolff           ###   ########.fr        #
+#    Updated: 2018/10/30 17:01:40 by hwolff           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,17 +16,29 @@ COMP			=	clang
 FLAG			=	-Wall -Wextra -Werror -g3
 FLAGDEGUG		=	$(FLAG) -fsanitize=address
 
+# Files names
+BUILTINS_N		=	builtins_cd.c builtins_echo.c builtins_env.c builtins_exit.c \
+					builtins_main.c builtins_setenv.c builtins_tools.c \
+					builtins_unsetenv.c
+EXPANSIONS_N	=	expansions_dollar.c expansions_main.c expansions_tilde.c
+INHIBITORS_N	=	backslash.c quotes.c
+
 # Sources paths
-FILES_C			=	shell.c \
-builtins/echo.c \
-builtins/exit.c \
-builtins/main.c
+FILES_C			=	$(addprefix builtins/, $(BUILTINS_N)) \
+					$(addprefix expansions/, $(EXPANSIONS_N)) \
+					$(addprefix inhibitors/, $(INHIBITORS_N)) \
+					shell.c \
+					error.c \
+					free.c \
+					get_executable.c \
+					parse.c \
+					read.c
 
 FILES_O			=	$(FILES_C:.c=.o)
 FILES_H			=	shell.h
 
 # Directories
-SRCS_SD			= 	builtins
+SRCS_SD			= 	builtins expansions inhibitors
 SRCS_D			=	./srcs/
 OBJS_D			=   ./objs/
 INCL_D 			=	./includes/

@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   builtins_tools.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 18:00:17 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/10/30 16:41:26 by hwolff           ###   ########.fr       */
+/*   Created: 2018/08/23 13:57:35 by hwolff            #+#    #+#             */
+/*   Updated: 2018/10/30 15:21:06 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "../../includes/shell.h"
 
-# include <stdlib.h>
+char	*tristrjoin(char *s1, char *s2, char *s3)
+{
+	char	*tmp;
+	char	*ret;
 
-# include "lft_list.h"
-# include "lft_arraylist.h"
-# include "lft_stringbuffer.h"
-# include "lft_array.h"
-# include "lft_boolean.h"
-# include "lft_convert.h"
-# include "lft_other.h"
-# include "lft_integer.h"
-# include "lft_math.h"
-# include "lft_memory.h"
-# include "lft_printf.h"
-# include "lft_put.h"
-# include "lft_string.h"
+	if (!(ret = ft_strjoin(s1, s2)))
+		return (NULL);
+	tmp = ret;
+	if (!(ret = ft_strjoin(ret, s3)))
+		return (NULL);
+	free(tmp);
+	return (ret);
+}
 
-#endif
+
