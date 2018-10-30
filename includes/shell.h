@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 14:46:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/10/30 17:06:59 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/10/30 17:39:14 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 /*
 ** Headers
 */
-
 
 /*
 ** Bonus headers
@@ -31,6 +30,20 @@
 # include "../libft/includes/libft.h"
 # include "termios.h"
 # include "term.h"
+# include "stdio.h"
+# include "sys/ioctl.h"
+
+/*
+** KEYBOARD
+*/
+
+# define ENTER ((buf[0] == 10 && buf[1] == 0 )|| (buf[0] == 13 && buf[1] == 0))
+# define SUPP (buf[0] == 127 && buf[1] == 0)
+# define DEL (buf[0] == 27 && buf[1] == 91 && buf[2] == 51 && buf[3] == 126)
+# define HAUT (buf[0] == 27 && buf[1] == 91 && buf[2] == 65)
+# define BAS (buf[0] == 27 && buf[1] == 91 && buf[2] == 66)
+# define GAUCHE (buf[0] == 27 && buf[1] == 91 && buf[2] == 68)
+# define DROITE (buf[0] == 27 && buf[1] == 91 && buf[2] == 67)
 
 /*
 ** Typedef / Structs
@@ -53,6 +66,27 @@ typedef struct	s_built
 	t_data		*env;
 }				t_built;
 
+typedef struct	s_env
+{
+	int		width;
+	int		height;
+	char		**words;
+	int		word_count;
+	int		current_word;
+	int		single_col_width;
+	struct termios	term;
+}		t_env;
+
+typedef struct	s_var
+{
+	int	echo;
+	int	index;
+	char	*line;
+	int	multiline;
+	char	**history;
+	int	h_count;
+}		t_var;
+
 typedef struct	s_cdenv
 {
 	char		*old;
@@ -69,6 +103,38 @@ int			g_reset_entry;
 
 /*
 ** Prototypes
+*/
+
+/*
+*****************************************************************************************
+************************************* CORE **********************************************
+*****************************************************************************************
+** shell.c
+*/
+
+void			display_prompt(void);
+
+/*
+** shell.c
+*/
+
+int				ft_enter(char *line, t_var *var);
+
+/*
+** loop.c
+*/
+
+void			loop(t_env *env);
+
+/*
+** setup.c
+*/
+
+void			setup_env(int ac, char **av, t_env *);
+t_var			*setup_var(t_var *var);
+
+/*
+** shell.c
 */
 
 void			handle_signal(int signal);
@@ -108,6 +174,24 @@ void			free_tab_content(char ***table);
 
 int				ex_exec_core(t_data *data, char **paths);
 int				ex_exec(t_data *data);
+
+/*
+*****************************************************************************************
+************************************* EDITLINE ******************************************
+*****************************************************************************************
+*/
+
+/*
+** mouve.c
+*/
+
+void			mouve_right(t_var *var);
+
+/*
+** print_line.c
+*/
+
+void			print_line(t_var *var, char **line, char buf[1000]);
 
 /*
 *****************************************************************************************

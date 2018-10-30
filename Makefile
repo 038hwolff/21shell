@@ -6,7 +6,7 @@
 #    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/10/30 17:01:40 by hwolff           ###   ########.fr        #
+#    Updated: 2018/10/30 17:39:16 by hwolff           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,23 +22,22 @@ BUILTINS_N		=	builtins_cd.c builtins_echo.c builtins_env.c builtins_exit.c \
 					builtins_unsetenv.c
 EXPANSIONS_N	=	expansions_dollar.c expansions_main.c expansions_tilde.c
 INHIBITORS_N	=	backslash.c quotes.c
+CORE_N			=	shell.c error.c free.c get_executable.c parse.c read.c \
+					ft_enter.c setup.c loop.c
+EDITLINE_N		=	mouve.c print_line.c
 
 # Sources paths
 FILES_C			=	$(addprefix builtins/, $(BUILTINS_N)) \
 					$(addprefix expansions/, $(EXPANSIONS_N)) \
 					$(addprefix inhibitors/, $(INHIBITORS_N)) \
-					shell.c \
-					error.c \
-					free.c \
-					get_executable.c \
-					parse.c \
-					read.c
+					$(addprefix editline/, $(EDITLINE_N)) \
+					$(addprefix core/, $(CORE_N)) \
 
 FILES_O			=	$(FILES_C:.c=.o)
 FILES_H			=	shell.h
 
 # Directories
-SRCS_SD			= 	builtins expansions inhibitors
+SRCS_SD			= 	builtins expansions inhibitors core editline
 SRCS_D			=	./srcs/
 OBJS_D			=   ./objs/
 INCL_D 			=	./includes/
