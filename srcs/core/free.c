@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/shell.h"
+#include "shell.h"
 
 void		free_tab(char ***table)
 {
