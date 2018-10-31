@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/shell.h"
+#include "shell.h"
 
 int		manage_rest(t_data *data, char **res, int *i)
 {

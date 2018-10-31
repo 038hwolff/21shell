@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/shell.h"
+#include "shell.h"
 
 int	ft_enter(char *line, t_var *var)
 {

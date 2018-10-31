@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/shell.h"
+#include "shell.h"
 
 int		parse_dollar(t_data *data, int *i, char **tmp, char **tmp2)
 {

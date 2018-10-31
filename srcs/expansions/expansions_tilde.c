@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/shell.h"
+#include "shell.h"
 
 int		go_home(t_data *data, char **res)
 {
