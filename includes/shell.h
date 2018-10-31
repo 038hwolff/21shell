@@ -17,6 +17,10 @@
 ** Headers
 */
 
+# include <stdio.h>
+# include <sys/ioctl.h>
+# include <termios.h>
+
 /*
 ** Bonus headers
 */
@@ -27,11 +31,8 @@
 ** Libft
 */
 
-# include "../libft/includes/libft.h"
-# include <termios.h>
+# include "libft.h"
 # include <term.h>
-# include <stdio.h>
-# include <sys/ioctl.h>
 
 /*
 ** KEYBOARD

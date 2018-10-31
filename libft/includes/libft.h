@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 18:00:17 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/10/30 16:41:26 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/08/08 18:50:51 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,19 @@
 
 # include <stdlib.h>
 
-# include "lft_list.h"
-# include "lft_arraylist.h"
-# include "lft_stringbuffer.h"
-# include "lft_array.h"
-# include "lft_boolean.h"
-# include "lft_convert.h"
-# include "lft_other.h"
-# include "lft_integer.h"
-# include "lft_math.h"
-# include "lft_memory.h"
-# include "lft_printf.h"
-# include "lft_put.h"
-# include "lft_string.h"
+# include "ft_boolean.h"
+# include "ft_char.h"
+# include "ft_list.h"
+# include "ft_collection.h"
+# include "ft_convert.h"
+# include "ft_input.h"
+# include "ft_integer.h"
+# include "ft_math.h"
+# include "ft_memory.h"
+# include "ft_misc.h"
+# include "ft_string.h"
+# include "ft_output.h"
+# include "ft_sort.h"
+# include "ft_table.h"
 
 #endif

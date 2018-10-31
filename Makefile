@@ -52,9 +52,9 @@ LFT_D			=	./libft/
 LFT_P			=	$(addprefix $(LFT_D), libft.a)
 LFT_I			=	./libft/includes/
 LFT_L			=	./libft
-LFT_H			=	libft.h lft_array.h lft_boolean.h lft_convert.h lft_integer.h \
-					lft_list.h lft_math.h lft_memory.h lft_other.h lft_printf.h \
-					lft_put.h lft_string.h lft_stringbuffer.h
+LFT_H			=	libft.h ft_boolean.h ft_char.h ft_collection.h ft_convert.h ft_input.h \
+					ft_integer.h ft_list.h ft_math.h ft_memory.h ft_misc.h ft_output.h \
+					ft_printf.h ft_sort.h ft_string.h ft_stringbuffer.h ft_table.h
 
 # Termcaps
 

@@ -57,7 +57,7 @@ char	**split_for_display(char *entry)
 	int		j;
 
 	i = 0;
-	if (!(table = ft_split_whitespaces(entry)))
+	if (!(table = ft_split_chars(entry, &ft_isspace_wnt)))
 		return (NULL);
 	while (table[i])
 	{

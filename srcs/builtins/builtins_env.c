@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/shell.h"
+#include "shell.h"
 
 int		b_env(t_data *data)
 {
@@ -30,7 +30,7 @@ int		b_env(t_data *data)
 		free_tab(&ndata.args);
 	}
 	else
-		ft_print_words_tables(ndata.env);
+		ft_putstrtab(ndata.env);
 	free_tab(&ndata.env);
 	return (1);
 }

@@ -63,7 +63,7 @@ int		manage_dollar_other(char *value, t_data *data)
 	t_data d2;
 
 	d2.env = data->env;
-	if (!(d2.args = ft_split_whitespaces(value)))
+	if (!(d2.args = ft_split_chars(value, &ft_isspace_wnt)))
 		return (0);
 	ex_exec(&d2);
 	return (1);

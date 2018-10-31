@@ -17,7 +17,7 @@ int	ft_enter(char *line, t_var *var)
 	t_data	*data;
 
 	data = (t_data*)malloc(sizeof(t_data));
-	data->args = ft_split(line);
+	data->args = ft_split_chars(line, &ft_isspace_wnt);
 	is_builtins(data);
 	var->index = 0;
 	return (0);
