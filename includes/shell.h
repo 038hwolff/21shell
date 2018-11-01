@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 14:46:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/01 16:17:00 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/11/01 18:44:33 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@
 # include <term.h>
 
 /*
+** Defines
+*/
+
+# define ERR_PREFIX "21sh: "
+
+/*
 ** KEYBOARD
 */
 
@@ -54,11 +60,13 @@ typedef void	(*t_sighandler)(int);
 
 typedef struct	s_data
 {
-	char		**env;
-	char		**args;
-	char		*entry;
-	int			childpid;
-	short		on;
+	char			*term_name;
+	char			**env;
+	char			**args;
+	char			*entry;
+	int				childpid;
+	short			on;
+	struct termios	prev_term;
 }				t_data;
 
 typedef struct	s_built
@@ -103,9 +111,47 @@ typedef struct	s_cdenv
 t_data		g_sh_data;
 int			g_reset_entry;
 
+
 /*
-** Globals
+*****************************************************************************************
+************************************* SHELL *********************************************
+*****************************************************************************************
 */
+
+/*
+** shell.c
+*/
+
+t_data			*get_data(void);
+int				shell(int ac, char **av, char **env);
+int				sh_putchar(int c);
+
+/*
+** reset.c
+*/
+
+void			reset_shell(t_data *data);
+
+/*
+** free.c
+*/
+
+void			free_data(t_data *data);
+
+/*
+** exit.c
+*/
+
+void			exit_program(char *message);
+
+/*
+** exception.c
+*/
+
+void			*try_m(void *ptr);
+void			term_exception(char *message);
+void			tent_exception(char *ent);
+
 
 /*
 *****************************************************************************************
@@ -114,6 +160,7 @@ int			g_reset_entry;
 ** shell.c
 */
 
+int				minishell(int argc, char **argv, char **envp);
 void			display_prompt(void);
 
 /*
@@ -143,7 +190,7 @@ void			handle_signal(int signal);
 char			**get_path(t_data *data);
 char			**split_for_display(char *entry);
 int				global_parse(t_data *data);
-int				main(int ac, char **av, char **env);
+int				minishell(int ac, char **av, char **env);
 
 /*
 ** read.c

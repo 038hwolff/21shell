@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 14:47:05 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/10/30 19:48:59 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/11/01 12:12:06 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int		global_parse(t_data *data)
 	return (1);
 }
 
-int		main(int argc, char **argv, char **envp)
+int		minishell(int argc, char **argv, char **envp)
 {
 	t_data	data;
 	int		z;
@@ -141,14 +141,7 @@ int		main(int argc, char **argv, char **envp)
 ** main HEIDY
 **
 
-	t_data	*get_data(void)
-	{
-		static t_data	*data = NULL;
 
-		if (!data)
-			data = (t_data*)ft_memalloc(sizeof(t_data));
-		return (data);
-	}
 
 	void	check_term(void)
 	{

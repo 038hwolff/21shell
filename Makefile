@@ -6,7 +6,7 @@
 #    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/11/01 14:28:07 by hwolff           ###   ########.fr        #
+#    Updated: 2018/11/01 18:44:32 by hwolff           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ INHIBITORS_N	=	backslash.c quotes.c
 CORE_N			=	shell.c error.c free.c get_executable.c parse.c read.c \
 					ft_enter.c setup.c loop.c
 EDITLINE_N		=	mouve.c print_line.c
+SHELL_N			=	main.c shell.c reset.c free.c exit.c exception.c
 
 # Sources paths
 FILES_C			=	$(addprefix builtins/, $(BUILTINS_N)) \
@@ -33,12 +34,13 @@ FILES_C			=	$(addprefix builtins/, $(BUILTINS_N)) \
 					$(addprefix inhibitors/, $(INHIBITORS_N)) \
 					$(addprefix editline/, $(EDITLINE_N)) \
 					$(addprefix core/, $(CORE_N)) \
+					$(addprefix shell/, $(SHELL_N)) \
 
 FILES_O			=	$(FILES_C:.c=.o)
 FILES_H			=	shell.h
 
 # Directories
-SRCS_SD			= 	builtins expansions inhibitors core editline
+SRCS_SD			= 	builtins expansions inhibitors core editline shell
 SRCS_D			=	./srcs/
 OBJS_D			=   ./objs/
 INCL_D 			=	./includes/
