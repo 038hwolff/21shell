@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 15:45:01 by hwolff            #+#    #+#             */
-/*   Updated: 2018/10/30 16:57:02 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/11/01 15:58:39 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@ int		parse_dollar(t_data *data, int *i, char **tmp, char **tmp2)
 	int j;
 
 	if (data->entry[++(*i)] == '(')
+	{
 		(*i)++;
+		if (data->entry[(*i)] == '(')
+			if (check_if_arithmetics(&data->entry[(*i) - 1]) == 1)	
+				return (0);
+	}
 	j = 0;
 	while (!(data->entry[*i] == ')' || data->entry[*i] == ' '
 		|| data->entry[*i] == '\n' || data->entry[*i] == '\t'
@@ -26,6 +31,17 @@ int		parse_dollar(t_data *data, int *i, char **tmp, char **tmp2)
 	if (!(*tmp = ft_strsub(data->entry, *i - j, j))
 			|| (!(*tmp2 = ft_strjoin(*tmp, "="))))
 		return (0);
+	return (1);
+}
+
+int		manage_dollar_other(char *value, t_data *data)
+{
+	t_data d2;
+
+	d2.env = data->env;
+	if (!(d2.args = ft_split_chars(value, &ft_isspace_wnt)))
+		return (0);
+	ex_exec(&d2);
 	return (1);
 }
 
@@ -55,16 +71,5 @@ int		manage_dollar(t_data *data, char **res, int *i)
 		trial((int)(manage_dollar_other(tmp, data)));
 	free(tmp);
 	free(tmp2);
-	return (1);
-}
-
-int		manage_dollar_other(char *value, t_data *data)
-{
-	t_data d2;
-
-	d2.env = data->env;
-	if (!(d2.args = ft_split_chars(value, &ft_isspace_wnt)))
-		return (0);
-	ex_exec(&d2);
 	return (1);
 }

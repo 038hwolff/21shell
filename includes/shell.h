@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 14:46:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/10/30 19:19:54 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/11/01 16:17:00 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,6 +234,13 @@ int				go_home(t_data *data, char **res);
 int				parse_dollar(t_data *data, int *i, char **tmp, char **tmp2);
 int				manage_dollar(t_data *data, char **res, int *i);
 int				manage_dollar_other(char *value, t_data *data);
+
+/*
+** arithmetics.c
+*/
+
+int     		is_arithmetics(char *data, int p);
+int 			check_if_arithmetics(char *data);
 
 /*
 *****************************************************************************************

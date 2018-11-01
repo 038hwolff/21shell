@@ -6,7 +6,7 @@
 #    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/10/30 17:57:24 by hwolff           ###   ########.fr        #
+#    Updated: 2018/11/01 14:28:07 by hwolff           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ FLAGDEGUG		=	$(FLAG) -fsanitize=address
 BUILTINS_N		=	builtins_cd.c builtins_echo.c builtins_env.c builtins_exit.c \
 					builtins_main.c builtins_setenv.c builtins_tools.c \
 					builtins_unsetenv.c
-EXPANSIONS_N	=	expansions_dollar.c expansions_main.c expansions_tilde.c
+EXPANSIONS_N	=	expansions_dollar.c expansions_main.c expansions_tilde.c \
+					arithmetics.c
 INHIBITORS_N	=	backslash.c quotes.c
 CORE_N			=	shell.c error.c free.c get_executable.c parse.c read.c \
 					ft_enter.c setup.c loop.c
