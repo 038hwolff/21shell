@@ -6,12 +6,15 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 11:54:11 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/01 17:52:12 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/05 17:32:49 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
+/*
+** Pattern singleton pour récupérer la structure de données du shell
+*/
 t_data	*get_data(void)
 {
 	static t_data	*data = NULL;
@@ -21,11 +24,20 @@ t_data	*get_data(void)
 	return (data);
 }
 
+/*
+** Pour put des valeurs issues de termcaps dans le terminal.
+*/
 int		sh_putchar(int c)
 {
 	return (write(0, &c, 1));
 }
 
+/*
+** On verifie le terminal, qu'on ait son nom, que c'est bien un terminal,
+** et au'il ait bien une entrée à son nom dans la base de données
+** terminfo pour l'utilisation des termcaps.
+**
+*/
 static void
 	check_term(t_data *data)
 {
@@ -44,6 +56,9 @@ static void
 		term_exception(""ERR_PREFIX"terminfo database not found\n");
 }
 
+/*
+** interception de signaux pour ne rien faire
+*/
 void	init_sig()
 {
 	int	i;
@@ -54,6 +69,15 @@ void	init_sig()
 	signal(SIGTERM, SIG_DFL);
 }
 
+
+/*
+** Initialisation du shell
+** - de la structure data
+** - on verifie le terminal
+** - mode non canonique (pas de bufferisation de ce au'on tape)
+** - on intercepte les signaux
+** 
+*/
 void	init_shell(char **env)
 {
 	t_data			*data;

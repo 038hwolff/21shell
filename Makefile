@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
+#    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/11/01 18:44:32 by hwolff           ###   ########.fr        #
+#    Updated: 2018/11/05 15:32:16 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,6 @@ all				:	$(LFT_P) $(NAME)
 $(LFT_P)		:	force
 					@echo "Vérification de la librairie Libft"
 					@make -C $(LFT_D)
-
 
 $(NAME)			:	$(OBJS)
 					@echo "\nAssemblage et création de l'exécutable $(NAME)"
