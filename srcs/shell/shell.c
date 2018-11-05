@@ -93,29 +93,3 @@ int		shell(int ac, char **av, char **env)
 	}
 	return (EXIT_SUCCESS);
 }
-
-
-// 	g_shell = ft_init_shell(ac, av, environ, 1);
-// 	ft_catch_signal_parent();
-// 	while (g_shell->run == 1)
-// 	{
-// 		if (ft_start_shell_loop(&g_shell->lex,
-// 								&g_shell->ast, &g_shell->line) == -1)
-// 			continue ;
-// 		ft_lexer(&g_shell->lex, g_shell->line);
-// 		if (ft_parser(&g_shell->lex, g_shell) == 0)
-// 		{
-// 			ft_ast(g_shell->lex, &g_shell->ast, g_shell);
-// 			ft_cmd_line_execution(&g_shell->ast, g_shell);
-// 		}
-// 		else
-// 		{
-// 			if (g_shell->ctrl_c == 0)
-// 				ft_fill_cmd_return(258, g_shell);
-// 			ft_lexlstdel(&g_shell->lex);
-// 		}
-// 		ft_exit_job(1);
-// 		g_shell->run == 1 ? ft_putendl("") : 0;
-// 	}
-// 	return (ft_exit_shell());
-// }
