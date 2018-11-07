@@ -1,3 +1,10 @@
+1) lecture/edition de ligne => chaine de caractères
+2) lexer => liste chainée avec un type pour chaque maillon
+3) parser, erreurs, inhibiteurs, expansion, etc => liste réduite
+4) arbre syntaxique => arbre
+5) Executeur de commande => ben rien c'est fini. :smile:
+6) repeat
+
 # TODO GROUPE (voir onglet PROJECTS - "Valider 21/42sh")
 - OBLIGATOIRE (21sh a 100%)
   - BUILTINS POSIX: (Hélène)
