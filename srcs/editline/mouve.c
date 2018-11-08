@@ -1,16 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mouve.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/30 17:40:17 by hwolff            #+#    #+#             */
-/*   Updated: 2018/10/30 17:40:20 by hwolff           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+# include "../../includes/shell.h"
 
-# include "shell.h"
+//GERER LE SURLIGNEMENT DU CURRENT?
+void	mouve_left(t_var *var)
+{
+	var->index--;
+	ft_putstr_fd(tgetstr("le", NULL), 2);
+}
 
 void	mouve_right(t_var *var)
 {

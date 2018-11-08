@@ -15,18 +15,15 @@
 void	display_prompt(void)
 {
 	ft_putstr_fd(tgetstr("me", NULL), 2);
-	ft_putstr_fd("$> ", 2);
+	ft_putstr_fd("$>", 2);
 	return ;
 }
 
 void	loop_enter(t_var *var, char **line)
 {
-	(void)var;
-
 	if (ft_strcmp(*line, "\0") != 0)
 	{
-		var->history[var->h_count] = ft_strdup(*line);
-		var->h_count++;
+		var->hist = add_history(var, *line);
 		while (var->index < (int)ft_strlen(*line))
 			mouve_right(var);
 		ft_enter(*line, var);
@@ -36,12 +33,12 @@ void	loop_enter(t_var *var, char **line)
 		ft_putstr_fd("\n", 2);
 	display_prompt();
 	free(*line);
+	var->h_current = 0;
 	*line = ft_strdup("\0");
 }
 
-void	loop(t_env *env)
+void	loop(void)
 {
-	(void)env;
 	char	buf[1000];
 	t_var	*var;
 
@@ -56,5 +53,7 @@ void	loop(t_env *env)
 			loop_enter(var, &var->line);
 		else if (buf[0] != '\0' && !HAUT && !BAS && !GAUCHE && !DROITE)
 			print_line(var, &var->line, buf);
+		else
+			var->line = ft_termcaps(var, var->line, buf);
 	}
 }

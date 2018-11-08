@@ -89,12 +89,12 @@ typedef struct	s_env
 
 typedef struct	s_var
 {
-	int	echo;
 	int	index;
 	char	*line;
 	int	multiline;
-	char	**history;
+	char	**hist;
 	int	h_count;
+	int	h_current;
 }		t_var;
 
 typedef struct	s_cdenv
@@ -173,7 +173,7 @@ int				ft_enter(char *line, t_var *var);
 ** loop.c
 */
 
-void			loop(t_env *env);
+void			loop(void);
 
 /*
 ** setup.c
@@ -235,12 +235,27 @@ int				ex_exec(t_data *data);
 */
 
 void			mouve_right(t_var *var);
+void			mouve_left(t_var *var);
 
 /*
 ** print_line.c
 */
 
 void			print_line(t_var *var, char **line, char buf[1000]);
+
+/*
+** term.c
+*/
+
+char			*ft_termcaps(t_var *var, char *line, char *buf);
+
+/*
+** history.c
+*/
+
+char			**add_history(t_var *var, char *line);
+char			*history_umove(t_var *var);
+char			*history_dmove(t_var *var);
 
 /*
 *****************************************************************************************

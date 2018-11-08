@@ -15,19 +15,17 @@
 int		main(int ac, char **av, char **env)
 {
 	char *arg;
+	(void)ac;
 
-	if (ac == 2)
+	if (ft_strequ(av[1], "mini"))
 	{
-		if (ft_strequ(av[1], "mini"))
-		{
-			arg = "minishell";
-			minishell(1, &arg, env);
-		}
-		else
-		{
-			arg = "21sh";
-			shell(1, &arg, env);
-		}
+		arg = "minishell";
+		minishell(1, &arg, env);
+	}
+	else
+	{
+		arg = "21sh";
+		minishell(1, &arg, env);
 	}
 	return (EXIT_SUCCESS);
 }

@@ -15,12 +15,12 @@
 t_var	*setup_var(t_var *var)
 {
 	var = (t_var*)ft_memalloc(sizeof(t_var));
-	var->history = (char **)ft_memalloc(sizeof(char *));
+	var->hist = (char **)ft_memalloc(sizeof(char *));
 	var->line = ft_strdup("\0");
 	var->multiline = 0;
 	var->index = 0;
-	var->echo = 0;
 	var->h_count = 0;
+	var->h_current = 0;
 	return (var);
 }
 

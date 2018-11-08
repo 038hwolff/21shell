@@ -44,7 +44,7 @@ int 		check_if_arithmetics(char *data)
 	if (po == pf)
 	{
         res = ft_strsub(data, po, ft_strlen(&data[po]) - po - 1);
-		while (i++ < ft_strlen(res))
+		while ((size_t)i++ < ft_strlen(res))
 			if (is_hexa(res[i]) == 0 && is_operator(res[i]) == 0 && res[i] != ' ' && res[i] != '\0')
 				return (0);
 		is_arithmetics(res, po);

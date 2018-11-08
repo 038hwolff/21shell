@@ -25,8 +25,8 @@ EXPANSIONS_N	=	expansions_dollar.c expansions_main.c expansions_tilde.c \
 INHIBITORS_N	=	backslash.c quotes.c
 CORE_N			=	shell.c error.c free.c get_executable.c parse.c read.c \
 					ft_enter.c setup.c loop.c
-EDITLINE_N		=	mouve.c print_line.c
-SHELL_N			=	main.c shell.c reset.c free.c exit.c exception.c
+EDITLINE_N		=	mouve.c print_line.c term.c history.c
+SHELL_N			=	main.c free.c
 FILE_DESC_N		=	pipes.c redirections.c
 
 # Sources paths

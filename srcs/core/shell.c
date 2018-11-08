@@ -90,26 +90,29 @@ int		global_parse(t_data *data)
 int		minishell(int argc, char **argv, char **envp)
 {
 	t_data	data;
-	int		z;
+	t_env	*env;
+//	int		z;
 
-	(void)argv;
-	(void)argc;
+	(void)envp;
+	env = (t_env *)ft_memalloc(sizeof(t_env));
 	if (!(data.env = ft_tabdup(envp, 0)))
 		return (0);
+	setup_env(argc, argv, env);
 	data.entry = NULL;
+	display_prompt();
 	signal(SIGINT, handle_signal);
-	while (1)
+	loop();
+/*	while (1)
 	{
-		display_prompt();
 		if ((z = read_entry(&data)) > 0)
 		{
 			global_parse(&data);
 			ft_strdel(&(data.entry));
 		}
-	}
+	}*/
 	free_tab(&data.env);
 	free_tab(&data.args);
-	ft_putstr("\n");
+//	ft_putstr("\n");
 	return (0);
 }
 

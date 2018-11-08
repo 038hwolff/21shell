@@ -1,16 +1,32 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   print_line.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/30 17:40:09 by hwolff            #+#    #+#             */
-/*   Updated: 2018/10/30 17:40:12 by hwolff           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "../../includes/shell.h"
 
-#include "shell.h"
+char	*del_char(char *line, int *index)
+{
+	char	*ret;
+	int	len;
+	int	i;
+
+	if (*index == 0)
+		return (line);
+	len = ft_strlen(line);
+	len < 2 ? len = 2 : 0;
+	ret = (char *)malloc(sizeof(char) * len);
+	i = 0;
+	while (i < *index - 1)
+	{
+		ret[i] = line[i];
+		i++;
+	}
+	while (i < len - 1)
+	{
+		ret[i] = line[i + 1];
+		i++;
+	}
+	ret[i] = '\0';
+	(*index)--;
+	free(line);
+	return (ret);
+}
 
 char	*insert_char(char *line, char buf[1000], int *index)
 {
@@ -35,8 +51,9 @@ void	print_line(t_var *var, char **line, char buf[1000])
 { 
 	//Gerer le multilignes
 
-	*line = insert_char(*line, buf, &var->index);
-	var->index++;
+	(!SUPP || !DEL) ? *line = insert_char(*line, buf, &var->index) : (0);
+	(SUPP) ? *line = del_char(*line, &var->index) : (0);
+	(!SUPP) ? var->index++ : (0);
 	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 0), 2);
 	ft_putstr_fd(tgetstr("cd", NULL), 2);
 	display_prompt();

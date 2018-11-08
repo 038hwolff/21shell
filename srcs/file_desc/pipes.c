@@ -12,7 +12,7 @@
 
 #include "shell.h"
 
-static int  error_forkpipe(char *coderr)
+/*static int  error_forkpipe(char *coderr)
 {
     // free();
     if (coderr == "misspipe")
@@ -81,4 +81,4 @@ int         exec_pipes(t_data *data, int nb)
         exit(EXIT_FAILURE);
     }
     return (0);
-}
+}*/

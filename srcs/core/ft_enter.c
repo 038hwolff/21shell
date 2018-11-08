@@ -10,15 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "../../includes/shell.h"
 
 int	ft_enter(char *line, t_var *var)
 {
-	t_data	*data;
+	(void)line;
 
-	data = (t_data*)malloc(sizeof(t_data));
-	data->args = ft_split_chars(line, &ft_isspace_wnt);
-	is_builtins(data);
+/*	if ((z = read_entry(&data)) > 0)
+	{
+		global_parse(&data);
+		ft_strdel(&(data.entry));
+	}*/
 	var->index = 0;
 	return (0);
 }
