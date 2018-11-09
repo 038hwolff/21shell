@@ -48,14 +48,23 @@ char	*insert_char(char *line, char buf[1000], int *index)
 }
 
 void	print_line(t_var *var, char **line, char buf[1000])
-{ 
-	//Gerer le multilignes
+{
+	struct winsize	ws;
+	int		j;
 
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
+	var->col = ws.ws_col;
 	(!SUPP || !DEL) ? *line = insert_char(*line, buf, &var->index) : (0);
 	(SUPP) ? *line = del_char(*line, &var->index) : (0);
 	(!SUPP) ? var->index++ : (0);
+	j = -1;
+	while (++j < var->multiline)
+		ft_putstr_fd(tgoto(tgetstr("up",NULL), 0, 0), 2);
 	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 0), 2);
 	ft_putstr_fd(tgetstr("cd", NULL), 2);
+	j = -1;
+	while (++j <= (len_line(var) + (int)ft_strlen(var->line)))
+		write(1, "\b", 2);
 	display_prompt();
 	ft_putstr_fd(*line, 2);
 }

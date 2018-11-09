@@ -26,6 +26,7 @@ void	loop_enter(t_var *var, char **line)
 		var->hist = add_history(var, *line);
 		while (var->index < (int)ft_strlen(*line))
 			mouve_right(var);
+		var->multiline = len_line(var) / var->col;
 		ft_enter(*line, var);
 		ft_putstr_fd("\n", 2);
 	}
@@ -47,6 +48,8 @@ void	loop(void)
 	var = setup_var(var);
 	while (1)
 	{
+	//	signal_handler(&restart);
+		signal_handler(NULL);
 		ft_bzero(buf, 1000);
 		read(STDIN_FILENO, buf, 1000);
 		if (ENTER)

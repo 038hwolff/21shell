@@ -18,7 +18,7 @@ int		ex_exec_core(t_data *data, char **paths)
 	int		q;
 
 	i = 0;
-	signal(SIGINT, SIG_DFL);
+//	signal(SIGINT, SIG_DFL);
 	while (paths[i])
 	{
 		if (access(paths[i], X_OK) == 0)
@@ -53,7 +53,7 @@ int		ex_exec(t_data *data)
 	wait(&status);
 	if (WIFSIGNALED(status))
 		ft_putchar('\n');
-	signal(SIGINT, handle_signal);
+//	signal(SIGINT, handle_signal);
 	data->childpid = 0;
 	free_tab(&data->args);
 	free_tab(&paths);

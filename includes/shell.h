@@ -95,6 +95,7 @@ typedef struct	s_var
 	char	**hist;
 	int	h_count;
 	int	h_current;
+	int	col;
 }		t_var;
 
 typedef struct	s_cdenv
@@ -160,14 +161,9 @@ void			tent_exception(char *ent);
 ** shell.c
 */
 
-int				minishell(int argc, char **argv, char **envp);
+int			minishell(int argc, char **argv, char **envp);
 void			display_prompt(void);
-
-/*
-** shell.c
-*/
-
-int				ft_enter(char *line, t_var *var);
+int			ft_enter(char *line, t_var *var);
 
 /*
 ** loop.c
@@ -181,6 +177,7 @@ void			loop(void);
 
 void			setup_env(int ac, char **av, t_env *);
 t_var			*setup_var(t_var *var);
+int			len_line(t_var *var);
 
 /*
 ** shell.c
@@ -372,6 +369,10 @@ int				b_unsetenv(t_data *data);
 
 /*
 ******************************************************************************************
+******************************** SIGNAL **************************************************
+******************************************************************************************
 */
 
+void			signal_handler(void(*restart)(int));
+void			refresh_screen(int signum);
 #endif

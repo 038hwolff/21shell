@@ -12,13 +12,25 @@
 
 #include "shell.h"
 
+int	len_line(t_var *var)
+{
+	int	i;
+
+	i = ft_strlen(var->line) + 2;
+	return (i);
+}
+
 t_var	*setup_var(t_var *var)
 {
+	struct winsize ws;
+
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
 	var = (t_var*)ft_memalloc(sizeof(t_var));
 	var->hist = (char **)ft_memalloc(sizeof(char *));
 	var->line = ft_strdup("\0");
-	var->multiline = 0;
 	var->index = 0;
+	var->col = ws.ws_col;
+	var->multiline = len_line(var) / var->col;
 	var->h_count = 0;
 	var->h_current = 0;
 	return (var);
@@ -58,8 +70,7 @@ void	setup_term(t_env *env)
 
 void	setup_env(int ac, char **av, t_env *env)
 {
-	env->words = av + 1;
-	env->word_count = ac - 1;
-	env->current_word = 0;
+	(void)ac;
+	(void)av;
 	setup_term(env);
 }

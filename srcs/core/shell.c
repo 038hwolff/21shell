@@ -12,16 +12,6 @@
 
 #include "shell.h"
 
-void	handle_signal(int signal)
-{
-	if (signal == SIGINT)
-	{
-		g_reset_entry = 1;
-		ft_putchar('\n');
-		ft_putstr("$> ");
-	}
-}
-
 char	**get_path(t_data *data)
 {
 	char	**path;
@@ -100,7 +90,6 @@ int		minishell(int argc, char **argv, char **envp)
 	setup_env(argc, argv, env);
 	data.entry = NULL;
 	display_prompt();
-	signal(SIGINT, handle_signal);
 	loop();
 /*	while (1)
 	{

@@ -28,6 +28,7 @@ CORE_N			=	shell.c error.c free.c get_executable.c parse.c read.c \
 EDITLINE_N		=	mouve.c print_line.c term.c history.c
 SHELL_N			=	main.c free.c
 FILE_DESC_N		=	pipes.c redirections.c
+SIGNAL_N		=	signal.c refresh_screen.c
 
 # Sources paths
 FILES_C			=	$(addprefix builtins/, $(BUILTINS_N)) \
@@ -37,12 +38,13 @@ FILES_C			=	$(addprefix builtins/, $(BUILTINS_N)) \
 					$(addprefix core/, $(CORE_N)) \
 					$(addprefix shell/, $(SHELL_N)) \
 					$(addprefix file_desc/, $(FILE_DESC_N)) \
+					$(addprefix signal/, $(SIGNAL_N)) \
 
 FILES_O			=	$(FILES_C:.c=.o)
 FILES_H			=	shell.h
 
 # Directories
-SRCS_SD			= 	builtins expansions inhibitors core editline shell file_desc
+SRCS_SD			= 	builtins expansions inhibitors core editline shell file_desc signal
 SRCS_D			=	./srcs/
 OBJS_D			=   ./objs/
 INCL_D 			=	./includes/
