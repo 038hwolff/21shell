@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 14:46:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/13 18:26:37 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/11/14 16:01:19 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,7 +261,9 @@ char				*history_dmove(t_var *var);
 */
 
 int					exec_pipes(t_data *data, int nb);
-int					exec_one_redirect(t_data *data, int file[], int rafter);
+int					exec_back_redirect(t_data *data, int rafter);
+int					exec_redirect(t_data *data, int rafter);
+int     			main_redirec(t_data *data, char *raft);
 
 /*
 ***************************************************************************
