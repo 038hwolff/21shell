@@ -6,13 +6,13 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 15:07:57 by hwolff            #+#    #+#             */
-/*   Updated: 2018/11/13 17:42:17 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/11/17 17:51:53 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/shell.h"
 
-static int  error_forkpipe(char *coderr)
+static int      error_forkpipe(char *coderr)
 {
     if (ft_strcmp(coderr, "misspipe") == 0)
         ft_putstr("pipe> ");
@@ -21,7 +21,7 @@ static int  error_forkpipe(char *coderr)
     return (-1);
 }
 
-static int  exec_one_pipe(t_data *data, int fildes[], pid_t pid)
+static int      exec_one_pipe(t_data *data, int fildes[], pid_t pid)
 {
     char    buf;
 
@@ -46,7 +46,7 @@ static int  exec_one_pipe(t_data *data, int fildes[], pid_t pid)
     exit(EXIT_SUCCESS);
 }
 
-static int  exec_sev_pipes(t_data *data, int fildes[], pid_t pid)
+static int      exec_sev_pipes(t_data *data, int fildes[], pid_t pid)
 {
     (void)data;
     (void)fildes;
@@ -65,7 +65,7 @@ static int  exec_sev_pipes(t_data *data, int fildes[], pid_t pid)
     exit(EXIT_SUCCESS);
 }
 
-int         exec_pipes(t_data *data, int nb)
+int             exec_pipes(t_data *data, int nb)
 {
     int     fildes[2];
     pid_t   pid;
