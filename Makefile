@@ -6,7 +6,7 @@
 #    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/11/06 15:58:49 by hwolff           ###   ########.fr        #
+#    Updated: 2018/11/17 17:52:31 by hwolff           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ CORE_N			=	shell.c error.c free.c get_executable.c parse.c read.c \
 					ft_enter.c setup.c loop.c
 EDITLINE_N		=	mouve.c print_line.c term.c history.c
 SHELL_N			=	main.c free.c
-FILE_DESC_N		=	pipes.c redirections.c
+FILE_DESC_N		=	pipes.c redirections.c fd_agregator.c heredoc.c
 SIGNAL_N		=	signal.c refresh_screen.c
 
 # Sources paths

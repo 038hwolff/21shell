@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouve.c                                            :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 18:18:45 by hwolff            #+#    #+#             */
-/*   Updated: 2018/11/13 18:18:46 by hwolff           ###   ########.fr       */
+/*   Created: 2018/11/17 15:59:01 by hwolff            #+#    #+#             */
+/*   Updated: 2018/11/17 18:55:26 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/shell.h"
+#include "shell.h"
 
-//GERER LE SURLIGNEMENT DU CURRENT?
-void	mouve_left(t_var *var)
-{
-	var->index--;
-	ft_putstr_fd(tgetstr("le", NULL), 2);
-}
-
-void	mouve_right(t_var *var)
-{
-	var->index++;
-	ft_putstr_fd(tgetstr("nd", NULL), 2);	
+int     exec_heredoc(t_data *data)
+{   
+    return (0);
 }
