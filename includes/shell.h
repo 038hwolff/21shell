@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 14:46:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/07 17:58:58 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/11/10 23:41:26 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,31 @@
 
 typedef void	(*t_sighandler)(int);
 
+typedef struct	s_variable
+{
+	char			*key:
+	char			*val:
+}				t_variable
+
+
 typedef struct	s_data
 {
 	char			*term_name;
-	char			**env;
-	char			**args;
+
+	t_variable		*env;
+	t_variable		*loc;
+	char			**args; // utile ??
+
 	char			*entry;
+	t_lexan			lexan;
+	t_ast			ast;
+
 	int				childpid;
-	short			on;
-	struct termios	prev_term;
+
+	struct termios	term_dft_config;
+
+	short			shell_exit;
+	int				errno;
 }				t_data;
 
 typedef struct	s_built
@@ -153,6 +169,11 @@ void			*try_m(void *ptr);
 void			term_exception(char *message);
 void			tent_exception(char *ent);
 
+/*
+** var.c
+*/
+
+t_var			*newvartab(char **tab);
 
 /*
 *****************************************************************************************
