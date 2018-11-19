@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
+#    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/11/17 17:52:31 by hwolff           ###   ########.fr        #
+#    Updated: 2018/11/19 16:53:54 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,34 +17,31 @@ FLAG			=	-Wall -Wextra -Werror -g3
 FLAGDEGUG		=	$(FLAG) -fsanitize=address
 
 # Files names
-BUILTINS_N		=	builtins_cd.c builtins_echo.c builtins_env.c builtins_exit.c \
-					builtins_main.c builtins_setenv.c builtins_tools.c \
-					builtins_unsetenv.c
-EXPANSIONS_N	=	expansions_dollar.c expansions_main.c expansions_tilde.c \
-					arithmetics.c
-INHIBITORS_N	=	backslash.c quotes.c
-CORE_N			=	shell.c error.c free.c get_executable.c parse.c read.c \
-					ft_enter.c setup.c loop.c
-EDITLINE_N		=	mouve.c print_line.c term.c history.c
-SHELL_N			=	main.c free.c
-FILE_DESC_N		=	pipes.c redirections.c fd_agregator.c heredoc.c
-SIGNAL_N		=	signal.c refresh_screen.c
+SHELL_N			=	shell.c free.c data.c init.c prompt.c putchar.c \
+					signals.c term.c var.c exception.c exit.c
+EDITLINE_N		=	command_reader.c loop.c mouve.c print_line.c term.c \
+					history.c setup.c ft_enter.c signal.c
+LEXER_N			=	lexer.c checker.c token.c helper.c 
+PARSER_N		=	parser.c
+ASTBUILDER_N	=	astbuilder.c
+EXECUTOR_N		=	
+BUILTINS_N		=	
 
 # Sources paths
-FILES_C			=	$(addprefix builtins/, $(BUILTINS_N)) \
-					$(addprefix expansions/, $(EXPANSIONS_N)) \
-					$(addprefix inhibitors/, $(INHIBITORS_N)) \
-					$(addprefix editline/, $(EDITLINE_N)) \
-					$(addprefix core/, $(CORE_N)) \
-					$(addprefix shell/, $(SHELL_N)) \
-					$(addprefix file_desc/, $(FILE_DESC_N)) \
-					$(addprefix signal/, $(SIGNAL_N)) \
+FILES_C			=	$(addprefix 0_shell/, $(SHELL_N)) \
+					$(addprefix 1_lineeditor/, $(EDITLINE_N)) \
+					$(addprefix 2_lexer/, $(LEXER_N)) \
+					$(addprefix 3_parser/, $(PARSER_N)) \
+					$(addprefix 4_astbuilder/, $(ASTBUILDER_N)) \
+					$(addprefix 5_executor/, $(EXECUTOR_N)) \
+					$(addprefix 6_bultins/, $(BUILTINS_N)) \
 
 FILES_O			=	$(FILES_C:.c=.o)
 FILES_H			=	shell.h
 
 # Directories
-SRCS_SD			= 	builtins expansions inhibitors core editline shell file_desc signal
+SRCS_SD			= 	0_shell 1_lineeditor 2_lexer 3_parser 4_astbuilder 5_executor 6_builtins
+					# builtins expansions inhibitors core editline shell file_desc signal
 SRCS_D			=	./srcs/
 OBJS_D			=   ./objs/
 INCL_D 			=	./includes/

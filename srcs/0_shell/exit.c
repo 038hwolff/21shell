@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/03 17:52:41 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/14 17:50:48 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/11/01 14:28:20 by hben-yah          #+#    #+#             */
+/*   Updated: 2018/11/11 00:17:34 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "shell.h"
 
-char	*ft_strchr(const char *s, int c)
+void	exit_program(char *message)
 {
-	char chara;
+	//t_data *data;
 
-	chara = (char)c;
-	while (*s)
+	//data = get_data();
+	//reset_shell(data);
+	//free_data(data);
+	if (message)
 	{
-		if ((char)*s == chara)
-			return ((char *)s);
-		++s;
+		ft_dprintf(STDERR_FILENO, message);
+		exit(EXIT_FAILURE);
 	}
-	return (chara == 0 ? (char *)s : NULL);
+	exit(EXIT_SUCCESS);
 }

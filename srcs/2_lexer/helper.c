@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/03 17:52:41 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/14 17:50:48 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/11/18 15:11:43 by hben-yah          #+#    #+#             */
+/*   Updated: 2018/11/18 15:11:54 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "shell.h"
 
-char	*ft_strchr(const char *s, int c)
+int		is_space_or_tab(char c)
 {
-	char chara;
+	return (c == ' ' || c == '\t');
+}
 
-	chara = (char)c;
+void	discard_spaces_tabs(char **line)
+{
+	while (is_space_or_tab(**line))
+		++(*line);
+}
+
+char	*strdquote(char *s)
+{
 	while (*s)
 	{
-		if ((char)*s == chara)
-			return ((char *)s);
+		if (*s == '\\')
+			s = s + 2;
+		if (*s == '"')
+			break ;
 		++s;
 	}
-	return (chara == 0 ? (char *)s : NULL);
+	return (s);
+}
+
+char	*strquote(char *s)
+{
+	return (ft_strchr(s, '\''));
 }

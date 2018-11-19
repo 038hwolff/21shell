@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   putchar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/03 17:52:41 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/14 17:50:48 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/11/18 18:26:54 by hben-yah          #+#    #+#             */
+/*   Updated: 2018/11/18 18:27:11 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "shell.h"
 
-char	*ft_strchr(const char *s, int c)
+/*
+** Pour put des valeurs issues de termcaps dans le terminal.
+*/
+int		sh_putchar(int c)
 {
-	char chara;
-
-	chara = (char)c;
-	while (*s)
-	{
-		if ((char)*s == chara)
-			return ((char *)s);
-		++s;
-	}
-	return (chara == 0 ? (char *)s : NULL);
+	return (write(0, &c, 1));
 }

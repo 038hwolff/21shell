@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/03 17:52:41 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/14 17:50:48 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/11/18 15:09:40 by hben-yah          #+#    #+#             */
+/*   Updated: 2018/11/18 15:09:47 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "shell.h"
 
-char	*ft_strchr(const char *s, int c)
+t_token	*token_new(char *val, size_t length, int type, t_token *next)
 {
-	char chara;
+	t_token *new;
 
-	chara = (char)c;
-	while (*s)
-	{
-		if ((char)*s == chara)
-			return ((char *)s);
-		++s;
-	}
-	return (chara == 0 ? (char *)s : NULL);
+	try_m((new = (t_token*)ft_memalloc(sizeof(t_token))));
+	new->val = val;
+	new->length = length;
+	new->type = type;
+	new->next = next;
+	return (new);
 }

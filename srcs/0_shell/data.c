@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/03 17:52:41 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/14 17:50:48 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/11/18 18:25:38 by hben-yah          #+#    #+#             */
+/*   Updated: 2018/11/18 18:26:13 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "shell.h"
 
-char	*ft_strchr(const char *s, int c)
+/*
+** Pattern singleton pour récupérer la structure de données du shell
+*/
+t_data	*get_data(void)
 {
-	char chara;
+	static t_data	*data = NULL;
 
-	chara = (char)c;
-	while (*s)
-	{
-		if ((char)*s == chara)
-			return ((char *)s);
-		++s;
-	}
-	return (chara == 0 ? (char *)s : NULL);
+	if (!data)
+		data = (t_data*)ft_memalloc(sizeof(t_data));
+	return (data);
 }

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:03:53 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/18 15:05:52 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/18 18:37:02 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,376 +29,71 @@
 # include <dirent.h>
 
 /*
-** Libft
+** Libs
 */
 
-# include "../libft/includes/libft.h"
+# include "libft.h"
 # include <term.h>
 
 /*
 ** Defines
 */
 
-# define ERR_PREFIX "21sh: "
-
-/*
-** KEYBOARD
-*/
-
-# define ENTER ((buf[0] == 10 && buf[1] == 0 )|| (buf[0] == 13 && buf[1] == 0))
-# define SUPP (buf[0] == 127 && buf[1] == 0)
-# define DEL (buf[0] == 27 && buf[1] == 91 && buf[2] == 51 && buf[3] == 126)
-# define HAUT (buf[0] == 27 && buf[1] == 91 && buf[2] == 65)
-# define BAS (buf[0] == 27 && buf[1] == 91 && buf[2] == 66)
-# define GAUCHE (buf[0] == 27 && buf[1] == 91 && buf[2] == 68)
-# define DROITE (buf[0] == 27 && buf[1] == 91 && buf[2] == 67)
+# include "define.h"
 
 /*
 ** Typedef / Structs
 */
 
-typedef void		(*t_sighandler)(int);
-
-typedef struct	s_variable
-{
-	char			*key:
-	char			*val:
-}				t_variable
-
-typedef struct		s_data
-{
-	char			*term_name;
-
-	t_variable		*env;
-	t_variable		*loc;
-	char			**args; // utile ??
-
-	char			*entry;
-	t_lexan			lexan;
-	t_ast			ast;
-
-	int				childpid;
-
-	struct termios	term_dft_config;
-
-	short			shell_exit;
-	int				errno;
-	short			on;
-	struct termios	prev_term;
-}					t_data;
-
-typedef struct		s_built
-{
-	char			**av;
-	int				ac;
-	t_data			*env;
-}					t_built;
-
-typedef struct		s_env
-{
-	int				width;
-	int				height;
-	char			**words;
-	int				word_count;
-	int				current_word;
-	int				single_col_width;
-	struct termios	term;
-}					t_env;
-
-typedef struct		s_var
-{
-	int				index;
-	char			*line;
-	int				multiline;
-	char			**hist;
-	int				h_count;
-	int				h_current;
-	int				col;
-}					t_var;
-
-typedef struct		s_cdenv
-{
-	char			*old;
-	char			*pwd;
-	char			*home;
-}					t_cdenv;
+# include "struct.h"
 
 /*
-** GLOBALS
+** Globals
 */
 
 t_data				g_sh_data;
 int					g_reset_entry;
 
-/*
-*******************************************************************
-************************************* SHELL ************************
-********************************************************************
-*/
+/* ************************************************************************** */
+/*                  SHELL													  */
+/* ************************************************************************** */
 
-/*
-** shell.c
-*/
+# include "0_shell.h"
 
-t_data				*get_data(void);
-int					shell(int ac, char **av, char **env);
-int					sh_putchar(int c);
+/* ************************************************************************** */
+/*                  LINEEDITOR												  */
+/* ************************************************************************** */
 
-/*
-** reset.c
-*/
+# include "1_lineeditor.h"
 
-void				reset_shell(t_data *data);
+/* ************************************************************************** */
+/*                  LEXER													  */
+/* ************************************************************************** */
 
-/*
-** free.c
-*/
+# include "2_lexer.h"
 
-void				free_data(t_data *data);
+/* ************************************************************************** */
+/*                  PARSER													  */
+/* ************************************************************************** */
 
-/*
-** exit.c
-*/
+# include "3_parser.h"
 
-void				exit_program(char *message);
+/* ************************************************************************** */
+/*                  ASTBUILDER												  */
+/* ************************************************************************** */
 
-/*
-** exception.c
-*/
+# include "4_astbuilder.h"
 
-void			*try_m(void *ptr);
-void			term_exception(char *message);
-void			tent_exception(char *ent);
+/* ************************************************************************** */
+/*                  EXECUTOR												  */
+/* ************************************************************************** */
 
-/*
-** var.c
-*/
+# include "5_executor.h"
 
-t_var			*newvartab(char **tab);
+/* ************************************************************************** */
+/*                  BUILTINS												  */
+/* ************************************************************************** */
 
-/*
-**************************************************************************
-************************************* CORE *******************************
-**************************************************************************
-** shell.c
-*/
+# include "6_builtins.h"
 
-int					minishell(int argc, char **argv, char **envp);
-void				display_prompt(void);
-int					ft_enter(char *line, t_var *var);
-
-/*
-** loop.c
-*/
-
-void				loop(void);
-
-/*
-** setup.c
-*/
-
-void				setup_env(int ac, char **av, t_env *envp);
-t_var				*setup_var(t_var *var);
-int					len_line(t_var *var);
-
-/*
-** shell.c
-*/
-
-void				handle_signal(int signal);
-char				**get_path(t_data *data);
-char				**split_for_display(char *entry);
-int					global_parse(t_data *data);
-int					minishell(int ac, char **av, char **env);
-
-/*
-** read.c
-*/
-
-int					read_entry(t_data *data);
-
-/*
-** parse.c
-*/
-
-int					is_valid_entry(t_data *data, int z, int tot);
-/*
-** error.c
-*/
-
-void				trial(int i);
-void				cmd_not_found(t_data *data);
-
-/*
-** free.c
-*/
-
-void				free_tab(char ***table);
-void				free_tab_content(char ***table);
-
-/*
-** get_executable.c
-*/
-
-int					ex_exec_core(t_data *data, char **paths);
-int					ex_exec(t_data *data);
-
-/*
-*************************************************************************
-************************************* EDITLINE **************************
-*************************************************************************
-*/
-
-/*
-** mouve.c
-*/
-
-void				mouve_right(t_var *var);
-void				mouve_left(t_var *var);
-
-/*
-** print_line.c
-*/
-
-void				print_line(t_var *var, char **line, char buf[1000]);
-
-/*
-** term.c
-*/
-
-char				*ft_termcaps(t_var *var, char *line, char *buf);
-
-/*
-** history.c
-*/
-
-char				**add_history(t_var *var, char *line);
-char				*history_umove(t_var *var);
-char				*history_dmove(t_var *var);
-
-/*
-*************************************************************************
-************************************* FILE_DESCRIPTORS******************
-********************************************************************
-** pipes.c
-*/
-
-int					exec_pipes(t_data *data, int nb);
-
-int     			exec_heredoc(t_data *data);
-
-int     			main_redirec(t_data *data, char *raft);
-
-/*
-***************************************************************************
-************************************* INHIBITORS *************************
-***************************************************************************
-** quotes.c
-*/
-
-int					is_quotes(char *e);
-void				put_quote_request(int i);
-
-/*
-** backslash.c
-*/
-
-int					manage_backslash(t_data *data, char **res, int *i);
-
-/*
-****************************************************************************
-************************************* EXPANSIONS ***************************
-****************************************************************************
-** expansions_main.c
-*/
-
-int					manage_rest(t_data *data, char **res, int *i);
-int					expansions(t_data *data);
-
-/*
-** expansions_tilde.c
-*/
-
-int					go_home(t_data *data, char **res);
-
-/*
-** expansions_dollar.c
-*/
-
-int					parse_dollar(t_data *data, int *i, char **tmp, char **tmp2);
-int					manage_dollar(t_data *data, char **res, int *i);
-int					manage_dollar_other(char *value, t_data *data);
-
-/*
-** arithmetics.c
-*/
-
-int					is_arithmetics(char *data, int p);
-int					check_if_arithmetics(char *data);
-
-/*
-***************************************************************************
-************************************* BUILTINS ****************************
-***************************************************************************
-** builtins_main.c
-*/
-
-int					is_builtins(t_data *data);
-
-/*
-** builtins_cd.c
-*/
-
-void				cd_free(char **tmp, t_data *ndata);
-int					b_cd(t_data *data);
-
-/*
-** builtins_echo.c
-*/
-
-int					b_echo(t_data *data);
-
-/*
-** builtins_env.c
-*/
-
-int					b_env(t_data *data);
-
-/*
-** builtins_exit.c
-*/
-
-int					b_exit(t_data *data);
-
-/*
-** builtins_setenv.c
-*/
-
-void				add_to_env(t_data *ndata, t_data *data, int i);
-int					ft_setline(char *key, char *value, t_data *data);
-char				**ft_tabdup(char **table, size_t z);
-char				**check_key(char **ret, int i, char *key, char *value);
-int					b_setenv(t_data *data);
-
-/*
-** builtins_tools.c
-*/
-
-char				*tristrjoin(char *s1, char *s2, char *s3);
-
-/*
-** builtins_unsetenv.c
-*/
-
-void				ft_rmvline(int j, t_data *data);
-int					b_unsetenv(t_data *data);
-
-/*
-*************************************************************************
-******************************** SIGNAL *********************************
-*************************************************************************
-*/
-
-void				signal_handler(void(*restart)(int));
-void				refresh_screen(int signum);
 #endif

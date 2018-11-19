@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   3_parser.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/03 17:52:41 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/14 17:50:48 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/11/18 15:20:16 by hben-yah          #+#    #+#             */
+/*   Updated: 2018/11/19 14:15:24 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PARSER_H
+# define PARSER_H
 
-char	*ft_strchr(const char *s, int c)
-{
-	char chara;
+t_token	*get_next_relevant_token(t_token *tok);
 
-	chara = (char)c;
-	while (*s)
-	{
-		if ((char)*s == chara)
-			return ((char *)s);
-		++s;
-	}
-	return (chara == 0 ? (char *)s : NULL);
-}
+/*
+** quotes.c
+*/
+
+int					is_quotes(char *e);
+void				put_quote_request(int i);
+
+/*
+** backslash.c
+*/
+
+int					manage_backslash(t_data *data, char **res, int *i);
+
+/*
+** parser.c
+*/
+
+int					parse(void);
+
+#endif
