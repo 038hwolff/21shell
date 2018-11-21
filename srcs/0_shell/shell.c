@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "../../includes/shell.h"
 
 void	command_line_loop(void)
 {
@@ -21,27 +21,31 @@ void	command_line_loop(void)
 	{
 		display_prompt();
 		read_command_line();
-		ft_printf("%s\n", data->cmd_line);	
-		if (!data->errno && !(data->errno = 0))
+	//	ft_printf("%s\n", data->cmd_line);	
+	/*	if (!data->errno && !(data->errno = 0))
 		{
-			lexical_analysis(&data->token, data->cmd_line);
+			lexical_analysis(&data->token, data->cmd_line);*/
 			//if (!parse())
 			//{
 				//build_ast(/* ??? */);
 				//execute(/* ??? */);
 			//}
-		}
+/*		}
 		else
 		{
 			// free lex
 			// mettre retour à > 0
 		}
-		ft_printf("\n");
+		ft_printf("\n");*/
 	}	
 }
 
 int		main(int ac, char **av, char **env)
 {
+	t_env *envv;
+
+	envv = (t_env *)ft_memalloc(sizeof(t_env));
+	setup_env(ac, av, envv);
 	if (ac && av && env)
 	{
 		init_shell(env);

@@ -64,8 +64,8 @@ void	setup_term(t_env *env)
 		ft_putstr("Error: could not access the termcaps database");
 		exit (1);
 	}
-	ft_putstr_fd(tgetstr("ti", NULL), 2);
-	ft_putstr_fd(tgetstr("vi", NULL), 2);
+	ft_putstr_fd(tgetstr("ti", NULL), 1);
+	ft_putstr_fd(tgetstr("vi", NULL), 1);
 }
 
 void	setup_env(int ac, char **av, t_env *env)
