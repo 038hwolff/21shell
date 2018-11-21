@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 11:54:11 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/21 17:53:00 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/21 18:19:00 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ void	command_line_loop(void)
 
 int		main(int ac, char **av, char **env)
 {
-	//t_env *envv;
+	t_env *envv;
 
-	//envv = (t_env *)ft_memalloc(sizeof(t_env));
-	//setup_env(ac, av, envv);
+	envv = (t_env *)ft_memalloc(sizeof(t_env));
+	setup_env(ac, av, envv);
 	if (ac && av && env)
 	{
 		init_shell(env);
