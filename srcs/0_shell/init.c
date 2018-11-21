@@ -29,7 +29,7 @@ void	init_shell(char **env)
 	if (tcgetattr(STDIN_FILENO, &term) == -1)
 		term_exception(""ERR_PREFIX"could not get terminal config\n");
 	data->term_dft_config = term;
-	/*term.c_lflag ^= ICANON;
+/*	term.c_lflag ^= ICANON;
 	term.c_cc[VMIN] = 1;
 	term.c_cc[VTIME] = 0;
 	tcsetattr(STDIN_FILENO, TCSADRAIN, &term);*/

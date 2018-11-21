@@ -6,15 +6,15 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 11:54:11 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/20 17:53:29 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/21 17:53:00 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "../../includes/shell.h"
 
-char *g_line_test;
+//char *g_line_test;
 
-
+/*
 void 	print_lex(t_token *token)
 {
 	ft_printf("\n---LEXAGE---\n");
@@ -26,7 +26,7 @@ void 	print_lex(t_token *token)
 	}
 	ft_printf("------------\n");
 }
-
+*/
 
 /*
 ** Command line lifecycle
@@ -46,17 +46,16 @@ void	command_line_loop(void)
 	{
 		display_prompt();
 		
-		//read_command_line();
+		read_command_line();
 
-		data->cmd_line = g_line_test;
+		//data->cmd_line = g_line_test;
 
 		if (!data->errno && !(data->errno = 0))
 		{
 			lexical_analysis(&data->token, data->cmd_line);
 			// print le lex
-			print_lex(data->token);
-			data->shell_exit = 1;
-
+			//print_lex(data->token);
+			//data->shell_exit = 1;
 			if (!parse(data, data->token))
 			{
 				//ft_printf("%s\n", data->cmd_line);	
@@ -73,9 +72,12 @@ void	command_line_loop(void)
 	}	
 }
 
-/* real main
 int		main(int ac, char **av, char **env)
 {
+	//t_env *envv;
+
+	//envv = (t_env *)ft_memalloc(sizeof(t_env));
+	//setup_env(ac, av, envv);
 	if (ac && av && env)
 	{
 		init_shell(env);
@@ -84,8 +86,8 @@ int		main(int ac, char **av, char **env)
 	}
 	return (EXIT_SUCCESS);
 }
-*/
 
+/* main de test heidy
 int		main(int ac, char **av, char **env)
 {
 	if (ac && av && av[1] && env)
@@ -96,4 +98,4 @@ int		main(int ac, char **av, char **env)
 		//// free des trucs
 	}
 	return (EXIT_SUCCESS);
-}
+}*/

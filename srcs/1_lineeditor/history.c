@@ -1,36 +1,34 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   history.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 18:18:38 by hwolff            #+#    #+#             */
-/*   Updated: 2018/11/13 18:18:40 by hwolff           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/shell.h"
 
-char	*history_dmove(t_var *var)
+void	history_dmove(t_var *var, char **line)
 {
 	int j;
 
-	j = var->h_current + 1;
-	if (j > var->h_count)
+	if (var->h_count == 0)
 	{
-		ft_putstr_fd(tgetstr("bl", NULL), 2);
-		return (NULL);
+		ft_putstr_fd(tgetstr("bl", NULL), 1);
+		return ;
 	}
-	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 2), 2);
-	ft_putstr_fd(tgetstr("ce", NULL), 2);
-	ft_putstr_fd(var->hist[j], 2);
+	j = var->h_current + 1;
+	if (j >= var->h_count)
+	{
+		ft_putstr_fd(tgetstr("bl", NULL), 1);
+		return ;
+	}
+	while (var->index > 0)
+		mouve_left(var);
+	ft_putstr_fd(tgetstr("cd", NULL), 1);
+	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 2), 1);
+	ft_putstr_fd(tgetstr("ce", NULL), 1);
+	ft_putstr_fd(var->hist[j], 1);
 	var->h_current = j;
-	var->index = ft_strlen(var->hist[j]);
-	return (var->hist[j]);
+	free(*line);
+	*line = ft_strdup(var->hist[j]);
+	var->index = ft_strlen(*line);
+	var->multiline = (len_line(var) + var->index) / var->col;
 }
 
-char	*history_umove(t_var *var)
+void	history_umove(t_var *var, char **line)
 {
 	int	j;
 
@@ -41,17 +39,22 @@ char	*history_umove(t_var *var)
 		j = var->h_current - 1;
 	if (j < 0)
 	{
-		ft_putstr_fd(tgetstr("bl", NULL), 2);
-		return (NULL);
+		ft_putstr_fd(tgetstr("bl", NULL), 1);
+		return ;
 	}
-	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 2), 2);
-	ft_putstr_fd(tgetstr("ce", NULL), 2);
-	ft_putstr_fd(var->hist[j], 2);
+	while (var->index > 0)
+		mouve_left(var);
+	ft_putstr_fd(tgetstr("cd", NULL), 1);
+	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 2), 1);
+	ft_putstr_fd(tgetstr("ce", NULL), 1);
+	ft_putstr_fd(var->hist[j], 1);
 	var->h_current = j;
-	var->index = ft_strlen(var->hist[j]);
-	return (var->hist[j]);
+	free(*line);
+	*line = ft_strdup(var->hist[j]);
+	var->index = ft_strlen(*line);
+	var->multiline = (len_line(var) + var->index) / var->col;
 }
-	
+
 char	**free_cases(char **value)
 {
 	int i;

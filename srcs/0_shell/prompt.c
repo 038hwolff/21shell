@@ -12,7 +12,7 @@
 
 #include "shell.h"
 
-void		display_prompt(void)
+void		displ_prompt(void)
 {
 	// afficher user ?
 	// afficher le rep courant 

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/19 16:40:23 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/20 17:44:18 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void				display_prompt(void);
 void			*try_m(void *ptr);
 void			term_exception(char *message);
 void			tent_exception(char *ent);
+void	syntax_exception(char *word);
 
 /*
 ** var.c

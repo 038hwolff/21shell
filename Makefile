@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/11/19 16:53:54 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/11/20 17:45:16 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SHELL_N			=	shell.c free.c data.c init.c prompt.c putchar.c \
 EDITLINE_N		=	command_reader.c loop.c mouve.c print_line.c term.c \
 					history.c setup.c ft_enter.c signal.c
 LEXER_N			=	lexer.c checker.c token.c helper.c 
-PARSER_N		=	parser.c
+PARSER_N		=	parser.c syntax_checker.c helper.c
 ASTBUILDER_N	=	astbuilder.c
 EXECUTOR_N		=	
 BUILTINS_N		=	

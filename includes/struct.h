@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/19 17:34:42 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/20 17:25:53 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,14 @@ typedef struct	s_variable
 }				t_variable;
 
 
-
+/*
 typedef struct		s_built
 {
 	char			**av;
 	int				ac;
 	t_data			*env;
 }					t_built;
+*/
 
 typedef struct		s_env
 {
@@ -91,6 +92,7 @@ typedef struct		s_cdenv
 typedef struct		s_data
 {
 	char			*term_name;			// nom du terminal
+	int				prompt_len;
 
 	t_variable		*env;				// variables d'environnement
 	t_variable		*loc;				// variables locales
