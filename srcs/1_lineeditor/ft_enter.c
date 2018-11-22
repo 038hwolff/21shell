@@ -12,7 +12,7 @@
 
 #include "../../includes/shell.h"
 
-int	ft_enter(char *line, t_var *var)
+int	ft_enter(char *line, t_edl *edl)
 {
 	if (ft_strcmp(line, "exit") == 0)
 		exit (1);
@@ -21,6 +21,6 @@ int	ft_enter(char *line, t_var *var)
 		global_parse(&data);
 		ft_strdel(&(data.entry));
 	}*/
-	var->index = 0;
+	edl->index = 0;
 	return (0);
 }

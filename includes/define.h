@@ -26,6 +26,7 @@
 
 # define ENTER 10
 # define SPACE 32
+# define TAB 9
 # define SUPP 127
 # define UP 4283163
 # define DOWN 4348699

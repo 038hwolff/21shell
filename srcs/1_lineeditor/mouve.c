@@ -4,46 +4,46 @@
 ** FN + up arrow
 */
 
-void	prev_word(t_var *var, char *line)
+void	prev_word(t_edl *edl, char *line)
 {
-	while (var->index > 0 && !ft_isspace_wnt(line[var->index]))
-		mouve_left(var);
-	while (var->index > 0 && ft_isspace_wnt(line[var->index]))
-		mouve_left(var);
-	while (var->index > 0 && !ft_isspace_wnt(line[var->index]))
-		mouve_left(var);
-	if (var->index > 0)
-		mouve_right(var);
+	while (edl->index > 0 && !ft_isspace_wnt(line[edl->index]))
+		mouve_left(edl);
+	while (edl->index > 0 && ft_isspace_wnt(line[edl->index]))
+		mouve_left(edl);
+	while (edl->index > 0 && !ft_isspace_wnt(line[edl->index]))
+		mouve_left(edl);
+	if (edl->index > 0)
+		mouve_right(edl);
 }
 
 /*
 ** FN + down arrow
 */
 
-void	next_word(t_var *var, char *line, size_t len)
+void	next_word(t_edl *edl, char *line, size_t len)
 {
-	while (var->index < (int)len && !ft_isspace_wnt(line[var->index]))
-		mouve_right(var);
-	while (var->index < (int)len && ft_isspace_wnt(line[var->index]))
-		mouve_right(var);
+	while (edl->index < (int)len && !ft_isspace_wnt(line[edl->index]))
+		mouve_right(edl);
+	while (edl->index < (int)len && ft_isspace_wnt(line[edl->index]))
+		mouve_right(edl);
 }
 
-void	mouve_left(t_var *var)
+void	mouve_left(t_edl *edl)
 {
-	var->index--;
+	edl->index--;
 	ft_putstr_fd(tgetstr("le", NULL), 1);
-	if (len_line(var) % var->col == 0)
-		var->multiline--;
+	if (len_line(edl) % edl->col == 0)
+		edl->multiline--;
 }
 
-void	mouve_right(t_var *var)
+void	mouve_right(t_edl *edl)
 {
-	var->index++;
-	if (len_line(var) % var->col == 0)
+	edl->index++;
+	if (len_line(edl) % edl->col == 0)
 	{
 		ft_putstr_fd(tgetstr("do", NULL), 1);
 		ft_putstr_fd(tgetstr("ch", NULL), 1);
-		var->multiline++;
+		edl->multiline++;
 
 	}
 	else

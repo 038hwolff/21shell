@@ -12,28 +12,21 @@
 
 #include "shell.h"
 
-void	display_prompt(void)
-{
-	ft_putstr_fd(tgetstr("me", NULL), 1);
-	ft_putstr_fd("$>", 1);
-	return ;
-}
-
-void	loop_enter(t_var *var, char **line)
+void	loop_enter(t_edl *edl, char **line)
 {
 	if (ft_strcmp(*line, "\0") != 0)
 	{
-		var->hist = add_history(var, *line);
-		while (var->index < (int)ft_strlen(*line))
-			mouve_right(var);
-		var->multiline = len_line(var) / var->col;
-		ft_enter(*line, var);
+		edl->hist = add_history(edl, *line);
+		while (edl->index < (int)ft_strlen(*line))
+			mouve_right(edl);
+		edl->multiline = len_line(edl) / edl->col;
+		ft_enter(*line, edl);
 		ft_putstr_fd("\n", 1);
 	}
 	else
 		ft_putstr_fd("\n", 1);
 	display_prompt();
-	var->h_current = 0;
+	edl->h_current = 0;
 	free(*line);
 	*line = ft_strdup("\0");
 }
@@ -41,19 +34,20 @@ void	loop_enter(t_var *var, char **line)
 void	read_line(void)
 {
 	unsigned long	key;
-	t_var	*var;
+	t_edl	*edl;
 
-	var = (t_var *)malloc(sizeof(t_var));
-	var = setup_var(var);
+	edl = (t_edl *)malloc(sizeof(t_edl));
+	edl = setup_edl(edl);
 	while (key = 0, (read(STDIN_FILENO, &key, 10)) != 0)
 	{
 		signal_handler(NULL);
 		if (key == ENTER)
-			loop_enter(var, &var->line);
-		else if (key != DOWN_FN && key != UP_FN && key != LEFT && key != RIGHT
-				&& key != HOME && key != END && key != UP && key !=DOWN)
-			print_line(var, &var->line, key);
+			loop_enter(edl, &edl->line);
+		else if (key == 9 || (key > 31 && key < 128 && key != DOWN_FN && key != UP_FN 
+				&& key != LEFT && key != RIGHT && key != HOME
+				&& key != END && key != UP && key !=DOWN))
+			print_line(edl, &edl->line, key);
 		else
-			var->line = ft_termcaps(var, var->line, key);
+			edl->line = ft_termcaps(edl, edl->line, key);
 	}
 }

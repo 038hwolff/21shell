@@ -22,43 +22,40 @@ void			display_prompt(void);
 ** mouve.c
 */
 
-void			mouve_right(t_var *var);
-void			mouve_left(t_var *var);
-void			prev_word(t_var *var, char *line);
-void			next_word(t_var *var, char *line, size_t len);
+void			mouve_right(t_edl *edl);
+void			mouve_left(t_edl *edl);
+void			prev_word(t_edl *edl, char *line);
+void			next_word(t_edl *edl, char *line, size_t len);
 
 /*
 ** print_line.c
 */
 
-void			print_line(t_var *var, char **line, unsigned long key);
+void			print_line(t_edl *edl, char **line, unsigned long key);
 
 /*
 ** term.c
 */
 
-char			*ft_termcaps(t_var *var, char *line, unsigned long key);
+char			*ft_termcaps(t_edl *edl, char *line, unsigned long key);
 
 /*
 ** history.c
 */
 
-char			**add_history(t_var *var, char *line);
-void			history_umove(t_var *var, char **line);
-void			history_dmove(t_var *var, char **line);
+char			**add_history(t_edl *edl, char *line);
+void			history_umove(t_edl *edl, char **line);
+void			history_dmove(t_edl *edl, char **line);
 
 /*
 ** command_reader.c
 */
 
 void	read_command_line(void);
-
-int	len_line(t_var *var);
-
+int	len_line(t_edl *edl);
 void	read_line(void);
-int	ft_enter(char *line, t_var *var);
-t_var	*setup_var(t_var *var);
-
+int	ft_enter(char *line, t_edl *edl);
+t_edl	*setup_edl(t_edl *edl);
 void	setup_env(int ac, char **av, t_env *env);
 
 #endif

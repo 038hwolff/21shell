@@ -12,28 +12,28 @@
 
 #include "shell.h"
 
-int	len_line(t_var *var)
+int	len_line(t_edl *edl)
 {
 	int	i;
 
-	i = ft_strlen(var->line) + 2;
+	i = ft_strlen(edl->line) + 2;
 	return (i);
 }
 
-t_var	*setup_var(t_var *var)
+t_edl	*setup_edl(t_edl *edl)
 {
 	struct winsize ws;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
-	var = (t_var*)ft_memalloc(sizeof(t_var));
-	var->hist = (char **)ft_memalloc(sizeof(char *));
-	var->line = ft_strdup("\0");
-	var->index = 0;
-	var->col = ws.ws_col;
-	var->multiline = len_line(var) / var->col;
-	var->h_count = 0;
-	var->h_current = 0;
-	return (var);
+	edl = (t_edl*)ft_memalloc(sizeof(t_edl));
+	edl->hist = (char **)ft_memalloc(sizeof(char *));
+	edl->line = ft_strdup("\0");
+	edl->index = 0;
+	edl->col = ws.ws_col;
+	edl->multiline = len_line(edl) / edl->col;
+	edl->h_count = 0;
+	edl->h_current = 0;
+	return (edl);
 }
 
 void	setup_term(t_env *env)

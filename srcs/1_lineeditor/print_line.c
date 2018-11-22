@@ -64,41 +64,41 @@ char	*insert_char(char *line, unsigned long key, int *index)
 	return (ret);
 }
 
-void	count_line(t_var *var, unsigned long key)
+void	count_line(t_edl *edl, unsigned long key)
 {
-	if ((len_line(var) % var->col == 0) && key != SUPP)
-		var->multiline++;
-	if ((len_line(var) % var->col == 0) && key == SUPP)
-		var->multiline--;
+	if ((len_line(edl) % edl->col == 0) && key != SUPP)
+		edl->multiline++;
+	if ((len_line(edl) % edl->col == 0) && key == SUPP)
+		edl->multiline--;
 }
 
-void	print_line(t_var *var, char **line, unsigned long key)
+void	print_line(t_edl *edl, char **line, unsigned long key)
 {
 	struct winsize	ws;
 	int		j;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
-	var->col = ws.ws_col;
+	edl->col = ws.ws_col;
 	if (key != SUPP)
-		*line = insert_char(*line, key, &var->index);
+		*line = insert_char(*line, key, &edl->index);
 	if (key == SUPP)
-		*line = supp_char(*line, &var->index);
+		*line = supp_char(*line, &edl->index);
 	if (key != SUPP)
-		var->index++;
+		edl->index++;
 	j = -1;
 	if (key == SUPP)
 	{
-		while (++j < var->multiline)
+		while (++j < edl->multiline)
 			ft_putstr_fd(tgoto(tgetstr("up", NULL), 0, 0), 1);
 	}
 	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 0), 1);
 	ft_putstr_fd(tgetstr("cd", NULL), 1);
-	while (++j <= (len_line(var) + (int)ft_strlen(var->line)))
+	while (++j <= (len_line(edl) + (int)ft_strlen(edl->line)))
 		write(1, "\b", 1);
 	display_prompt();
 	ft_putstr_fd(*line, 1);
-	count_line(var, key);
+	count_line(edl, key);
 	j = ft_strlen(*line);
-	while (--j >= var->index)
+	while (--j >= edl->index)
 		ft_putstr_fd(tgetstr("le", NULL), 1);
 }

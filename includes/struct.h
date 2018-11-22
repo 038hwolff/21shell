@@ -67,7 +67,7 @@ typedef struct		s_env
 	struct termios	term;
 }					t_env;
 
-typedef struct		s_var
+typedef struct		s_edl
 {
 	int				index;
 	char			*line;
@@ -76,7 +76,7 @@ typedef struct		s_var
 	int				h_count;
 	int				h_current;
 	int				col;
-}					t_var;
+}					t_edl;
 
 typedef struct		s_cdenv
 {
@@ -108,6 +108,7 @@ typedef struct		s_data
 
 	short			shell_exit;			// si a reçu un signal de sortie
 	int				errno;				// numero d'erreur retourné, notre propre errno 
+	t_edl			edl;			
 }					t_data;
 
 #endif
