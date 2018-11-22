@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:03:53 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/18 18:37:02 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/22 21:02:44 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/ioctl.h>
 # include <termios.h>
 # include <fcntl.h>
+# include <signal.h>
 
 /*
 ** Bonus headers

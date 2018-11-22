@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 11:54:11 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/21 18:19:00 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/11/22 22:23:37 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //char *g_line_test;
 
-/*
+
 void 	print_lex(t_token *token)
 {
 	ft_printf("\n---LEXAGE---\n");
@@ -26,7 +26,7 @@ void 	print_lex(t_token *token)
 	}
 	ft_printf("------------\n");
 }
-*/
+
 
 /*
 ** Command line lifecycle
@@ -47,9 +47,11 @@ void	command_line_loop(void)
 		display_prompt();
 		read_command_line();
 		//data->cmd_line = g_line_test;
-	/*	if (!data->errno && !(data->errno = 0))
+		//ft_printf("%s\n", data->cmd_line);
+		ft_printf("%s\n", data->edl.line);
+		if (!data->errno && !(data->errno = 0))
 		{
-			lexical_analysis(&data->token, data->cmd_line);*/
+			lexical_analysis(&data->token, data->edl.line);
 			// print le lex
 			//print_lex(data->token);
 			//data->shell_exit = 1;
@@ -59,8 +61,9 @@ void	command_line_loop(void)
 				//build_ast(/* ??? */);
 				//execute(/* ??? */);
 		//	}
-	/*	}
-		else
+		}
+		data->token = NULL; // FAUT FREE EN FAIT, A FAIRE PLUS TARD
+		/*else
 		{
 			// free lex
 			// mettre retour à > 0

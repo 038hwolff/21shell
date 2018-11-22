@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 19:45:59 by hwolff            #+#    #+#             */
-/*   Updated: 2018/10/30 19:49:33 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/11/22 22:09:45 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_edl	*setup_edl(t_edl *edl)
 	struct winsize ws;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
-	edl = (t_edl*)ft_memalloc(sizeof(t_edl));
+	//edl = (t_edl*)ft_memalloc(sizeof(t_edl));
 	edl->hist = (char **)ft_memalloc(sizeof(char *));
 	edl->line = ft_strdup("\0");
 	edl->index = 0;
