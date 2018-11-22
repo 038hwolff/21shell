@@ -38,27 +38,22 @@ void	loop_enter(t_var *var, char **line)
 	*line = ft_strdup("\0");
 }
 
-void	loop(void)
+void	read_line(void)
 {
-	char	buf[1000];
-//	unsigned long	key;
+	unsigned long	key;
 	t_var	*var;
 
 	var = (t_var *)malloc(sizeof(t_var));
-	ft_bzero(buf, 1000);
 	var = setup_var(var);
-	while (1)
+	while (key = 0, (read(STDIN_FILENO, &key, 10)) != 0)
 	{
 		signal_handler(NULL);
-		ft_bzero(buf, 1000);
-		read(STDIN_FILENO, buf, 1000);
-//		read(STDIN_FILENO, &key, 6);
-//		printf("%lu\n", key);
-		if (ENTER)
+		if (key == ENTER)
 			loop_enter(var, &var->line);
-		else if (buf[0] != '\0' && !HAUT && !BAS && !GAUCHE && !DROITE && !HOME && !END && !UP && !DOWN)
-			print_line(var, &var->line, buf);
+		else if (key != DOWN_FN && key != UP_FN && key != LEFT && key != RIGHT
+				&& key != HOME && key != END && key != UP && key !=DOWN)
+			print_line(var, &var->line, key);
 		else
-			var->line = ft_termcaps(var, var->line, buf);
+			var->line = ft_termcaps(var, var->line, key);
 	}
 }

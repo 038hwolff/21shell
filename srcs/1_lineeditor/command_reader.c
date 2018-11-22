@@ -14,5 +14,5 @@
 
 void	read_command_line(void)
 {
-	loop();
+	read_line();
 }

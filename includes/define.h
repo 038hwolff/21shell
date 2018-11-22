@@ -23,20 +23,18 @@
 ** Line editor keys
 */
 
-# define ENTER ((buf[0] == 10 && buf[1] == 0) || (buf[0] == 13 && buf[1] == 0))
-# define SPACE (buf[0] == 32 && buf[1] == 0)
-# define SUPP (buf[0] == 127 && buf[1] == 0)
-# define DEL (buf[0] == 27 && buf[1] == 91 && buf[2] == 51 && buf[3] == 126)
-# define HAUT (buf[0] == 27 && buf[1] == 91 && buf[2] == 65)
-# define BAS (buf[0] == 27 && buf[1] == 91 && buf[2] == 66)
-# define UP (buf[0] == 27 && buf[1] == 91 && buf[2] == 53 && buf[3] == 126) /* fn + up arrow */
-# define DOWN (buf[0] == 27 && buf[1] == 91 && buf[2] == 54 && buf[3] == 126) /* fn + down arrow */
-# define MULTIUP (buf[0] == 27 && buf[1] == 27 && buf[2] == 91 && buf[3] == 65)
-# define MULTIDO (buf[0] == 27 && buf[1] == 27 && buf[2] == 91 && buf[3] == 66)
-# define GAUCHE (buf[0] == 27 && buf[1] == 91 && buf[2] == 68)
-# define DROITE (buf[0] == 27 && buf[1] == 91 && buf[2] == 67)
-# define HOME (buf[0] == 27 && buf[1] == 91 && buf[2] == 72) /* fn + left arrow */
-# define END (buf[0] == 27 && buf[1] == 91 && buf[2] == 70) /* fn + right arrow */
+
+# define ENTER 10
+# define SPACE 32
+# define SUPP 127
+# define UP 4283163
+# define DOWN 4348699
+# define UP_FN 2117425947
+# define DOWN_FN 2117491483
+# define LEFT 4479771
+# define RIGHT 4414235
+# define HOME 4741915 /* Fn + left arrow */
+# define END 4610843 /* Fn + right arrow */
 
 /*
 ** Operators type for lexer tokens

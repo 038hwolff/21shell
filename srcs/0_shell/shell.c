@@ -45,30 +45,27 @@ void	command_line_loop(void)
 	while (!data->shell_exit)
 	{
 		display_prompt();
-		
 		read_command_line();
-
 		//data->cmd_line = g_line_test;
-
-		if (!data->errno && !(data->errno = 0))
+	/*	if (!data->errno && !(data->errno = 0))
 		{
-			lexical_analysis(&data->token, data->cmd_line);
+			lexical_analysis(&data->token, data->cmd_line);*/
 			// print le lex
 			//print_lex(data->token);
 			//data->shell_exit = 1;
-			if (!parse(data, data->token))
+		/*	if (!parse(data, data->token))
 			{
-				//ft_printf("%s\n", data->cmd_line);	
+				//ft_printf("%s\n", data->cmd_line);	*/
 				//build_ast(/* ??? */);
 				//execute(/* ??? */);
-			}
-		}
+		//	}
+	/*	}
 		else
 		{
 			// free lex
 			// mettre retour à > 0
 		}
-		ft_printf("\n");
+		ft_printf("\n");*/
 	}	
 }
 

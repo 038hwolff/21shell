@@ -14,7 +14,8 @@
 
 int	ft_enter(char *line, t_var *var)
 {
-	(void)line;
+	if (ft_strcmp(line, "exit") == 0)
+		exit (1);
 /*	if ((z = read_entry(&data)) > 0)
 	{
 		global_parse(&data);

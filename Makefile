@@ -19,11 +19,11 @@ FLAGDEGUG		=	$(FLAG) -fsanitize=address
 # Files names
 SHELL_N			=	shell.c free.c data.c init.c prompt.c putchar.c \
 					signals.c term.c var.c exception.c exit.c
-EDITLINE_N		=	command_reader.c loop.c mouve.c print_line.c term.c \
-					history.c setup.c ft_enter.c signal.c
+EDITLINE_N		=	command_reader.c read_line.c mouve.c term.c \
+					history.c setup.c ft_enter.c signal.c print_line.c
 LEXER_N			=	lexer.c checker.c token.c helper.c 
 PARSER_N		=	parser.c syntax_checker.c helper.c
-ASTBUILDER_N	=	astbuilder.c
+ASTBUILDER_N		=	astbuilder.c
 EXECUTOR_N		=	
 BUILTINS_N		=	
 
@@ -34,7 +34,7 @@ FILES_C			=	$(addprefix 0_shell/, $(SHELL_N)) \
 					$(addprefix 3_parser/, $(PARSER_N)) \
 					$(addprefix 4_astbuilder/, $(ASTBUILDER_N)) \
 					$(addprefix 5_executor/, $(EXECUTOR_N)) \
-					$(addprefix 6_bultins/, $(BUILTINS_N)) \
+					$(addprefix 6_builtins/, $(BUILTINS_N)) \
 
 FILES_O			=	$(FILES_C:.c=.o)
 FILES_H			=	shell.h

@@ -12,7 +12,7 @@
 
 #include "shell.h"
 
-void		displ_prompt(void)
+/*void		displ_prompt(void)
 {
 	// afficher user ?
 	// afficher le rep courant 
@@ -20,4 +20,4 @@ void		displ_prompt(void)
 		ft_printf("%s » %s", "", ""); // bleu
 	else
 		ft_printf("%s » %s", "", ""); // rouge
-}
+}*/

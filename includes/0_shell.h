@@ -43,7 +43,7 @@ void				exit_program(char *message);
 ** prompt.c
 */
 
-void				display_prompt(void);
+/*void				display_prompt(void);*/
 
 /*
 ** exception.c

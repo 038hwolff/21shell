@@ -14,6 +14,11 @@
 # define LINEEDITOR_H
 
 /*
+** loop.c
+*/
+void			display_prompt(void);
+
+/*
 ** mouve.c
 */
 
@@ -26,13 +31,15 @@ void			next_word(t_var *var, char *line, size_t len);
 ** print_line.c
 */
 
-void			print_line(t_var *var, char **line, char buf[1000]);
+//void			print_line(t_var *var, char **line, char buf[1000]);
+void			print_line(t_var *var, char **line, unsigned long key);
 
 /*
 ** term.c
 */
 
-char			*ft_termcaps(t_var *var, char *line, char *buf);
+//char			*ft_termcaps(t_var *var, char *line, char *buf);
+char			*ft_termcaps(t_var *var, char *line, unsigned long key);
 
 /*
 ** history.c
@@ -50,7 +57,7 @@ void	read_command_line(void);
 
 int	len_line(t_var *var);
 
-void	loop(void);
+void	read_line(void);
 int	ft_enter(char *line, t_var *var);
 t_var	*setup_var(t_var *var);
 
