@@ -31,14 +31,12 @@ void			next_word(t_var *var, char *line, size_t len);
 ** print_line.c
 */
 
-//void			print_line(t_var *var, char **line, char buf[1000]);
 void			print_line(t_var *var, char **line, unsigned long key);
 
 /*
 ** term.c
 */
 
-//char			*ft_termcaps(t_var *var, char *line, char *buf);
 char			*ft_termcaps(t_var *var, char *line, unsigned long key);
 
 /*
