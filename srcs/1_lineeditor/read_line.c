@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 19:47:44 by hwolff            #+#    #+#             */
-/*   Updated: 2018/11/22 22:11:57 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/22 22:26:16 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	loop_enter(t_edl *edl, char **line)
 	else
 	{
 		ft_putstr_fd("\n", 1);
-		display_prompt();
+		//display_prompt();
 		edl->h_current = 0;
 		free(*line);
 		*line = ft_strdup("\0");
