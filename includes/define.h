@@ -32,6 +32,8 @@
 # define DOWN 4348699
 # define UP_FN 2117425947
 # define DOWN_FN 2117491483
+# define LINE_UP 71683997260571 /* Maj + up arrow */
+# define LINE_DOWN 72783508888347 /* Maj + down arrow */
 # define LEFT 4479771
 # define RIGHT 4414235
 # define HOME 4741915 /* Fn + left arrow */

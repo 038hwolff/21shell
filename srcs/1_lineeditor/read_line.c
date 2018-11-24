@@ -26,10 +26,9 @@ void	loop_enter(t_edl *edl, char **line)
 	else
 	{
 		ft_putstr_fd("\n", 1);
-		//display_prompt();
 		edl->h_current = 0;
 		free(*line);
-		*line = ft_strdup("\0");
+		*line = ft_strnew(0);
 	}
 }
 
@@ -38,7 +37,6 @@ void	read_line(void)
 	unsigned long	key;
 	t_edl	*edl;
 
-	//edl = (t_edl *)malloc(sizeof(t_edl));
 	edl = setup_edl(&get_data()->edl);
 	while (key = 0, (read(STDIN_FILENO, &key, 10)) != 0)
 	{
@@ -50,7 +48,8 @@ void	read_line(void)
 		}
 		else if (key == 9 || (key > 31 && key < 128 && key != DOWN_FN && key != UP_FN 
 				&& key != LEFT && key != RIGHT && key != HOME
-				&& key != END && key != UP && key !=DOWN))
+				&& key != END && key != UP && key !=DOWN
+				&& key != LINE_UP && key != LINE_DOWN))
 			print_line(edl, &edl->line, key);
 		else
 			edl->line = ft_termcaps(edl, edl->line, key);
