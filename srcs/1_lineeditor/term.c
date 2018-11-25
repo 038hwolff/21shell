@@ -57,7 +57,7 @@ void	line_moves(t_edl *edl, char *line, unsigned long key)
 ** PASTE = fn + p
 */
 
-char	*ft_termcaps(t_edl *edl, char *line, unsigned long key)
+char	*ft_termcaps(t_edl *edl, char *line, unsigned long key, t_hist *hist)
 {
 	size_t		len;
 	struct winsize	ws;
@@ -66,9 +66,9 @@ char	*ft_termcaps(t_edl *edl, char *line, unsigned long key)
 	edl->col = ws.ws_col;
 	len = ft_strlen(line);
 	if (key == UP)
-		history_umove(edl, &line);
+		history_umove(edl, &line, hist);
 	if (key == DOWN)
-		history_dmove(edl, &line);
+		history_umove(edl, &line, hist);
 	if (key == LEFT || key == RIGHT || key == HOME || key == END)
 		left_or_right(edl, key, len);
 	if (key == UP_FN)

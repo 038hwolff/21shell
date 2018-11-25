@@ -37,6 +37,7 @@ char	*insert_end(char *line, char *value)
 	return (ret);
 }
 
+//Check la taille de value
 char	*insert_char(char *line, unsigned long key, int *index)
 {
 	int	len;

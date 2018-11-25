@@ -67,14 +67,21 @@ typedef struct		s_env
 	struct termios	term;
 }					t_env;
 
+typedef struct		s_hist
+{
+	char				**list;
+	int				h_count;
+	int				h_current;
+}			t_hist;
+
 typedef struct		s_edl
 {
 	int				index;
 	char			*line;
 	int				multiline;
-	char			**hist;
+/*	char			**hist;
 	int				h_count;
-	int				h_current;
+	int				h_current;*/
 	int				col;
 }					t_edl;
 

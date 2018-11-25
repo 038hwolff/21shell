@@ -20,19 +20,23 @@ int	len_line(t_edl *edl)
 	return (i);
 }
 
+t_hist	*setup_hist(t_hist *hist)
+{
+	hist->list = (char **)ft_memalloc(sizeof(char *));
+	hist->h_count = 0;
+	hist->h_current = 0;
+	return (hist);
+}
+
 t_edl	*setup_edl(t_edl *edl)
 {
 	struct winsize ws;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
-	//edl = (t_edl*)ft_memalloc(sizeof(t_edl));
-	edl->hist = (char **)ft_memalloc(sizeof(char *));
-	edl->line = ft_strdup("\0");
+	edl->line = ft_strnew(0);
 	edl->index = 0;
 	edl->col = ws.ws_col;
 	edl->multiline = len_line(edl) / edl->col;
-	edl->h_count = 0;
-	edl->h_current = 0;
 	return (edl);
 }
 

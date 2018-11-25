@@ -12,7 +12,7 @@
 
 #include "shell.h"
 
-void	read_command_line(void)
+void	read_command_line(t_hist *hist)
 {
-	read_line();
+	read_line(hist);
 }
