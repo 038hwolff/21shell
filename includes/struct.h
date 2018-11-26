@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/20 17:25:53 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/26 16:03:30 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ typedef struct		s_token
 
 typedef struct		s_ast
 {
-	int		pouet;
+    char            *val; // donc le mot
+    struct s_ast    *parent;
+    struct s_ast    *right; // la branche de droite
+    struct s_ast    *left; // la branche de gauche
+    int             type; // ex : LESSLESS
 }					t_ast;
 
 typedef struct	s_variable
