@@ -37,7 +37,6 @@ char	*insert_end(char *line, char *value)
 	return (ret);
 }
 
-//Check la taille de value
 char	*insert_char(char *line, unsigned long key, int *index)
 {
 	int	len;
@@ -45,10 +44,11 @@ char	*insert_char(char *line, unsigned long key, int *index)
 	char	*value = NULL;
 	int	i;
 
+
 	value = (char *)(&key);
 	len = ft_strlen(line);
 	i = -1;
-	if (*index == len && ft_strlen(value) >= 2)
+	if (*index == len && ft_strlen(value) >= 1)
 		*index = *index + ft_strlen(value) - 1;
 	len = ft_strlen(line) + ft_strlen(value) - 1;
 	if (len == *index)
@@ -80,6 +80,10 @@ void	print_line(t_edl *edl, char **line, unsigned long key)
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
 	edl->col = ws.ws_col;
+	if (key == TAB && edl->index == 0)
+		key = SPACE;
+	else if (key == TAB)
+		return ;
 	if (key != SUPP)
 		*line = insert_char(*line, key, &edl->index);
 	if (key == SUPP)

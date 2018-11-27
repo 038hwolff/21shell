@@ -46,7 +46,7 @@ void	read_line(t_hist *hist)
 			loop_enter(edl, &edl->line, hist);
 			return ;
 		}
-		else if (key == 9 || (key > 31 && key < 128 && key != DOWN_FN && key != UP_FN 
+		else if (key == TAB || (key > 31 && key < 128 && key != DOWN_FN && key != UP_FN 
 				&& key != LEFT && key != RIGHT && key != HOME
 				&& key != END && key != UP && key !=DOWN
 				&& key != LINE_UP && key != LINE_DOWN))
