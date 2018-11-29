@@ -120,6 +120,7 @@ typedef struct		s_data
 	short			shell_exit;			// si a reçu un signal de sortie
 	int				errno;				// numero d'erreur retourné, notre propre errno 
 	t_edl			edl;			
+	t_hist			hist;
 }					t_data;
 
 #endif

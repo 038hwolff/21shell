@@ -40,15 +40,13 @@ void 	print_lex(t_token *token)
 void	command_line_loop(void)
 {
 	t_data	*data;
-	t_hist	*hist;
 
 	data = get_data();
-	hist = (t_hist *)ft_memalloc(sizeof(t_hist));
-	hist = setup_hist(hist);
+	setup_hist(&data->hist);
 	while (!data->shell_exit)
 	{
 		display_prompt();
-		read_command_line(hist);
+		read_command_line();
 		//data->cmd_line = g_line_test;
 		//ft_printf("%s\n", data->cmd_line);
 	//	ft_printf("%s\n", data->edl.line);

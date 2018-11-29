@@ -32,26 +32,27 @@ void	loop_enter(t_edl *edl, char **line, t_hist *hist)
 	}
 }
 
-void	read_line(t_hist *hist)
+void	read_line(void)
 {
 	unsigned long	key;
-	t_edl		*edl;
+	t_data		*data;
 
-	edl = setup_edl(&get_data()->edl);
+	data = get_data();
+	setup_edl(&data->edl);
 	while (key = 0, (read(STDIN_FILENO, &key, 10)) != 0)
 	{
 		signal_handler(NULL);
 		if (key == ENTER)
 		{
-			loop_enter(edl, &edl->line, hist);
+			loop_enter(&data->edl, &data->edl.line, &data->hist);
 			return ;
 		}
 		else if (key == TAB || (key > 31 && key < 128 && key != DOWN_FN && key != UP_FN 
 				&& key != LEFT && key != RIGHT && key != HOME
 				&& key != END && key != UP && key !=DOWN
 				&& key != LINE_UP && key != LINE_DOWN))
-			print_line(edl, &edl->line, key);
+			print_line(&data->edl, &data->edl.line, key);
 		else
-			edl->line = ft_termcaps(edl, edl->line, key, hist);
+			data->edl.line = ft_termcaps(&data->edl, data->edl.line, key, &data->hist);
 	}
 }
