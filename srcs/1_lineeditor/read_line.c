@@ -56,3 +56,29 @@ void	read_line(void)
 			edl->line = ft_termcaps(edl, edl->line, key);
 	}
 }
+
+void	read_additional_line(char **line)
+{
+	unsigned long	key;
+	t_edl	*edl;
+
+	//edl = (t_edl *)malloc(sizeof(t_edl));
+	edl = setup_edl(&get_data()->edl);
+	while (key = 0, (read(STDIN_FILENO, &key, 10)) != 0)
+	{
+		ft_printf("lol\n");
+
+		signal_handler(NULL);
+		if (key == ENTER)
+		{
+			loop_enter(edl, line);
+			return ;
+		}
+		else if (key == 9 || (key > 31 && key < 128 && key != DOWN_FN && key != UP_FN 
+				&& key != LEFT && key != RIGHT && key != HOME
+				&& key != END && key != UP && key !=DOWN))
+			print_line(edl, line, key);
+		else
+			*line = ft_termcaps(edl, *line, key);
+	}
+}

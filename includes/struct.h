@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/20 17:25:53 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/27 14:48:49 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,9 @@ typedef struct		s_data
 	char			**args; 			// vient du minishell, toujours utile ??
 
 	char			*cmd_line; 			// la ligne de commande lue et envoyée au lexer
+	char			*additional_line;
+	int				incomp_type;
+
 	t_token			*token;				// le resultat du lexer !!
 	t_ast			ast;				// l'arbre syntaxique
 
@@ -108,7 +111,9 @@ typedef struct		s_data
 
 	short			shell_exit;			// si a reçu un signal de sortie
 	int				errno;				// numero d'erreur retourné, notre propre errno 
-	t_edl			edl;			
+	t_edl			edl;
+	int				sigint;
+	int				eof;
 }					t_data;
 
 #endif

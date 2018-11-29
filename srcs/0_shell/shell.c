@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 11:54:11 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/22 22:26:24 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/22 22:28:50 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void 	print_lex(t_token *token)
 			token->type);
 		token = token->next;
 	}
-	ft_printf("------------\n");
+	ft_printf("------------\n\n");
 }
 
 
@@ -48,19 +48,18 @@ void	command_line_loop(void)
 		read_command_line();
 		//data->cmd_line = g_line_test;
 		//ft_printf("%s\n", data->cmd_line);
-		ft_printf("%s\n", data->edl.line);
 		if (!data->errno && !(data->errno = 0))
 		{
 			lexical_analysis(&data->token, data->edl.line);
 			// print le lex
-			//print_lex(data->token);
+			print_lex(data->token);
 			//data->shell_exit = 1;
-		/*	if (!parse(data, data->token))
+			if (!parser(&data->token))
 			{
 				//ft_printf("%s\n", data->cmd_line);	*/
 				//build_ast(/* ??? */);
 				//execute(/* ??? */);
-		//	}
+			}
 		}
 		data->token = NULL; // FAUT FREE EN FAIT, A FAIRE PLUS TARD
 		/*else

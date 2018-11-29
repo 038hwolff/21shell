@@ -58,4 +58,6 @@ int	ft_enter(char *line, t_edl *edl);
 t_edl	*setup_edl(t_edl *edl);
 void	setup_env(int ac, char **av, t_env *env);
 
+void	read_additional_line(char **line);
+
 #endif

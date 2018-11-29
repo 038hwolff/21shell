@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/21 15:39:11 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/27 10:47:47 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,22 +63,24 @@
 # define NAME					32
 
 /*
-** Missing characters and prompt types ("dquote>")
+** Incomplete command types ("dquote>")
 */
 
-# define MISSINGQUOTE			1
-# define MISSINGDQUOTE			2
-# define MISSINGPIPE			3
-# define MISSINGDPIPE			4
-# define MISSINGDAND			5
-# define MISSINGBKSLASH			6
+# define COMPLETE			0
+# define INC_QUOTE			1
+# define INC_DQUOTE			2
+# define INC_PIPE			3
+# define INC_DPIPE			4
+# define INC_DAND			5
+# define INC_BKSLASH		6
 
-# define PQUOTE 				"quote> "
-# define PDQUOTE 				"dquote> "
-# define PBACKSLASH 			"> "
-# define PDOUBLEAND 			"> "
-# define PDDOUBLEPIPE 			"> "
-# define PPIPE 					"> "
+# define PQUOTE 				"quote » "
+# define PDQUOTE 				"dquote » "
+# define PBACKSLASH 			" » "
+# define PDOUBLEAND 			" » "
+# define PDDOUBLEPIPE 			" » "
+# define PPIPE 					" » "
+# define PHEREDOC 				"heredoc » "
 
 #endif
 
