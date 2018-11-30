@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 19:47:44 by hwolff            #+#    #+#             */
-/*   Updated: 2018/11/22 22:26:16 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/30 14:29:56 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	read_line(void)
 
 	data = get_data();
 	setup_edl(&data->edl);
+	display_prompt();
 	while (key = 0, (read(STDIN_FILENO, &key, 10)) != 0)
 	{
 		signal_handler(NULL);
