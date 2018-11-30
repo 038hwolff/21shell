@@ -16,7 +16,6 @@
 /*
 ** loop.c
 */
-void			display_prompt(void);
 
 /*
 ** mouve.c
@@ -37,15 +36,15 @@ void			print_line(t_edl *edl, char **line, unsigned long key);
 ** term.c
 */
 
-char			*ft_termcaps(t_edl *edl, char *line, unsigned long key);
+char			*ft_termcaps(t_edl *edl, char *line, unsigned long key, t_hist *hist);
 
 /*
 ** history.c
 */
 
-char			**add_history(t_edl *edl, char *line);
-void			history_umove(t_edl *edl, char **line);
-void			history_dmove(t_edl *edl, char **line);
+char			**add_history(char *line, t_hist *hist);
+void			history_umove(t_edl *edl, char **line, t_hist *hist);
+void			history_dmove(t_edl *edl, char **line, t_hist *hist);
 
 /*
 ** command_reader.c
@@ -59,5 +58,10 @@ t_edl	*setup_edl(t_edl *edl);
 void	setup_env(int ac, char **av, t_env *env);
 
 void	read_additional_line(char **line);
+/*
+** setup.c
+*/
+
+t_hist *setup_hist(t_hist *hist);
 
 #endif

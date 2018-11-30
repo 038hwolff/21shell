@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/20 17:44:18 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/27 14:31:37 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,14 @@ void check_term(t_data *data);
 */
 
 void	init_sig();
+
+int		check_if_sigint(t_data *data, char **line);
+void	eof_exception(void);
+
+
+void	display_prompt(t_data *data);
+
+void 	print_lex(t_token *token); // A SUPPRIMER A LA FIN
+
 
 # endif

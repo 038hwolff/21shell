@@ -5,30 +5,53 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 17:48:37 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/21 15:48:06 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
+/*   Updated: 2018/11/27 14:27:34 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		parse(t_data *data, t_token *tokens)
+/*
+** ft_parser :
+** Check les erreurs de syntax.
+** Gère les inhibiteurs.
+** Supprime les tokens de type NEW_LINE.
+** Récupère les arguments du hdoc.
+** Renvoie -1 si syntax error ou signal d'interruption, 0 sinon.
+*/
+
+int		parser(t_token **token)
 {
-	char *word;
+	t_data			*data;
+	char			*neartoken;
+	int				new_line;
 
-	(void)data;
-
-	ft_printf("raf");
-	if (!tokens)
+	if (!token)
 		return (0);
-	if ((word = check_syntax(tokens)))
+	data = get_data();
+	if ((neartoken = check_syntax_errors(*token)) != NULL)
 	{
-		syntax_exception(word);
-		return (0);
+		syntax_exception(neartoken);
+		return (-1);
 	}
+	if (check_command(data, token) == -1)
+		return (-1);
+	
+	ft_printf("\nend\n\n");
 
-	//if (!check_inhibitors(data, tokens))
-	//	return (0);
+/// -> here
+	new_line = NEWLINE;
+	//ft_lexlst_remove_if(token, &new_line, 1);
+	
 
-	return (1);
+	//if (check_heredoc(*token, data) == -1)
+	//	return (-1);
+	
+
+	//if (data->flags->token == 1)
+	//	ft_put_lexlst(*token);
+	
+
+	return (0);
 }

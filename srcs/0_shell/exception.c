@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 14:27:05 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/21 15:04:18 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/27 14:25:24 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,9 @@ void	tent_exception(char *ent)
 void	syntax_exception(char *word)
 {
 	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"parse error near `%s'\n", word);
+}
+
+void	eof_exception(void)
+{
+	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"abrupt end of file\n");
 }

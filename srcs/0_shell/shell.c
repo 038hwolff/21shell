@@ -42,12 +42,15 @@ void	command_line_loop(void)
 	t_data	*data;
 
 	data = get_data();
+	setup_hist(&data->hist);
+		ft_printf("weferg\n");
 	while (!data->shell_exit)
 	{
-		display_prompt();
+		display_prompt(data);
 		read_command_line();
 		//data->cmd_line = g_line_test;
 		//ft_printf("%s\n", data->cmd_line);
+	//	ft_printf("%s\n", data->edl.line);
 		if (!data->errno && !(data->errno = 0))
 		{
 			lexical_analysis(&data->token, data->edl.line);

@@ -6,14 +6,14 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/11/20 17:45:16 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/11/27 14:29:29 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	21sh
 
 COMP			=	clang
-FLAG			=	-Wall -Wextra -Werror -g3
+FLAG			=	-Wall -Wextra -Werror -g3 -pedantic
 FLAGDEGUG		=	$(FLAG) -fsanitize=address
 
 # Files names
@@ -22,8 +22,9 @@ SHELL_N			=	shell.c free.c data.c init.c prompt.c putchar.c \
 EDITLINE_N		=	command_reader.c read_line.c mouve.c term.c \
 					history.c setup.c ft_enter.c signal.c print_line.c
 LEXER_N			=	lexer.c checker.c token.c helper.c 
-PARSER_N		=	parser.c syntax_checker.c helper.c
-ASTBUILDER_N		=	astbuilder.c
+PARSER_N		=	parser.c helper.c check_command.c check_incomplete_command.c \
+					check_syntax_errors.c complete_command.c
+ASTBUILDER_N	=	astbuilder.c
 EXECUTOR_N		=	
 BUILTINS_N		=	
 

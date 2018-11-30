@@ -32,6 +32,8 @@
 # define DOWN 4348699
 # define UP_FN 2117425947
 # define DOWN_FN 2117491483
+# define LINE_UP 71683997260571 /* Maj + up arrow */
+# define LINE_DOWN 72783508888347 /* Maj + down arrow */
 # define LEFT 4479771
 # define RIGHT 4414235
 # define HOME 4741915 /* Fn + left arrow */
@@ -73,14 +75,18 @@
 # define INC_DPIPE			4
 # define INC_DAND			5
 # define INC_BKSLASH		6
+# define INC_HEREDOC		7
 
 # define PQUOTE 				"quote » "
+# define PQUOTE_LEN				8
 # define PDQUOTE 				"dquote » "
-# define PBACKSLASH 			" » "
-# define PDOUBLEAND 			" » "
-# define PDDOUBLEPIPE 			" » "
-# define PPIPE 					" » "
+# define PDQUOTE_LEN			9
+# define PBACKSLASH 			"\\ » "
+# define PBACKSLASH_LEN			4
 # define PHEREDOC 				"heredoc » "
+# define PHEREDOC_LEN			10
+# define PDEFAULT				" » "
+# define PDEFAULT_LEN			3
 
 #endif
 

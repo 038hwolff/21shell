@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/27 14:48:49 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/28 18:12:49 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ typedef struct		s_token
 
 typedef struct		s_ast
 {
-	int		pouet;
+    char            *val; // donc le mot
+    struct s_ast    *parent;
+    struct s_ast    *right; // la branche de droite
+    struct s_ast    *left; // la branche de gauche
+    int             type; // ex : LESSLESS
 }					t_ast;
 
 typedef struct	s_variable
@@ -67,15 +71,24 @@ typedef struct		s_env
 	struct termios	term;
 }					t_env;
 
+typedef struct		s_hist
+{
+	char				**list;
+	int				h_count;
+	int				h_current;
+}			t_hist;
+
 typedef struct		s_edl
 {
 	int				index;
 	char			*line;
 	int				multiline;
-	char			**hist;
+/*	char			**hist;
 	int				h_count;
-	int				h_current;
+	int				h_current;*/
 	int				col;
+	char 			*prompt;
+	size_t			prompt_len;
 }					t_edl;
 
 typedef struct		s_cdenv
@@ -92,7 +105,7 @@ typedef struct		s_cdenv
 typedef struct		s_data
 {
 	char			*term_name;			// nom du terminal
-	int				prompt_len;
+	int				incomp_type;
 
 	t_variable		*env;				// variables d'environnement
 	t_variable		*loc;				// variables locales
@@ -100,7 +113,6 @@ typedef struct		s_data
 
 	char			*cmd_line; 			// la ligne de commande lue et envoyée au lexer
 	char			*additional_line;
-	int				incomp_type;
 
 	t_token			*token;				// le resultat du lexer !!
 	t_ast			ast;				// l'arbre syntaxique
@@ -111,9 +123,12 @@ typedef struct		s_data
 
 	short			shell_exit;			// si a reçu un signal de sortie
 	int				errno;				// numero d'erreur retourné, notre propre errno 
-	t_edl			edl;
+	
 	int				sigint;
 	int				eof;
+
+	t_edl			edl;			
+	t_hist			hist;
 }					t_data;
 
 #endif

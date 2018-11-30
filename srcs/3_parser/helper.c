@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 12:41:33 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/21 15:46:27 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/11/22 22:36:20 by hben-yah          #+#    #+#             */
+/*   Updated: 2018/11/27 14:29:16 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,19 @@ int		is_agreg_op(int i)
 	return (i >= LESSAND && i <= GREATAND);
 }
 
-t_token	*get_next_relevant_token(t_token *tok)
+t_token	*get_next_relevant_token(t_token *token)
 {
-	tok = tok->next;
-		ft_printf("gne\n");
-	while (tok->next && tok->next->type == NEWLINE)
-	{
-		ft_printf("lol\n");
-		tok = tok->next;
-	}
-	return (tok);
+	token = token->next;
+	while (token && token->type == NEWLINE)
+		token = token->next;
+	return (token);
+}
+
+t_token	*get_last_token(t_token *token)
+{
+	if (!token)
+		return (NULL);
+	while (token->next)
+		token = token->next;
+	return (token);
 }

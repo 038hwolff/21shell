@@ -1,16 +1,16 @@
 #include "../../includes/shell.h"
 
-void	history_dmove(t_edl *edl, char **line)
+void	history_dmove(t_edl *edl, char **line, t_hist *hist)
 {
 	int j;
 
-	if (edl->h_count == 0)
+	if (hist->h_count == 0)
 	{
 		ft_putstr_fd(tgetstr("bl", NULL), 1);
 		return ;
 	}
-	j = edl->h_current + 1;
-	if (j >= edl->h_count)
+	j = hist->h_current + 1;
+	if (j >= hist->h_count)
 	{
 		ft_putstr_fd(tgetstr("bl", NULL), 1);
 		return ;
@@ -20,23 +20,23 @@ void	history_dmove(t_edl *edl, char **line)
 	ft_putstr_fd(tgetstr("cd", NULL), 1);
 	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 2), 1);
 	ft_putstr_fd(tgetstr("ce", NULL), 1);
-	ft_putstr_fd(edl->hist[j], 1);
-	edl->h_current = j;
+	ft_putstr_fd(hist->list[j], 1);
+	hist->h_current = j;
 	free(*line);
-	*line = ft_strdup(edl->hist[j]);
+	*line = ft_strdup(hist->list[j]);
 	edl->index = ft_strlen(*line);
-	edl->multiline = (len_line(edl) + edl->index) / edl->col;
+	edl->multiline = len_line(edl) / edl->col;
 }
 
-void	history_umove(t_edl *edl, char **line)
+void	history_umove(t_edl *edl, char **line, t_hist *hist)
 {
 	int	j;
 
 	j = 0;
-	if (edl->h_current == 0)
-		j = edl->h_count - 1;
+	if (hist->h_current == 0)
+		j = hist->h_count - 1;
 	else
-		j = edl->h_current - 1;
+		j = hist->h_current - 1;
 	if (j < 0)
 	{
 		ft_putstr_fd(tgetstr("bl", NULL), 1);
@@ -47,12 +47,12 @@ void	history_umove(t_edl *edl, char **line)
 	ft_putstr_fd(tgetstr("cd", NULL), 1);
 	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 2), 1);
 	ft_putstr_fd(tgetstr("ce", NULL), 1);
-	ft_putstr_fd(edl->hist[j], 1);
-	edl->h_current = j;
+	ft_putstr_fd(hist->list[j], 1);
+	hist->h_current = j;
 	free(*line);
-	*line = ft_strdup(edl->hist[j]);
+	*line = ft_strdup(hist->list[j]);
 	edl->index = ft_strlen(*line);
-	edl->multiline = (len_line(edl) + edl->index) / edl->col;
+	edl->multiline = len_line(edl) / edl->col;
 }
 
 char	**free_cases(char **value)
@@ -71,30 +71,30 @@ char	**free_cases(char **value)
 	return (value);
 }
 
-char	**ft_realloc(t_edl *edl, char *value)
+char	**ft_realloc(t_hist *hist, char *value)
 {
 	int		i;
 	char	**new_env;
 
-	new_env = (char **)ft_memalloc(sizeof(char *) * (edl->h_count + 2));
-	new_env[edl->h_count + 1] = NULL;
+	new_env = (char **)ft_memalloc(sizeof(char *) * (hist->h_count + 2));
+	new_env[hist->h_count + 1] = NULL;
 	i = 0;
-	while (i < edl->h_count)
+	while (i < hist->h_count)
 	{
-		new_env[i] = ft_strdup(edl->hist[i]);
+		new_env[i] = ft_strdup(hist->list[i]);
 		i++;
 	}
 	new_env[i] = ft_strdup(value);
-	free_cases(edl->hist);
+	free_cases(hist->list);
 	return (new_env);
 }
 
-char	**add_history(t_edl *edl, char *value)
+char	**add_history(char *value, t_hist *hist)
 {
-	if (edl->h_count == 0)
-		edl->hist[0] = ft_strdup(value);
+	if (hist->h_count == 0)
+		hist->list[0] = ft_strdup(value);
 	else
-		edl->hist = ft_realloc(edl, value);
-	edl->h_count++;
-	return (edl->hist);
+		hist->list = ft_realloc(hist, value);
+	hist->h_count++;
+	return (hist->list);
 }

@@ -12,11 +12,11 @@
 
 #include "shell.h"
 
-void	loop_enter(t_edl *edl, char **line)
+void	loop_enter(t_edl *edl, char **line, t_hist *hist)
 {
 	if (ft_strcmp(*line, "\0") != 0)
 	{
-		edl->hist = add_history(edl, *line);
+		hist->list = add_history(*line, hist);
 		while (edl->index < (int)ft_strlen(*line))
 			mouve_right(edl);
 		edl->multiline = len_line(edl) / edl->col;
@@ -26,59 +26,34 @@ void	loop_enter(t_edl *edl, char **line)
 	else
 	{
 		ft_putstr_fd("\n", 1);
-		//display_prompt();
-		edl->h_current = 0;
+		hist->h_current = 0;
 		free(*line);
-		*line = ft_strdup("\0");
+		*line = ft_strnew(0);
 	}
 }
 
 void	read_line(void)
 {
 	unsigned long	key;
-	t_edl	*edl;
+	t_data		*data;
 
-	//edl = (t_edl *)malloc(sizeof(t_edl));
-	edl = setup_edl(&get_data()->edl);
+	data = get_data();
+	setup_edl(&data->edl);
 	while (key = 0, (read(STDIN_FILENO, &key, 10)) != 0)
 	{
 		signal_handler(NULL);
 		if (key == ENTER)
 		{
-			loop_enter(edl, &edl->line);
+			loop_enter(&data->edl, &data->edl.line, &data->hist);
 			return ;
 		}
-		else if (key == 9 || (key > 31 && key < 128 && key != DOWN_FN && key != UP_FN 
+		else if (key == TAB || (key > 31 && key < 128 && key != DOWN_FN && key != UP_FN 
 				&& key != LEFT && key != RIGHT && key != HOME
-				&& key != END && key != UP && key !=DOWN))
-			print_line(edl, &edl->line, key);
+				&& key != END && key != UP && key !=DOWN
+				&& key != LINE_UP && key != LINE_DOWN))
+			print_line(&data->edl, &data->edl.line, key);
 		else
-			edl->line = ft_termcaps(edl, edl->line, key);
+			data->edl.line = ft_termcaps(&data->edl, data->edl.line, key, &data->hist);
 	}
 }
 
-void	read_additional_line(char **line)
-{
-	unsigned long	key;
-	t_edl	*edl;
-
-	//edl = (t_edl *)malloc(sizeof(t_edl));
-	edl = setup_edl(&get_data()->edl);
-	while (key = 0, (read(STDIN_FILENO, &key, 10)) != 0)
-	{
-		ft_printf("lol\n");
-
-		signal_handler(NULL);
-		if (key == ENTER)
-		{
-			loop_enter(edl, line);
-			return ;
-		}
-		else if (key == 9 || (key > 31 && key < 128 && key != DOWN_FN && key != UP_FN 
-				&& key != LEFT && key != RIGHT && key != HOME
-				&& key != END && key != UP && key !=DOWN))
-			print_line(edl, line, key);
-		else
-			*line = ft_termcaps(edl, *line, key);
-	}
-}

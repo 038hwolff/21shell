@@ -44,10 +44,11 @@ char	*insert_char(char *line, unsigned long key, int *index)
 	char	*value = NULL;
 	int	i;
 
+
 	value = (char *)(&key);
 	len = ft_strlen(line);
 	i = -1;
-	if (*index == len && ft_strlen(value) >= 2)
+	if (*index == len && ft_strlen(value) >= 1)
 		*index = *index + ft_strlen(value) - 1;
 	len = ft_strlen(line) + ft_strlen(value) - 1;
 	if (len == *index)
@@ -79,6 +80,10 @@ void	print_line(t_edl *edl, char **line, unsigned long key)
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
 	edl->col = ws.ws_col;
+	if (key == TAB && edl->index == 0)
+		key = SPACE;
+	else if (key == TAB)
+		return ;
 	if (key != SUPP)
 		*line = insert_char(*line, key, &edl->index);
 	if (key == SUPP)
@@ -93,9 +98,9 @@ void	print_line(t_edl *edl, char **line, unsigned long key)
 	}
 	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 0), 1);
 	ft_putstr_fd(tgetstr("cd", NULL), 1);
-	while (++j <= (len_line(edl) + (int)ft_strlen(edl->line)))
+	while (++j <= (len_line(edl) + (int)ft_strlen(*line)))
 		write(1, "\b", 1);
-	display_prompt();
+	display_prompt(data);
 	ft_putstr_fd(*line, 1);
 	count_line(edl, key);
 	j = ft_strlen(*line);
