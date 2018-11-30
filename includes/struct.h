@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/28 18:12:49 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/11/30 14:48:26 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ typedef struct		s_edl
 	int				h_count;
 	int				h_current;*/
 	int				col;
-	char 			*prompt;
-	size_t			prompt_len;
 }					t_edl;
 
 typedef struct		s_cdenv
@@ -105,6 +103,8 @@ typedef struct		s_cdenv
 typedef struct		s_data
 {
 	char			*term_name;			// nom du terminal
+	char 			*prompt;
+	size_t			prompt_len;
 	int				incomp_type;
 
 	t_variable		*env;				// variables d'environnement
