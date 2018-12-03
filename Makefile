@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/11/30 14:50:13 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/12/03 16:43:53 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ EDITLINE_N		=	command_reader.c read_line.c mouve.c term.c \
 					prompt.c
 LEXER_N			=	lexer.c checker.c token.c helper.c 
 PARSER_N		=	parser.c helper.c check_command.c check_incomplete_command.c \
-					check_syntax_errors.c complete_command.c
+					check_syntax_errors.c complete_command.c heredoc.c heredoc_getter.c
 ASTBUILDER_N	=	astbuilder.c
 EXECUTOR_N		=	
 BUILTINS_N		=	
@@ -69,16 +69,16 @@ TRMCP_I			=	-ltermcap
 
 # Rules
 
-all				:	$(LFT_P) $(NAME)
+all				:	$(NAME)
+
+$(NAME)			:	$(LFT_P) $(OBJS)
+					@echo "\nAssemblage et création de l'exécutable $(NAME)"
+					@$(COMP) $(FLAG) $(OBJS) $(LFT_P) $(TRMCP_I) -o $(NAME)
+					@echo "Terminé"
 
 $(LFT_P)		:	force
 					@echo "Vérification de la librairie Libft"
 					@make -C $(LFT_D)
-
-$(NAME)			:	$(OBJS)
-					@echo "\nAssemblage et création de l'exécutable $(NAME)"
-					@$(COMP) $(FLAG) $(OBJS) $(LFT_P) $(TRMCP_I) -o $(NAME)
-					@echo "Terminé"
 
 $(OBJS_D)%.o	:	$(SRCS_D)%.c $(addprefix $(LFT_I), $(LFT_H)) $(INCL)
 					@echo -e "\033[2K\c"

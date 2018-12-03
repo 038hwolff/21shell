@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/27 10:47:47 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/01 23:57:56 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@
 # define WORD					30
 # define ASSIGNEMENT_WORD		31
 # define NAME					32
+# define HDOCDELIM				33
 
 /*
 ** Incomplete command types ("dquote>")

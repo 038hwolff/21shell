@@ -100,7 +100,7 @@ void	print_line(t_edl *edl, char **line, unsigned long key)
 	ft_putstr_fd(tgetstr("cd", NULL), 1);
 	while (++j <= (len_line(edl) + (int)ft_strlen(*line)))
 		write(1, "\b", 1);
-	display_prompt(data);
+	display_prompt();
 	ft_putstr_fd(*line, 1);
 	count_line(edl, key);
 	j = ft_strlen(*line);

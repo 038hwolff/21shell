@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 11:54:11 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/30 14:48:04 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/30 14:53:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	command_line_loop(void)
 
 	data = get_data();
 	setup_hist(&data->hist);
-		ft_printf("weferg\n");
 	while (!data->shell_exit)
 	{
 		read_command_line();

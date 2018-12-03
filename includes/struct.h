@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/30 14:48:26 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/02 00:33:51 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_token
 	char			*val;
 	size_t			length;
 	int				type;
+	char			*heredoc;
 	struct s_token	*next;
 }					t_token;
 
