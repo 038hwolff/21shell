@@ -77,16 +77,17 @@ typedef struct		s_hist
 	char				**list;
 	int				h_count;
 	int				h_current;
+	char				*copy;
+	char				*cut;
 }			t_hist;
 
 typedef struct		s_edl
 {
 	int				index;
-	char			*line;
+	int				*light;
+	int				c_light;
+	char				*line;
 	int				multiline;
-/*	char			**hist;
-	int				h_count;
-	int				h_current;*/
 	int				col;
 }					t_edl;
 

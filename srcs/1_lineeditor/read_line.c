@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "../../includes/shell.h"
 
 void	loop_enter(t_edl *edl, char **line, t_hist *hist)
 {
@@ -32,14 +32,14 @@ void	loop_enter(t_edl *edl, char **line, t_hist *hist)
 	}
 }
 
-void	read_line(void)
+void	read_line()
 {
 	unsigned long	key;
 	t_data		*data;
 
 	data = get_data();
 	setup_edl(&data->edl);
-	display_prompt();
+	display_prompt(data->prompt);
 	while (key = 0, (read(STDIN_FILENO, &key, 10)) != 0)
 	{
 		signal_handler(NULL);
@@ -51,7 +51,8 @@ void	read_line(void)
 		else if (key == TAB || (key > 31 && key < 128 && key != DOWN_FN && key != UP_FN 
 				&& key != LEFT && key != RIGHT && key != HOME
 				&& key != END && key != UP && key !=DOWN
-				&& key != LINE_UP && key != LINE_DOWN))
+				&& key != LINE_UP && key != LINE_DOWN && key != COPY
+				&& key != PASTE && key != CUT && key != SELECT))
 			print_line(&data->edl, &data->edl.line, key);
 		else
 			data->edl.line = ft_termcaps(&data->edl, data->edl.line, key, &data->hist);

@@ -10,13 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "../../includes/shell.h"
 
 int	len_line(t_edl *edl)
 {
 	int	i;
+	t_data	*data;
 
-	i = ft_strlen(edl->line) + 2;
+	data = get_data();
+	if (data->prompt != NULL)
+		i = ft_strlen(edl->line) + data->prompt_len;
+	else
+		i = ft_strlen(edl->line) + 2;
 	return (i);
 }
 
@@ -25,6 +30,8 @@ t_hist	*setup_hist(t_hist *hist)
 	hist->list = (char **)ft_memalloc(sizeof(char *)); // non protege !!!!
 	hist->h_count = 0;
 	hist->h_current = 0;
+	hist->copy = ft_strnew(0);
+	hist->cut = ft_strnew(0);
 	return (hist);
 }
 

@@ -77,5 +77,11 @@ char	*ft_termcaps(t_edl *edl, char *line, unsigned long key, t_hist *hist)
 		next_word(edl, line, len);
 	if (key == LINE_UP || key == LINE_DOWN)
 		line_moves(edl, line, key);
+	if (key == SELECT && ft_strcmp(line, "\0") != 0)
+		select_mode(edl, key);
+	if (key == COPY && ft_strcmp(line, "\0"))
+		copy_high(edl, hist, line);
+	if (key == PASTE && edl->c_light != 0)
+		line = paste_char(edl, hist, line);
 	return (line);
 }

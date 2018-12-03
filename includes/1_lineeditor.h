@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:26:21 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/30 14:52:00 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/03 21:29:29 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** loop.c
 */
 
-void	display_prompt(void);
+void			display_prompt(char *prompt);
 
 /*
 ** mouve.c
@@ -52,9 +52,9 @@ void			history_dmove(t_edl *edl, char **line, t_hist *hist);
 ** command_reader.c
 */
 
-void	read_command_line(void);
+void	read_command_line(t_hist *hist);
 int	len_line(t_edl *edl);
-void	read_line(void);
+void	read_line(t_hist *hist);
 int	ft_enter(char *line, t_edl *edl);
 t_edl	*setup_edl(t_edl *edl);
 void	setup_env(int ac, char **av, t_env *env);
@@ -65,5 +65,18 @@ void	read_additional_line(char **line);
 */
 
 t_hist *setup_hist(t_hist *hist);
+
+/*
+** select_mode.c
+*/
+
+void	select_mode(t_edl *edl, unsigned long key);
+
+/*
+** copy_paste.c
+*/
+
+void	copy_high(t_edl *edl, t_hist *hist, char *line);
+char	*paste_char(t_edl *edl, t_hist *hist, char *line);
 
 #endif

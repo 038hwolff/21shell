@@ -45,7 +45,7 @@ void	command_line_loop(void)
 	setup_hist(&data->hist);
 	while (!data->shell_exit)
 	{
-		read_command_line();
+		read_command_line(&data->hist);
 		//data->cmd_line = g_line_test;
 		//ft_printf("%s\n", data->cmd_line);
 	//	ft_printf("%s\n", data->edl.line);

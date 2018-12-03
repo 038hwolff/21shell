@@ -38,6 +38,10 @@
 # define RIGHT 4414235
 # define HOME 4741915 /* Fn + left arrow */
 # define END 4610843 /* Fn + right arrow */
+# define SELECT 9082850 /* alt + v */
+# define COPY 43458 /* alt + c */
+# define PASTE 32975 /* alt + p */
+# define CUT 8554722 /* alt + d */
 
 /*
 ** Operators type for lexer tokens
