@@ -22,8 +22,14 @@
 		ft_printf("%s » %s", "", ""); // rouge
 }*/
 
-void	display_prompt(void)
+void	display_prompt(char *prompt)
 {
+	if (prompt != NULL)
+	{
+		ft_putstr_fd(tgetstr("me", NULL), 1);
+		ft_putstr_fd(prompt, 1);
+		return ;
+	}
 	ft_putstr_fd(tgetstr("me", NULL), 1);
 	ft_putstr_fd("$>", 1);
 	return ;

@@ -28,22 +28,24 @@ char	*supp_char(char *line, int *index)
 	return (ret);
 }
 
-char	*insert_end(char *line, char *value)
+char	*insert_end(char *line, char *value, t_edl *edl)
 {
 	char *ret;
 
 	ret = ft_strjoin(line, value);
 	free(line);
+	edl->light = (int *)ft_memalloc((int)ft_strlen(line) * sizeof(int));
+	ft_bzero(edl->light, ft_strlen(line));
+	edl->c_light = 0;
 	return (ret);
 }
 
-char	*insert_char(char *line, unsigned long key, int *index)
+char	*insert_char(char *line, unsigned long key, int *index, t_edl *edl)
 {
 	int	len;
 	char	*ret;
 	char	*value = NULL;
 	int	i;
-
 
 	value = (char *)(&key);
 	len = ft_strlen(line);
@@ -52,15 +54,19 @@ char	*insert_char(char *line, unsigned long key, int *index)
 		*index = *index + ft_strlen(value) - 1;
 	len = ft_strlen(line) + ft_strlen(value) - 1;
 	if (len == *index)
-		return (insert_end(line, value));
+		return (insert_end(line, value, edl));
 	ret = (char *)ft_memalloc(sizeof(char) * (len + 1));
 	i = -1;
 	while (++i < *index)
 		ret[i] = line[i];
-	(ft_strlen(value) == 1) ? ret[i] = value[0] : 0;
+	if (ft_strlen(value) == 1)
+		ret[i] = value[0];
 	while (++i <= len)
 		ret[i] = line[i - ft_strlen(value)];
 	ret[i] = '\0';
+	edl->light = (int *)ft_memalloc((int)ft_strlen(line) * sizeof(int));
+	ft_bzero(edl->light, ft_strlen(line));
+	edl->c_light = 0;
 	free(line);
 	return (ret);
 }
@@ -76,8 +82,10 @@ void	count_line(t_edl *edl, unsigned long key)
 void	print_line(t_edl *edl, char **line, unsigned long key)
 {
 	struct winsize	ws;
+	t_data		*data;
 	int		j;
 
+	data = get_data();
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
 	edl->col = ws.ws_col;
 	if (key == TAB && edl->index == 0)
@@ -85,7 +93,7 @@ void	print_line(t_edl *edl, char **line, unsigned long key)
 	else if (key == TAB)
 		return ;
 	if (key != SUPP)
-		*line = insert_char(*line, key, &edl->index);
+		*line = insert_char(*line, key, &edl->index, edl);
 	if (key == SUPP)
 		*line = supp_char(*line, &edl->index);
 	if (key != SUPP)
@@ -100,7 +108,7 @@ void	print_line(t_edl *edl, char **line, unsigned long key)
 	ft_putstr_fd(tgetstr("cd", NULL), 1);
 	while (++j <= (len_line(edl) + (int)ft_strlen(edl->line)))
 		write(1, "\b", 1);
-	display_prompt();
+	display_prompt(data->prompt);
 	ft_putstr_fd(*line, 1);
 	count_line(edl, key);
 	j = ft_strlen(*line);

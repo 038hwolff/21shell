@@ -21,7 +21,7 @@ SHELL_N			=	shell.c free.c data.c init.c putchar.c \
 					signals.c term.c var.c exception.c exit.c
 EDITLINE_N		=	command_reader.c read_line.c mouve.c term.c \
 					history.c setup.c ft_enter.c signal.c print_line.c \
-					prompt.c
+					prompt.c select_mode.c copy_paste.c
 LEXER_N			=	lexer.c checker.c token.c helper.c 
 PARSER_N		=	parser.c syntax_checker.c helper.c
 ASTBUILDER_N		=	astbuilder.c

@@ -50,9 +50,17 @@ void	mouve_left(t_edl *edl)
 
 void	mouve_right(t_edl *edl)
 {
+	t_data	*data;
+	int	p_len;
+
+	data = get_data();
 	ft_putstr_fd(tgetstr("vs", NULL), 1);
+	if (data->prompt != NULL)
+		p_len = data->prompt_len;
+	else
+		p_len = 2;
 	edl->index++;
-	if ((edl->index + 2) % edl->col == 0)
+	if ((edl->index + p_len) % edl->col == 0)
 	{
 		ft_putstr_fd(tgetstr("do", NULL), 1);
 		edl->multiline++;
