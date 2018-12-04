@@ -12,11 +12,16 @@
 
 #include "../../includes/shell.h"
 
-int	ft_enter(char *line, t_edl *edl)
+int	ft_enter(char **line, t_edl *edl)
 {
-	if (ft_strcmp(line, "exit") == 0)
+	char	*tmp;
+
+	if (ft_strcmp(*line, "exit") == 0)
 		exit (1);
-	line = ft_strjoin(line, "\n");
+	tmp = ft_strjoin(*line, "\n");
+	free(*line);
+	*line = ft_strdup(tmp);
+	free(tmp);
 /*	if ((z = read_entry(&data)) > 0)
 	{
 		global_parse(&data);

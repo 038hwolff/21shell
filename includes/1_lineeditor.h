@@ -54,7 +54,7 @@ void			history_dmove(t_edl *edl, char **line, t_hist *hist);
 void	read_command_line(t_hist *hist);
 int	len_line(t_edl *edl);
 void	read_line(t_hist *hist);
-int	ft_enter(char *line, t_edl *edl);
+int	ft_enter(char **line, t_edl *edl);
 t_edl	*setup_edl(t_edl *edl);
 void	setup_env(int ac, char **av, t_env *env);
 

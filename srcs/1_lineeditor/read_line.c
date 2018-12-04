@@ -20,7 +20,7 @@ void	loop_enter(t_edl *edl, char **line, t_hist *hist)
 		while (edl->index < (int)ft_strlen(*line))
 			mouve_right(edl);
 		edl->multiline = len_line(edl) / edl->col;
-		ft_enter(*line, edl);
+		ft_enter(&(*line), edl);
 		ft_putstr_fd("\n", 1);
 	}
 	else

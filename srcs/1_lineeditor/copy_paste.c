@@ -4,7 +4,7 @@
 ** COPY = alt + c
 */
 
-void	copy_high(t_edl *edl, t_hist *hist, char *line)
+void		copy_high(t_edl *edl, t_hist *hist, char *line)
 {
 	int	i;
 	int	j;
@@ -50,15 +50,25 @@ static void	clear_line(t_edl *edl, char *n_line)
 	ft_putstr_fd(n_line, 1);
 }
 
+static void	count_multi(t_edl *edl, char *new_line)
+{
+	if ((edl->index > (int)ft_strlen(new_line) - 1)
+		&& ((edl->index + len_line(edl) - 1) % (edl->col) == 0))
+		edl->multiline++;
+	else if (((edl->index + len_line(edl)) % (edl->col) == 0))
+		edl->multiline++;
+	edl->index++;
+}
+
 /*
 ** PASTE = alt + p
 */
 
-char	*paste_char(t_edl *edl, t_hist *hist, char *line)
+char		*paste_char(t_edl *edl, t_hist *hist, char *line)
 {
-	char	*new_line;
-	int	i;
-	int	j;
+	char		*new_line;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -83,10 +93,10 @@ char	*paste_char(t_edl *edl, t_hist *hist, char *line)
 	}
 	new_line[i] = '\0';
 	ft_putstr_fd(tgetstr("se", NULL), 1);
-	while (++i < (int)ft_strlen(hist->copy))
-		edl->index++;
 	free(line);
 	clear_line(edl, new_line);
+	while (++i < (int)ft_strlen(hist->copy))
+		count_multi(edl, new_line);
 	i = ft_strlen(new_line);
 	while (--i >= edl->index)
 		ft_putstr_fd(tgetstr("le", NULL), 1);
