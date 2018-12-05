@@ -83,8 +83,8 @@ char		*paste_char(t_edl *edl, t_hist *hist, char *line)
 		new_line[i] = hist->copy[j];
 		i++;
 		j++;
+		edl->index++;
 	}
-	j = edl->index;
 	while (line[j])
 	{
 		new_line[i] = line[j];
