@@ -83,6 +83,7 @@ int		main(int ac, char **av, char **env)
 		init_shell(env);
 		command_line_loop();
 		//// free des trucs
+		// free hist
 	}
 	return (EXIT_SUCCESS);
 }

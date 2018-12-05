@@ -81,6 +81,8 @@ char	*ft_termcaps(t_edl *edl, char *line, unsigned long key, t_hist *hist)
 		select_mode(edl, key);
 	if (key == COPY && ft_strcmp(line, "\0"))
 		copy_high(edl, hist, line);
+	if (key == CUT && ft_strcmp(line, "\0"))
+		line = cut_high(edl, hist, line);
 	if (key == PASTE && edl->c_light != 0)
 		line = paste_char(edl, hist, line);
 	return (line);

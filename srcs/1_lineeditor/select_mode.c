@@ -57,6 +57,10 @@ void	select_mode(t_edl *edl, unsigned long key)
 			}
 		}
 		read(STDIN_FILENO, &key_2, 10);
+		if (key_2 == UP_FN)
+			prev_word(edl, edl->line);
+		if (key_2 == DOWN_FN)
+			next_word(edl, edl->line, ft_strlen(edl->line));
 		if (key_2 == SELECT)
 			return ;
 		select_words(key_2, edl);

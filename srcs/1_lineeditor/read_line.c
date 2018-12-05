@@ -28,7 +28,7 @@ void	loop_enter(t_edl *edl, char **line, t_hist *hist)
 		ft_putstr_fd("\n", 1);
 		hist->h_current = 0;
 		free(*line);
-		*line = ft_strnew(0);
+		try_m(*line = ft_strnew(0));
 	}
 }
 

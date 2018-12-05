@@ -10,7 +10,7 @@ char	*supp_char(char *line, int *index)
 		return (line);
 	len = ft_strlen(line);
 	len < 2 ? len = 2 : 0;
-	ret = (char *)ft_memalloc(sizeof(char) * len);
+	try_m(ret = (char *)ft_memalloc(sizeof(char) * len));
 	i = 0;
 	while (i < *index - 1)
 	{
@@ -32,9 +32,9 @@ char	*insert_end(char *line, char *value, t_edl *edl)
 {
 	char *ret;
 
-	ret = ft_strjoin(line, value);
+	try_m(ret = ft_strjoin(line, value));
 	free(line);
-	edl->light = (int *)ft_memalloc((int)ft_strlen(line) * sizeof(int));
+	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(line) * sizeof(int)));
 	ft_bzero(edl->light, ft_strlen(line));
 	edl->c_light = 0;
 	return (ret);
@@ -55,7 +55,7 @@ char	*insert_char(char *line, unsigned long key, int *index, t_edl *edl)
 	len = ft_strlen(line) + ft_strlen(value) - 1;
 	if (len == *index)
 		return (insert_end(line, value, edl));
-	ret = (char *)ft_memalloc(sizeof(char) * (len + 1));
+	try_m(ret = (char *)ft_memalloc(sizeof(char) * (len + 1)));
 	i = -1;
 	while (++i < *index)
 		ret[i] = line[i];
@@ -64,7 +64,7 @@ char	*insert_char(char *line, unsigned long key, int *index, t_edl *edl)
 	while (++i <= len)
 		ret[i] = line[i - ft_strlen(value)];
 	ret[i] = '\0';
-	edl->light = (int *)ft_memalloc((int)ft_strlen(line) * sizeof(int));
+	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(line) * sizeof(int)));
 	ft_bzero(edl->light, ft_strlen(line));
 	edl->c_light = 0;
 	free(line);

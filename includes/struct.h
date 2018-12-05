@@ -77,7 +77,6 @@ typedef struct		s_hist
 	int				h_count;
 	int				h_current;
 	char				*copy;
-	char				*cut;
 }			t_hist;
 
 typedef struct		s_edl

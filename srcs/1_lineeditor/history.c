@@ -23,7 +23,7 @@ void	history_dmove(t_edl *edl, char **line, t_hist *hist)
 	ft_putstr_fd(hist->list[j], 1);
 	hist->h_current = j;
 	free(*line);
-	*line = ft_strdup(hist->list[j]);
+	try_m(*line = ft_strdup(hist->list[j]));
 	edl->index = ft_strlen(*line);
 	edl->multiline = len_line(edl) / edl->col;
 }
@@ -50,7 +50,7 @@ void	history_umove(t_edl *edl, char **line, t_hist *hist)
 	ft_putstr_fd(hist->list[j], 1);
 	hist->h_current = j;
 	free(*line);
-	*line = ft_strdup(hist->list[j]);
+	try_m(*line = ft_strdup(hist->list[j]));
 	edl->index = ft_strlen(*line);
 	edl->multiline = len_line(edl) / edl->col;
 }
@@ -76,15 +76,15 @@ char	**ft_realloc(t_hist *hist, char *value)
 	int		i;
 	char	**new_env;
 
-	new_env = (char **)ft_memalloc(sizeof(char *) * (hist->h_count + 2));
+	try_m(new_env = (char **)ft_memalloc(sizeof(char *) * (hist->h_count + 2)));
 	new_env[hist->h_count + 1] = NULL;
 	i = 0;
 	while (i < hist->h_count)
 	{
-		new_env[i] = ft_strdup(hist->list[i]);
+		try_m(new_env[i] = ft_strdup(hist->list[i]));
 		i++;
 	}
-	new_env[i] = ft_strdup(value);
+	try_m(new_env[i] = ft_strdup(value));
 	free_cases(hist->list);
 	return (new_env);
 }
@@ -92,7 +92,7 @@ char	**ft_realloc(t_hist *hist, char *value)
 char	**add_history(char *value, t_hist *hist)
 {
 	if (hist->h_count == 0)
-		hist->list[0] = ft_strdup(value);
+		try_m(hist->list[0] = ft_strdup(value));
 	else
 		hist->list = ft_realloc(hist, value);
 	hist->h_count++;

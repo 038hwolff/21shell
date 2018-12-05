@@ -18,9 +18,9 @@ int	ft_enter(char **line, t_edl *edl)
 
 	if (ft_strcmp(*line, "exit") == 0)
 		exit (1);
-	tmp = ft_strjoin(*line, "\n");
+	try_m(tmp = ft_strjoin(*line, "\n"));
 	free(*line);
-	*line = ft_strdup(tmp);
+	try_m(*line = ft_strdup(tmp));
 	free(tmp);
 /*	if ((z = read_entry(&data)) > 0)
 	{

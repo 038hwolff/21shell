@@ -38,6 +38,7 @@ void			print_line(t_edl *edl, char **line, unsigned long key);
 */
 
 char			*ft_termcaps(t_edl *edl, char *line, unsigned long key, t_hist *hist);
+void			line_moves(t_edl *edl, char *line, unsigned long key);
 
 /*
 ** history.c
@@ -76,5 +77,12 @@ void	select_mode(t_edl *edl, unsigned long key);
 
 void	copy_high(t_edl *edl, t_hist *hist, char *line);
 char	*paste_char(t_edl *edl, t_hist *hist, char *line);
+void	clear_line(t_edl *edl, char *n_line);
+
+/*
+** cut_high.c
+*/
+
+char	*cut_high(t_edl *edl, t_hist *hist, char *line);
 
 #endif

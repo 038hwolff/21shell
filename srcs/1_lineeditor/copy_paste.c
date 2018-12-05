@@ -17,7 +17,7 @@ void		copy_high(t_edl *edl, t_hist *hist, char *line)
 			j++;
 		i++;
 	}
-	hist->copy = (char *)ft_memalloc(j * sizeof(char) + 1);
+	try_m(hist->copy = (char *)ft_memalloc(j * sizeof(char) + 1));
 	hist->copy[j] = '\0';
 	j = 0;
 	i = 0;
@@ -32,7 +32,7 @@ void		copy_high(t_edl *edl, t_hist *hist, char *line)
 	}
 }
 
-static void	clear_line(t_edl *edl, char *n_line)
+void		clear_line(t_edl *edl, char *n_line)
 {
 	int	i;
 	t_data	*data;
@@ -72,7 +72,7 @@ char		*paste_char(t_edl *edl, t_hist *hist, char *line)
 
 	i = 0;
 	j = 0;
-	new_line = (char *)ft_memalloc(ft_strlen(line) + ft_strlen(hist->copy) + 1);
+	try_m(new_line = (char *)ft_memalloc(ft_strlen(line) + ft_strlen(hist->copy) + 1));
 	while (i < edl->index)
 	{
 		new_line[i] = line[i];
@@ -100,6 +100,6 @@ char		*paste_char(t_edl *edl, t_hist *hist, char *line)
 	i = ft_strlen(new_line);
 	while (--i >= edl->index)
 		ft_putstr_fd(tgetstr("le", NULL), 1);
-	edl->light = (int *)ft_memalloc(ft_strlen(new_line) * sizeof(int));
+	try_m(edl->light = (int *)ft_memalloc(ft_strlen(new_line) * sizeof(int)));
 	return (new_line);
 }
