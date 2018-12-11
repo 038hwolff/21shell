@@ -1,6 +1,6 @@
 Lecture AST: 
-http://www.gaudry.be/programmer-arbres.html
-https://ruslanspivak.com/lsbasi-part7/
+- http://www.gaudry.be/programmer-arbres.html
+- https://ruslanspivak.com/lsbasi-part7/
 
 1) lecture/edition de ligne => chaine de caractères
 2) lexer => liste chainée avec un type pour chaque maillon
