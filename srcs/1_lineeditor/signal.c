@@ -12,20 +12,28 @@
 
 # include "../../includes/shell.h"
 
-void	signal_handler(void(*restart)(int))
+void	signal_handler(int signall)
 {
-//	signal(SIGWINCH, refresh_screen);
-	signal(SIGCONT, restart);
-/*	signal(SIGTSTP, unsetup_term);
-	signal(SIGINT, b_exit(data));
-	signal(SIGHUP, b_exit(data));
-	signal(SIGTERM, b_exit(data));
-	signal(SIGSEGV, b_exit(data));
-	signal(SIGQUIT, b_exit(data));
-	signal(SIGFPE, b_exit(data));
-	signal(SIGKILL, b_exit(data));
-	signal(SIGALRM, b_exit(data));
-	signal(SIGABRT, b_exit(data));
-	signal(SIGUSR1, b_exit(data));
-	signal(SIGUSR2, b_exit(data));*/
+	t_data	*data;
+
+	data = get_data();
+	if (signall == SIGINT)
+	{
+		ft_putchar_fd('\n', 1);
+		display_prompt(data->prompt);
+		free(data->edl.line);
+		try_m(data->edl.line = ft_strnew(0));
+		data->edl.index = 0;
+		signal(SIGINT, signal_handler);
+	}
+}
+
+void	signal_list(void)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 32)
+		signal(i, signal_handler);
+
 }

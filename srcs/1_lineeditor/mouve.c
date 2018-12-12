@@ -38,7 +38,7 @@ void	mouve_left(t_edl *edl)
 	ft_putstr_fd(tgetstr("vs", NULL), 1);
 	edl->index--;
 	ft_putstr_fd(tgetstr("le", NULL), 1);
-	if (len_line(edl) % edl->col == 0)
+	if ((edl->index % edl->col) == 0 && edl->multiline)
 		edl->multiline--;
 	ft_putstr_fd(tgetstr("ve", NULL), 1);
 }
@@ -61,10 +61,9 @@ void	mouve_right(t_edl *edl)
 		p_len = 2;
 	edl->index++;
 	if ((edl->index + p_len) % edl->col == 0)
-	{
+	{ 
 		ft_putstr_fd(tgetstr("do", NULL), 1);
 		edl->multiline++;
-
 	}
 	else
 		ft_putstr_fd(tgetstr("nd", NULL), 1);
