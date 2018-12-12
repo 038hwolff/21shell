@@ -68,7 +68,7 @@ char	*ft_termcaps(t_edl *edl, char *line, unsigned long key, t_hist *hist)
 	if (key == UP)
 		history_umove(edl, &line, hist);
 	if (key == DOWN)
-		history_umove(edl, &line, hist);
+		history_dmove(edl, &line, hist);
 	if (key == LEFT || key == RIGHT || key == HOME || key == END)
 		left_or_right(edl, key, len);
 	if (key == UP_FN)

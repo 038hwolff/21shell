@@ -50,7 +50,7 @@ void		clear_line(t_edl *edl, char *n_line)
 	ft_putstr_fd(n_line, 1);
 }
 
-static void	count_multi(t_edl *edl, char *new_line)
+void	count_multi(t_edl *edl, char *new_line)
 {
 	if ((edl->index > (int)ft_strlen(new_line) - 1)
 		&& ((edl->index + len_line(edl) - 1) % (edl->col) == 0))

@@ -85,4 +85,16 @@ void	clear_line(t_edl *edl, char *n_line);
 
 char	*cut_high(t_edl *edl, t_hist *hist, char *line);
 
+/*
+** signal.c
+*/
+
+void	signal_list(void);
+
+/*
+** control_keys.c
+*/
+
+char	*control_d(char *line, int *index);
+
 #endif

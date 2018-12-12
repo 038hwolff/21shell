@@ -42,7 +42,7 @@ t_edl	*setup_edl(t_edl *edl)
 	try_m(edl->line = ft_strnew(0));
 	edl->index = 0;
 	edl->col = ws.ws_col;
-	edl->multiline = len_line(edl) / edl->col;
+	edl->multiline = edl->index / edl->col;
 	return (edl);
 }
 

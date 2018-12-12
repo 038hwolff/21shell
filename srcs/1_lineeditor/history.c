@@ -25,7 +25,7 @@ void	history_dmove(t_edl *edl, char **line, t_hist *hist)
 	free(*line);
 	try_m(*line = ft_strdup(hist->list[j]));
 	edl->index = ft_strlen(*line);
-	edl->multiline = len_line(edl) / edl->col;
+	edl->multiline = edl->index / edl->col;
 }
 
 void	history_umove(t_edl *edl, char **line, t_hist *hist)
@@ -52,7 +52,7 @@ void	history_umove(t_edl *edl, char **line, t_hist *hist)
 	free(*line);
 	try_m(*line = ft_strdup(hist->list[j]));
 	edl->index = ft_strlen(*line);
-	edl->multiline = len_line(edl) / edl->col;
+	edl->multiline = edl->index / edl->col;
 }
 
 char	**free_cases(char **value)
