@@ -26,10 +26,10 @@ void	loop_enter(t_edl *edl, char **line, t_hist *hist)
 	else
 	{
 		ft_putstr_fd("\n", 1);
-		hist->h_current = 0;
 		free(*line);
-		*line = ft_strnew(0);
+		try_m(*line = ft_strnew(0));
 	}
+	hist->h_current = 0;
 }
 
 void	read_line()
@@ -42,13 +42,12 @@ void	read_line()
 	display_prompt(data->prompt);
 	while (key = 0, (read(STDIN_FILENO, &key, 10)) != 0)
 	{
-		signal_handler(NULL);
 		if (key == ENTER)
 		{
 			loop_enter(&data->edl, &data->edl.line, &data->hist);
 			return ;
 		}
-		else if (key == TAB || (key > 31 && key < 128 && key != DOWN_FN && key != UP_FN 
+		else if (key == TAB || key == CTRLD || (key > 31 && key < 128 && key != DOWN_FN && key != UP_FN 
 				&& key != LEFT && key != RIGHT && key != HOME
 				&& key != END && key != UP && key !=DOWN
 				&& key != LINE_UP && key != LINE_DOWN && key != COPY

@@ -61,7 +61,6 @@ int				syntax_exception(char *word);
 char *get_variable(char *key);
 t_variable			*newvartab(char **table);
 
-void				signal_handler(void (*restart)(int));
 void				refresh_screen(int signum);
 
 int					exec_pipes(t_data *data, int nb);

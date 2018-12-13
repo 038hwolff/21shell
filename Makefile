@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/12/13 14:43:06 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/12/13 17:03:46 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,10 @@ FLAGDEGUG		=	$(FLAG) -fsanitize=address
 # Files names
 SHELL_N			=	shell.c free.c data.c init.c putchar.c \
 					signals.c term.c var.c exception.c exit.c
-EDITLINE_N		=	command_reader.c read_line.c mouve.c term.c \
+EDITLINE_N		=	read_line.c mouve.c term.c \
 					history.c setup.c ft_enter.c signal.c print_line.c \
-					prompt.c select_mode.c copy_paste.c
+					prompt.c select_mode.c copy_paste.c cut_high.c \
+					control_keys.c
 LEXER_N			=	lexer.c checker.c token.c helper.c 
 PARSER_N		=	parser.c command_completion.c completion_checkers.c \
 					helper.c heredoc.c heredoc_getter.c operators.c \

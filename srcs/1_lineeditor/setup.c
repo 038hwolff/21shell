@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 19:45:59 by hwolff            #+#    #+#             */
-/*   Updated: 2018/11/22 22:09:45 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/13 16:59:36 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,10 @@ int	len_line(t_edl *edl)
 
 t_hist	*setup_hist(t_hist *hist)
 {
-	hist->list = (char **)ft_memalloc(sizeof(char *)); // non protege !!!!
+	try_m(hist->list = (char **)ft_memalloc(sizeof(char *)));
 	hist->h_count = 0;
 	hist->h_current = 0;
-	hist->copy = ft_strnew(0);
-	hist->cut = ft_strnew(0);
+	try_m(hist->copy = ft_strnew(0));
 	return (hist);
 }
 
@@ -40,10 +39,10 @@ t_edl	*setup_edl(t_edl *edl)
 	struct winsize ws;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
-	edl->line = ft_strnew(0);
+	try_m(edl->line = ft_strnew(0));
 	edl->index = 0;
 	edl->col = ws.ws_col;
-	edl->multiline = len_line(edl) / edl->col;
+	edl->multiline = edl->index / edl->col;
 	return (edl);
 }
 

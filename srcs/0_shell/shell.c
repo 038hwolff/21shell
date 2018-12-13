@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 11:54:11 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/13 14:37:59 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/13 17:02:52 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	command_line_loop(void)
 	setup_hist(&data->hist);
 	while (!data->shell_exit)
 	{
-		read_command_line();
-
+		signal_list();
+		read_line();
 		//data->cmd_line = g_line_test;
 		//ft_printf("%s\n", data->cmd_line);
 		if (!data->errno && !(data->errno = 0))
@@ -87,6 +87,7 @@ int		main(int ac, char **av, char **env)
 		init_shell(env);
 		command_line_loop();
 		//// free des trucs
+		// free hist
 	}
 	return (EXIT_SUCCESS);
 }

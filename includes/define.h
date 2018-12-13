@@ -42,6 +42,7 @@
 # define COPY 43458 /* alt + c */
 # define PASTE 32975 /* alt + p */
 # define CUT 8554722 /* alt + d */
+# define CTRLD 4 /* ctrl + d */
 
 /*
 ** Operators type for lexer tokens

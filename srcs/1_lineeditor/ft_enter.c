@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 17:40:28 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/05 11:04:12 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/13 17:00:27 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ int	ft_enter(char **line, t_edl *edl)
 
 	if (ft_strcmp(*line, "exit") == 0)
 		exit (1);
-	tmp = ft_strjoin(*line, "\n");
+	try_m(tmp = ft_strjoin(*line, "\n"));
 	free(*line);
-	//*line = ft_strdup(tmp);
-	//free(tmp);
-	*line = tmp;
+	try_m(*line = ft_strdup(tmp));
+	free(tmp);
 /*	if ((z = read_entry(&data)) > 0)
 	{
 		global_parse(&data);
