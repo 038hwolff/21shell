@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/11 00:17:57 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/27 11:37:25 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/12 16:19:55 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int
 	crawl_word(char **line)
 {
 	char *begin;
+
 
 	begin = *line;
 	if (**line == '\\')

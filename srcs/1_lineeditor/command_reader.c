@@ -6,13 +6,13 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 13:00:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/19 14:07:18 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/03 21:54:02 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/shell.h"
 
-void	read_command_line(t_hist *hist)
+void	read_command_line()
 {
-	read_line(hist);
+	read_line();
 }

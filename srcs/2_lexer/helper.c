@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:11:43 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/18 15:11:54 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/11 16:39:12 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,11 @@ char	*strdquote(char *s)
 
 char	*strquote(char *s)
 {
-	return (ft_strchr(s, '\''));
+	while (*s)
+	{
+		if (*s == '\'')
+			break ;
+		++s;
+	}
+	return (s);
 }

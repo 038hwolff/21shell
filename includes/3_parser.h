@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:20:16 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/27 14:52:43 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/11 15:57:35 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ t_token	*get_next_relevant_token(t_token *tok);
 int		is_control_op(int i);
 int		is_redir_op(int i);
 int		is_agreg_op(int i);
+int		is_unsupported_op(int op);
 
 
-int		parser(t_token **token);
+int		parser(t_data *data);
 
 
 /*
@@ -46,7 +47,41 @@ t_token	*get_last_token(t_token *token);
 
 void	complete_command_backslash(t_token *token, char **line);
 void	complete_command_quote(t_token *token, char **line, char quotetype);
-int		check_incomplete_command(t_token *token);
+int		is_command_incomplete(t_token *token);
+
+
+int		token_is_empty(t_token *token);
+int		token_is_newline(t_token *token);
+void	tokendelone(t_token **elem);
+void	del_tokens_if(t_token **alst, int (*token_is)(t_token *));
+
+
+int		check_heredoc(t_data *data, t_token *token);
+int	pop_char(char **line, int i);
+
+int			get_heredoc_lines(t_data *data, t_token *token, int quoted);
+int	pop_backslashed_nl(char **line);
+
+void set_special_prompt(t_data *data);
+
+int		check_backslash(t_token *token);
+char	check_quote(t_token *token);
+int		check_pipe(t_token *token);
+int		check_or(t_token *token);
+int		check_and(t_token *token);
+void	pop_backslash_in_heredoc(char **s);
+
+int		check_cancel(t_data *data, char **line);
+
+void	complete_tokens(t_token *token, int incomp_type, char *line);
+
+int		has_quotes_or_backslash(char *s);
+void	remove_quotes_and_backslash(char **line);
+
+void merge_tokens(t_token *t1, t_token *t2);
+void	append_token_value(t_token *token, int i, char **line);
+
+
 
 
 

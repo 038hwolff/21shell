@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:26:21 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/05 11:00:08 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/06 18:32:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,8 @@ void	select_mode(t_edl *edl, unsigned long key);
 
 void	copy_high(t_edl *edl, t_hist *hist, char *line);
 char	*paste_char(t_edl *edl, t_hist *hist, char *line);
+
+int		check_eof(t_data *data);
+
 
 #endif

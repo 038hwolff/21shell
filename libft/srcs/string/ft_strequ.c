@@ -6,9 +6,11 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 17:19:51 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/08/07 15:34:57 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/03 16:53:43 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int		ft_strequ(char const *s1, char const *s2)
 {

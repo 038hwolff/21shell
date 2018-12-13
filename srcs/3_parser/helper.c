@@ -6,29 +6,16 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:36:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/27 14:29:16 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/12 16:58:15 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		is_control_op(int i)
-{
-	return (i >= DOUBLEAND && i <= SEMICOLON);
-}
+// besoin de verifier newline ???
+// tester sans
 
-int		is_redir_op(int i)
-{
-	return ((i >= DOUBLELESS && i <= DOUBLEGREAT)
-			|| (i >= LESS && i <= GREAT));
-}
-
-int		is_agreg_op(int i)
-{
-	return (i >= LESSAND && i <= GREATAND);
-}
-
-t_token	*get_next_relevant_token(t_token *token)
+t_token		*get_next_relevant_token(t_token *token)
 {
 	token = token->next;
 	while (token && token->type == NEWLINE)
@@ -36,11 +23,43 @@ t_token	*get_next_relevant_token(t_token *token)
 	return (token);
 }
 
-t_token	*get_last_token(t_token *token)
+t_token		*get_last_token(t_token *token)
 {
 	if (!token)
 		return (NULL);
 	while (token->next)
 		token = token->next;
 	return (token);
+}
+
+void		append_token_value(t_token *token, int i, char **line)
+{
+	char	*head;
+	char	*tail;
+
+	try_m((tail = ft_strsub(*line, 0, i)));
+	head = token->val;
+	try_m((token->val = ft_strjoin(head, tail)));
+	token->length += i;
+	ft_strdel(&head);
+	ft_strdel(&tail);
+	tail = *line;
+	try_m((*line = ft_strdup(*line + i)));
+	ft_strdel(&tail);
+}
+
+void		merge_tokens(t_token *t1, t_token *t2)
+{
+	char *tmp;
+
+	if (t1 && t2)
+	{
+		tmp = t1->val;
+		try_m((t1->val = ft_strjoin(tmp, t2->val)));
+		t1->length += t2->length;
+		ft_strdel(&tmp);
+		ft_strdel(&t2->val);
+		t1->next = t2->next;
+		ft_memdel((void**)&t2);
+	}
 }

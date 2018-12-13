@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 18:18:09 by hwolff            #+#    #+#             */
-/*   Updated: 2018/11/13 18:18:12 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/06 18:41:28 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,9 @@ void	signal_handler(void(*restart)(int))
 	signal(SIGABRT, b_exit(data));
 	signal(SIGUSR1, b_exit(data));
 	signal(SIGUSR2, b_exit(data));*/
+}
+
+int		check_eof(t_data *data)
+{
+	return (data->eof != 0 && !(data->shell_exit = 0) && !(data->eof = 0));
 }

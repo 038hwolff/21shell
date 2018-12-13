@@ -31,12 +31,18 @@ void	tent_exception(char *ent)
 	exit(EXIT_FAILURE);
 }
 
-void	syntax_exception(char *word)
+int		syntax_exception(char *word)
 {
-	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"parse error near `%s'\n", word);
+	if (word)
+	{
+		ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"parse error near `%s'\n", word);
+		return (1);
+	}
+	return (0);
 }
 
-void	eof_exception(void)
+int		eof_exception(void)
 {
 	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"abrupt end of file\n");
+	return (0);
 }

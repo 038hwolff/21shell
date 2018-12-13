@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/12/03 16:43:53 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/12/13 14:43:06 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,10 @@ EDITLINE_N		=	command_reader.c read_line.c mouve.c term.c \
 					history.c setup.c ft_enter.c signal.c print_line.c \
 					prompt.c select_mode.c copy_paste.c
 LEXER_N			=	lexer.c checker.c token.c helper.c 
-PARSER_N		=	parser.c helper.c check_command.c check_incomplete_command.c \
-					check_syntax_errors.c complete_command.c heredoc.c heredoc_getter.c
-ASTBUILDER_N	=	astbuilder.c
+PARSER_N		=	parser.c command_completion.c completion_checkers.c \
+					helper.c heredoc.c heredoc_getter.c operators.c \
+					pop_char.c special_prompt.c tokendel.c
+ASTBUILDER_N	=	build_ast.c print_ast.c
 EXECUTOR_N		=	
 BUILTINS_N		=	
 

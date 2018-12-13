@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:10:16 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/18 15:10:20 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/13 12:01:09 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 static const char *g_delim[17] = {"<<-", "<<", ">>", "<>", "<&", ">&", ">|",
 	"&&", "||", ";;", "|", "&", ";", "<", ">", 0};
+static const int g_type[17] = {DOUBLELESSDASH, DOUBLELESS, DOUBLEGREAT,
+	LESSGREAT, LESSAND, GREATAND, GREATPIPE, DOUBLEAND, DOUBLEPIPE,
+	DOUBLESEMICOLON, PIPE, AND, SEMICOLON, LESS, GREAT, 0};
 
 static void
 	check_for_io_number(t_token *token, char **line)
@@ -55,7 +58,7 @@ static void
 		if (ft_strnequ(*line, g_delim[i], (len = ft_strlen(g_delim[i]))))
 		{
 			try_m((token->val = ft_strsub(*line, 0, len)));
-			token->type = i;
+			token->type = g_type[i];
 			token->length = len;
 			if ((i == LESSAND || i == GREATAND))
 			{

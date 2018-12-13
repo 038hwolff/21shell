@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/27 14:31:37 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/13 13:00:48 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void				exit_program(char *message);
 void			*try_m(void *ptr);
 void			term_exception(char *message);
 void			tent_exception(char *ent);
-void	syntax_exception(char *word);
+int				syntax_exception(char *word);
 
 /*
 ** var.c
@@ -95,12 +95,9 @@ void check_term(t_data *data);
 void	init_sig();
 
 int		check_if_sigint(t_data *data, char **line);
-void	eof_exception(void);
+int		eof_exception(void);
 
-
-void	display_prompt(t_data *data);
-
-void 	print_lex(t_token *token); // A SUPPRIMER A LA FIN
+void 	print_lex(t_token *token, char *name);
 
 
 # endif

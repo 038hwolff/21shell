@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/02 00:33:51 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/13 14:42:16 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ typedef struct		s_token
 
 typedef struct		s_ast
 {
-    char            *val; // donc le mot
-    struct s_ast    *parent;
+    t_token         *token;     
+    t_token         *left_arg; // Pour 2>&1 c'est le 2
+    t_token         *right_arg; // Pour 2>&1 c4est le 1
+   
     struct s_ast    *right; // la branche de droite
     struct s_ast    *left; // la branche de gauche
     int             type; // ex : LESSLESS
@@ -117,7 +119,7 @@ typedef struct		s_data
 	char			*additional_line;
 
 	t_token			*token;				// le resultat du lexer !!
-	t_ast			ast;				// l'arbre syntaxique
+	t_ast			*ast;				// l'arbre syntaxique
 
 	int				childpid;			// pour le fork
 
