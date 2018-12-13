@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 15:08:39 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/12 18:24:15 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/13 19:06:15 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,34 @@
 ** 0 - CMD
 */
 
-int     executor(t_data *data, t_ast *ast)
+int     execute(t_data *data, t_ast *ast)
 {
+	int rank;
 	int ret;
 
-	ret = 0;
+	
 	if (!ast)
 		return (0);
-	if (ast->type == 0)
-		ret = ex_exec(data, data->exec->env,
-			data->exec->bin, ast);
-	else if (ast->type == 1)
-		ret = exec_redirect(data, ast);
-	else if (ast->type == 2)
+	ret = 0;
+	rank = get_rank(ast->token->type);
+	if (rank == WORD)
+		ret = ex_exec(data, ast);
+	if (rank == ASSIGNEMENT_WORD)
+		ret = set_local_var(data, ast);
+	else if (rank == GREAT || rank == DOUBLEGREAT)
+		ret = exec_redirect(data, ast, rank);
+	else if (rank == LESS)
 		ret = exec_back_redirect(data, ast);
-	else if (ast->type == 3)
+	else if (rank == 3)
 		ret = main_agregator(data, ast);
-	else if (ast->type == 4)
+	else if (rank == 4)
 		ret = exec_pipes(data, ast);
-	else if (ast->type == 5 || ast->type == 6)
+	else if (rank == 5 || rank == 6)
 		ret = execute_conditions(data, ast);
-	else if (ast->type == 7)
+	else if (rank == 7)
 		ret = execute_semicolon(data, ast);
-	if (ast->type == 0)
-		g_data->exe = ret;
+	if (rank == 0)
+		data->exe_return = ret;
 	return (ret);
 }
 

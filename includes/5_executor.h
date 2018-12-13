@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   5_executor.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:52 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/19 14:18:19 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/13 18:21:26 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int					manage_dollar_other(char *value, t_data *data);
 ** executor.c
 */
 
-void	execute(void);
+int 	            execute(t_data *data, t_arg *ast);
+int                 exec_redirect(t_data *data, t_ast *ast, int rafter);
+int	                exec_back_redirect(t_data *data, t_ast *ast);
 
 #endif
