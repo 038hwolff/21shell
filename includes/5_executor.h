@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:52 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/13 18:21:26 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/14 12:36:33 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ int					manage_dollar_other(char *value, t_data *data);
 int 	            execute(t_data *data, t_arg *ast);
 int                 exec_redirect(t_data *data, t_ast *ast, int rafter);
 int	                exec_back_redirect(t_data *data, t_ast *ast);
+int		            and_or(t_data *data, t_ast *ast);
 
 #endif
