@@ -1,2 +1,3 @@
-*.o
+*.[oa]
 srcs/a\ recycler
+21sh
