@@ -1,3 +1,14 @@
+BONUS 21SH
+- Recherche dans l'historique avec CTRL R
+- Heredoc
+- operateurs logiques
+- arithmetique simple (pas de gestion des parentheses)
+- Gestion des backquotes
+- Variables locales
+- \
+
+
+
 Lecture AST: 
 - http://www.gaudry.be/programmer-arbres.html
 - https://ruslanspivak.com/lsbasi-part7/

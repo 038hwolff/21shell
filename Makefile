@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
+#    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/12/14 11:10:40 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/12/14 15:29:26 by hwolff           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ PARSER_N		=	parser.c command_completion.c completion_checkers.c \
 ASTBUILDER_N	=	build_ast.c print_ast.c
 EXECUTOR_N		=	executor.c arithmetics.c expansions_dollar.c \
 					expansions_main.c expansions_tilde.c fd_agregator.c \
-					pipes.c redirections.c
+					pipes.c redirections.c exec_cmd_line.c semicolon.c \
+					local_variable.c
 BUILTINS_N		=	
 
 # Sources paths

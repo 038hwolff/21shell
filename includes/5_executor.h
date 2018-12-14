@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   5_executor.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:52 by hben-yah          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/12/14 12:36:33 by hwolff           ###   ########.fr       */
-=======
-/*   Updated: 2018/12/14 11:41:08 by hben-yah         ###   ########.fr       */
->>>>>>> 636cdf6ca980ab9784b7e3b4cd0d16e3571c3689
+/*   Updated: 2018/12/14 14:02:20 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +46,7 @@ int		            and_or(t_data *data, t_ast *ast);
 int					ex_exec(t_data *data, t_ast *ast);
 int					set_local_var(t_data *data, t_ast *ast);
 
-int				     main_agregator(t_data *data, t_ast *ast);
+int				    main_agregator(t_data *data, t_ast *ast);
 int             	exec_pipes(t_data *data, t_ast *ast);
 
 int     			exec_heredoc(t_data *data);

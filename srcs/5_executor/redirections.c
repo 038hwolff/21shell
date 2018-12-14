@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 15:08:32 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/14 11:49:16 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:23:37 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 ** >> : redirige à la fin d'un fichier et le crée s'il n'existe pas.
 ** < : envoie le contenu d'un fichier à une commande ;
 ** << : passe la console en mode saisie au clavier, ligne par ligne (heredoc).
-**	Toutes ces lignes seront envoyées à la commande lorsque le mot-clé de fin
-**	aura été écrit.
-** <>
+** Toutes ces lignes seront envoyées à la commande lorsque le mot-clé de fin
+** aura été écrit.
+** 2>> et 2> OK
 */
 
 int		exec_back_redirect(t_data *data, t_ast *ast)
@@ -48,15 +48,18 @@ int		exec_back_redirect(t_data *data, t_ast *ast)
 
 int		exec_redirect(t_data *data, t_ast *ast, int rafter)
 {
-	int		ret = 0;
+	int		ret;
+	int		fd;
 
+	ret = 0;
 	if (rafter == GREAT)
 		ret = open(ast->right_arg->val, O_CREAT | O_WRONLY, 0644);
 	else if (rafter == DOUBLEGREAT)
 		ret = open(ast->right_arg->val, O_CREAT | O_WRONLY | O_APPEND);
 	if (ret >= 0)
 	{
-		dup2(ret, 1);
+		fd = ast->left_arg ? ft_atoi(ast->left_arg->val) : 1;
+		dup2(ret, fd);
 		close(ret);
 		if (ast->right)
 			ret = execute(data, ast->right);
