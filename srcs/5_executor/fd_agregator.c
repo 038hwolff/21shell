@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_agregator.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 17:26:12 by hwolff            #+#    #+#             */
-/*   Updated: 2018/11/17 18:55:03 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/14 11:47:46 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@
 */
 
 static int  exec_rederr_err(t_data *data)
-{
+{   
+    (void)data;
     return (0);
 }
 
 static int  exec_rederr_std(t_data *data, char *operator)
 {
+    (void)data;
     if (ft_strequ(operator, "2>&-") == 1)
     {
 
@@ -42,11 +44,16 @@ static int  exec_rederr_std(t_data *data, char *operator)
 
 static int  exec_rederr(char *operator, t_data *data)
 {
+    (void)operator;
+    (void)data;
     return (0);
 }
 
-int     main_agregator(t_data *data, char *operator)
+int     main_agregator(t_data *data, t_ast *ast)
 {
+    (void)data;
+    (void)ast;
+    char *operator = "lol";
     if (ft_strequ(operator, "2>") == 1 || ft_strequ(operator, "2>>") == 1)
         exec_rederr(operator, data);
     else if (ft_strequ(operator, "2>&1") == 1 || ft_strequ(operator, "2>&-") == 1

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/13 13:00:48 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/14 11:36:02 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,6 @@ char *get_variable(char *key);
 t_variable			*newvartab(char **table);
 
 void				refresh_screen(int signum);
-
-int					exec_pipes(t_data *data, int nb);
-
-int     			exec_heredoc(t_data *data);
-
-int     			main_redirec(t_data *data, char *raft);
 
 /*
 ** arithmetics.c
