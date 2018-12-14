@@ -6,13 +6,13 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 16:02:24 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/13 14:44:59 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/14 11:08:12 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int
+int
 	get_rank(int type)
 {
 	if (type >= IO_NUMBER && type <= GREATAND)

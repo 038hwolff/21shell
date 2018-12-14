@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 11:54:11 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/13 17:19:40 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/13 20:26:17 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	command_line_loop(void)
 				//ft_printf("%s\n", data->cmd_line);	*/
 				build_ast(data);
 				print_ast(data->ast);
-				execute(data);
+				//execute(data, data->ast);
 			}
 		}
 		data->token = NULL;  // FAUT FREE EN FAIT, A FAIRE PLUS TARD

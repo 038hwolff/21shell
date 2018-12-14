@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   expansions_tilde.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 15:49:50 by hwolff            #+#    #+#             */
-/*   Updated: 2018/10/30 15:50:52 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/14 11:45:45 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		go_home(t_data *data, char **res)
-{
-	int		j;
-	char	*tmp;
+// int		go_home(t_data *data, char **res)
+// {
+// 	int		j;
+// 	char	*tmp;
 
-	j = 0;
-	while (data->env[j] && (ft_strncmp(data->env[j], "HOME=", 5) != 0))
-		j++;
-	if (data->env[j])
-	{
-		tmp = *res;
-		if (!(*res = ft_strjoin(*res, data->env[j] + 5)))
-			return (0);
-		free(tmp);
-	}
-	return (1);
-}
+// 	j = 0;
+// 	while (data->env[j] && (ft_strncmp(data->env[j], "HOME=", 5) != 0))
+// 		j++;
+// 	if (data->env[j])
+// 	{
+// 		tmp = *res;
+// 		if (!(*res = ft_strjoin(*res, data->env[j] + 5)))
+// 			return (0);
+// 		free(tmp);
+// 	}
+// 	return (1);
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 15:08:39 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/13 19:06:15 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/14 11:43:28 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int     execute(t_data *data, t_ast *ast)
 	int rank;
 	int ret;
 
-	
 	if (!ast)
 		return (0);
 	ret = 0;
@@ -106,11 +105,14 @@ int     execute(t_data *data, t_ast *ast)
 // 	return (0);
 // }
 
-int		ex_exec(t_data *data)
+int		ex_exec(t_data *data, t_ast *ast)
 {
-	char	**paths;
+	(void)data;
+	(void)ast;
+	/*char	**paths;
 	int		status;
 
+	(void)ast;
 	if (!(paths = get_path(data)))
 	{
 		ft_putendl("Error: Path is empty");
@@ -129,6 +131,56 @@ int		ex_exec(t_data *data)
 //	signal(SIGINT, handle_signal);
 	data->childpid = 0;
 	free_tab(&data->args);
-	free_tab(&paths);
+	free_tab(&paths);*/
 	return (1);
+}
+
+int set_local_var(t_data *data, t_ast *ast)
+{
+	(void)data;
+	(void)ast;
+	return (0);
+}
+
+int execute_conditions(t_data *data, t_ast *ast)
+{
+	(void)data;
+	(void)ast;
+	return (0);
+}
+
+int execute_semicolon(t_data *data, t_ast *ast)
+{
+	(void)data;
+	(void)ast;
+	return (0);
+}
+
+char	**get_path(t_data *data)
+{
+	(void)data;
+	// char	**path;
+	// int		i;
+	// char	*tmp;
+
+	// i = 0;
+	// if ((!(path = NULL) && data->args[0][0] != '/')
+	// 		&& !(ft_strnequ(data->args[0], "./", 2)))
+	// {
+	// 	while (data->env[i] && (ft_strncmp(data->env[i], "PATH=", 5) != 0))
+	// 		i++;
+	// 	if (!data->env[i] || !(path = ft_strsplit(data->env[i], ':')))
+	// 		return (NULL);
+	// 	path[0] = ft_strncpy(path[0], path[0] + 5, ft_strlen(path[0]));
+	// 	i = -1;
+	// 	while (path[++i])
+	// 	{
+	// 		tmp = path[i];
+	// 		if (!(path[i] = tristrjoin(path[i], "/", data->args[0])))
+	// 			return (NULL);
+	// 		free(tmp);
+	// 	}
+	// }
+	// return (path ? path : ft_tabdup(&data->args[0], 0));
+	return (NULL);
 }
