@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   5_executor.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:52 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/14 14:02:20 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/14 17:24:51 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,5 @@ int					execute_conditions(t_data *data, t_ast *ast);
 int					execute_semicolon(t_data *data, t_ast *ast);
 
 char				**get_path(t_data *data);
-
-
 
 #endif
