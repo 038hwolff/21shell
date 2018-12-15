@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 17:08:41 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 17:26:21 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,6 @@ void	init_term(t_data *data);
 int					check_if_sigint(t_data *data, char **line);
 int					eof_exception(void);
 
-void				print_lex(t_token *token, char *name);
+int				print_lex(t_token *token, char *name);
 
 #endif
