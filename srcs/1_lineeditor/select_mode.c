@@ -9,7 +9,15 @@ static void	select_words(unsigned long key, t_edl *edl)
 	if (key == LEFT && edl->index - 1 >= 0)
 	{
 		edl->index--;
-		if (edl->light[edl->index] == 0)
+		if (((edl->index + 2) % (edl->col - 1) == 0) && edl->light[edl->index] == 0)
+		{
+			edl->light[edl->index] = 1;
+			edl->c_light++;
+			ft_putstr_fd(tgetstr("so", NULL), 1);
+			ft_putchar_fd(edl->line[edl->index], 1);
+			write(1, "\b", 1);
+		}
+		else if (edl->light[edl->index] == 0)
 		{
 			edl->light[edl->index] = 1;
 			edl->c_light++;
@@ -30,7 +38,10 @@ static void	select_words(unsigned long key, t_edl *edl)
 			write(1, "\b", 1);
 		}
 		edl->index++;
-		ft_putstr_fd(tgetstr("nd", NULL), 1);
+		if ((edl->index + 2) % edl->col == 0)
+			ft_putstr_fd(tgetstr("do", NULL), 1);
+		else
+			ft_putstr_fd(tgetstr("nd", NULL), 1);
 	}
 }
 
