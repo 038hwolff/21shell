@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:25:38 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/18 18:26:13 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 14:21:52 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** Pattern singleton pour récupérer la structure de données du shell
 */
+
 t_data	*get_data(void)
 {
 	static t_data	*data = NULL;

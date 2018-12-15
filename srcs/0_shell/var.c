@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   var.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 23:23:42 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/19 17:24:21 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 14:15:55 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-char *get_variable(char *key)
+char			*get_variable(char *key)
 {
 	t_variable *vars;
 
@@ -26,7 +26,7 @@ char *get_variable(char *key)
 	return (NULL);
 }
 
-t_variable	*newvartab(char **table)
+t_variable		*newvartab(char **table)
 {
 	t_variable	*new;
 	t_variable	*dnew;
@@ -41,7 +41,7 @@ t_variable	*newvartab(char **table)
 	dnew = new;
 	while (*table)
 	{
-		if(!(keyval = ft_strsplit(*(table++), '='))
+		if (!(keyval = ft_strsplit(*(table++), '='))
 			|| !keyval[0] || !keyval[1])
 			return (NULL);
 		dnew->key = keyval[0];

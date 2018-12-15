@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   6_builtins.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:23:22 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/18 15:45:59 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 11:57:42 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** builtins_main.c
 */
 
-int					is_builtins(t_data *data);
+int					is_builtins(t_data *data, t_ast *ast);
 
 /*
 ** builtins_cd.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/13 14:18:08 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 14:06:03 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,17 @@
 
 /*
 ** Line editor keys
+**
+** LINE_UP      Maj + up arrow
+** LINE_DOWN    Maj + down arrow
+** HOME         Fn + left arrow
+** END          Fn + right arrow
+** SELECT       alt + v
+** COPY         alt + c
+** PASTE        alt + p
+** CUT          alt + d
+** CTRLD        ctrl + d
 */
-
 
 # define ENTER 10
 # define SPACE 32
@@ -32,17 +41,17 @@
 # define DOWN 4348699
 # define UP_FN 2117425947
 # define DOWN_FN 2117491483
-# define LINE_UP 71683997260571 /* Maj + up arrow */
-# define LINE_DOWN 72783508888347 /* Maj + down arrow */
+# define LINE_UP 71683997260571
+# define LINE_DOWN 72783508888347
 # define LEFT 4479771
 # define RIGHT 4414235
-# define HOME 4741915 /* Fn + left arrow */
-# define END 4610843 /* Fn + right arrow */
-# define SELECT 9082850 /* alt + v */
-# define COPY 43458 /* alt + c */
-# define PASTE 32975 /* alt + p */
-# define CUT 8554722 /* alt + d */
-# define CTRLD 4 /* ctrl + d */
+# define HOME 4741915
+# define END 4610843
+# define SELECT 9082850
+# define COPY 43458
+# define PASTE 32975
+# define CUT 8554722
+# define CTRLD 4
 
 /*
 ** Operators type for lexer tokens
@@ -54,7 +63,7 @@
 # define IO_NUMBER				2
 # define LESS					3
 # define GREAT					4
-# define DOUBLELESS				5 
+# define DOUBLELESS				5
 # define DOUBLEGREAT			6
 # define GREATAND				7
 
@@ -64,11 +73,11 @@
 # define AND					11
 # define SEMICOLON				12
 
-# define LESSGREAT				15 // on le fait pas ?
+# define LESSGREAT				15
 # define LESSAND				16
-# define GREATPIPE				17 // clobber on le fait pas
-# define DOUBLELESSDASH			18 // on le fait pas ?
-# define DOUBLESEMICOLON		19 // ???
+# define GREATPIPE				17
+# define DOUBLELESSDASH			18
+# define DOUBLESEMICOLON		19
 
 # define NEWLINE				20
 # define HDOCDELIM				21
@@ -98,4 +107,3 @@
 # define PDEFAULT_LEN			2
 
 #endif
-

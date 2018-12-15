@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   term.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:27:23 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/19 14:28:21 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 14:16:29 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 ** On verifie le terminal, qu'on ait son nom, que c'est bien un terminal,
 ** et au'il ait bien une entrée à son nom dans la base de données
 ** terminfo pour l'utilisation des termcaps.
-**
 */
-void
-	check_term(t_data *data)
+
+void	check_term(t_data *data)
 {
 	char	buff[1024];
 	int		ret;

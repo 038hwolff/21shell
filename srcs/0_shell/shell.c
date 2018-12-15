@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 11:54:11 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 09:49:01 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 14:40:39 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 //char *g_line_test;
 
-
-void 	print_lex(t_token *token, char *name)
+void	print_lex(t_token *token, char *name)
 {
 	ft_printf("\n--- %s ---\n", name);
 	while (token)
@@ -27,7 +26,6 @@ void 	print_lex(t_token *token, char *name)
 	ft_printf("--------------\n\n");
 }
 
-
 /*
 ** Command line lifecycle
 ** - display prompt
@@ -37,6 +35,7 @@ void 	print_lex(t_token *token, char *name)
 ** 4 - building the ast (abstract syntaxic tree)
 ** 5 - execute the commands with priorities
 */
+
 void	command_line_loop(void)
 {
 	t_data	*data;
@@ -51,9 +50,7 @@ void	command_line_loop(void)
 		//ft_printf("%s\n", data->cmd_line);
 		if (!data->errno && !(data->errno = 0))
 		{
-
 			lexical_analysis(&data->token, data->edl.line);
-
 			// print le lex
 			print_lex(data->token, "LEXER");
 			//data->shell_exit = 1;
@@ -64,7 +61,7 @@ void	command_line_loop(void)
 				build_ast(data);
 				print_ast(data->ast);
 				ft_printf("\n--- EXECUTION ---\n");
-				execute(data, data->ast);
+				exec_cmd_line(data, data->ast);
 				ft_printf("\n----------------\n");
 			}
 		}
@@ -75,7 +72,7 @@ void	command_line_loop(void)
 			// mettre retour à > 0
 		}
 		ft_printf("\n");*/
-	}	
+	}
 }
 
 int		main(int ac, char **av, char **env)

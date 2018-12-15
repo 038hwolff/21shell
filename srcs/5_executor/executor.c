@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 15:27:38 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 10:04:52 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 14:38:58 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int				ex_exec_core(t_data *data, t_ast *ast, char **paths)
 	return (0);
 }
 
-int				execute(t_data *data, t_ast *ast)
+int				ex_exec(t_data *data, t_ast *ast)
 {
 	t_token *cur;
 	char	**paths;
