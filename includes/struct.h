@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 17:07:27 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 18:05:35 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ typedef struct		s_data
 	size_t			prompt_len;
 	int				incomp_type;
 
-	t_var		*env;				// variables d'environnement
-	t_var		*loc;				// variables locales
+	char			**env;				// variables d'environnement
+	t_var			*loc;				// variables locales
 	char			**args; 			// vient du minishell, toujours utile ??
 
 	char			*cmd_line; 			// la ligne de commande lue et envoyée au lexer

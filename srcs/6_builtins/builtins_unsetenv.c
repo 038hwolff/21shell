@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 13:36:43 by hwolff            #+#    #+#             */
-/*   Updated: 2018/10/30 16:31:05 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 22:23:39 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,20 @@ void	ft_rmvline(int j, t_data *data)
 	}
 }
 
-int		b_unsetenv(t_data *data)
+int		b_unsetenv(t_data *data, char **arg)
 {
 	char	*tmp;
 	int		i;
 	int		j;
 
 	i = 1;
-	while (data->args[i])
+	while (arg[i])
 	{
 		j = 0;
-		if (!(tmp = ft_strjoin(data->args[i], "=")))
-			return (0);
+		try_m((tmp = ft_strjoin(arg[i], "=")));
 		while (data->env[j])
 		{
-			if ((ft_strncmp(data->env[j], tmp, ft_strlen(tmp))) == 0)
+			if ((ft_strnequ(data->env[j], tmp, ft_strlen(tmp))))
 				ft_rmvline(j, data);
 			j++;
 		}

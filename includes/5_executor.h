@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:52 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 14:39:50 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 22:40:09 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,10 @@ int					main_redirec(t_data *data, char *raft);
 int					execute_conditions(t_data *data, t_ast *ast);
 int					execute_semicolon(t_data *data, t_ast *ast);
 
-char				**get_path(t_data *data);
+char				**get_path(char **env, char **arg);
 int					exec_cmd_line(t_data *data, t_ast *ast);
-int					ex_exec(t_data *data, t_ast *ast);
-int					ex_exec_core(t_data *data, t_ast *ast, char **paths);
+int					ex_exec(char **env, char **arg);
+int					ex_exec_core(char **env, char **table, char **paths);
+char    			**token_to_tab(t_ast *ast);
 
 #endif

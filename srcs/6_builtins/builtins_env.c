@@ -6,31 +6,32 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:19:07 by hwolff            #+#    #+#             */
-/*   Updated: 2018/10/30 16:37:37 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 22:54:05 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		b_env(t_data *data)
+int		b_env(char **env, char **arg)
 {
 	int		i;
-	t_data	ndata;
+	char	**nenv;
+	char 	**narg;
 
 	i = 1;
-	while (data->args[i] && data->args[i][0] == '-')
+	while (arg[i] && arg[i][0] == '-')
 		i++;
-	trial((int)(ndata.env = ft_tabdup(data->env, 0)));
-	while (data->args[i] && ft_strchr(data->args[i], '='))
-		add_to_env(&ndata, data, i++);
-	if (data->args[i])
+	try_m((nenv = ft_strtabdup(env)));
+	while (arg[i] && ft_strchr(arg[i], '='))
+		add_to_env(nenv, arg, i++);
+	if (arg[i])
 	{
-		trial((int)(ndata.args = ft_tabdup(data->args + i, 0)));
-		ex_exec(&ndata);
-		free_tab(&ndata.args);
+		try_m((narg = ft_strtabdup(arg + i)));
+		ex_exec(nenv, narg);
+		free_tab(&narg);
 	}
 	else
-		ft_putstrtab(ndata.env);
-	free_tab(&ndata.env);
+		ft_putstrtab(nenv);
+	free_tab(&nenv);
 	return (1);
 }

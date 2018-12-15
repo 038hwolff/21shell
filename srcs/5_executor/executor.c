@@ -3,52 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 15:27:38 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 17:02:29 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 22:40:01 by hwolff           ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
-                                                                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static void		cmd_not_found(t_ast *ast)
+static void		cmd_not_found(char *cmd)
 {
-	ft_putstr("21sh: command not found");
-	ft_putendl(ast->left->token->val);
-	exit(EXIT_FAILURE);
+	ft_printf("%s , 21sh: command not found");
+	ft_printf("%s\n", cmd);
+	exit_program("");
 }
 
-char			**get_path(t_data *data)
+char			**get_path(char **env, char **arg)
 {
 	char	**path;
 	int		i;
 	char	*tmp;
 
 	i = 0;
-	if ((!(path = NULL) && data->args[0][0] != '/')
-			&& !(ft_strnequ(data->args[0], "./", 2)))
+	if ((!(path = NULL) && arg[0][0] != '/')
+			&& !(ft_strnequ(arg[0], "./", 2)))
 	{
-		while (data->env[i] && (ft_strncmp(data->env[i], "PATH=", 5) != 0))
+		while (env[i] && (ft_strncmp(env[i], "PATH=", 5) != 0))
 			i++;
-		if (!data->env[i] || !(path = ft_strsplit(data->env[i], ':')))
+		if (!env[i] || !(path = ft_strsplit(env[i], ':')))
 			return (NULL);
 		path[0] = ft_strncpy(path[0], path[0] + 5, ft_strlen(path[0]));
 		i = -1;
 		while (path[++i])
 		{
 			tmp = path[i];
-			if (!(path[i] = tristrjoin(path[i], "/", data->args[0])))
+			if (!(path[i] = tristrjoin(path[i], "/", arg[0])))
 				return (NULL);
 			free(tmp);
 		}
 	}
-	return (path ? path : ft_tabdup(&data->args[0], 0));
+	return (path ? path : ft_tabdup(&arg[0], 0));
 }
 
-int				ex_exec_core(t_data *data, t_ast *ast, char **paths)
+int			ex_exec_core(char **env, char **table, char **paths)
 {
 	int		i;
 	int		q;
@@ -59,48 +57,54 @@ int				ex_exec_core(t_data *data, t_ast *ast, char **paths)
 	{
 		if (access(paths[i], X_OK) == 0)
 		{
-			if ((q = execve(paths[i], &ast->left->token->val, data->env)) == -1)
+			if ((q = execve(paths[i], table, env)) == -1)
 				;
 			break ;
 		}
 		i++;
 	}
-	cmd_not_found(ast);
+	cmd_not_found(*table);
 	return (0);
 }
 
-int				ex_exec(t_data *data, t_ast *ast)
+int			exec_noast(char **env, char **table)
 {
-	t_token *cur;
-	char	**paths;
 	int		status;
+	char	**paths;
+	int		childpid;
 
-	(void)data;
-	cur = ast->token;
-	if(SHPRINT)
-	{
-		ft_printf("exec :");
-		while (cur)
-		{
-			ft_printf(" %s", cur->val);
-			cur = cur->next;
-		}
-		ft_printf("\n");
-	}
-	if (!(paths = get_path(data)))
+	if (!(paths = get_path(env, table)))
 	{
 		ft_putendl("Error: Path is empty");
 		return (0);
 	}
-	data->childpid = fork();
-	if (data->childpid == 0)
-		ex_exec_core(data, ast, paths);
+	childpid = fork();
+	if (childpid == 0)
+		ex_exec_core(env, table, paths);
 	else
 		signal(SIGINT, SIG_IGN);
 	wait(&status);
 	if (WIFSIGNALED(status))
 		ft_putchar('\n');
 		// signal(SIGINT, handle_signal);
-	data->childpid = 0;
+	childpid = 0;
 	return (1);
+}
+
+int				ex_exec(char **env, char **arg)
+{
+	int		i;
+
+	if(SHPRINT)
+	{
+		i = 0;
+		ft_printf("exec :");
+		while (arg[i])
+		{
+			ft_printf(" %s", arg[i]);
+			++i;
+		}
+		ft_printf("\n");
+	}
+	return (exec_noast(env, arg));
 }

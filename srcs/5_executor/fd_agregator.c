@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 17:26:12 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 10:01:01 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 18:08:26 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int				main_agregator(t_data *data, t_ast *ast)
 {
 	char *operator;
 
+	operator = NULL;
 	(void)data;
 	(void)ast;
 	if (ft_strequ(operator, "2>&1") == 1 || ft_strequ(operator, "2>&-") == 1

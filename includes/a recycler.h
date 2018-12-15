@@ -49,14 +49,7 @@ int					is_valid_entry(t_data *data, int z, int tot);
 */
 
 void				trial(int i);
-void				cmd_not_found(t_data *data);
-
-/*
-** free.c
-*/
-
-void				free_tab(char ***table);
-void				free_tab_content(char ***table);
+void				cmd_not_found(char *cmd);
 
 /*
 ** get_executable.c

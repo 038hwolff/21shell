@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:57:35 by hwolff            #+#    #+#             */
-/*   Updated: 2018/10/30 15:21:06 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 18:13:39 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,3 @@ char	*tristrjoin(char *s1, char *s2, char *s3)
 	free(tmp);
 	return (ret);
 }
-
-

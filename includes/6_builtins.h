@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:23:22 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 11:57:42 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 23:13:21 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,42 +17,42 @@
 ** builtins_main.c
 */
 
-int					is_builtins(t_data *data, t_ast *ast);
+int					is_builtins(t_data *data, char **arg);
 
 /*
 ** builtins_cd.c
 */
 
 void				cd_free(char **tmp, t_data *ndata);
-int					b_cd(t_data *data);
+int					b_cd(t_data *data, char **env, char **arg);
 
 /*
 ** builtins_echo.c
 */
 
-int					b_echo(t_data *data);
+int					b_echo(char **arg);
 
 /*
 ** builtins_env.c
 */
 
-int					b_env(t_data *data);
+int					b_env(char **env, char **arg);
 
 /*
 ** builtins_exit.c
 */
 
-int					b_exit(t_data *data);
+void				b_exit();
 
 /*
 ** builtins_setenv.c
 */
 
-void				add_to_env(t_data *ndata, t_data *data, int i);
-int					ft_setline(char *key, char *value, t_data *data);
+void				add_to_env(char **nenv, char **arg, int i);
+int					ft_setline(char *key, char *value, char ***env);
 char				**ft_tabdup(char **table, size_t z);
 char				**check_key(char **ret, int i, char *key, char *value);
-int					b_setenv(t_data *data);
+int					b_setenv(char ***env, char **arg);
 
 /*
 ** builtins_tools.c
@@ -65,6 +65,6 @@ char				*tristrjoin(char *s1, char *s2, char *s3);
 */
 
 void				ft_rmvline(int j, t_data *data);
-int					b_unsetenv(t_data *data);
+int					b_unsetenv(t_data *data, char **arg);
 
 #endif

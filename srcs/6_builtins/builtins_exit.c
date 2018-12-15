@@ -6,14 +6,13 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 10:46:23 by hwolff            #+#    #+#             */
-/*   Updated: 2018/10/30 19:18:55 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 22:54:29 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int     b_exit(t_data *data)
+void    b_exit()
 {
-    free_tab(&data->env);
-    exit(EXIT_SUCCESS);
+    exit_program(NULL);
 }
