@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exception.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 14:27:05 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/27 14:25:24 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 14:21:40 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	term_exception(char *message)
 
 void	tent_exception(char *ent)
 {
-	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"no entry for terminal name -- %s\n", ent);
+	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"no entry for terminal -- %s\n", ent);
 	exit(EXIT_FAILURE);
 }
 

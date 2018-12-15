@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 16:56:29 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 17:08:41 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,18 @@ void				exit_program(char *message);
 ** prompt.c
 */
 
-/*void				display_prompt(void);*/
+/*
+** void				display_prompt(void);
+*/
 
 /*
 ** exception.c
 */
 
-void			*try_m(void *ptr);
-void			term_exception(char *message);
-void			tent_exception(char *ent);
-int				syntax_exception(char *word);
+void				*try_m(void *ptr);
+void				term_exception(char *message);
+void				tent_exception(char *ent);
+int					syntax_exception(char *word);
 
 /*
 ** var.c
@@ -60,6 +62,7 @@ int				syntax_exception(char *word);
 
 char *get_var(char *key);
 t_var			*newvartab(char **table);
+
 
 void				refresh_screen(int signum);
 
@@ -74,21 +77,18 @@ int					check_if_arithmetics(char *data);
 ** init.c
 */
 
-void	init_shell(char **env);
+void				init_shell(char **env);
 /*
 ** term.c
 */
 
-void check_term(t_data *data);
+void				check_term(t_data *data);
 
 /*
 ** signals.c
 */
 
-void	init_sig();
-
-int		check_if_sigint(t_data *data, char **line);
-int		eof_exception(void);
+void				init_sig();
 
 int 	print_lex(t_token *token, char *name);
 
@@ -96,5 +96,9 @@ void	reset_term(t_data *data);
 void	reset_shell(t_data *data);
 void	init_term(t_data *data);
 
+int					check_if_sigint(t_data *data, char **line);
+int					eof_exception(void);
 
-# endif
+void				print_lex(t_token *token, char *name);
+
+#endif

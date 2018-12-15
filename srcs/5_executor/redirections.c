@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 15:08:32 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 09:23:44 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 09:46:29 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int		exec_back_redirect(t_data *data, t_ast *ast)
 			ret = execute(data, ast->left);
 		dup2(stdin, 0);
 		close(ret);
-	 	return (ret);
+		return (ret);
 	}
 	else
 	{
-		// file permission ???
+// file permission ???
 		ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"error -- %s\n");
 		return (1);
 	}
@@ -70,7 +70,7 @@ int		exec_redirect(t_data *data, t_ast *ast, int rafter)
 			ret = execute(data, ast->left);
 		dup2(stdin, fd);
 		close(stdin);
-	 	return (ret);
+		return (ret);
 	}
 	else
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:27:49 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/11 17:36:12 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 14:16:48 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** interception de signaux pour ne rien faire
 */
+
 void	init_sig(void)
 {
 	int	i;

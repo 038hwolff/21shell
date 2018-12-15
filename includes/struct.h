@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 16:22:24 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 17:07:27 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ typedef struct		s_token
 
 typedef struct		s_ast
 {
-    t_token         *token;     
-    t_token         *left_arg; // Pour 2>&1 c'est le 2
-    t_token         *right_arg; // Pour 2>&1 c4est le 1
-   
-    struct s_ast    *right; // la branche de droite
-    struct s_ast    *left; // la branche de gauche
-    int             type; // ex : LESSLESS
+	t_token			*token;
+	t_token			*left_arg; // Pour 2>&1 c'est le 2
+	t_token			*right_arg; // Pour 2>&1 c4est le 1
+
+	struct s_ast	*right; // la branche de droite
+	struct s_ast	*left; // la branche de gauche
+	int				type; // ex : LESSLESS
 }					t_ast;
 
 typedef struct	s_var
@@ -52,7 +52,6 @@ typedef struct	s_var
 	char	*key;
 	char	*val;
 }				t_var;
-
 
 /*
 typedef struct		s_built
@@ -66,18 +65,18 @@ typedef struct		s_built
 
 typedef struct		s_hist
 {
-	char				**list;
+	char			**list;
 	int				h_count;
 	int				h_current;
-	char				*copy;
-}			t_hist;
+	char			*copy;
+}					t_hist;
 
 typedef struct		s_edl
 {
 	int				index;
 	int				*light;
 	int				c_light;
-	char				*line;
+	char			*line;
 	int				multiline;
 	int				col;
 }					t_edl;
@@ -96,7 +95,7 @@ typedef struct		s_cdenv
 typedef struct		s_data
 {
 	char			*term_name;			// nom du terminal
-	char 			*prompt;
+	char			*prompt;
 	size_t			prompt_len;
 	int				incomp_type;
 
@@ -116,11 +115,11 @@ typedef struct		s_data
 
 	short			shell_exit;			// si a reçu un signal de sortie
 	int				errno;				// numero d'erreur retourné, notre propre errno 
-	
+
 	int				sigint;
 	int				eof;
 
-	t_edl			edl;			
+	t_edl			edl;
 	t_hist			hist;
 
 	int				exe_return;
