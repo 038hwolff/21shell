@@ -1,4 +1,4 @@
-# include "../../includes/shell.h"
+#include "shell.h"
 
 char	*control_d(char *line, int *index)
 {

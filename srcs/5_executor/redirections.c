@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/shell.h"
+#include "shell.h"
 
 /*
 ** > : redirige dans un fichier et l'écrase s'il existe déjà ;

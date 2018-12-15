@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:26:21 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/06 18:32:08 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 14:22:28 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	read_line();
 int	ft_enter(char **line, t_edl *edl);
 
 t_edl	*setup_edl(t_edl *edl);
-void	setup_env(int ac, char **av, t_env *env);
 
 void	read_additional_line(char **line);
 /*

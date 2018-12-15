@@ -1,4 +1,4 @@
-# include "../../includes/shell.h"
+#include "shell.h"
 
 /*
 ** FN + up arrow

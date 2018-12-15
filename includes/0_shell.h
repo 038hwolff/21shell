@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/14 11:36:02 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 16:56:29 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int				syntax_exception(char *word);
 ** var.c
 */
 
-char *get_variable(char *key);
-t_variable			*newvartab(char **table);
+char *get_var(char *key);
+t_var			*newvartab(char **table);
 
 void				refresh_screen(int signum);
 
@@ -90,7 +90,11 @@ void	init_sig();
 int		check_if_sigint(t_data *data, char **line);
 int		eof_exception(void);
 
-void 	print_lex(t_token *token, char *name);
+int 	print_lex(t_token *token, char *name);
+
+void	reset_term(t_data *data);
+void	reset_shell(t_data *data);
+void	init_term(t_data *data);
 
 
 # endif

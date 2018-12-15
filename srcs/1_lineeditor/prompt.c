@@ -16,7 +16,7 @@
 {
 	// afficher user ?
 	// afficher le rep courant 
-	if (ft_strequ(get_variable("?"), "0"))
+	if (ft_strequ(get_var("?"), "0"))
 		ft_printf("%s » %s", "", ""); // bleu
 	else
 		ft_printf("%s » %s", "", ""); // rouge

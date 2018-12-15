@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/13 17:25:06 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 16:22:24 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ typedef struct		s_ast
     int             type; // ex : LESSLESS
 }					t_ast;
 
-typedef struct	s_variable
+typedef struct	s_var
 {
 	char	*key;
 	char	*val;
-}				t_variable;
+}				t_var;
 
 
 /*
@@ -63,16 +63,6 @@ typedef struct		s_built
 }					t_built;
 */
 
-typedef struct		s_env
-{
-	int				width;
-	int				height;
-	char			**words;
-	int				word_count;
-	int				current_word;
-	int				single_col_width;
-	struct termios	term;
-}					t_env;
 
 typedef struct		s_hist
 {
@@ -110,8 +100,8 @@ typedef struct		s_data
 	size_t			prompt_len;
 	int				incomp_type;
 
-	t_variable		*env;				// variables d'environnement
-	t_variable		*loc;				// variables locales
+	t_var		*env;				// variables d'environnement
+	t_var		*loc;				// variables locales
 	char			**args; 			// vient du minishell, toujours utile ??
 
 	char			*cmd_line; 			// la ligne de commande lue et envoyée au lexer

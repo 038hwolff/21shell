@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:27:23 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/19 14:28:21 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 14:00:50 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void
 	if (!isatty(STDIN_FILENO)
 		|| !isatty(STDOUT_FILENO)
 		|| !isatty(STDERR_FILENO))
-		term_exception(""ERR_PREFIX"standard I/O don't refer to a terminal\n");
+		term_exception(""ERR_PREFIX"standard I/O doesn't refer to a terminal\n");
 	if ((ret = tgetent(buff, data->term_name)) == 0)
 		tent_exception(data->term_name);
 	else if (ret == -1)

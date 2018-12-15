@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_enter.c                                         :+:      :+:    :+:   */
+/*   reset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/30 17:40:28 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 16:06:11 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/12/15 15:09:48 by hben-yah          #+#    #+#             */
+/*   Updated: 2018/12/15 16:23:39 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int	ft_enter(char **line, t_edl *edl)
-{
-	char	*tmp;
+void	reset_term(t_data *data)
+{	
+	tcsetattr(STDIN_FILENO, TCSANOW, &data->term_dft_config);
+}
 
-	if (ft_strcmp(*line, "exit") == 0)
-		exit_program(NULL);
-	try_m(tmp = ft_strjoin(*line, "\n"));
-	free(*line);
-	try_m(*line = ft_strdup(tmp));
-	free(tmp);
-/*	if ((z = read_entry(&data)) > 0)
-	{
-		global_parse(&data);
-		ft_strdel(&(data.entry));
-	}*/
-	edl->index = 0;
-	return (0);
+void	reset_shell(t_data *data)
+{	
+	reset_term(data);
 }

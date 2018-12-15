@@ -6,11 +6,11 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 19:47:44 by hwolff            #+#    #+#             */
-/*   Updated: 2018/11/30 14:29:56 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 16:33:39 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/shell.h"
+#include "shell.h"
 
 void	loop_enter(t_edl *edl, char **line, t_hist *hist)
 {
@@ -38,6 +38,7 @@ void	read_line()
 	t_data		*data;
 
 	data = get_data();
+	init_term(data);
 	setup_edl(&data->edl);
 	display_prompt(data->prompt);
 	while (key = 0, (read(STDIN_FILENO, &key, 10)) != 0)
@@ -45,7 +46,7 @@ void	read_line()
 		if (key == ENTER)
 		{
 			loop_enter(&data->edl, &data->edl.line, &data->hist);
-			return ;
+			break ;
 		}
 		else if (key == TAB || key == CTRLD || (key > 31 && key < 128 && key != DOWN_FN && key != UP_FN 
 				&& key != LEFT && key != RIGHT && key != HOME
@@ -56,5 +57,6 @@ void	read_line()
 		else
 			data->edl.line = ft_termcaps(&data->edl, data->edl.line, key, &data->hist);
 	}
+	reset_term(data);
 }
 

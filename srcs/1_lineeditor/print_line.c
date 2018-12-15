@@ -1,4 +1,4 @@
-#include "../../includes/shell.h"
+#include "shell.h"
 
 char	*supp_char(char *line, int *index)
 {

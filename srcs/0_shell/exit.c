@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 14:28:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/11 00:17:34 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 16:29:43 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	exit_program(char *message)
 {
-	//t_data *data;
+	t_data *data;
 
-	//data = get_data();
-	//reset_shell(data);
+	data = get_data();
+	reset_shell(data);
 	//free_data(data);
 	if (message)
 	{

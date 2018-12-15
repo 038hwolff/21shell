@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 15:27:38 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 09:31:03 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 17:00:15 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,16 @@ int		ex_exec(t_data *data, t_ast *ast)
 	t_token *cur;
 	
 	cur = ast->token;
-	ft_printf("exec :");
-	while (cur)
+	if(SHPRINT)
 	{
-		ft_printf(" %s", cur->val);
-		cur = cur->next;
+		ft_printf("exec :");
+		while (cur)
+		{
+			ft_printf(" %s", cur->val);
+			cur = cur->next;
+		}
+		ft_printf("\n");
 	}
-	ft_printf("\n");
-
 	/*char	**paths;
 	int		status;
 

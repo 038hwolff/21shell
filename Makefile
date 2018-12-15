@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/12/15 09:31:15 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/12/15 16:28:51 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAGDEGUG		=	$(FLAG) -fsanitize=address
 
 # Files names
 SHELL_N			=	shell.c free.c data.c init.c putchar.c \
-					signals.c term.c var.c exception.c exit.c
+					signals.c term.c var.c exception.c exit.c reset.c
 EDITLINE_N		=	read_line.c mouve.c term.c \
 					history.c setup.c ft_enter.c signal.c print_line.c \
 					prompt.c select_mode.c copy_paste.c cut_high.c \
@@ -103,7 +103,8 @@ fclean			:
 					@echo "Nettoyage de l'exécutable $(NAME)"
 					@rm -f $(NAME)
 
-test			:	@$(COMP) $(FLAGDEBUG) ${INC} ${LIB} ${FWS} -o ${NAME} ${SRCS}
+test			:	
+					@$(COMP) $(FLAGDEBUG) ${INCL} ${SRCS} $(TRMCP_I) -o ${NAME}
 
 debug			:	test
 					lldb ./${NAME}

@@ -6,15 +6,15 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 23:23:42 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/19 17:24:21 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 14:42:21 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-char *get_variable(char *key)
+char *get_var(char *key)
 {
-	t_variable *vars;
+	t_var *vars;
 
 	vars = get_data()->loc;
 	while ((*vars).key)
@@ -26,15 +26,15 @@ char *get_variable(char *key)
 	return (NULL);
 }
 
-t_variable	*newvartab(char **table)
+t_var	*newvartab(char **table)
 {
-	t_variable	*new;
-	t_variable	*dnew;
+	t_var	*new;
+	t_var	*dnew;
 	char		**keyval;
 	size_t		len;
 
 	len = (table ? ft_strtablen(table) : 0);
-	if (!(new = (t_variable *)ft_memalloc(sizeof(t_variable) * (len + 1))))
+	if (!(new = (t_var *)ft_memalloc(sizeof(t_var) * (len + 1))))
 		return (NULL);
 	if (!len)
 		return (new);

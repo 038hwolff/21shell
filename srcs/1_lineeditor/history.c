@@ -1,4 +1,4 @@
-#include "../../includes/shell.h"
+#include "shell.h"
 
 void	history_dmove(t_edl *edl, char **line, t_hist *hist)
 {

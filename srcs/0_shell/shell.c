@@ -6,25 +6,29 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 11:54:11 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 09:49:01 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 16:56:48 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/shell.h"
+#include "shell.h"
 
 //char *g_line_test;
 
 
-void 	print_lex(t_token *token, char *name)
+int print_lex(t_token *token, char *name)
 {
-	ft_printf("\n--- %s ---\n", name);
+	int ret;
+
+	ret = 0;
+	ret += ft_printf("\n--- %s ---\n", name);
 	while (token)
 	{
-		ft_printf("%s (%d) => %d\n", token->val, token->length,
+		ret += ft_printf("%s (%d) => %d\n", token->val, token->length,
 			token->type);
 		token = token->next;
 	}
-	ft_printf("--------------\n\n");
+	ret += ft_printf("--------------\n\n");
+	return (ret);
 }
 
 
@@ -43,6 +47,8 @@ void	command_line_loop(void)
 
 	data = get_data();
 	setup_hist(&data->hist);
+	//ft_printf("GNEEE");
+
 	while (!data->shell_exit)
 	{
 		signal_list();
@@ -55,17 +61,17 @@ void	command_line_loop(void)
 			lexical_analysis(&data->token, data->edl.line);
 
 			// print le lex
-			print_lex(data->token, "LEXER");
+			SHPRINT && print_lex(data->token, "LEXER");
 			//data->shell_exit = 1;
 			if (parser(data))
 			{
-				print_lex(data->token, "PARSER");
+				SHPRINT && print_lex(data->token, "PARSER");
 				//ft_printf("%s\n", data->cmd_line);	*/
 				build_ast(data);
-				print_ast(data->ast);
-				ft_printf("\n--- EXECUTION ---\n");
+				SHPRINT && print_ast(data->ast);
+				SHPRINT && ft_printf("\n--- EXECUTION ---\n");
 				execute(data, data->ast);
-				ft_printf("\n----------------\n");
+				SHPRINT && ft_printf("\n----------------\n");
 			}
 		}
 		data->token = NULL;  // FAUT FREE EN FAIT, A FAIRE PLUS TARD
@@ -80,10 +86,6 @@ void	command_line_loop(void)
 
 int		main(int ac, char **av, char **env)
 {
-	t_env *envv;
-
-	envv = (t_env *)ft_memalloc(sizeof(t_env));
-	setup_env(ac, av, envv);
 	if (ac && av && env)
 	{
 		init_shell(env);

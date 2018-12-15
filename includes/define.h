@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/13 14:18:08 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 17:00:30 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 */
 
 # define ERR_PREFIX "21sh: "
+# define SHPRINT 1
 
 /*
 ** Line editor keys

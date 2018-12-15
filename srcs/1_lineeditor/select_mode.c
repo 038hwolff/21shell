@@ -1,4 +1,4 @@
-#include "../../includes/shell.h"
+#include "shell.h"
 
 /*
 ** Effectuer la selection avec la left arrow, effacer la selection avec right arrow

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/shell.h"
+#include "shell.h"
 
 /* 2> : redirige les erreurs dans un fichier (s'il existe déjà, il sera écrasé) ;
 ** 2>&1 : redirige les erreurs au même endroit et de la même façon que la sortie standard
