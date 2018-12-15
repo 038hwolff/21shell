@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 15:27:38 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 09:32:47 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 09:36:43 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,19 @@ int		ex_exec_core(t_data *data, t_ast *ast, char **paths)
 
 int		execute(t_data *data, t_ast *ast)
 {
+	(void)data;
+	
+	t_token *cur;
+	
+	cur = ast->token;
+	ft_printf("exec :");
+	while (cur)
+	{
+		ft_printf(" %s", cur->val);
+		cur = cur->next;
+	}
+	ft_printf("\n");
+
 	char	**paths;
 	int		status;
 

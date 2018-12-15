@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:52 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 09:22:21 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 09:36:36 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,5 @@ int					execute_semicolon(t_data *data, t_ast *ast);
 char				**get_path(t_data *data);
 int		            execute(t_data *data, t_ast *ast);
 int		            ex_exec_core(t_data *data, t_ast *ast, char **paths);
-
-
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 15:08:32 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/14 15:23:37 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 09:23:44 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,24 @@
 int		exec_back_redirect(t_data *data, t_ast *ast)
 {
 	int		ret;
-	pid_t	pid;
+	int		stdin;
 
 	ret = open(ast->right_arg->val, O_RDONLY);
 	if (ret >= 0)
 	{
-		pid = fork();
+		stdin = dup(0);
 		dup2(ret, 0);
-		close(ret);
 		if (ast->right)
 			ret = execute(data, ast->right);
 		if (ast->left)
 			ret = execute(data, ast->left);
+		dup2(stdin, 0);
+		close(ret);
 	 	return (ret);
 	}
 	else
 	{
+		// file permission ???
 		ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"error -- %s\n");
 		return (1);
 	}
@@ -50,6 +52,7 @@ int		exec_redirect(t_data *data, t_ast *ast, int rafter)
 {
 	int		ret;
 	int		fd;
+	int		stdin;
 
 	ret = 0;
 	if (rafter == GREAT)
@@ -58,17 +61,20 @@ int		exec_redirect(t_data *data, t_ast *ast, int rafter)
 		ret = open(ast->right_arg->val, O_CREAT | O_WRONLY | O_APPEND);
 	if (ret >= 0)
 	{
-		fd = ast->left_arg ? ft_atoi(ast->left_arg->val) : 1;
+		fd = (ast->left_arg ? ft_atoi(ast->left_arg->val) : 1);
+		stdin = dup(fd);
 		dup2(ret, fd);
-		close(ret);
 		if (ast->right)
 			ret = execute(data, ast->right);
 		if (ast->left)
 			ret = execute(data, ast->left);
+		dup2(stdin, fd);
+		close(stdin);
 	 	return (ret);
 	}
 	else
 	{
+		// file permission ???
 		ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"error -- %s\n");
 		return (1);
 	}
