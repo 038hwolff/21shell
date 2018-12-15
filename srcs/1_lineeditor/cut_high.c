@@ -44,6 +44,10 @@ char	*cut_high(t_edl *edl, t_hist *hist, char *line)
 		i++;
 	}
 	free(line);
+	edl->multiline = edl->index / edl->col;
 	clear_line(edl, new_line);
+	j = (int)ft_strlen(new_line);
+	while (--j >= edl->index)
+		ft_putstr_fd(tgetstr("le", NULL), 1);
 	return (new_line);
 }

@@ -78,7 +78,7 @@ char	*ft_termcaps(t_edl *edl, char *line, unsigned long key, t_hist *hist)
 	if (key == LINE_UP || key == LINE_DOWN)
 		line_moves(edl, line, key);
 	if (key == SELECT && ft_strcmp(line, "\0") != 0)
-		select_mode(edl, key);
+		select_mode(edl, key, line);
 	if (key == COPY && ft_strcmp(line, "\0"))
 		copy_high(edl, hist, line);
 	if (key == CUT && ft_strcmp(line, "\0"))
