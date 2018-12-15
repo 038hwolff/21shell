@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 15:27:18 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/14 18:57:19 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 09:57:46 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 ** 0 - CMD
 */
 
-int     execute(t_data *data, t_ast *ast)
+int		execute(t_data *data, t_ast *ast)
 {
 	int ret;
 

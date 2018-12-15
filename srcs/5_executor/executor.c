@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 15:27:38 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 09:36:43 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 10:04:52 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 static void		cmd_not_found(t_ast *ast)
 {
 	ft_putstr("21sh: command not found");
-	ft_putendl(&ast->left->token->val);
+	ft_putendl(ast->left->token->val);
 	exit(EXIT_FAILURE);
 }
 
-char	**get_path(t_data *data)
+char			**get_path(t_data *data)
 {
 	char	**path;
 	int		i;
@@ -46,7 +46,7 @@ char	**get_path(t_data *data)
 	return (path ? path : ft_tabdup(&data->args[0], 0));
 }
 
-int		ex_exec_core(t_data *data, t_ast *ast, char **paths)
+int				ex_exec_core(t_data *data, t_ast *ast, char **paths)
 {
 	int		i;
 	int		q;
@@ -67,12 +67,13 @@ int		ex_exec_core(t_data *data, t_ast *ast, char **paths)
 	return (0);
 }
 
-int		execute(t_data *data, t_ast *ast)
+int				execute(t_data *data, t_ast *ast)
 {
-	(void)data;
-	
 	t_token *cur;
-	
+	char	**paths;
+	int		status;
+
+	(void)data;
 	cur = ast->token;
 	ft_printf("exec :");
 	while (cur)
@@ -81,10 +82,6 @@ int		execute(t_data *data, t_ast *ast)
 		cur = cur->next;
 	}
 	ft_printf("\n");
-
-	char	**paths;
-	int		status;
-
 	if (!(paths = get_path(data)))
 	{
 		ft_putendl("Error: Path is empty");
@@ -98,7 +95,7 @@ int		execute(t_data *data, t_ast *ast)
 	wait(&status);
 	if (WIFSIGNALED(status))
 		ft_putchar('\n');
-	// signal(SIGINT, handle_signal);
+		// signal(SIGINT, handle_signal);
 	data->childpid = 0;
 	return (1);
 }
