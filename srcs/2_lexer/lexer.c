@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/11 00:17:57 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/12 16:19:55 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 09:59:40 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,11 @@ void
 	t_token *new;
 	t_token *last;
 
+
 	if (!line)
 		return ;
 	last = get_last_token(*token);
+	ft_printf("\n-- DEBUT ---\n");
 	while (*line)
 	{
 		discard_spaces_tabs(&line);
@@ -83,4 +85,6 @@ void
 				last = last->next;
 		}
 	}
+	ft_printf("\n-- FIN ---\n");
+
 }
