@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 15:07:57 by hwolff            #+#    #+#             */
-/*   Updated: 2018/11/23 15:51:28 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/14 11:48:52 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,25 @@ static int      error_forkpipe(char *coderr)
     return (-1);
 }
 
-static int      exec_one_pipe(t_data *data, int fildes[], t_ast *ast)
+static int      exec_one_pipe(t_data *data, int fildes[2], t_ast *ast, int pid)
 {
-    char    buf;
+    int ret;
 
     if (pid == 0)
     {
         dup2(fildes[0], 0);
         close(fildes[1]);
-        while (read(fildes[0], &buf, 1) > 0)
-            write(STDOUT_FILENO, &buf, 1);
-        write(STDOUT_FILENO, "\n", 1);
-        close(fildes[0]);  
+        ret = execute(data, ast->right);
+        exit(EXIT_SUCCESS);
     }
     else
     {
         dup2(fildes[1], 1);
         close(fildes[0]);
-        write(fildes[1], data->args[1], ft_strlen(data->args[1]));
-        close(fildes[1]);
+        ret = execute(data, ast->left);
         wait(NULL);
     }
-    //is_builtins OU get_exec
-    exit(EXIT_SUCCESS);
+    return (ret);
 }
 
 int             exec_pipes(t_data *data, t_ast *ast)
@@ -54,12 +50,6 @@ int             exec_pipes(t_data *data, t_ast *ast)
     pid = fork();
     if (pid < 0 || pipe(fildes) == -1)
         return (error_forkpipe("error"));
-    if (!pid)
-        exec_one_pipe(data, &fildes[2], ast);
-    else
-    {
-        error_forkpipe("misspipe");
-        exit(EXIT_FAILURE);
-    }
+    exec_one_pipe(data, &fildes[2], ast, pid);
     return (0);
 }

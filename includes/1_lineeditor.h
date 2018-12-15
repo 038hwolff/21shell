@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:26:21 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/21 17:51:55 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/06 18:32:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /*
 ** loop.c
 */
+
 void			display_prompt(char *prompt);
 
 /*
@@ -52,13 +53,16 @@ void			history_dmove(t_edl *edl, char **line, t_hist *hist);
 ** command_reader.c
 */
 
-void	read_command_line(t_hist *hist);
+void	read_command_line();
 int	len_line(t_edl *edl);
-void	read_line(t_hist *hist);
+
+void	read_line();
 int	ft_enter(char **line, t_edl *edl);
+
 t_edl	*setup_edl(t_edl *edl);
 void	setup_env(int ac, char **av, t_env *env);
 
+void	read_additional_line(char **line);
 /*
 ** setup.c
 */
@@ -96,5 +100,8 @@ void	signal_list(void);
 */
 
 char	*control_d(char *line, int *index);
+
+int		check_eof(t_data *data);
+
 
 #endif

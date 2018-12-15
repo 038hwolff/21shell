@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/30 14:24:25 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/13 17:25:06 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_token
 	char			*val;
 	size_t			length;
 	int				type;
+	char			*heredoc;
 	struct s_token	*next;
 }					t_token;
 
@@ -37,8 +38,10 @@ typedef struct		s_token
 
 typedef struct		s_ast
 {
-    char            *val; // donc le mot
-    struct s_ast    *parent;
+    t_token         *token;     
+    t_token         *left_arg; // Pour 2>&1 c'est le 2
+    t_token         *right_arg; // Pour 2>&1 c4est le 1
+   
     struct s_ast    *right; // la branche de droite
     struct s_ast    *left; // la branche de gauche
     int             type; // ex : LESSLESS
@@ -112,8 +115,10 @@ typedef struct		s_data
 	char			**args; 			// vient du minishell, toujours utile ??
 
 	char			*cmd_line; 			// la ligne de commande lue et envoyée au lexer
+	char			*additional_line;
+
 	t_token			*token;				// le resultat du lexer !!
-	t_ast			ast;				// l'arbre syntaxique
+	t_ast			*ast;				// l'arbre syntaxique
 
 	int				childpid;			// pour le fork
 
@@ -121,8 +126,14 @@ typedef struct		s_data
 
 	short			shell_exit;			// si a reçu un signal de sortie
 	int				errno;				// numero d'erreur retourné, notre propre errno 
+	
+	int				sigint;
+	int				eof;
+
 	t_edl			edl;			
 	t_hist			hist;
+
+	int				exe_return;
 }					t_data;
 
 #endif

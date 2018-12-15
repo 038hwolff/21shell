@@ -57,3 +57,4 @@ void	read_line()
 			data->edl.line = ft_termcaps(&data->edl, data->edl.line, key, &data->hist);
 	}
 }
+

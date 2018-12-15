@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/21 15:39:11 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/13 14:18:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,44 +48,54 @@
 ** Operators type for lexer tokens
 */
 
-# define DOUBLELESSDASH			0 // on le fait pas ?
-# define DOUBLELESS				1 
-# define DOUBLEGREAT			2
-# define LESSGREAT				3 // on le fait pas ?
-# define LESSAND				4
-# define GREATAND				5
-# define GREATPIPE				6 // clobber on le fait pas
-# define DOUBLEAND				7
-# define DOUBLEPIPE				8
-# define DOUBLESEMICOLON		9 // ???
-# define PIPE					10
+# define WORD					0
+# define ASSIGNEMENT_WORD		1
+
+# define IO_NUMBER				2
+# define LESS					3
+# define GREAT					4
+# define DOUBLELESS				5 
+# define DOUBLEGREAT			6
+# define GREATAND				7
+
+# define PIPE					8
+# define DOUBLEAND				9
+# define DOUBLEPIPE				10
 # define AND					11
 # define SEMICOLON				12
-# define LESS					13
-# define GREAT					14
+
+# define LESSGREAT				15 // on le fait pas ?
+# define LESSAND				16
+# define GREATPIPE				17 // clobber on le fait pas
+# define DOUBLELESSDASH			18 // on le fait pas ?
+# define DOUBLESEMICOLON		19 // ???
+
 # define NEWLINE				20
-# define IO_NUMBER				21
-# define WORD					30
-# define ASSIGNEMENT_WORD		31
-# define NAME					32
+# define HDOCDELIM				21
 
 /*
-** Missing characters and prompt types ("dquote>")
+** Incomplete command types ("dquote>")
 */
 
-# define MISSINGQUOTE			1
-# define MISSINGDQUOTE			2
-# define MISSINGPIPE			3
-# define MISSINGDPIPE			4
-# define MISSINGDAND			5
-# define MISSINGBKSLASH			6
+# define COMPLETE			0
+# define INC_QUOTE			1
+# define INC_DQUOTE			2
+# define INC_PIPE			3
+# define INC_DPIPE			4
+# define INC_DAND			5
+# define INC_BKSLASH		6
+# define INC_HEREDOC		7
 
-# define PQUOTE 				"quote> "
-# define PDQUOTE 				"dquote> "
-# define PBACKSLASH 			"> "
-# define PDOUBLEAND 			"> "
-# define PDDOUBLEPIPE 			"> "
-# define PPIPE 					"> "
+# define PQUOTE 				"quote » "
+# define PQUOTE_LEN				8
+# define PDQUOTE 				"dquote » "
+# define PDQUOTE_LEN			9
+# define PBACKSLASH 			"\\ » "
+# define PBACKSLASH_LEN			4
+# define PHEREDOC 				"heredoc » "
+# define PHEREDOC_LEN			10
+# define PDEFAULT				"» "
+# define PDEFAULT_LEN			2
 
 #endif
 

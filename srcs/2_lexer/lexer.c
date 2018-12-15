@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/11 00:17:57 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/22 22:22:53 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/12 16:19:55 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int
 {
 	char *begin;
 
+
 	begin = *line;
 	if (**line == '\\')
 		++(*line);
@@ -24,12 +25,12 @@ static int
 		*line = strdquote(*line + 1);
 	else if (**line == '\'')
 		*line = strquote(*line + 1);
-	if (*line)
+	if (**line)
 		++(*line);
 	return (*line - begin);
 }
 
-static t_token
+t_token
 	*get_next_token(char **line)
 {
 	t_token	*delim_token;
@@ -62,8 +63,7 @@ void
 
 	if (!line)
 		return ;
-
-
+	last = get_last_token(*token);
 	while (*line)
 	{
 		discard_spaces_tabs(&line);

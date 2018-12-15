@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:38 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/18 15:51:21 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/11/27 11:36:38 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 void			lexical_analysis(t_token **token, char *line);
 char			**sh_split_chars(char const *s, int (*is_separator)(char *));
+t_token			*get_next_token(char **line);
 
 /*
 ** token.c

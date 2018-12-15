@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:26:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/30 14:23:40 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/03 21:50:26 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@
 
 void	display_prompt(char *prompt)
 {
+	/*t_data *data;
+
+	data = get_data();
+	if (data->prompt)
+		ft_printf("%s\n", data->prompt);
+	data->prompt = NULL;*/
 	if (prompt != NULL)
 	{
 		ft_putstr_fd(tgetstr("me", NULL), 1);

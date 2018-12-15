@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_reader.c                                   :+:      :+:    :+:   */
+/*   local_variable.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/19 13:00:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/19 14:07:18 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/12/14 15:29:40 by hwolff            #+#    #+#             */
+/*   Updated: 2018/12/14 15:30:21 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/shell.h"
+#include "shell.h"
 
-void	read_command_line(t_hist *hist)
+int set_local_var(t_data *data, t_ast *ast)
 {
-	read_line(hist);
+	(void)data;
+	(void)ast;
+	return (0);
 }

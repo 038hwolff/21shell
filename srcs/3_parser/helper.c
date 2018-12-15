@@ -5,37 +5,61 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 12:41:33 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/21 15:46:27 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/11/22 22:36:20 by hben-yah          #+#    #+#             */
+/*   Updated: 2018/12/12 16:58:15 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		is_control_op(int i)
+// besoin de verifier newline ???
+// tester sans
+
+t_token		*get_next_relevant_token(t_token *token)
 {
-	return (i >= DOUBLEAND && i <= SEMICOLON);
+	token = token->next;
+	while (token && token->type == NEWLINE)
+		token = token->next;
+	return (token);
 }
 
-int		is_redir_op(int i)
+t_token		*get_last_token(t_token *token)
 {
-	return ((i >= DOUBLELESS && i <= DOUBLEGREAT)
-			|| (i >= LESS && i <= GREAT));
+	if (!token)
+		return (NULL);
+	while (token->next)
+		token = token->next;
+	return (token);
 }
 
-int		is_agreg_op(int i)
+void		append_token_value(t_token *token, int i, char **line)
 {
-	return (i >= LESSAND && i <= GREATAND);
+	char	*head;
+	char	*tail;
+
+	try_m((tail = ft_strsub(*line, 0, i)));
+	head = token->val;
+	try_m((token->val = ft_strjoin(head, tail)));
+	token->length += i;
+	ft_strdel(&head);
+	ft_strdel(&tail);
+	tail = *line;
+	try_m((*line = ft_strdup(*line + i)));
+	ft_strdel(&tail);
 }
 
-t_token	*get_next_relevant_token(t_token *tok)
+void		merge_tokens(t_token *t1, t_token *t2)
 {
-	tok = tok->next;
-		ft_printf("gne\n");
-	while (tok->next && tok->next->type == NEWLINE)
+	char *tmp;
+
+	if (t1 && t2)
 	{
-		ft_printf("lol\n");
-		tok = tok->next;
+		tmp = t1->val;
+		try_m((t1->val = ft_strjoin(tmp, t2->val)));
+		t1->length += t2->length;
+		ft_strdel(&tmp);
+		ft_strdel(&t2->val);
+		t1->next = t2->next;
+		ft_memdel((void**)&t2);
 	}
-	return (tok);
 }

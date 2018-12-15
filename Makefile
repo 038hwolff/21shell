@@ -3,30 +3,35 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
+#    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/11/30 14:22:33 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/12/14 15:29:26 by hwolff           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	21sh
 
 COMP			=	clang
-FLAG			=	-Wall -Wextra -Werror -g3
+FLAG			=	-Wall -Wextra -Werror -g3 -pedantic
 FLAGDEGUG		=	$(FLAG) -fsanitize=address
 
 # Files names
 SHELL_N			=	shell.c free.c data.c init.c putchar.c \
 					signals.c term.c var.c exception.c exit.c
-EDITLINE_N		=	command_reader.c read_line.c mouve.c term.c \
+EDITLINE_N		=	read_line.c mouve.c term.c \
 					history.c setup.c ft_enter.c signal.c print_line.c \
 					prompt.c select_mode.c copy_paste.c cut_high.c \
 					control_keys.c
 LEXER_N			=	lexer.c checker.c token.c helper.c 
-PARSER_N		=	parser.c syntax_checker.c helper.c
-ASTBUILDER_N		=	astbuilder.c
-EXECUTOR_N		=	
+PARSER_N		=	parser.c command_completion.c completion_checkers.c \
+					helper.c heredoc.c heredoc_getter.c operators.c \
+					pop_char.c special_prompt.c tokendel.c
+ASTBUILDER_N	=	build_ast.c print_ast.c
+EXECUTOR_N		=	executor.c arithmetics.c expansions_dollar.c \
+					expansions_main.c expansions_tilde.c fd_agregator.c \
+					pipes.c redirections.c exec_cmd_line.c semicolon.c \
+					local_variable.c
 BUILTINS_N		=	
 
 # Sources paths
@@ -69,16 +74,16 @@ TRMCP_I			=	-ltermcap
 
 # Rules
 
-all				:	$(LFT_P) $(NAME)
+all				:	$(NAME)
+
+$(NAME)			:	$(LFT_P) $(OBJS)
+					@echo "\nAssemblage et création de l'exécutable $(NAME)"
+					@$(COMP) $(FLAG) $(OBJS) $(LFT_P) $(TRMCP_I) -o $(NAME)
+					@echo "Terminé"
 
 $(LFT_P)		:	force
 					@echo "Vérification de la librairie Libft"
 					@make -C $(LFT_D)
-
-$(NAME)			:	$(OBJS)
-					@echo "\nAssemblage et création de l'exécutable $(NAME)"
-					@$(COMP) $(FLAG) $(OBJS) $(LFT_P) $(TRMCP_I) -o $(NAME)
-					@echo "Terminé"
 
 $(OBJS_D)%.o	:	$(SRCS_D)%.c $(addprefix $(LFT_I), $(LFT_H)) $(INCL)
 					@echo -e "\033[2K\c"

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 11:54:11 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/30 14:29:31 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/13 20:26:17 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 //char *g_line_test;
 
 
-void 	print_lex(t_token *token)
+void 	print_lex(t_token *token, char *name)
 {
-	ft_printf("\n---LEXAGE---\n");
+	ft_printf("\n--- %s ---\n", name);
 	while (token)
 	{
 		ft_printf("%s (%d) => %d\n", token->val, token->length,
 			token->type);
 		token = token->next;
 	}
-	ft_printf("------------\n");
+	ft_printf("--------------\n\n");
 }
 
 
@@ -46,24 +46,27 @@ void	command_line_loop(void)
 	while (!data->shell_exit)
 	{
 		signal_list();
-		read_command_line(&data->hist);
+		read_line();
 		//data->cmd_line = g_line_test;
 		//ft_printf("%s\n", data->cmd_line);
-	//	ft_printf("%s\n", data->edl.line);
 		if (!data->errno && !(data->errno = 0))
 		{
+
 			lexical_analysis(&data->token, data->edl.line);
+
 			// print le lex
-			//print_lex(data->token);
+			print_lex(data->token, "LEXER");
 			//data->shell_exit = 1;
-		/*	if (!parse(data, data->token))
+			if (parser(data))
 			{
+				print_lex(data->token, "PARSER");
 				//ft_printf("%s\n", data->cmd_line);	*/
-				//build_ast(/* ??? */);
-				//execute(/* ??? */);
-		//	}
+				build_ast(data);
+				print_ast(data->ast);
+				//execute(data, data->ast);
+			}
 		}
-		data->token = NULL; // FAUT FREE EN FAIT, A FAIRE PLUS TARD
+		data->token = NULL;  // FAUT FREE EN FAIT, A FAIRE PLUS TARD
 		/*else
 		{
 			// free lex

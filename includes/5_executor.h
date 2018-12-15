@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   5_executor.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:52 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/19 14:18:19 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/14 14:02:20 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,26 @@ int					manage_dollar_other(char *value, t_data *data);
 ** executor.c
 */
 
-void	execute(void);
+int 	            execute(t_data *data, t_ast *ast);
+int                 exec_redirect(t_data *data, t_ast *ast, int rafter);
+int	                exec_back_redirect(t_data *data, t_ast *ast);
+int		            and_or(t_data *data, t_ast *ast);
+
+int					ex_exec(t_data *data, t_ast *ast);
+int					set_local_var(t_data *data, t_ast *ast);
+
+int				    main_agregator(t_data *data, t_ast *ast);
+int             	exec_pipes(t_data *data, t_ast *ast);
+
+int     			exec_heredoc(t_data *data);
+
+int     			main_redirec(t_data *data, char *raft);
+
+int					execute_conditions(t_data *data, t_ast *ast);
+int					execute_semicolon(t_data *data, t_ast *ast);
+
+char				**get_path(t_data *data);
+
+
 
 #endif
