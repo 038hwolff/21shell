@@ -3,7 +3,7 @@
 
 static void		cmd_not_found(char *cmd)
 {
-	ft_printf("%s , 21sh: command not found");
+	ft_printf("21sh: command not found: ", cmd);
 	ft_printf("%s\n", cmd);
 	exit_program("");
 }

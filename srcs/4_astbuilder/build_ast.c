@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   build_ast.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 16:02:24 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/16 20:06:52 by hben-yah         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "shell.h"
 
@@ -53,8 +42,6 @@ static void
 	{
 		(*ast)->left_arg = (*chosen);
 		(*ast)->token = (*chosen)->next;
-		*chosen = (*chosen)->next; 
-
 		if (*chosen && (*chosen)->next
 			&& ((*chosen)->next->type == IO_NUMBER
 			|| (*chosen)->next->type == WORD))
@@ -71,12 +58,13 @@ static void
 }
 
 static void
-	add_node(t_ast **ast, t_token *token)
+	add_node(t_data *data, t_ast **ast, t_token *token)
 {
 	t_token *chosen_prev;
 	t_token *chosen;
 	int		type;
 
+	expansion(data, token);
 	chosen_prev = NULL;
 	if (!token)
 		return ;
@@ -93,12 +81,12 @@ static void
 		chosen->next = NULL;
 	}
 	if (token)
-		add_node(&(*ast)->left, token);
+		add_node(data, &(*ast)->left, token);
 	if (chosen->next)
-		add_node(&(*ast)->right, chosen->next);
+		add_node(data, &(*ast)->right, chosen->next);
 }
 
 void	build_ast(t_data *data)
 {
-	add_node(&data->ast, data->token);
+	add_node(data, &data->ast, data->token);
 }

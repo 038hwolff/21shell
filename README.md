@@ -1,17 +1,22 @@
 TODO DIMANCHE
-- Pb pipes cat
 - Fd agregator
-- quotes dquotes
-- expansions $ et ~
+- Heredoc
+- unset/export/var loc
+- free
+- faire marcher setenv
 
-TODO BONUS DIMANCHE
-- arithmetiques?
-- historique avec ctrl R?
-- table de hachage binaires
+- quote/doublequote/echap
+- arithmetique
+- builtins POSIX
+- backquotes
++ history + ! + options
+
+
+
 
 BONUS 21SH
 - Heredoc
-- operateurs logiques
+- operateurs logiques OK
 - arithmetique?
 - Gestion des backquotes
 - Variables locales

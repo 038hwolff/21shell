@@ -15,6 +15,14 @@
 
 # include "ft_stringbuffer.h"
 
+/*
+**	Flag used by ft_3strjoinfree
+*/
+
+# define FREE_LEFT 0x01
+# define FREE_MID 0x02
+# define FREE_RIGHT 0x04
+
 void	ft_charswap(char *a, char *b);
 int		ft_hasnodupl(char *str);
 char	*ft_printabilize(char *str, char c);
@@ -52,5 +60,8 @@ char	*ft_strtrim(char const *s);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 size_t	ft_wrdcnt(const char *s, char c);
+void	ft_strrmvchr(char *s);
+char	*ft_strlastchr(char *s);
+char	*ft_3strjoinfree(char *s1, char *s2, char *s3, char flag);
 
 #endif

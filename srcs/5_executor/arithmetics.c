@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 13:29:09 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 10:03:08 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/16 17:09:58 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,3 @@ int			check_if_arithmetics(char *data)
 		ft_putendl("Parse error");
 	return (0);
 }
-
-/*
-int		main(int argc, char **argv, char **envp)
-{
-	t_data	data;
-	(void)argc;
-
-	data.env = envp;
-	data.args = argv;
-	check_if_arithmetics(data.args[1]);
-	return (0);
-}*/

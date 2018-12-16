@@ -21,6 +21,13 @@
 # define SHPRINT 1
 
 /*
+**	Flag utilise lors de l'expansion des variables
+*/
+
+# define STR_FORMAT 0
+# define NBR_FORMAT 1
+
+/*
 ** Line editor keys
 **
 ** LINE_UP      Maj + up arrow

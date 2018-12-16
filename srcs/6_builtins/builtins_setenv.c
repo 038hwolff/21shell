@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 13:36:13 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 23:12:32 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/16 16:01:41 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int		b_setenv(char ***env, char **arg)
 	char	*value;
 	int		i;
 
+	ft_putendl("lala");
 	i = 1;
 	while (arg[i])
 	{

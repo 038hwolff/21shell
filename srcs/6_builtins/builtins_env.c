@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:19:07 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 22:54:05 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/16 13:11:02 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		b_env(char **env, char **arg)
 {
 	int		i;
 	char	**nenv;
-	char 	**narg;
+	char	**narg;
 
 	i = 1;
 	while (arg[i] && arg[i][0] == '-')

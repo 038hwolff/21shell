@@ -11,7 +11,7 @@ EDITLINE_N		=	read_line.c mouve.c term.c \
 					history.c setup.c ft_enter.c signal.c print_line.c \
 					prompt.c select_mode.c copy_paste.c cut_high.c \
 					control_keys.c
-LEXER_N			=	lexer.c checker.c token.c helper.c 
+LEXER_N			=	lexer.c checker.c token.c helper.c
 PARSER_N		=	parser.c command_completion.c completion_checkers.c \
 					helper.c heredoc.c heredoc_getter.c operators.c \
 					pop_char.c special_prompt.c tokendel.c
@@ -19,7 +19,10 @@ ASTBUILDER_N	=	build_ast.c print_ast.c
 EXECUTOR_N		=	executor.c arithmetics.c expansions_dollar.c \
 					expansions_main.c expansions_tilde.c fd_agregator.c \
 					pipes.c redirections.c exec_cmd_line.c semicolon.c \
-					local_variable.c operator.c tools.c
+					local_variable.c operator.c tools.c env_get.c \
+					exp_goto_next_quote.c exp_tilde.c exp_vars_assign.c \
+					exp_vars_get.c exp_vars_substitute.c exp_vars.c \
+					expansion.c env_set.c
 BUILTINS_N		=	builtins_cd.c builtins_echo.c builtins_env.c \
 					builtins_exit.c builtins_main.c \
 					builtins_setenv.c builtins_tools.c \
@@ -94,7 +97,7 @@ fclean			:
 					@echo "Nettoyage de l'exécutable $(NAME)"
 					@rm -f $(NAME)
 
-test			:	
+test			:
 					@$(COMP) $(FLAGDEBUG) ${INCL} ${SRCS} $(TRMCP_I) -o ${NAME}
 
 debug			:	test
