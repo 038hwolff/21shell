@@ -59,4 +59,35 @@ int					ex_exec(char **env, char **arg);
 int					ex_exec_core(char **env, char **table, char **paths);
 char    			**token_to_tab(t_ast *ast);
 
+
+/*
+**	Expansion
+*/
+
+void				expansion(t_data *data, t_token *token);
+int					exp_tilde(char **str, t_data *data);
+void				exp_vars(char **str, t_data *data);
+char				*exp_vars_get(char *str, t_data *data);
+char				*exp_sub_param(t_varsexp *exp, char *key,
+						char *val, char *word);
+char				*exp_sub_word(t_varsexp *exp, char *key,
+						char *val, char *word);
+char				*exp_sub_null(t_varsexp *exp, char *key,
+						char *val, char *word);
+char				*exp_sub_error(t_varsexp *exp, char *key,
+						char *val, char *word);
+char				*exp_assign(t_varsexp *exp, char *key,
+						char *val, char *word);
+char				*exp_unhandle(t_varsexp *exp, char *key,
+						char *val, char *word);
+void				exp_goto_next_quote(char **str);
+
+/*
+**	Environment tools
+*/
+
+char				*env_get(char **arr, char *key);
+int					env_set(char ***arr, char *key, char *value, char flag);
+char				**sh_env_get_ref(char **arr, char *key);
+
 #endif

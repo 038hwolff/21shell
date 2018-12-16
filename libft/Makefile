@@ -34,7 +34,7 @@ MEM_FILES_N		=	ft_bzero.c ft_memalloc.c ft_memccpy.c ft_memchr.c \
 MISC_FILES_N	=	ft_indexof.c ft_linear_interpolate.c
 OUTPUT_FILES_N	=	ft_putchar.c ft_putchar_fd.c ft_putendl.c ft_putendl_fd.c \
 					ft_putnbr.c ft_putnbr_base.c ft_putnbr_fd.c ft_putnbrtab.c \
-					ft_putstr.c ft_putstr_fd.c ft_putstrtab.c	
+					ft_putstr.c ft_putstr_fd.c ft_putstrtab.c
 PRINTF_FILES_N	=	ft_printf.c ft_dprintf.c ft_asprintf.c \
 					ft_vprintf.c ft_vdprintf.c ft_vasprintf.c
 PF_CONV_FILES_N	=	char.c color.c date.c integer.c \
@@ -51,9 +51,11 @@ STR_FILES_N		=	ft_hasnodupl.c ft_strcat.c ft_strchr.c ft_wrdcnt.c \
 					ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strrchr.c \
 					ft_strrev.c ft_strsplit.c ft_strstr.c ft_strsub.c \
 					ft_strtolower.c ft_strtoupper.c ft_strtrim.c \
-					ft_printabilize.c ft_split_chars.c stringbuffer/stringbuffer.c
+					ft_printabilize.c ft_split_chars.c stringbuffer/stringbuffer.c \
+					ft_3strjoinfree.c ft_strlastchr.c ft_strrmvchr.c
 TAB_FILES_N		=	ft_strtabdup.c ft_strtablen.c ft_strtabncpy.c \
-					ft_strtabnew.c ft_strtabrealloc.c ft_tabdel.c
+					ft_strtabnew.c ft_strtabrealloc.c ft_tabdel.c \
+					ft_strtab_add.c ft_strtab_new.c
 
 # Sources paths
 FILES_C			=	$(addprefix boolean/, $(BOOL_FILES_N)) \

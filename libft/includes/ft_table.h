@@ -22,4 +22,11 @@ char	**ft_strtabnew(size_t size);
 char	**ft_strtabrealloc(char ***tab, size_t size);
 void	ft_tabdel(void ***ap);
 
+/*
+**	Custom add
+*/
+
+int		ft_strtab_add(char ***tab, char *n);
+char	**ft_strtab_new(int len);
+
 #endif
