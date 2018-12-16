@@ -53,7 +53,7 @@ int			ex_exec_core(char **env, char **table, char **paths)
 		i++;
 	}
 	cmd_not_found(*table);
-	return (0);
+	return (1);
 }
 
 int			exec_noast(char **env, char **table)
@@ -61,24 +61,28 @@ int			exec_noast(char **env, char **table)
 	int		status;
 	char	**paths;
 	int		childpid;
+	int		ret;
 
 	if (!(paths = get_path(env, table)))
 	{
 		ft_putendl("Error: Path is empty");
-		return (0);
+		return (1);
 	}
+	ret = 0;
 	childpid = fork();
 	if (childpid == 0)
-		ex_exec_core(env, table, paths);
+		ret = ex_exec_core(env, table, paths);
 	else
 		signal(SIGINT, SIG_IGN);
 	wait(&status);
 	if (WIFSIGNALED(status))
+	{
 		ft_putchar('\n');
-		// signal(SIGINT, handle_signal);
-
-	childpid = 0;
-	return (1);
+		return (WIFEXITED(status));
+	}
+	// signal(SIGINT, handle_signal);
+	//childpid = 0;
+	return (WIFEXITED(status) ? WEXITSTATUS(status) : -1);
 }
 
 int				ex_exec(char **env, char **arg)

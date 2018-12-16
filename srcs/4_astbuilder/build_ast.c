@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 16:02:24 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/14 11:08:12 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/16 20:06:52 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ static void
 		(*ast)->left_arg = (*chosen);
 		(*ast)->token = (*chosen)->next;
 		*chosen = (*chosen)->next; 
+
 		if (*chosen && (*chosen)->next
-			&& (*chosen)->next->type == WORD)
+			&& ((*chosen)->next->type == IO_NUMBER
+			|| (*chosen)->next->type == WORD))
 		{
 			(*ast)->right_arg = (*chosen)->next;
 			*chosen = (*chosen)->next;
@@ -73,6 +75,7 @@ static void
 {
 	t_token *chosen_prev;
 	t_token *chosen;
+	int		type;
 
 	chosen_prev = NULL;
 	if (!token)
@@ -82,7 +85,13 @@ static void
 		chosen_prev->next = NULL;
 	else
 		token = NULL;
+	type = chosen->type;
 	fill_node(ast, &chosen);
+	if (is_redir_op(type))
+	{
+		chosen_prev->next = chosen->next;
+		chosen->next = NULL;
+	}
 	if (token)
 		add_node(&(*ast)->left, token);
 	if (chosen->next)

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 15:08:32 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/16 13:59:42 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/16 19:50:54 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		exec_back_redirect(t_data *data, t_ast *ast)
 	{
 		stdin = dup(0);
 		dup2(ret, 0);
+		ret = 0;
 		if (ast->right)
 			ret = exec_cmd_line(data, ast->right);
 		if (ast->left)
@@ -58,12 +59,14 @@ int		exec_redirect(t_data *data, t_ast *ast, int rafter)
 	if (rafter == GREAT)
 		ret = open(ast->right_arg->val, O_CREAT | O_WRONLY, 0644);
 	else if (rafter == DOUBLEGREAT)
-		ret = open(ast->right_arg->val, O_CREAT | O_WRONLY | O_APPEND);
+		ret = open(ast->right_arg->val, O_CREAT | O_WRONLY | O_APPEND, 0644);
+	ft_printf("gneee");
 	if (ret >= 0)
 	{
 		fd = (ast->left_arg ? ft_atoi(ast->left_arg->val) : 1);
 		stdin = dup(fd);
 		dup2(ret, fd);
+		ret = 0;
 		if (ast->right)
 			ret = exec_cmd_line(data, ast->right);
 		if (ast->left)
@@ -74,8 +77,7 @@ int		exec_redirect(t_data *data, t_ast *ast, int rafter)
 	}
 	else
 	{
-		// file permission ???
-		ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"error -- %s\n");
+		file_permission_exception(ast->right_arg ? ast->right_arg->val : "");
 		return (1);
 	}
 }

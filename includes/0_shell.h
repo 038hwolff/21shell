@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_shell.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 18:18:20 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/16 18:49:14 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ void				*try_m(void *ptr);
 void				term_exception(char *message);
 void				tent_exception(char *ent);
 int					syntax_exception(char *word);
+int					pipe_exception(void);
+int					fork_exception(void);
+int					file_permission_exception(char *file);
+int					fd_exception(char *fd);
 
 /*
 ** var.c
