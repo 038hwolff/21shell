@@ -114,7 +114,7 @@ typedef struct		s_data
 	struct termios	term_dft_config; 	// config par defaut du terminal
 
 	short			shell_exit;			// si a reçu un signal de sortie
-	int				errno;				// numero d'erreur retourné, notre propre errno 
+	int				errno;				// numero d'erreur retourné, notre propre errno
 
 	int				sigint;
 	int				eof;
@@ -124,5 +124,32 @@ typedef struct		s_data
 
 	int				exe_return;
 }					t_data;
+
+/*
+**	Structure utile uniquement dans l'objet d'expansion
+**		=> Contient l'ensemble des regles d'expansion
+**		=> Un lien vers votre env
+*/
+typedef struct		s_varsexp	t_varsexp;
+
+/*
+**	Definition du type representant une regles d'expansion pour les variables
+*/
+typedef struct		s_varsexp_rules
+{
+	char			*op;
+	char			*(*set)(t_varsexp *exp, char *key, char *val, char *word);
+	char			*(*null)(t_varsexp *exp, char *key, char *val, char *word);
+	char			*(*unset)(t_varsexp *exp, char *key, char *val, char *word);
+}					t_varsexp_rules;
+
+struct				s_varsexp
+{
+	t_data			*data;
+	char			*str;
+	char			*res;
+	t_varsexp_rules	*rule;
+	char			format;
+};
 
 #endif

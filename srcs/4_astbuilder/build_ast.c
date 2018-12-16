@@ -53,7 +53,7 @@ static void
 	{
 		(*ast)->left_arg = (*chosen);
 		(*ast)->token = (*chosen)->next;
-		*chosen = (*chosen)->next; 
+		*chosen = (*chosen)->next;
 		if (*chosen && (*chosen)->next
 			&& (*chosen)->next->type == WORD)
 		{
@@ -69,11 +69,12 @@ static void
 }
 
 static void
-	add_node(t_ast **ast, t_token *token)
+	add_node(t_data *data, t_ast **ast, t_token *token)
 {
 	t_token *chosen_prev;
 	t_token *chosen;
 
+	expansion(data, token);
 	chosen_prev = NULL;
 	if (!token)
 		return ;
@@ -84,12 +85,12 @@ static void
 		token = NULL;
 	fill_node(ast, &chosen);
 	if (token)
-		add_node(&(*ast)->left, token);
+		add_node(data, &(*ast)->left, token);
 	if (chosen->next)
-		add_node(&(*ast)->right, chosen->next);
+		add_node(data, &(*ast)->right, chosen->next);
 }
 
 void	build_ast(t_data *data)
 {
-	add_node(&data->ast, data->token);
+	add_node(data, &data->ast, data->token);
 }
