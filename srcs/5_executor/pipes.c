@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 15:07:57 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 23:36:00 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/16 13:55:02 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ static int		exec_one_pipe(t_data *data, int fildes[2], t_ast *ast, int pid)
 	if (pid == 0)
 	{
 		dup2(fildes[0], 0);
-		close(fildes[1]);
+		close(fildes[0]);
 		ret = exec_cmd_line(data, ast->right);
 		exit(EXIT_SUCCESS);
 	}
 	else
 	{
 		dup2(fildes[1], 1);
-		close(fildes[0]);
+		close(fildes[1]);
 		ret = exec_cmd_line(data, ast->left);
 		wait(NULL);
 	}

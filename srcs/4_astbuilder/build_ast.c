@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_ast.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 16:02:24 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/14 11:08:12 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/16 14:03:15 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void
 	{
 		(*ast)->left_arg = (*chosen);
 		(*ast)->token = (*chosen)->next;
-		*chosen = (*chosen)->next; 
+		*chosen = (*chosen)->next;
 		if (*chosen && (*chosen)->next
 			&& (*chosen)->next->type == WORD)
 		{

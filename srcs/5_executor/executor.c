@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 15:27:38 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 22:40:01 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/16 15:55:33 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		cmd_not_found(char *cmd)
 {
-	ft_printf("%s , 21sh: command not found");
+	ft_printf("21sh: command not found: ", cmd);
 	ft_printf("%s\n", cmd);
 	exit_program("");
 }

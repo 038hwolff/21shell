@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:23:22 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 23:13:21 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/16 16:01:33 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int					b_env(char **env, char **arg);
 ** builtins_exit.c
 */
 
-void				b_exit();
+void				b_exit(void);
 
 /*
 ** builtins_setenv.c
