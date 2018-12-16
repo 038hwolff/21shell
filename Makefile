@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/12/15 17:33:40 by hben-yah         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME			=	21sh
 
 COMP			=	clang
@@ -31,7 +19,11 @@ ASTBUILDER_N	=	build_ast.c print_ast.c
 EXECUTOR_N		=	executor.c arithmetics.c expansions_dollar.c \
 					expansions_main.c expansions_tilde.c fd_agregator.c \
 					pipes.c redirections.c exec_cmd_line.c semicolon.c \
-					local_variable.c operator.c
+					local_variable.c operator.c tools.c
+BUILTINS_N		=	builtins_cd.c builtins_echo.c builtins_env.c \
+					builtins_exit.c builtins_main.c \
+					builtins_setenv.c builtins_tools.c \
+					builtins_unsetenv.c
 
 # Sources paths
 FILES_C			=	$(addprefix 0_shell/, $(SHELL_N)) \

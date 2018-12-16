@@ -1,10 +1,21 @@
+TODO DIMANCHE
+- Pb pipes cat
+- Fd agregator
+- quotes dquotes
+- expansions $ et ~
+
+TODO BONUS DIMANCHE
+- arithmetiques?
+- historique avec ctrl R?
+- table de hachage binaires
+
 BONUS 21SH
-- Recherche dans l'historique avec CTRL R
 - Heredoc
 - operateurs logiques
-- arithmetique simple (pas de gestion des parentheses)
+- arithmetique?
 - Gestion des backquotes
 - Variables locales
+- Table de hachage?
 - \
 
 

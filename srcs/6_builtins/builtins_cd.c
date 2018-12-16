@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:29:51 by hwolff            #+#    #+#             */
-/*   Updated: 2018/10/30 17:34:16 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 23:13:50 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,96 +19,97 @@ void			cd_free(char **tmp, t_data *ndata)
 	free_tab(&tmp);
 }
 
-static int		setenv_cd(t_data *ndata, char *env1, char *env2)
+static int		setenv_cd(char **arg, char *env1, char *env2)
 {
 	if (env1)
 	{
 		chdir(env1);
-		if (!(ndata->args[1] = ft_strjoin("PWD=", env1)))
+		if (!(arg[1] = ft_strjoin("PWD=", env1)))
 			return (0);
 	}
 	if (env2)
 	{
-		if (!(ndata->args[2] = ft_strjoin("OLDPWD=", env2)))
+		if (!(arg[2] = ft_strjoin("OLDPWD=", env2)))
 			return (0);
 	}
 	return (1);
 }
 
-static int		change_dir(char *path, t_data *ndata, t_cdenv *cdenv)
+static int		change_dir(char *path, char **arg, char **cdenv)
 {
 	char	*buff;
 
 	if (access(path, F_OK) != 0)
-	{
-		ft_putstr("cd: no such file or directory: ");
-		ft_putendl(path);
-	}
+		ft_printf("cd: no such file or directory: %s\n", path);
 	else if (access(path, X_OK) != 0)
-	{
-		ft_putstr("cd: permission denied: ");
-		ft_putendl(path);
-	}
+		ft_printf("cd: permission denied: %s\n", path);
 	else
 	{
-		if (!(buff = ft_strnew(1024)))
-			return (0);
+		try_m(buff = ft_strnew(1024));
 		chdir(path);
 		getcwd(buff, 1024);
-		ndata->args[1] = ft_strjoin("PWD=", buff);
-		ndata->args[2] = ft_strjoin("OLDPWD=", cdenv->pwd);
+		arg[1] = ft_strjoin("PWD=", buff);
+		arg[2] = ft_strjoin("OLDPWD=", cdenv[2]);
 		free(buff);
-		if (!ndata->args[1] || !ndata->args[2])
+		if (!arg[1] || !arg[2])
 			return (0);
 	}
 	return (1);
 }
 
-static int		init_cdenv(t_cdenv *cdenv, t_data *data)
+static int		init_cdenv(char **cdenv, char **env)
 {
 	int		i;
 
 	i = 0;
-	cdenv->home = NULL;
-	cdenv->old = NULL;
-	cdenv->pwd = NULL;
-	while (data->env[i])
+	cdenv[0] = NULL;
+	cdenv[1] = NULL;
+	cdenv[2] = NULL;
+	while (env[i])
 	{
-		if (ft_strncmp(data->env[i], "HOME=", 5) == 0)
-			cdenv->home = data->env[i] + 5;
-		else if (ft_strncmp(data->env[i], "OLDPWD=", 7) == 0)
-			cdenv->old = data->env[i] + 7;
-		else if (ft_strncmp(data->env[i], "PWD=", 4) == 0)
-			cdenv->pwd = data->env[i] + 4;
+		if (ft_strncmp(env[i], "HOME=", 5) == 0)
+			cdenv[0] = env[i] + 5;
+		else if (ft_strncmp(env[i], "OLDPWD=", 7) == 0)
+			cdenv[1] = env[i] + 7;
+		else if (ft_strncmp(env[i], "PWD=", 4) == 0)
+			cdenv[2] = env[i] + 4;
 		i++;
 	}
 	return (1);
 }
 
-int				b_cd(t_data *data)
+static void		free_cd_tabs(char **tmp, char **nenv, char **narg)
 {
-	t_data	ndata;
-	t_cdenv	cdenv;
-	char	**tmp;
+	free_tab(&tmp);
+	free_tab(&nenv);
+	free_tab(&narg);
+}
 
-	if (!data->env[0])
+int				b_cd(t_data *data, char **env, char **arg)
+{
+	char 		**nenv;
+	char		**narg;
+	char		*cdenv[3];
+	char		**tmp;
+
+	if (!*env)
 		return (0);
-	if (!(ndata.env = ft_tabdup(data->env, 0)))
+	if (!(nenv = ft_strtabdup(env)))
 		return (0);
-	if (!(ndata.args = ft_tabdup(NULL, 3)))
+	if (!(narg = (char **)ft_memalloc(sizeof(char *) * 4)))
 		return (0);
-	init_cdenv(&cdenv, data);
-	if (!data->args[1])
-		setenv_cd(&ndata, cdenv.home, cdenv.pwd);
-	else if ((ft_strcmp(data->args[1], "-") == 0) && !data->args[2])
-		setenv_cd(&ndata, cdenv.old, cdenv.pwd);
+	init_cdenv(&cdenv[0], env);
+	if (!arg[1])
+		setenv_cd(narg, cdenv[0], cdenv[2]);
+	else if (ft_strequ(arg[1], "-") && !arg[2])
+		setenv_cd(narg, cdenv[1], cdenv[2]);
 	else
-		change_dir(data->args[1], &ndata, &cdenv);
-	trial((int)(ndata.args[0] = ft_strdup("setenv")));
-	b_setenv(&ndata);
+		change_dir(arg[1], narg, &cdenv[0]);
+	try_m((narg[0] = ft_strdup("setenv")));
+	b_setenv(&nenv, narg);
 	tmp = data->env;
-	if (!(data->env = ft_tabdup(ndata.env, 0)))
+	if (!(data->env = ft_strtabdup(nenv)))
 		return (0);
-	cd_free(tmp, &ndata);
+	free_cd_tabs(tmp, nenv, narg);
 	return (1);
 }

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fd_agregator.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/14 17:26:12 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 17:31:09 by hben-yah         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "shell.h"
 
 /*
@@ -46,6 +34,7 @@ int				main_agregator(t_data *data, t_ast *ast)
 {
 	char *operator;
 
+	operator = NULL;
 	(void)data;
 	(void)ast;
 	operator = NULL;

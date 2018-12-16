@@ -6,27 +6,28 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 13:36:13 by hwolff            #+#    #+#             */
-/*   Updated: 2018/10/30 16:30:27 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 23:12:32 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	add_to_env(t_data *ndata, t_data *data, int i)
+void	add_to_env(char **nenv, char **arg, int i)
 {
 	char *key;
 	char *value;
+	char *pequal;
 
-	key = ft_strsub(data->args[i], 0,
-			ft_strchr(data->args[i], '=') - data->args[i] + 1);
-	value = ft_strdup(ft_strchr(data->args[i], '=') + 1);
-	trial(key && value);
-	trial((int)(ft_setline(key, value, ndata)));
+	pequal = ft_strchr(arg[i], '=');
+	try_m((key = ft_strsub(arg[i], 0,
+			pequal - arg[i] + 1)));
+	try_m((value = ft_strdup(pequal + 1)));
+	ft_setline(key, value, &nenv);
 	ft_strdel(&key);
 	ft_strdel(&value);
 }
 
-int		ft_setline(char *key, char *value, t_data *data)
+int		ft_setline(char *key, char *value, char ***env)
 {
 	char	**ret;
 	int		i;
@@ -34,23 +35,22 @@ int		ft_setline(char *key, char *value, t_data *data)
 
 	i = 0;
 	end = NULL;
-	trial((int)(ret = ft_tabdup(data->env, 1)));
+	try_m((ret = ft_strtabdup(*env)));
 	while (ret[i])
 	{
 		if (ft_strncmp(key, ret[i], ft_strlen(key)) == 0)
 		{
 			check_key(ret, i, key, value);
-			free_tab(&data->env);
-			data->env = ret;
+			free_tab(env);
+			*env = ret;
 			return (1);
 		}
 		i++;
 	}
-	if (!(ret[i++] = ft_strjoin(key, value)))
-		return (0);
+	try_m((ret[i++] = ft_strjoin(key, value)));
 	ret[i] = NULL;
-	free_tab(&data->env);
-	data->env = ret;
+	free_tab(env);
+	*env = ret;
 	return (1);
 }
 
@@ -83,27 +83,26 @@ char	**check_key(char **ret, int i, char *key, char *value)
 {
 	char	*tmp;
 
-	if (!(tmp = ft_strjoin(key, value)))
-		exit(EXIT_FAILURE);
+	try_m((tmp = ft_strjoin(key, value)));
 	free(ret[i]);
 	ret[i] = tmp;
 	return (ret);
 }
 
-int		b_setenv(t_data *data)
+int		b_setenv(char ***env, char **arg)
 {
 	char	*key;
 	char	*value;
 	int		i;
 
 	i = 1;
-	while (data->args[i])
+	while (arg[i])
 	{
-		value = ft_strchr(data->args[i], '=') + 1;
+		value = ft_strchr(arg[i], '=') + 1;
 		if ((long)value > 1)
 		{
-			if (!(key = ft_strsub(data->args[i], 0, value - data->args[i]))
-				|| !(ft_setline(key, value, data)))
+			if (!(key = ft_strsub(arg[i], 0, value - arg[i]))
+				|| !(ft_setline(key, value, env)))
 				return (0);
 			ft_strdel(&key);
 		}

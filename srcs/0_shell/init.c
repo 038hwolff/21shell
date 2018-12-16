@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:28:15 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 17:04:24 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/15 18:07:33 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	init_shell(char **env)
 	check_term(data);
 	init_term(data);
 	init_sig();
-	try_m((data->env = newvartab(env)));
+	// try_m((data->env = newvartab(env)));
+	try_m((data->env = ft_strtabdup(env)));
 	try_m((data->loc = newvartab(NULL)));
 }

@@ -3,13 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 18:31:01 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/18 18:32:50 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/08/25 12:17:27 by hwolff            #+#    #+#             */
+/*   Updated: 2018/12/15 18:18:36 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-//free ou pas
+void		free_tab(char ***table)
+{
+	int	f;
+
+	if (table && *table)
+	{
+		f = 0;
+		while ((*table)[f])
+		{
+			ft_strdel(&((*table)[f]));
+			f++;
+		}
+		free(*table);
+		*table = NULL;
+	}
+}
+
+void		free_tab_content(char ***table)
+{
+	int	f;
+
+	if (table && *table)
+	{
+		f = 0;
+		while ((*table)[f])
+		{
+			ft_strdel(&((*table)[f]));
+			f++;
+		}
+	}
+}
