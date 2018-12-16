@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 13:29:09 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/16 15:33:23 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/16 17:09:58 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,3 @@ int			check_if_arithmetics(char *data)
 		ft_putendl("Parse error");
 	return (0);
 }
-
-// int			arithmetics(char **arg)
-// {
-
-// }
