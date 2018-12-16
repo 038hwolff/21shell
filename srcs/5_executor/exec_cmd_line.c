@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 15:27:18 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 14:37:20 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 17:34:04 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		exec_cmd_line(t_data *data, t_ast *ast)
 	if (!ast)
 		return (0);
 	ret = 0;
-	if (ast->token->type == WORD && !is_builtins(data, ast))
+	if (ast->token->type == WORD)
 		ret = ex_exec(data, ast);
 	if (ast->token->type == ASSIGNEMENT_WORD)
 		ret = set_local_var(data, ast);

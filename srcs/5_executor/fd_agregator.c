@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_agregator.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 17:26:12 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 10:01:01 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/15 17:31:09 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int				main_agregator(t_data *data, t_ast *ast)
 
 	(void)data;
 	(void)ast;
+	operator = NULL;
 	if (ft_strequ(operator, "2>&1") == 1 || ft_strequ(operator, "2>&-") == 1
 		|| ft_strequ(operator, ">&") == 1)
 		exec_rederr_std(data, operator);
