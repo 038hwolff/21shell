@@ -42,7 +42,6 @@ FILES_H			=	shell.h
 
 # Directories
 SRCS_SD			= 	0_shell 1_lineeditor 2_lexer 3_parser 4_astbuilder 5_executor 6_builtins
-					# builtins expansions inhibitors core editline shell file_desc signal
 SRCS_D			=	./srcs/
 OBJS_D			=   ./objs/
 INCL_D 			=	./includes/

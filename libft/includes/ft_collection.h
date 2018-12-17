@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_collection.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 17:57:15 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/05 17:14:36 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 11:14:07 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 typedef struct	s_arlist
 {
-	size_t 		length;
-	t_list 		*list;
+	size_t		length;
+	t_list		*list;
 }				t_arlist;
 
 int				al_index_of(t_arlist *al, void *content, size_t content_size);

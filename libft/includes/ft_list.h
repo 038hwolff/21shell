@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 17:58:50 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/11/05 17:15:55 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 11:14:34 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct	s_list
 
 typedef struct	s_alist
 {
-	char 			*key;
+	char			*key;
 	void			*content;
 	size_t			content_size;
 	struct s_alist	*next;
