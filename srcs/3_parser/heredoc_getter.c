@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/12 17:00:56 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 17:28:58 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ static int
 			return (1);
 	data->incomp_type = COMPLETE;
 	set_special_prompt(data);
-	line[len - 1] = 0;
-	if (ft_strequ(line, token->next->val))
+	if (ft_strnequ(line, token->next->val, len - 1))
 		return (2);
 	tmp = token->heredoc;
 	if (tmp)

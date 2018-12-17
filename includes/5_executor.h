@@ -79,4 +79,6 @@ char				*env_get(char **arr, char *key);
 int					env_set(char ***arr, char *key, char *value, char flag);
 char				**sh_env_get_ref(char **arr, char *key);
 
+int					exp_quotes(char **str);
+
 #endif

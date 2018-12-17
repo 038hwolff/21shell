@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/15 15:09:48 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 15:23:47 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 17:41:38 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	reset_shell(t_data *data)
 	reset_command(data);
 	free_tab(&data->env);
 	free_tab(&data->loc);
+
+	// ne pas free data->temr_name (non malloc)
+
 }
 
 void	reset_command(t_data *data)

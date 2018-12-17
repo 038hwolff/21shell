@@ -1,12 +1,7 @@
 
 #include "shell.h"
 
-static void		cmd_not_found(char *cmd)
-{
-	ft_printf("21sh: command not found: ", cmd);
-	ft_printf("%s\n", cmd);
-	exit_program("");
-}
+
 
 char			**get_path(char **env, char **arg)
 {
@@ -52,7 +47,7 @@ int			ex_exec_core(char **env, char **table, char **paths)
 		}
 		i++;
 	}
-	cmd_not_found(*table);
+	cmd_not_found_exception(*table);
 	return (1);
 }
 
@@ -65,7 +60,7 @@ int			exec_noast(char **env, char **table)
 
 	if (!(paths = get_path(env, table)))
 	{
-		ft_putendl("Error: Path is empty");
+		cmd_not_found_exception(*table);
 		return (1);
 	}
 	ret = 0;

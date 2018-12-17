@@ -22,7 +22,7 @@ EXECUTOR_N		=	executor.c arithmetics.c expansions_dollar.c \
 					local_variable.c operator.c tools.c env_get.c \
 					exp_goto_next_quote.c exp_tilde.c exp_vars_assign.c \
 					exp_vars_get.c exp_vars_substitute.c exp_vars.c \
-					expansion.c env_set.c heredoc.c
+					expansion.c env_set.c heredoc.c exp_quotes.c
 BUILTINS_N		=	builtins_cd.c builtins_echo.c builtins_env.c \
 					builtins_exit.c builtins_main.c \
 					builtins_setenv.c builtins_tools.c \

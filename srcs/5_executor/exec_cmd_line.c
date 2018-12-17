@@ -22,8 +22,8 @@ int		exec_cmd_line(t_data *data, t_ast *ast)
 	if (ast->token->type == WORD && (table = token_to_tab(ast))
 		&& !is_builtins(data, table))
 		ret = ex_exec(data->env, table);
-	if (ast->token->type == ASSIGNEMENT_WORD)
-		ret = set_local_var(data, ast);
+	//if (ast->token->type == ASSIGNEMENT_WORD)
+	//	ret = set_local_var(data, ast);
 	else if (ast->token->type == GREAT || ast->token->type == DOUBLEGREAT)
 		ret = exec_redirect(data, ast, ast->token->type);
 	else if (ast->token->type == LESS)
@@ -39,7 +39,9 @@ int		exec_cmd_line(t_data *data, t_ast *ast)
 	else if (ast->token->type == SEMICOLON)
 		ret = execute_semicolon(data, ast);
 	if (ast->token->type == WORD)
+	{
 		data->exe_return = ret;
-	free_tab(&table);
+		free_tab(&table);
+	}
 	return (ret);
 }

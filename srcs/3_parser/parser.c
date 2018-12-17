@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 15:26:40 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 17:24:31 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int		check_heredocs(t_data *data)
 				return (0);
 			if (!car)
 			{
-				// gerer les parametres genre $TRUC
-				pop_backslash_in_heredoc(&token->heredoc);
+				exp_vars(&token->heredoc, data);
+				//pop_backslash_in_heredoc(&token->heredoc);
 			}
 		}
 		token = token->next;

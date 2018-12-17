@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:27:23 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 17:03:25 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 17:38:57 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,15 @@ void	check_term(t_data *data)
 {
 	char	buff[1024];
 	int		ret;
+	char 	*dflt;
+
 
 	if (!(data->term_name = getenv("TERM")))
-		term_exception(""ERR_PREFIX"could not get the terminal name\n");
+	{
+		dflt = "TERM=xterm-256color";
+		data->term_name = "xterm-256color";
+		b_setenv(&data->env, &dflt);
+	}	//term_exception(""ERR_PREFIX"could not get the terminal name\n");
 	if (!isatty(STDIN_FILENO)
 		|| !isatty(STDOUT_FILENO)
 		|| !isatty(STDERR_FILENO))

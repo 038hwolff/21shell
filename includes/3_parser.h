@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   3_parser.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:20:16 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 13:55:15 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/17 17:10:44 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ void	remove_quotes_and_backslash(char **line);
 
 void	merge_tokens(t_token *t1, t_token *t2);
 void	append_token_value(t_token *token, int i, char **line);
+
+int		expand_dquote(char **line, int cur);
+int		expand_quote(char **line, int cur);
 
 #endif

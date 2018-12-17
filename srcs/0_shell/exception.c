@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 14:27:05 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/16 18:49:04 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 17:50:11 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,11 @@ int		file_permission_exception(char *file)
 int		fd_exception(char *fd)
 {
 	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"%s : bad file descriptor\n", fd);
+	return (0);
+}
+
+int		cmd_not_found_exception(char *cmd)
+{
+	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"command not found: %s\n", cmd);
 	return (0);
 }
