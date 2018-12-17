@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipes.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/17 18:57:00 by hwolff            #+#    #+#             */
+/*   Updated: 2018/12/17 18:57:54 by hwolff           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "shell.h"
 
-static void	exec_next_cmd(t_data *data, t_ast *ast, int fildes[2], int std)
+static void
+	exec_next_cmd(t_data *data, t_ast *ast, int fildes[2], int std)
 {
-	int ret;
+	int		ret;
 
 	dup2(fildes[0], 0);
 	close(fildes[1]);
@@ -15,9 +27,10 @@ static void	exec_next_cmd(t_data *data, t_ast *ast, int fildes[2], int std)
 	exit(ret);
 }
 
-static void	exec_cmd(t_data *data, t_ast *ast, int fildes[2], int std)
+static void
+	exec_cmd(t_data *data, t_ast *ast, int fildes[2], int std)
 {
-	int ret;
+	int		ret;
 
 	dup2(fildes[1], 1);
 	close(fildes[0]);
@@ -27,7 +40,8 @@ static void	exec_cmd(t_data *data, t_ast *ast, int fildes[2], int std)
 	exit(ret);
 }
 
-static int		exec_one_pipe(t_data *data, t_ast *ast, int fildes[2], int std[2])
+static int
+	exec_one_pipe(t_data *data, t_ast *ast, int fildes[2], int std[2])
 {
 	int		pid[2];
 	int		stat[2];
@@ -49,10 +63,12 @@ static int		exec_one_pipe(t_data *data, t_ast *ast, int fildes[2], int std[2])
 	return (WIFEXITED(stat[1]) ? WEXITSTATUS(stat[0]) : -1);
 }
 
-int				exec_pipes(t_data *data, t_ast *ast)
+int
+	exec_pipes(t_data *data, t_ast *ast)
 {
 	int		fildes[2];
 	int		std[2];
+
 	if (pipe(fildes) == -1)
 		return (!pipe_exception());
 	std[0] = dup(0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exception.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 14:27:05 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 17:50:11 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:45:41 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,35 +44,5 @@ int		syntax_exception(char *word)
 int		eof_exception(void)
 {
 	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"abrupt end of file\n");
-	return (0);
-}
-
-int		pipe_exception(void)
-{
-	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"pipe error\n");
-	return (0);
-}
-
-int		fork_exception(void)
-{
-	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"fork error\n");
-	return (0);
-}
-
-int		file_permission_exception(char *file)
-{
-	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"permission denied: %s\n", file);
-	return (0);
-}
-
-int		fd_exception(char *fd)
-{
-	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"%s : bad file descriptor\n", fd);
-	return (0);
-}
-
-int		cmd_not_found_exception(char *cmd)
-{
-	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"command not found: %s\n", cmd);
 	return (0);
 }

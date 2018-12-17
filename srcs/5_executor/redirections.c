@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 15:08:32 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/17 11:51:53 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:56:35 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int		exec_back_redirect(t_data *data, t_ast *ast)
 	}
 	else
 	{
-// file permission ???
 		ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"error -- %s\n");
 		return (1);
 	}

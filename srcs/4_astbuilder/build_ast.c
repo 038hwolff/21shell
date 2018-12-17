@@ -90,7 +90,8 @@ static void
 		add_node(data, &(*ast)->right, chosen->next);
 }
 
-void	build_ast(t_data *data)
+void
+	build_ast(t_data *data)
 {
 	if (data->token)
 		add_node(data, &data->ast, data->token);

@@ -1,8 +1,6 @@
 
 #include "shell.h"
 
-
-
 char			**get_path(char **env, char **arg)
 {
 	char	**path;

@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   f_executor.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/17 18:27:53 by hwolff            #+#    #+#             */
+/*   Updated: 2018/12/17 18:32:02 by hwolff           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#ifndef EXECUTOR_H
-# define EXECUTOR_H
+#ifndef F_EXECUTOR_H
+# define F_EXECUTOR_H
 
 /*
 ** expansions_main.c
@@ -44,10 +55,9 @@ char				**get_path(char **env, char **arg);
 int					exec_cmd_line(t_data *data, t_ast *ast);
 int					ex_exec(char **env, char **arg);
 int					ex_exec_core(char **env, char **table, char **paths);
-char    			**token_to_tab(t_ast *ast);
+char				**token_to_tab(t_ast *ast);
 
 int					exec_heredoc(t_data *data, t_ast *ast);
-
 
 /*
 **	Expansion

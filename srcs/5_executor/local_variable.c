@@ -3,18 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   local_variable.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 15:29:40 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/17 16:33:24 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:58:21 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-// int		set_local_var(t_data *data, t_ast *ast)
-// {
-// 	(void)data;
-// 	(void)ast;
-// 	return (0);
-// }

@@ -19,7 +19,6 @@ static void	exec_heredoc_reading(
 
 static void	exec_heredoc_writing(t_ast *ast, int fildes[2], int std)
 {
-	
 	dup2(fildes[1], 1);
 	close(fildes[0]);
 	ft_dprintf(1, ast->token->heredoc);
@@ -51,10 +50,11 @@ static char	exec_heredoc_redir(
 	return (WIFEXITED(stat[1]) ? WEXITSTATUS(stat[0]) : -1);
 }
 
-int		exec_heredoc(t_data *data, t_ast *ast)
+int			exec_heredoc(t_data *data, t_ast *ast)
 {
 	int		fildes[2];
 	int		std[2];
+
 	if (pipe(fildes) == -1)
 		return (!pipe_exception());
 	std[0] = dup(0);

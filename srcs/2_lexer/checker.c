@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:10:16 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 10:44:02 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:49:37 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static const char *g_delim[17] = {"<<-", "<<", ">>", "<>", "<&", ">&", ">|",
 	"&&", "||", ";;", "|", "&", ";", "<", ">", 0};
-
-
 
 static const int g_type[17] = {DOUBLELESSDASH, DOUBLELESS, DOUBLEGREAT,
 	LESSGREAT, LESSAND, GREATAND, GREATPIPE, DOUBLEAND, DOUBLEPIPE,
