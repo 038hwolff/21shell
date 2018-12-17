@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   5_executor.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:52 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 22:40:09 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/17 12:08:45 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int					set_local_var(t_data *data, t_ast *ast);
 int					main_agregator(t_data *data, t_ast *ast);
 int					exec_pipes(t_data *data, t_ast *ast);
 
-int					exec_heredoc(t_data *data);
-
 int					main_redirec(t_data *data, char *raft);
 
 int					execute_conditions(t_data *data, t_ast *ast);
@@ -58,6 +56,8 @@ int					exec_cmd_line(t_data *data, t_ast *ast);
 int					ex_exec(char **env, char **arg);
 int					ex_exec_core(char **env, char **table, char **paths);
 char    			**token_to_tab(t_ast *ast);
+
+int					exec_heredoc(t_data *data, t_ast *ast);
 
 
 /*

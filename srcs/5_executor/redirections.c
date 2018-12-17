@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 15:08:32 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/16 19:50:54 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 11:51:53 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int		exec_redirect(t_data *data, t_ast *ast, int rafter)
 		ret = open(ast->right_arg->val, O_CREAT | O_WRONLY, 0644);
 	else if (rafter == DOUBLEGREAT)
 		ret = open(ast->right_arg->val, O_CREAT | O_WRONLY | O_APPEND, 0644);
-	ft_printf("gneee");
 	if (ret >= 0)
 	{
 		fd = (ast->left_arg ? ft_atoi(ast->left_arg->val) : 1);

@@ -42,6 +42,7 @@ static void
 	{
 		(*ast)->left_arg = (*chosen);
 		(*ast)->token = (*chosen)->next;
+		*chosen = (*chosen)->next;
 		if (*chosen && (*chosen)->next
 			&& ((*chosen)->next->type == IO_NUMBER
 			|| (*chosen)->next->type == WORD))

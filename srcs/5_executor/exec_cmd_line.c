@@ -28,6 +28,8 @@ int		exec_cmd_line(t_data *data, t_ast *ast)
 		ret = exec_redirect(data, ast, ast->token->type);
 	else if (ast->token->type == LESS)
 		ret = exec_back_redirect(data, ast);
+	else if (ast->token->type == DOUBLELESS)
+		ret = exec_heredoc(data, ast);
 	else if (ast->token->type == GREATAND)
 		ret = main_agregator(data, ast);
 	else if (ast->token->type == PIPE)

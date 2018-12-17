@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 11:54:11 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/16 17:02:58 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 09:40:41 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	command_line_loop(void)
 				SHPRINT && print_ast(data->ast);
 				SHPRINT && ft_printf("\n--- EXECUTION ---\n");
 				exec_cmd_line(data, data->ast);
-				SHPRINT && ft_printf("\n----------------\n");
+				SHPRINT && ft_printf("-----------------\n");
 			}
 		}
 		data->token = NULL;  // FAUT FREE EN FAIT, A FAIRE PLUS TARD

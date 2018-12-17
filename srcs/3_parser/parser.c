@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/12 17:01:31 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 10:31:10 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int		check_heredocs(t_data *data)
 				remove_quotes_and_backslash(&token->next->val);
 				token->next->type = HDOCDELIM;
 			}
-			if (get_heredoc_lines(data, token, car))
+			if (!get_heredoc_lines(data, token, car))
 				return (0);
 			if (!car)
 			{

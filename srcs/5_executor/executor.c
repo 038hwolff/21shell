@@ -87,18 +87,18 @@ int			exec_noast(char **env, char **table)
 
 int				ex_exec(char **env, char **arg)
 {
-	int		i;
+	//int		i;
 
-	if(SHPRINT)
-	{
-		i = 0;
-		ft_printf("exec :");
-		while (arg[i])
-		{
-			ft_printf(" %s", arg[i]);
-			++i;
-		}
-		ft_printf("\n");
-	}
+	// if(SHPRINT)
+	// {
+	// 	i = 0;
+	// 	ft_printf("exec :");
+	// 	while (arg[i])
+	// 	{
+	// 		ft_printf(" %s", arg[i]);
+	// 		++i;
+	// 	}
+	// 	ft_printf("\n");
+	// }
 	return (exec_noast(env, arg));
 }
