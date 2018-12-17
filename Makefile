@@ -6,8 +6,7 @@ FLAGDEGUG		=	$(FLAG) -fsanitize=address
 
 # Files names
 SHELL_N			=	shell.c free.c data.c init.c putchar.c \
-					signals.c term.c var.c exception.c exit.c reset.c \
-					exception2.c
+					signals.c term.c var.c exception.c exit.c reset.c
 EDITLINE_N		=	read_line.c mouve.c term.c \
 					history.c setup.c ft_enter.c signal.c print_line.c \
 					prompt.c select_mode.c copy_paste.c cut_high.c \

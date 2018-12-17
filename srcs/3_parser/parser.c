@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 22:34:41 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 23:15:23 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int		check_heredocs(t_data *data)
 	{
 		if (token->type == DOUBLELESS && token->next)
 		{
+
 			if ((car = has_quotes_or_backslash(token->next->val)))
 			{
 				remove_quotes_and_backslash(&token->next->val);
