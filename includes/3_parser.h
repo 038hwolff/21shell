@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:20:16 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 17:10:44 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 20:35:40 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	pop_backslash_in_heredoc(char **s);
 
 int		check_cancel(t_data *data, char **line);
 
-void	complete_tokens(t_token *token, int incomp_type, char *line);
+void	complete_tokens(t_token *token, int incomp_type, char **line);
 
 int		has_quotes_or_backslash(char *s);
 void	remove_quotes_and_backslash(char **line);

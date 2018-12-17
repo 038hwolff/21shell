@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 18:15:49 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 22:34:41 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		check_command_completion(t_data *data)
 		read_line();
 		if (check_cancel(data, &data->edl.line))
 			return (0);
-		complete_tokens(data->token, data->incomp_type, data->edl.line);
+		complete_tokens(data->token, data->incomp_type, &data->edl.line);
 		del_tokens_if(&data->token, &token_is_empty);
 		if (data->token && syntax_exception(check_syntax_errors(data->token)))
 			return (0);

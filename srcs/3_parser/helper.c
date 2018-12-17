@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:36:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/12 16:58:15 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 20:38:50 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void		append_token_value(t_token *token, int i, char **line)
 	token->length += i;
 	ft_strdel(&head);
 	ft_strdel(&tail);
-	tail = *line;
-	try_m((*line = ft_strdup(*line + i)));
-	ft_strdel(&tail);
+	try_m((tail = ft_strdup(*line + i)));
+	ft_strdel(line);
+	*line = tail;
 }
 
 void		merge_tokens(t_token *t1, t_token *t2)

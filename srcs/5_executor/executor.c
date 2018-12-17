@@ -48,7 +48,7 @@ int			ex_exec_core(char **env, char **table, char **paths)
 		i++;
 	}
 	cmd_not_found_exception(*table);
-	return (1);
+	exit(1);
 }
 
 int			exec_noast(char **env, char **table)

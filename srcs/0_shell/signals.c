@@ -23,7 +23,7 @@ int		check_if_sigint(t_data *data, char **line)
 	{
 		ft_strdel(&data->edl.line);
 		try_m(data->edl.line = ft_strdup(*line));
-		free(*line);
+		ft_strdel(line);
 		return (1);
 	}
 	return (0);

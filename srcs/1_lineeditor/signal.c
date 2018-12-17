@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 18:18:09 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/14 18:22:31 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:54:13 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	signal_handler(int signall)
 	{
 		ft_putchar_fd('\n', 1);
 		display_prompt(data->prompt);
-		free(data->edl.line);
+		ft_strdel(&data->edl.line);
 		try_m(data->edl.line = ft_strnew(0));
 		data->edl.index = 0;
 		signal(SIGINT, signal_handler);

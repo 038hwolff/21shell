@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/11 16:26:45 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 22:32:03 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		check_cancel(t_data *data, char **line)
 	if (check_eof(data))
 	{
 		eof_exception();
-		free(*line);
+		ft_strdel(line);
 		return (1);
 	}
 	return (0);
@@ -27,21 +27,38 @@ int		check_cancel(t_data *data, char **line)
 
 void	complete_command_backslash(t_token *token, char **line)
 {
+	char		*dupline;
+	char		*dupline2;
+	t_token     *nexttok;
+
 	if (!token || !line || !*line)
 		return ;
 	token->length = pop_backslashed_nl(&token->val);
-	merge_tokens(token, get_next_token(line));
+	try_m((dupline = ft_strdup(*line)));
+	dupline2 = dupline;
+	nexttok = get_next_token(&dupline);
+	if (nexttok && nexttok->type == WORD)
+	{
+		merge_tokens(token, nexttok);
+		ft_strdel(line);
+		try_m(*line = ft_strdup(dupline));
+		ft_strdel(&dupline2);
+	}
 }
 
 void	complete_command_quote(t_token *token, char **line, char quotetype)
 {
 	int			len;
+	char		*dupline;
+	char		*dupline2;
+	t_token     *nexttok;
 
 	if (!token || !line || !*line)
 		return ;
 	len = 0;
 	while ((*line)[len])
 	{
+
 		if ((*line)[len] == '\\' && quotetype == '"')
 			++len && (*line)[len] && ++len;
 		else if ((*line)[len] == quotetype)
@@ -53,20 +70,31 @@ void	complete_command_quote(t_token *token, char **line, char quotetype)
 			++len;
 	}
 	append_token_value(token, len, line);
-	merge_tokens(token, get_next_token(line));
+	try_m((dupline = ft_strdup(*line)));
+	dupline2 = dupline;
+	nexttok = get_next_token(&dupline);
+	if (nexttok && nexttok->type == WORD)
+	{
+		merge_tokens(token, nexttok);
+		ft_strdel(line);
+		try_m(*line = ft_strdup(dupline));
+		ft_strdel(&dupline2);
+	}
 }
 
-void	complete_tokens(t_token *token, int incomp_type, char *line)
+void	complete_tokens(t_token *token, int incomp_type, char **line)
 {
+	
 	token = get_last_token(token);
 	if (incomp_type == INC_QUOTE)
-		complete_command_quote(token, &line, '\'');
+		complete_command_quote(token, line, '\'');
 	else if (incomp_type == INC_DQUOTE)
-		complete_command_quote(token, &line, '"');
+		complete_command_quote(token, line, '"');
 	else if (incomp_type == INC_BKSLASH)
-		complete_command_backslash(token, &line);
+		complete_command_backslash(token, line);
+	del_tokens_if(&token, &token_is_newline);
 	token = get_last_token(token);
-	lexical_analysis(&token, line);
+	lexical_analysis(&token, *line);
 }
 
 int		is_command_incomplete(t_token *token)
