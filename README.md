@@ -1,27 +1,24 @@
-TODO DIMANCHE
-- Fd agregator
-- Heredoc
+TODO 21SH MARDI
+- CTRL R (en cours Pauline)
+- quote/doublequote/echap ()
+- free (en cours Heidy)
+- arithmetique (en cours Helene)
+<!-- - Fd agregator
+- Heredoc -->
+<!-- - faire marcher setenv -->
+
+TODO 42 JANVIER
 - unset/export/var loc
-- free
-- faire marcher setenv
-
-- quote/doublequote/echap
-- arithmetique
-- builtins POSIX
 - backquotes
-+ history + ! + options
+<!-- - builtins POSIX -->
+<!-- + history + ! + options -->
 
 
-
-
-BONUS 21SH
+BONUS OK 21SH
 - Heredoc
-- operateurs logiques OK
-- arithmetique?
-- Gestion des backquotes
-- Variables locales
-- Table de hachage?
-- \
+- operateurs logiques
+- arithmetique
+- CTRL R
 
 
 

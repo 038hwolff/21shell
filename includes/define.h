@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 17:05:53 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 12:30:12 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 # define RIGHT 4414235
 # define HOME 4741915
 # define END 4610843
-# define SELECT 9082850
+# define SELECT 10127586
 # define COPY 43458
 # define PASTE 32975
 # define CUT 8554722

@@ -89,5 +89,6 @@ static void
 
 void	build_ast(t_data *data)
 {
-	add_node(data, &data->ast, data->token);
+	if (data->token)
+		add_node(data, &data->ast, data->token);
 }
