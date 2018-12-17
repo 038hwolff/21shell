@@ -6,12 +6,12 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 18:27:15 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/17 18:31:36 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef A_PROTO_SHELL_H
-# define A_PROTO_SHELL_H
+#ifndef A_SHELL_H
+# define A_SHELL_H
 
 /*
 ** shell.c
@@ -59,7 +59,7 @@ int					pipe_exception(void);
 int					fork_exception(void);
 int					file_permission_exception(char *file);
 int					fd_exception(char *fd);
-int		cmd_not_found_exception(char *cmd);
+int					cmd_not_found_exception(char *cmd);
 
 /*
 ** var.c
@@ -111,6 +111,5 @@ void				reset_command(t_data *data);
 
 void				free_ast(t_ast **ast);
 void				free_token(t_token **token);
-
 
 #endif

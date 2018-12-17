@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 15:22:20 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:32:21 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct		s_data
 **		=> Un lien vers votre env
 */
 
-typedef struct	s_varsexp	t_varsexp;
+typedef struct s_varsexp	t_varsexp;
 
 /*
 **	Definition du type representant une regles d'expansion pour les variables
