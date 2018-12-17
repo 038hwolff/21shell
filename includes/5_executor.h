@@ -55,7 +55,7 @@ int					exec_heredoc(t_data *data, t_ast *ast);
 
 void				expansion(t_data *data, t_token *token);
 int					exp_tilde(char **str, t_data *data);
-void				exp_vars(char **str, t_data *data);
+void				exp_vars(char **str, t_data *data, int heredoc);
 char				*exp_vars_get(char *str, t_data *data);
 char				*exp_sub_param(t_varsexp *exp, char *key,
 						char *val, char *word);

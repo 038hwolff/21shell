@@ -1,12 +1,12 @@
 #include "shell.h"
 
-static char		*exp_vars_pos(char *str)
+static char		*exp_vars_pos(char *str, int heredoc)
 {
 	while (*str)
 	{
 		if (*str == '\\')
 			str++;
-		else if (*str == '\'')
+		else if (*str == '\'' && !heredoc)
 			exp_goto_next_quote(&str);
 		else if (*str == '$' && (ft_isalpha(*(str + 1))
 			|| *(str + 1) == '?' || *(str + 1) == '{'))
@@ -75,7 +75,7 @@ int				exp_vars_exec(char *pos, int *i, char **str, t_data *data)
 	return (ret);
 }
 
-void			exp_vars(char **str, t_data *data)
+void			exp_vars(char **str, t_data *data, int heredoc)
 {
 	char	*start;
 	char	*pos;
@@ -83,7 +83,7 @@ void			exp_vars(char **str, t_data *data)
 
 	start = *str;
 	i = 0;
-	while ((pos = exp_vars_pos(&start[i])))
+	while ((pos = exp_vars_pos(&start[i], heredoc)))
 	{
 		i = pos - start + 1;
 		i += exp_vars_exec(pos, &i, &start, data);
