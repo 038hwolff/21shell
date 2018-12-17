@@ -6,14 +6,14 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 19:47:44 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 16:33:39 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 15:25:34 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 void	loop_enter(t_edl *edl, char **line, t_hist *hist)
-{
+{	
 	if (ft_strcmp(*line, "\0") != 0)
 	{
 		hist->list = add_history(*line, hist);
@@ -38,6 +38,7 @@ void	read_line()
 	t_data		*data;
 
 	data = get_data();
+
 	init_term(data);
 	setup_edl(&data->edl);
 	display_prompt(data->prompt);

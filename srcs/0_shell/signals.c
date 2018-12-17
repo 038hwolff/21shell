@@ -21,8 +21,8 @@ int		check_if_sigint(t_data *data, char **line)
 	if (line && *line
 		&& data->sigint == 1)
 	{
-		ft_strdel(&data->cmd_line);
-		try_m(data->cmd_line = ft_strdup(*line));
+		ft_strdel(&data->edl.line);
+		try_m(data->edl.line = ft_strdup(*line));
 		free(*line);
 		return (1);
 	}

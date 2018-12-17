@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 19:45:59 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 13:57:24 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 14:07:25 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ t_edl	*setup_edl(t_edl *edl)
 	struct winsize ws;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
+	if (edl->line)
+		ft_strdel(&edl->line);
 	try_m(edl->line = ft_strnew(0));
 	edl->index = 0;
 	edl->col = ws.ws_col;

@@ -78,7 +78,10 @@ static void
 	fill_node(ast, &chosen);
 	if (is_redir_op(type))
 	{
-		chosen_prev->next = chosen->next;
+		if (chosen_prev)
+			chosen_prev->next = chosen->next;
+		else
+			token = chosen->next;
 		chosen->next = NULL;
 	}
 	if (token)

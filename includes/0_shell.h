@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_shell.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 11:22:13 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/17 15:14:34 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,10 @@ int					print_lex(t_token *token, char *name);
 
 void				free_tab(char ***table);
 void				free_tab_content(char ***table);
+void				reset_command(t_data *data);
+
+void				free_ast(t_ast **ast);
+void				free_token(t_token **token);
+
 
 #endif

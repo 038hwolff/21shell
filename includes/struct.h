@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 11:25:17 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/17 15:22:20 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,16 +90,10 @@ typedef struct		s_data
 	int				incomp_type;
 
 	char			**env;
-	t_var			*loc;
-	char			**args;
-
-	char			*cmd_line;
-	char			*additional_line;
+	char			**loc;
 
 	t_token			*token;
 	t_ast			*ast;
-
-	int				childpid;
 
 	struct termios	term_dft_config;
 

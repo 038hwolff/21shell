@@ -40,5 +40,6 @@ int		exec_cmd_line(t_data *data, t_ast *ast)
 		ret = execute_semicolon(data, ast);
 	if (ast->token->type == WORD)
 		data->exe_return = ret;
+	free_tab(&table);
 	return (ret);
 }
