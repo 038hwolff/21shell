@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/11 00:17:57 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 11:40:28 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/17 18:50:26 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static int
 	crawl_word(char **line)
 {
 	char *begin;
-
 
 	begin = *line;
 	if (**line == '\\')
@@ -60,7 +59,6 @@ void
 {
 	t_token *new;
 	t_token *last;
-
 
 	if (!line)
 		return ;

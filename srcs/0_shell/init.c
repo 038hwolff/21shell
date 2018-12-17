@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:28:15 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 17:34:46 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:44:33 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
 
 void	init_term(t_data *data)
 {

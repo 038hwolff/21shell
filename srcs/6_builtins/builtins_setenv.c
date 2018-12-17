@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtins_setenv.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/17 18:53:49 by hwolff            #+#    #+#             */
+/*   Updated: 2018/12/17 18:53:50 by hwolff           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "shell.h"
 
@@ -18,13 +29,11 @@ void	add_to_env(char **nenv, char **arg, int i)
 
 int		ft_setline(char *key, char *value, char ***env)
 {
-	//char	**ret;
 	int		i;
 
 	i = 0;
 	while ((*env)[i])
 		++i;
-	//ret = *env;
 	try_m((ft_strtabrealloc(env, i + 1)));
 	i = 0;
 	while ((*env)[i])
@@ -32,16 +41,12 @@ int		ft_setline(char *key, char *value, char ***env)
 		if (ft_strncmp(key, (*env)[i], ft_strlen(key)) == 0)
 		{
 			check_key(*env, i, key, value);
-			//free_tab(env);
-			//*env = ret;
 			return (1);
 		}
 		i++;
 	}
 	try_m(((*env)[i++] = ft_strjoin(key, value)));
 	(*env)[i] = NULL;
-	//free_tab(env);
-	//*env = ret;
 	return (1);
 }
 

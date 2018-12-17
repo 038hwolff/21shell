@@ -13,7 +13,7 @@
 
 int		exec_cmd_line(t_data *data, t_ast *ast)
 {
-	int 	ret;
+	int		ret;
 	char	**table;
 
 	if (!ast)

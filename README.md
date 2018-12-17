@@ -1,11 +1,8 @@
-TODO 21SH MARDI
-- CTRL R (en cours Pauline)
-- quote/doublequote/echap ()
-- free (en cours Heidy)
-- arithmetique (en cours Helene)
-<!-- - Fd agregator
-- Heredoc -->
-<!-- - faire marcher setenv -->
+POINTS D'ATTENTION AVANT PUSH
+- srcs/0_shell/var.c --> on garde ou on vire?
+- signal.c : fonction init_sig on garde?
+- divers C++ coments
+- ast -> fonction add_node a 27 lignes
 
 TODO 42 JANVIER
 - unset/export/var loc
