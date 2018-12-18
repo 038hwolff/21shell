@@ -13,6 +13,7 @@ TODO 42 JANVIER
 
 
 BONUS OK 21SH
+- option -dev
 - Heredoc
 - operateurs logiques
 - multi setenv et unsetenv
