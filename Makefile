@@ -16,8 +16,7 @@ PARSER_N		=	parser.c command_completion.c completion_checkers.c \
 					helper.c heredoc.c heredoc_getter.c operators.c \
 					pop_char.c special_prompt.c tokendel.c
 ASTBUILDER_N	=	build_ast.c print_ast.c
-EXECUTOR_N		=	executor.c arithmetics.c expansions_dollar.c \
-					expansions_main.c expansions_tilde.c fd_agregator.c \
+EXECUTOR_N		=	executor.c arithmetics.c fd_agregator.c \
 					pipes.c redirections.c exec_cmd_line.c semicolon.c \
 					local_variable.c operator.c tools.c env_get.c \
 					exp_goto_next_quote.c exp_tilde.c exp_vars_assign.c \
@@ -63,7 +62,6 @@ LFT_H			=	libft.h ft_boolean.h ft_char.h ft_collection.h ft_convert.h ft_input.h
 # Termcaps
 
 TRMCP_I			=	-ltermcap
-
 
 # Rules
 

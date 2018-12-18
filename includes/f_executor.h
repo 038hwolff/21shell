@@ -6,33 +6,12 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:27:53 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/17 18:32:02 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 08:25:22 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef F_EXECUTOR_H
 # define F_EXECUTOR_H
-
-/*
-** expansions_main.c
-*/
-
-int					manage_rest(t_data *data, char **res, int *i);
-int					expansions(t_data *data);
-
-/*
-** expansions_tilde.c
-*/
-
-int					go_home(t_data *data, char **res);
-
-/*
-** expansions_dollar.c
-*/
-
-int					parse_dollar(t_data *data, int *i, char **tmp, char **tmp2);
-int					manage_dollar(t_data *data, char **res, int *i);
-int					manage_dollar_other(char *value, t_data *data);
 
 /*
 ** executor.c
