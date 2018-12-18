@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 12:17:27 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 18:18:36 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/17 18:43:06 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		free_tab(char ***table)
 {
-	int	f;
+	int		f;
 
 	if (table && *table)
 	{
@@ -29,17 +29,43 @@ void		free_tab(char ***table)
 	}
 }
 
-void		free_tab_content(char ***table)
+void		free_token(t_token **token)
 {
-	int	f;
+	t_token *tok;
+	t_token *tmp;
 
-	if (table && *table)
+	if (token && *token)
 	{
-		f = 0;
-		while ((*table)[f])
+		tok = *token;
+		while (tok)
 		{
-			ft_strdel(&((*table)[f]));
-			f++;
+			tmp = tok;
+			if (tmp->val)
+				ft_strdel(&tmp->val);
+			if (tmp->heredoc)
+				ft_strdel(&tmp->heredoc);
+			tok = NULL;
+			free(tmp);
 		}
+		*token = NULL;
+	}
+}
+
+void		free_ast(t_ast **ast)
+{
+	if (ast && *ast)
+	{
+		if ((*ast)->right)
+			free_ast(&(*ast)->right);
+		if ((*ast)->right_arg)
+			free_token(&(*ast)->right_arg);
+		if ((*ast)->token)
+			free_token(&(*ast)->token);
+		if ((*ast)->left_arg)
+			free_token(&(*ast)->left_arg);
+		if ((*ast)->left)
+			free_ast(&(*ast)->left);
+		free(*ast);
+		*ast = NULL;
 	}
 }

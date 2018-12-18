@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 18:05:35 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/17 18:32:21 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,19 @@ typedef struct		s_token
 typedef struct		s_ast
 {
 	t_token			*token;
-	t_token			*left_arg; // Pour 2>&1 c'est le 2
-	t_token			*right_arg; // Pour 2>&1 c4est le 1
+	t_token			*left_arg;
+	t_token			*right_arg;
 
-	struct s_ast	*right; // la branche de droite
-	struct s_ast	*left; // la branche de gauche
-	int				type; // ex : LESSLESS
+	struct s_ast	*right;
+	struct s_ast	*left;
+	int				type;
 }					t_ast;
 
-typedef struct	s_var
+typedef struct		s_var
 {
-	char	*key;
-	char	*val;
-}				t_var;
-
-/*
-typedef struct		s_built
-{
-	char			**av;
-	int				ac;
-	t_data			*env;
-}					t_built;
-*/
-
+	char			*key;
+	char			*val;
+}					t_var;
 
 typedef struct		s_hist
 {
@@ -94,27 +84,21 @@ typedef struct		s_cdenv
 
 typedef struct		s_data
 {
-	char			*term_name;			// nom du terminal
+	char			*term_name;
 	char			*prompt;
 	size_t			prompt_len;
 	int				incomp_type;
 
-	char			**env;				// variables d'environnement
-	t_var			*loc;				// variables locales
-	char			**args; 			// vient du minishell, toujours utile ??
+	char			**env;
+	char			**loc;
 
-	char			*cmd_line; 			// la ligne de commande lue et envoyée au lexer
-	char			*additional_line;
+	t_token			*token;
+	t_ast			*ast;
 
-	t_token			*token;				// le resultat du lexer !!
-	t_ast			*ast;				// l'arbre syntaxique
+	struct termios	term_dft_config;
 
-	int				childpid;			// pour le fork
-
-	struct termios	term_dft_config; 	// config par defaut du terminal
-
-	short			shell_exit;			// si a reçu un signal de sortie
-	int				errno;				// numero d'erreur retourné, notre propre errno 
+	short			shell_exit;
+	int				errno;
 
 	int				sigint;
 	int				eof;
@@ -124,5 +108,34 @@ typedef struct		s_data
 
 	int				exe_return;
 }					t_data;
+
+/*
+**	Structure utile uniquement dans l'objet d'expansion
+**		=> Contient l'ensemble des regles d'expansion
+**		=> Un lien vers votre env
+*/
+
+typedef struct s_varsexp	t_varsexp;
+
+/*
+**	Definition du type representant une regles d'expansion pour les variables
+*/
+
+typedef struct		s_varsexp_rules
+{
+	char			*op;
+	char			*(*set)(t_varsexp *exp, char *key, char *val, char *word);
+	char			*(*null)(t_varsexp *exp, char *key, char *val, char *word);
+	char			*(*unset)(t_varsexp *exp, char *key, char *val, char *word);
+}					t_varsexp_rules;
+
+struct				s_varsexp
+{
+	t_data			*data;
+	char			*str;
+	char			*res;
+	t_varsexp_rules	*rule;
+	char			format;
+};
 
 #endif

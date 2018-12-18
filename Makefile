@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/12/15 18:13:43 by hwolff           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME			=	21sh
 
 COMP			=	clang
@@ -22,8 +10,13 @@ SHELL_N			=	shell.c free.c data.c init.c putchar.c \
 EDITLINE_N		=	read_line.c mouve.c term.c \
 					history.c setup.c ft_enter.c signal.c print_line.c \
 					prompt.c select_mode.c copy_paste.c cut_high.c \
+<<<<<<< HEAD
 					control_keys.c supp_char.c
 LEXER_N			=	lexer.c checker.c token.c helper.c 
+=======
+					control_keys.c
+LEXER_N			=	lexer.c checker.c token.c helper.c
+>>>>>>> 36071403c877fd2f56354a4a0bb83cb49086f502
 PARSER_N		=	parser.c command_completion.c completion_checkers.c \
 					helper.c heredoc.c heredoc_getter.c operators.c \
 					pop_char.c special_prompt.c tokendel.c
@@ -31,7 +24,10 @@ ASTBUILDER_N	=	build_ast.c print_ast.c
 EXECUTOR_N		=	executor.c arithmetics.c expansions_dollar.c \
 					expansions_main.c expansions_tilde.c fd_agregator.c \
 					pipes.c redirections.c exec_cmd_line.c semicolon.c \
-					local_variable.c operator.c tools.c
+					local_variable.c operator.c tools.c env_get.c \
+					exp_goto_next_quote.c exp_tilde.c exp_vars_assign.c \
+					exp_vars_get.c exp_vars_substitute.c exp_vars.c \
+					expansion.c env_set.c heredoc.c exp_quotes.c
 BUILTINS_N		=	builtins_cd.c builtins_echo.c builtins_env.c \
 					builtins_exit.c builtins_main.c \
 					builtins_setenv.c builtins_tools.c \
@@ -51,7 +47,6 @@ FILES_H			=	shell.h
 
 # Directories
 SRCS_SD			= 	0_shell 1_lineeditor 2_lexer 3_parser 4_astbuilder 5_executor 6_builtins
-					# builtins expansions inhibitors core editline shell file_desc signal
 SRCS_D			=	./srcs/
 OBJS_D			=   ./objs/
 INCL_D 			=	./includes/
@@ -106,7 +101,7 @@ fclean			:
 					@echo "Nettoyage de l'exécutable $(NAME)"
 					@rm -f $(NAME)
 
-test			:	
+test			:
 					@$(COMP) $(FLAGDEBUG) ${INCL} ${SRCS} $(TRMCP_I) -o ${NAME}
 
 debug			:	test

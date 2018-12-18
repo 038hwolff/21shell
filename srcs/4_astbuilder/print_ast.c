@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:38:09 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 16:57:34 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 10:06:56 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static int
 	ret += ft_printf("%*s", (depth * 14) + 1, "");
 	if (ast->left_arg)
 		ret += ft_printf("%s ", ast->left_arg->val);
-	ret += ft_printf("%s", ast->token->val);
+	if (ast->token)
+		ret += ft_printf("%s", ast->token->val);
 	if (ast->right_arg)
 		ret += ft_printf(" %s", ast->right_arg->val);
 	ret += ft_printf("\n");

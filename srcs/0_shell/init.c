@@ -6,12 +6,11 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:28:15 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 18:07:33 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/17 18:44:33 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
 
 void	init_term(t_data *data)
 {
@@ -40,10 +39,9 @@ void	init_shell(char **env)
 	if (tcgetattr(STDIN_FILENO, &term) == -1)
 		term_exception(""ERR_PREFIX"could not get terminal config\n");
 	data->term_dft_config = term;
+	try_m((data->env = ft_strtabdup(env)));
+	try_m((data->loc = ft_strtabnew(0)));
 	check_term(data);
 	init_term(data);
 	init_sig();
-	// try_m((data->env = newvartab(env)));
-	try_m((data->env = ft_strtabdup(env)));
-	try_m((data->loc = newvartab(NULL)));
 }

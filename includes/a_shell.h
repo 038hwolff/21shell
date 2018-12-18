@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0_shell.h                                          :+:      :+:    :+:   */
+/*   a_shell.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 18:18:20 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/17 18:31:36 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROTO_SHELL_H
-# define PROTO_SHELL_H
+#ifndef A_SHELL_H
+# define A_SHELL_H
 
 /*
 ** shell.c
@@ -55,14 +55,18 @@ void				*try_m(void *ptr);
 void				term_exception(char *message);
 void				tent_exception(char *ent);
 int					syntax_exception(char *word);
+int					pipe_exception(void);
+int					fork_exception(void);
+int					file_permission_exception(char *file);
+int					fd_exception(char *fd);
+int					cmd_not_found_exception(char *cmd);
 
 /*
 ** var.c
 */
 
-char *get_var(char *key);
-t_var			*newvartab(char **table);
-
+char				*get_var(char *key);
+t_var				*newvartab(char **table);
 
 void				refresh_screen(int signum);
 
@@ -90,18 +94,22 @@ void				check_term(t_data *data);
 
 void				init_sig();
 
-int 	            print_lex(t_token *token, char *name);
+int					print_lex(t_token *token, char *name);
 
-void	            reset_term(t_data *data);
-void	            reset_shell(t_data *data);
-void            	init_term(t_data *data);
+void				reset_term(t_data *data);
+void				reset_shell(t_data *data);
+void				init_term(t_data *data);
 
 int					check_if_sigint(t_data *data, char **line);
 int					eof_exception(void);
 
-int			    	print_lex(t_token *token, char *name);
+int					print_lex(t_token *token, char *name);
 
 void				free_tab(char ***table);
 void				free_tab_content(char ***table);
+void				reset_command(t_data *data);
+
+void				free_ast(t_ast **ast);
+void				free_token(t_token **token);
 
 #endif

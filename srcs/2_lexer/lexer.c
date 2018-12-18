@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/11 00:17:57 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 10:42:44 by hben-yah         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "shell.h"
 
@@ -16,7 +5,6 @@ static int
 	crawl_word(char **line)
 {
 	char *begin;
-
 
 	begin = *line;
 	if (**line == '\\')
@@ -46,7 +34,7 @@ t_token
 	while (!(delim_token = get_delimitor_token(line))
 		&& **line && !is_space_or_tab(**line))
 	{
-		**line == '=' && (assign = 1);
+		//**line == '=' && (assign = 1);
 		len += crawl_word(line);
 	}
 	if (len)
@@ -60,7 +48,6 @@ void
 {
 	t_token *new;
 	t_token *last;
-
 
 	if (!line)
 		return ;

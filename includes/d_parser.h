@@ -1,17 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   3_parser.h                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 15:20:16 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 13:55:15 by hwolff           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+
+#ifndef D_PARSER_H
+# define D_PARSER_H
 
 char	*check_syntax_errors(t_token *token);
 
@@ -69,12 +59,15 @@ void	pop_backslash_in_heredoc(char **s);
 
 int		check_cancel(t_data *data, char **line);
 
-void	complete_tokens(t_token *token, int incomp_type, char *line);
+void	complete_tokens(t_token *token, int incomp_type, char **line);
 
 int		has_quotes_or_backslash(char *s);
 void	remove_quotes_and_backslash(char **line);
 
 void	merge_tokens(t_token *t1, t_token *t2);
 void	append_token_value(t_token *token, int i, char **line);
+
+int		expand_dquote(char **line, int cur);
+int		expand_quote(char **line, int cur);
 
 #endif

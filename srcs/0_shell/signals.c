@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 18:27:49 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 14:16:48 by hwolff           ###   ########.fr       */
+/*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
+/*   Updated: 2018/12/17 18:43:25 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int		check_if_sigint(t_data *data, char **line)
 	if (line && *line
 		&& data->sigint == 1)
 	{
-		ft_strdel(&data->cmd_line);
-		try_m(data->cmd_line = ft_strdup(*line));
-		free(*line);
+		ft_strdel(&data->edl.line);
+		try_m(data->edl.line = ft_strdup(*line));
+		ft_strdel(line);
 		return (1);
 	}
 	return (0);

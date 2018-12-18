@@ -6,18 +6,11 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:29:51 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 23:13:50 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/16 13:14:00 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-void			cd_free(char **tmp, t_data *ndata)
-{
-	free_tab(&ndata->env);
-	free_tab(&ndata->args);
-	free_tab(&tmp);
-}
 
 static int		setenv_cd(char **arg, char *env1, char *env2)
 {
@@ -87,7 +80,7 @@ static void		free_cd_tabs(char **tmp, char **nenv, char **narg)
 
 int				b_cd(t_data *data, char **env, char **arg)
 {
-	char 		**nenv;
+	char		**nenv;
 	char		**narg;
 	char		*cdenv[3];
 	char		**tmp;

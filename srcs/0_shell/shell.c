@@ -1,22 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   shell.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/01 11:54:11 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 17:05:37 by hben-yah         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
 
 #include "shell.h"
 
-//char *g_line_test;
-
-int print_lex(t_token *token, char *name)
+int			print_lex(t_token *token, char *name)
 {
-	int ret;
+	int			ret;
 
 	ret = 0;
 	ret += ft_printf("\n--- %s ---\n", name);
@@ -40,22 +28,21 @@ int print_lex(t_token *token, char *name)
 ** 5 - execute the commands with priorities
 */
 
-void	command_line_loop(void)
+void		command_line_loop(void)
 {
-	t_data	*data;
+	t_data		*data;
 
 	data = get_data();
 	setup_hist(&data->hist);
-	//ft_printf("GNEEE");
-
 	while (!data->shell_exit)
 	{
-		signal_list();
 		read_line();
-		//data->cmd_line = g_line_test;
-		//ft_printf("%s\n", data->cmd_line);
-		if (!data->errno && !(data->errno = 0))
+		
+		lexical_analysis(&data->token, data->edl.line);
+		SHPRINT && print_lex(data->token, "LEXER");
+		if (parser(data))
 		{
+<<<<<<< HEAD
 			lexical_analysis(&data->token, data->edl.line);
 			// print le lex
 		//	SHPRINT && print_lex(data->token, "LEXER");
@@ -70,38 +57,25 @@ void	command_line_loop(void)
 				exec_cmd_line(data, data->ast);
 		//		SHPRINT && ft_printf("\n----------------\n");
 			}
+=======
+			SHPRINT && print_lex(data->token, "PARSER");
+			build_ast(data);
+			SHPRINT && print_ast(data->ast);
+			SHPRINT && ft_printf("\n--- EXECUTION ---\n");
+			exec_cmd_line(data, data->ast);
+			SHPRINT && ft_printf("-----------------\n");
+>>>>>>> 36071403c877fd2f56354a4a0bb83cb49086f502
 		}
-		data->token = NULL;  // FAUT FREE EN FAIT, A FAIRE PLUS TARD
-		/*else
-		{
-			// free lex
-			// mettre retour à > 0
-		}
-		ft_printf("\n");*/
+		reset_command(data);
 	}
 }
 
-int		main(int ac, char **av, char **env)
+int			main(int ac, char **av, char **env)
 {
 	if (ac && av && env)
 	{
 		init_shell(env);
 		command_line_loop();
-		//// free des trucs
-		// free hist
 	}
 	return (EXIT_SUCCESS);
 }
-
-/* main de test heidy
-int		main(int ac, char **av, char **env)
-{
-	if (ac && av && av[1] && env)
-	{
-		g_line_test = av[1];
-		init_shell(env);
-		command_line_loop();
-		//// free des trucs
-	}
-	return (EXIT_SUCCESS);
-}*/

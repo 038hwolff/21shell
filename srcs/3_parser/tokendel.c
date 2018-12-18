@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 17:14:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/06 18:45:05 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:50:40 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	tokendelone(t_token **elem)
 	todel->type = 0;
 	todel->next = NULL;
 	todel->length = 0;
-	free(todel);
+	ft_memdel((void**)&todel);
 }
 
 void	del_tokens_if(t_token **alst, int (*token_is)(t_token *))

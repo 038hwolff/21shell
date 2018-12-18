@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   term.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:27:23 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 17:03:25 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:38:24 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,18 @@ void	check_term(t_data *data)
 {
 	char	buff[1024];
 	int		ret;
+	char	*dflt;
 
 	if (!(data->term_name = getenv("TERM")))
-		term_exception(""ERR_PREFIX"could not get the terminal name\n");
+	{
+		dflt = "TERM=xterm-256color";
+		data->term_name = "xterm-256color";
+		b_setenv(&data->env, &dflt);
+	}
 	if (!isatty(STDIN_FILENO)
 		|| !isatty(STDOUT_FILENO)
 		|| !isatty(STDERR_FILENO))
-		term_exception(""ERR_PREFIX"standard I/O doesn't refer to a terminal\n");
+		term_exception(""ERR_PREFIX"std I/O doesn't refer to a terminal\n");
 	if ((ret = tgetent(buff, data->term_name)) == 0)
 		tent_exception(data->term_name);
 	else if (ret == -1)

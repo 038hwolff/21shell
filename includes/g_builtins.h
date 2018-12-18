@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   6_builtins.h                                       :+:      :+:    :+:   */
+/*   g_builtins.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:23:22 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 23:13:21 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/17 18:28:06 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTINS_H
-# define BUILTINS_H
+#ifndef G_BUILTINS_H
+# define G_BUILTINS_H
 
 /*
 ** builtins_main.c
@@ -42,7 +42,7 @@ int					b_env(char **env, char **arg);
 ** builtins_exit.c
 */
 
-void				b_exit();
+void				b_exit(void);
 
 /*
 ** builtins_setenv.c

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/12 17:01:31 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 23:15:23 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		check_command_completion(t_data *data)
 		read_line();
 		if (check_cancel(data, &data->edl.line))
 			return (0);
-		complete_tokens(data->token, data->incomp_type, data->edl.line);
+		complete_tokens(data->token, data->incomp_type, &data->edl.line);
 		del_tokens_if(&data->token, &token_is_empty);
 		if (data->token && syntax_exception(check_syntax_errors(data->token)))
 			return (0);
@@ -82,17 +82,18 @@ int		check_heredocs(t_data *data)
 	{
 		if (token->type == DOUBLELESS && token->next)
 		{
+
 			if ((car = has_quotes_or_backslash(token->next->val)))
 			{
 				remove_quotes_and_backslash(&token->next->val);
 				token->next->type = HDOCDELIM;
 			}
-			if (get_heredoc_lines(data, token, car))
+			if (!get_heredoc_lines(data, token, car))
 				return (0);
 			if (!car)
 			{
-				// gerer les parametres genre $TRUC
-				pop_backslash_in_heredoc(&token->heredoc);
+				exp_vars(&token->heredoc, data, 1);
+				//pop_backslash_in_heredoc(&token->heredoc);
 			}
 		}
 		token = token->next;

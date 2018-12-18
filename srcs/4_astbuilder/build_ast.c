@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   build_ast.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 16:02:24 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/14 11:08:12 by hben-yah         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "shell.h"
 
@@ -53,9 +42,10 @@ static void
 	{
 		(*ast)->left_arg = (*chosen);
 		(*ast)->token = (*chosen)->next;
-		*chosen = (*chosen)->next; 
+		*chosen = (*chosen)->next;
 		if (*chosen && (*chosen)->next
-			&& (*chosen)->next->type == WORD)
+			&& ((*chosen)->next->type == IO_NUMBER
+			|| (*chosen)->next->type == WORD))
 		{
 			(*ast)->right_arg = (*chosen)->next;
 			*chosen = (*chosen)->next;
@@ -69,11 +59,13 @@ static void
 }
 
 static void
-	add_node(t_ast **ast, t_token *token)
+	add_node(t_data *data, t_ast **ast, t_token *token)
 {
 	t_token *chosen_prev;
 	t_token *chosen;
+	int		type;
 
+	expansion(data, token);
 	chosen_prev = NULL;
 	if (!token)
 		return ;
@@ -82,14 +74,25 @@ static void
 		chosen_prev->next = NULL;
 	else
 		token = NULL;
+	type = chosen->type;
 	fill_node(ast, &chosen);
+	if (is_redir_op(type))
+	{
+		if (chosen_prev)
+			chosen_prev->next = chosen->next;
+		else
+			token = chosen->next;
+		chosen->next = NULL;
+	}
 	if (token)
-		add_node(&(*ast)->left, token);
+		add_node(data, &(*ast)->left, token);
 	if (chosen->next)
-		add_node(&(*ast)->right, chosen->next);
+		add_node(data, &(*ast)->right, chosen->next);
 }
 
-void	build_ast(t_data *data)
+void
+	build_ast(t_data *data)
 {
-	add_node(&data->ast, data->token);
+	if (data->token)
+		add_node(data, &data->ast, data->token);
 }

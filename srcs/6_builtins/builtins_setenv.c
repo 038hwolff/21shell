@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/30 13:36:13 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 23:12:32 by hwolff           ###   ########.fr       */
+/*   Created: 2018/12/17 18:53:49 by hwolff            #+#    #+#             */
+/*   Updated: 2018/12/17 18:53:50 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,24 @@ void	add_to_env(char **nenv, char **arg, int i)
 
 int		ft_setline(char *key, char *value, char ***env)
 {
-	char	**ret;
 	int		i;
-	char	*end;
 
 	i = 0;
-	end = NULL;
-	try_m((ret = ft_strtabdup(*env)));
-	while (ret[i])
+	while ((*env)[i])
+		++i;
+	try_m((ft_strtabrealloc(env, i + 1)));
+	i = 0;
+	while ((*env)[i])
 	{
-		if (ft_strncmp(key, ret[i], ft_strlen(key)) == 0)
+		if (ft_strncmp(key, (*env)[i], ft_strlen(key)) == 0)
 		{
-			check_key(ret, i, key, value);
-			free_tab(env);
-			*env = ret;
+			check_key(*env, i, key, value);
 			return (1);
 		}
 		i++;
 	}
-	try_m((ret[i++] = ft_strjoin(key, value)));
-	ret[i] = NULL;
-	free_tab(env);
-	*env = ret;
+	try_m(((*env)[i++] = ft_strjoin(key, value)));
+	(*env)[i] = NULL;
 	return (1);
 }
 

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   var.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 23:23:42 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 17:03:08 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:35:57 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
+/*
 char *get_var(char *key)
 {
 	t_var *vars;
@@ -50,3 +51,4 @@ t_var	*newvartab(char **table)
 	dnew = NULL;
 	return (new);
 }
+*/

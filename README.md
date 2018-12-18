@@ -1,22 +1,21 @@
-TODO DIMANCHE
-- Pb pipes cat
-- Fd agregator
-- quotes dquotes
-- expansions $ et ~
+POINTS D'ATTENTION AVANT PUSH
+- srcs/0_shell/var.c --> on garde ou on vire?
+- signal.c : fonction init_sig on garde?
+- divers C++ coments
+- ast -> fonction add_node a 27 lignes
 
-TODO BONUS DIMANCHE
-- arithmetiques?
-- historique avec ctrl R?
-- table de hachage binaires
+TODO 42 JANVIER
+- unset/export/var loc
+- backquotes
+<!-- - builtins POSIX -->
+<!-- + history + ! + options -->
 
-BONUS 21SH
+
+BONUS OK 21SH
 - Heredoc
 - operateurs logiques
-- arithmetique?
-- Gestion des backquotes
-- Variables locales
-- Table de hachage?
-- \
+- arithmetique
+- CTRL R
 
 
 

@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   4_astbuilder.h                                     :+:      :+:    :+:   */
+/*   ft_strlastchr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 15:19:31 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/15 17:06:55 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/12/17 11:12:25 by hwolff            #+#    #+#             */
+/*   Updated: 2018/12/17 11:12:27 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASTBUILDER_H
-# define ASTBUILDER_H
-
-/*
-** astbuilder.c
-*/
-
-void			build_ast(t_data *data);
-int			print_ast(t_ast *ast);
-int				get_rank(int type);
-
-#endif
+char	*ft_strlastchr(char *s)
+{
+	if (s)
+	{
+		if (*s)
+		{
+			while (*s)
+				s++;
+			return (s - 1);
+		}
+		return (s);
+	}
+	return (0);
+}

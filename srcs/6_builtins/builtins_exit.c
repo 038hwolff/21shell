@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 10:46:23 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 22:54:29 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/17 19:30:22 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void    b_exit()
+void	b_exit(void)
 {
-    exit_program(NULL);
+	exit_program(NULL);
 }

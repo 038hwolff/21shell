@@ -1,23 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   executor.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/14 15:27:38 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/15 22:40:01 by hwolff           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "shell.h"
-
-static void		cmd_not_found(char *cmd)
-{
-	ft_printf("%s , 21sh: command not found");
-	ft_printf("%s\n", cmd);
-	exit_program("");
-}
 
 char			**get_path(char **env, char **arg)
 {
@@ -63,8 +45,8 @@ int			ex_exec_core(char **env, char **table, char **paths)
 		}
 		i++;
 	}
-	cmd_not_found(*table);
-	return (0);
+	cmd_not_found_exception(*table);
+	exit(1);
 }
 
 int			exec_noast(char **env, char **table)
@@ -72,39 +54,44 @@ int			exec_noast(char **env, char **table)
 	int		status;
 	char	**paths;
 	int		childpid;
+	int		ret;
 
 	if (!(paths = get_path(env, table)))
 	{
-		ft_putendl("Error: Path is empty");
-		return (0);
+		cmd_not_found_exception(*table);
+		return (1);
 	}
+	ret = 0;
 	childpid = fork();
 	if (childpid == 0)
-		ex_exec_core(env, table, paths);
+		ret = ex_exec_core(env, table, paths);
 	else
 		signal(SIGINT, SIG_IGN);
 	wait(&status);
 	if (WIFSIGNALED(status))
+	{
 		ft_putchar('\n');
-		// signal(SIGINT, handle_signal);
-	childpid = 0;
-	return (1);
+		return (WIFEXITED(status));
+	}
+	// signal(SIGINT, handle_signal);
+	//childpid = 0;
+	return (WIFEXITED(status) ? WEXITSTATUS(status) : -1);
 }
 
 int				ex_exec(char **env, char **arg)
 {
-	int		i;
+	//int		i;
 
-	if(SHPRINT)
-	{
-		i = 0;
-		ft_printf("exec :");
-		while (arg[i])
-		{
-			ft_printf(" %s", arg[i]);
-			++i;
-		}
-		ft_printf("\n");
-	}
+	// if(SHPRINT)
+	// {
+	// 	i = 0;
+	// 	ft_printf("exec :");
+	// 	while (arg[i])
+	// 	{
+	// 		ft_printf(" %s", arg[i]);
+	// 		++i;
+	// 	}
+	// 	ft_printf("\n");
+	// }
 	return (exec_noast(env, arg));
 }
