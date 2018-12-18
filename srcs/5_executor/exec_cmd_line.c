@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:54:08 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 13:40:52 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 14:55:47 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 ** 1 - > or >>
 ** 0 - CMD
 */
-
 
 static int
 	sub_exec_cmd_line(t_data *data, t_ast *ast, int ret)
