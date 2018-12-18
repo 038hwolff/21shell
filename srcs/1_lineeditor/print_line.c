@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 11:45:46 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 13:28:18 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*insert_end(char *line, char *value, t_edl *edl)
 {
 	char	*ret;
-	
+
 	try_m(ret = ft_strjoin(line, value));
 	if (edl->light)
 		ft_memdel((void **)&edl->light);

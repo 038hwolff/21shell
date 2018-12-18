@@ -15,7 +15,6 @@ TODO 42 JANVIER
 BONUS OK 21SH
 - Heredoc
 - operateurs logiques
-- CTRL R
 
 
 
