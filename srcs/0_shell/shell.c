@@ -42,29 +42,12 @@ void		command_line_loop(void)
 		SHPRINT && print_lex(data->token, "LEXER");
 		if (parser(data))
 		{
-<<<<<<< HEAD
-			lexical_analysis(&data->token, data->edl.line);
-			// print le lex
-		//	SHPRINT && print_lex(data->token, "LEXER");
-			//data->shell_exit = 1;
-			if (parser(data))
-			{
-		//		SHPRINT && print_lex(data->token, "PARSER");
-				//ft_printf("%s\n", data->cmd_line);	*/
-				build_ast(data);
-		//		SHPRINT && print_ast(data->ast);
-		//		SHPRINT && ft_printf("\n--- EXECUTION ---\n");
-				exec_cmd_line(data, data->ast);
-		//		SHPRINT && ft_printf("\n----------------\n");
-			}
-=======
 			SHPRINT && print_lex(data->token, "PARSER");
 			build_ast(data);
 			SHPRINT && print_ast(data->ast);
 			SHPRINT && ft_printf("\n--- EXECUTION ---\n");
 			exec_cmd_line(data, data->ast);
 			SHPRINT && ft_printf("-----------------\n");
->>>>>>> 36071403c877fd2f56354a4a0bb83cb49086f502
 		}
 		reset_command(data);
 	}
