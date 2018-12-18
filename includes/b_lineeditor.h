@@ -73,7 +73,7 @@ t_hist			*setup_hist(t_hist *hist);
 ** select_mode.c
 */
 
-void			select_mode(t_edl *edl, unsigned long key);
+void			select_mode(t_edl *edl, unsigned long key, char *line);
 
 /*
 ** copy_paste.c
@@ -100,7 +100,12 @@ void			signal_list(void);
 */
 
 char			*control_d(char *line, int *index);
-
 int				check_eof(t_data *data);
+
+/*
+** supp_char.c
+*/
+
+char			*supp_char(char *line, int *index);
 
 #endif

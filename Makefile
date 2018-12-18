@@ -10,8 +10,13 @@ SHELL_N			=	shell.c free.c data.c init.c putchar.c \
 EDITLINE_N		=	read_line.c mouve.c term.c \
 					history.c setup.c ft_enter.c signal.c print_line.c \
 					prompt.c select_mode.c copy_paste.c cut_high.c \
+<<<<<<< HEAD
+					control_keys.c supp_char.c
+LEXER_N			=	lexer.c checker.c token.c helper.c 
+=======
 					control_keys.c
 LEXER_N			=	lexer.c checker.c token.c helper.c
+>>>>>>> 36071403c877fd2f56354a4a0bb83cb49086f502
 PARSER_N		=	parser.c command_completion.c completion_checkers.c \
 					helper.c heredoc.c heredoc_getter.c operators.c \
 					pop_char.c special_prompt.c tokendel.c

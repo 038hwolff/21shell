@@ -49,7 +49,8 @@ void	read_line()
 			loop_enter(&data->edl, &data->edl.line, &data->hist);
 			break ;
 		}
-		else if (key == TAB || key == CTRLD || (key > 31 && key < 128 && key != DOWN_FN && key != UP_FN 
+		else if (key == TABU || key == CTRLD || (key > 31 && key < 128
+				&& key != DOWN_FN && key != UP_FN 
 				&& key != LEFT && key != RIGHT && key != HOME
 				&& key != END && key != UP && key !=DOWN
 				&& key != LINE_UP && key != LINE_DOWN && key != COPY
