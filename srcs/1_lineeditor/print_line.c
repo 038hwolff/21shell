@@ -6,7 +6,6 @@ char	*insert_end(char *line, char *value, t_edl *edl)
 
 	try_m(ret = ft_strjoin(line, value));
 	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(line) * sizeof(int)));
-	ft_bzero(edl->light, ft_strlen(line));
 	if (*line || line)
 		free(line);
 	edl->c_light = 0;
