@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 12:30:12 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 08:44:18 by pespalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@
 # define HOME 4741915
 # define END 4610843
 # define SELECT 10127586
-# define COPY 43458
+# define COPY 42947
 # define PASTE 32975
 # define CUT 8554722
 # define CTRLD 4

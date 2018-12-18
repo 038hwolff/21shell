@@ -6,24 +6,22 @@
 
 void		copy_high(t_edl *edl, t_hist *hist, char *line)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	int		j;
+	size_t	len;
 
 	j = 0;
 	i = -1;
-	while (++i < (int)ft_strlen(line))
-	{
+	len = ft_strlen(line);
+	while (++i < len)
 		if (edl->light[i] == 1)
 			j++;
-	}
 	try_m(hist->copy = (char *)ft_memalloc(j * sizeof(char) + 1));
 	j = -1;
 	i = -1;
-	while (++i < (int)ft_strlen(line))
-	{
+	while (++i < len)
 		if (edl->light[i] == 1)
 			hist->copy[++j] = line[i];
-	}
 	hist->copy[++j] = '\0';
 }
 
