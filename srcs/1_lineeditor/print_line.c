@@ -6,7 +6,7 @@
 /*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:05:18 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 09:08:35 by pespalie         ###   ########.fr       */
+/*   Updated: 2018/12/18 11:29:57 by pespalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ char	*insert_end(char *line, char *value, t_edl *edl)
 	char	*ret;
 
 	try_m(ret = ft_strjoin(line, value));
-	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(line) * sizeof(int)));
-	ft_bzero(edl->light, ft_strlen(line));
+	if (edl->light)
+		ft_memdel((void **)&edl->light);
+	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(ret) * sizeof(int)));
 	if (*line || line)
 		free(line);
 	edl->c_light = 0;
@@ -65,8 +66,9 @@ char	*insert_char(char *line, unsigned long key, int *index, t_edl *edl)
 		return (insert_end(line, value, edl));
 	ret = NULL;
 	ret = create_ret(index, value, len, line);
-	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(line) * sizeof(int)));
-	ft_bzero(edl->light, ft_strlen(line));
+	if (edl->light)
+		ft_memdel((void **)&edl->light);
+	try_m(edl->light = (int *)ft_memalloc(((int)ft_strlen(ret)) * sizeof(int)));
 	edl->c_light = 0;
 	if (*line || line)
 		free(line);

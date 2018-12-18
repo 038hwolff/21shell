@@ -6,7 +6,7 @@
 /*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:55:14 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 09:04:04 by pespalie         ###   ########.fr       */
+/*   Updated: 2018/12/18 10:19:51 by pespalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	**ft_realloc(t_hist *hist, char *value)
 
 	try_m(new_env = (char **)ft_memalloc(sizeof(char *)
 				* (hist->h_count + 2)));
-	new_env[hist->h_count + 2] = NULL;
+//	new_env[hist->h_count + 2] = NULL;
 	i = 0;
 	while (i < hist->h_count)
 	{

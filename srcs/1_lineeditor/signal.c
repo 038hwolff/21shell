@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 18:18:09 by hwolff            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/12/18 09:29:45 by pespalie         ###   ########.fr       */
-=======
-/*   Updated: 2018/12/18 09:25:17 by hwolff           ###   ########.fr       */
->>>>>>> ce676614389f0715b2150bfce076468f5249e744
+/*   Created: 2018/12/18 10:21:22 by pespalie          #+#    #+#             */
+/*   Updated: 2018/12/18 10:21:55 by pespalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +36,6 @@ void	signal_list(void)
 	i = -1;
 	while (++i < 32)
 		signal(i, signal_handler);
-<<<<<<< HEAD
-=======
-
->>>>>>> ce676614389f0715b2150bfce076468f5249e744
 }
 
 int		check_eof(t_data *data)
