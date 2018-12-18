@@ -5,7 +5,8 @@ POINTS D'ATTENTION AVANT PUSH
 - Setenv --> meme erreur de free (incorrect checksum for freed object - object was probably modified after being freed.) (pas reproduit)
 - exit --> brancher le builtins!
 - virer visualisateur lexeur/parser/execution
-- CTRL C ignoré
+- << n'affiche plus le prompt heredoc et le mot de fin ne fait pas sortir du read et un CTRL C pete l'edition de ligne + erreur de free
+- cat + taper une ligne + CTRLD reaffiche la ligne mais a la suite, devrait retourner a la ligne
 
 
 TODO 42 JANVIER
