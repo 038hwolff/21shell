@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   command_completion.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 14:41:04 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 14:57:20 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	complete_command_backslash(t_token *token, char **line)
+void		complete_command_backslash(t_token *token, char **line)
 {
 	char		*dupline;
 	char		*dupline2;
@@ -33,9 +33,9 @@ void	complete_command_backslash(t_token *token, char **line)
 	}
 }
 
-static	int get_next_word_len(char *line, char quotetype)
+static int	get_next_word_len(char *line, char quotetype)
 {
-	int len;
+	int			len;
 
 	len = 0;
 	while (line[len])
@@ -53,7 +53,7 @@ static	int get_next_word_len(char *line, char quotetype)
 	return (len);
 }
 
-void	complete_command_quote(t_token *token, char **line, char quotetype)
+void		complete_command_quote(t_token *token, char **line, char quotetype)
 {
 	int			len;
 	char		*dupline;
@@ -76,7 +76,7 @@ void	complete_command_quote(t_token *token, char **line, char quotetype)
 	}
 }
 
-void	complete_tokens(t_token *token, int incomp_type, char **line)
+void		complete_tokens(t_token *token, int incomp_type, char **line)
 {
 	token = get_last_token(token);
 	if (incomp_type == INC_QUOTE)
@@ -90,7 +90,7 @@ void	complete_tokens(t_token *token, int incomp_type, char **line)
 	lexical_analysis(&token, *line);
 }
 
-int		is_command_incomplete(t_token *token)
+int			is_command_incomplete(t_token *token)
 {
 	char	quotetype;
 
