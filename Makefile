@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 08:34:44 by hwolff            #+#    #+#              #
-#    Updated: 2018/12/18 15:05:35 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/12/18 15:23:23 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SHELL_N			=	shell.c free.c data.c init.c putchar.c \
 					signals.c term.c exception.c exit.c reset.c \
 					exception2.c cancel.c
 EDITLINE_N		=	read_line.c mouve.c term.c \
-					history.c setup.c ft_enter.c signal.c print_line.c \
+					history.c setup.c ft_enter.c print_line.c \
 					prompt.c select_mode.c copy_paste.c cut_high.c \
 					control_keys.c supp_char.c
 LEXER_N			=	lexer.c checker.c token.c helper.c 

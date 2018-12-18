@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:54:08 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 14:55:47 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 15:46:11 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,7 @@ int
 	ret = 0;
 	if (ast->token->type == WORD && (table = token_to_tab(ast))
 		&& !is_builtins(data, table))
-	{
 		ret = ex_exec(data->env, table);
-		data->exe_return = ret;
-		free_tab(&table);
-	}
 	else if (ast->token->type == GREAT || ast->token->type == DOUBLEGREAT)
 		ret = exec_redirect(data, ast, ast->token->type);
 	else if (ast->token->type == LESS)
@@ -61,5 +57,10 @@ int
 		ret = main_agregator(data, ast);
 	else
 		ret = sub_exec_cmd_line(data, ast, ret);
+	if (ast->token->type == WORD)
+	{
+		data->exe_return = ret;
+		free_tab(&table);
+	}
 	return (ret);
 }

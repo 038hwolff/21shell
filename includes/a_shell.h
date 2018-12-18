@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 14:47:28 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 15:23:43 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void				check_term(t_data *data);
 /*
 ** signals.c
 */
+
+void				signal_list(void);
 
 int					print_lex(t_token *token, char *name);
 

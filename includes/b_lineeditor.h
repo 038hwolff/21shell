@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_lineeditor.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:26:21 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 08:59:51 by pespalie         ###   ########.fr       */
+/*   Updated: 2018/12/18 15:23:32 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,6 @@ void			clear_line(t_edl *edl, char *n_line);
 */
 
 char			*cut_high(t_edl *edl, t_hist *hist, char *line);
-
-/*
-** signal.c
-*/
-
-void			signal_list(void);
 
 /*
 ** control_keys.c

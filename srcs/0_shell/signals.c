@@ -3,28 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 08:39:54 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 15:24:25 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/*
-** interception de signaux pour ne rien faire
-*/
-
-int		check_if_sigint(t_data *data, char **line)
+void	signal_handler(int signall)
 {
-	if (line && *line
-		&& data->sigint == 1)
+	t_data	*data;
+
+	data = get_data();
+	if (signall == SIGINT)
 	{
+		data->sigint = 1;
+		ft_putchar_fd('\n', 1);
+		display_prompt(data->prompt);
 		ft_strdel(&data->edl.line);
-		try_m(data->edl.line = ft_strdup(*line));
-		ft_strdel(line);
-		return (1);
+		try_m(data->edl.line = ft_strnew(0));
+		data->edl.index = 0;
+		signal(SIGINT, signal_handler);
 	}
-	return (0);
+}
+
+void	signal_list(void)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 32)
+		signal(i, signal_handler);
 }
