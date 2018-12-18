@@ -6,7 +6,7 @@
 /*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:05:18 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 11:29:57 by pespalie         ###   ########.fr       */
+/*   Updated: 2018/12/18 11:41:31 by pespalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*insert_end(char *line, char *value, t_edl *edl)
 =======
 	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(line) * sizeof(int)));
 >>>>>>> d5137bcfa4082027c84fb3d82e2170e7285eb610
-	if (*line || line)
+	if (*line || lne)
 		free(line);
 	edl->c_light = 0;
 	return (ret);
