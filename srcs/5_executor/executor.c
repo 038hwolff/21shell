@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:51:07 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 10:03:05 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 11:55:44 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int			exec_noast(char **env, char **table)
 	else
 		signal(SIGINT, SIG_IGN);
 	wait(&status);
+	free_tab(&paths);
 	if (WIFSIGNALED(status))
 	{
 		ft_putchar('\n');
