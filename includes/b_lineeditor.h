@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:26:21 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 18:27:24 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 08:59:51 by pespalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void			read_additional_line(char **line);
 */
 
 t_hist			*setup_hist(t_hist *hist);
+int				prompt_len();
 
 /*
 ** select_mode.c

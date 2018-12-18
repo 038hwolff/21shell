@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_line.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/18 09:05:18 by pespalie          #+#    #+#             */
+/*   Updated: 2018/12/18 09:08:35 by pespalie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 char	*insert_end(char *line, char *value, t_edl *edl)
 {
-	char *ret;
+	char	*ret;
 
 	try_m(ret = ft_strjoin(line, value));
 	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(line) * sizeof(int)));
@@ -16,8 +28,8 @@ char	*insert_end(char *line, char *value, t_edl *edl)
 char	*create_ret(int *index, char *value, size_t len, char *line)
 {
 	char	*ret;
-	int	i;
-	
+	int		i;
+
 	ret = NULL;
 	try_m(ret = (char *)ft_memalloc(sizeof(char) * (len + 1)));
 	i = -1;
@@ -40,7 +52,7 @@ char	*insert_char(char *line, unsigned long key, int *index, t_edl *edl)
 	size_t	len;
 	char	*ret;
 	char	*value;
-	int	i;
+	int		i;
 
 	value = NULL;
 	value = (char *)(&key);
@@ -64,7 +76,7 @@ char	*insert_char(char *line, unsigned long key, int *index, t_edl *edl)
 void	reprint_line(unsigned long key, t_edl *edl, char **line)
 {
 	t_data		*data;
-	int		c;
+	int			c;
 	size_t		j;
 	size_t		len;
 

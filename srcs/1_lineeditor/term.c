@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   term.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/18 09:33:34 by pespalie          #+#    #+#             */
+/*   Updated: 2018/12/18 09:34:18 by pespalie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 /*
@@ -12,10 +24,8 @@ void	left_or_right(t_edl *edl, unsigned long key, size_t len)
 	if (key == RIGHT && edl->index < (int)len)
 		mouve_right(edl);
 	if (key == HOME)
-	{
 		while (edl->index > 0)
 			mouve_left(edl);
-	}
 	if (key == END)
 	{
 		while (edl->index < (int)len)
@@ -52,7 +62,7 @@ void	line_moves(t_edl *edl, char *line, unsigned long key)
 }
 
 /*
-** SELECTION = fn + v 
+** SELECTION = fn + v
 ** COPY = fn + y
 ** PASTE = fn + p
 */
@@ -71,7 +81,7 @@ void	term_moves(unsigned long key, t_edl *edl, size_t len, char *line)
 
 char	*ft_termcaps(t_edl *edl, char *line, unsigned long key, t_hist *hist)
 {
-	size_t		len;
+	size_t			len;
 	struct winsize	ws;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
