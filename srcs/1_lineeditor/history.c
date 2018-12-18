@@ -1,23 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   history.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/18 08:55:14 by pespalie          #+#    #+#             */
+/*   Updated: 2018/12/18 09:04:04 by pespalie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 void	history_dmove(t_edl *edl, char **line, t_hist *hist)
 {
-	int 	j;
-	int	i;
-	t_data	*data;
+	int		j;
+	int		i;
 
-	data = get_data();
-	if (data->prompt_len)
-		i = data->prompt_len;
-	else
-		i = 2;
-	if (hist->h_count == 0)
-	{
-		ft_putstr_fd(tgetstr("bl", NULL), 1);
-		return ;
-	}
+	i = prompt_len();
 	j = hist->h_current + 1;
-	if (j >= hist->h_count)
+	if (hist->h_count == 0 || j >= hist->h_count)
 	{
 		ft_putstr_fd(tgetstr("bl", NULL), 1);
 		return ;
@@ -37,15 +39,10 @@ void	history_dmove(t_edl *edl, char **line, t_hist *hist)
 
 void	history_umove(t_edl *edl, char **line, t_hist *hist)
 {
-	int	j;
-	int	i;
-	t_data	*data;
+	int		j;
+	int		i;
 
-	data = get_data();
-	if (data->prompt_len)
-		i = data->prompt_len;
-	else
-		i = 2;
+	i = prompt_len();
 	j = 0;
 	if (hist->h_current == 0)
 		j = hist->h_count - 1;

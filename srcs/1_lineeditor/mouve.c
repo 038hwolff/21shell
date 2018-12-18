@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mouve.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/18 09:04:22 by pespalie          #+#    #+#             */
+/*   Updated: 2018/12/18 09:05:08 by pespalie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 /*
@@ -51,7 +63,7 @@ void	mouve_left(t_edl *edl)
 void	mouve_right(t_edl *edl)
 {
 	t_data	*data;
-	int	p_len;
+	int		p_len;
 
 	data = get_data();
 	ft_putstr_fd(tgetstr("vs", NULL), 1);
@@ -61,7 +73,7 @@ void	mouve_right(t_edl *edl)
 		p_len = 2;
 	edl->index++;
 	if ((edl->index + p_len) % edl->col == 0)
-	{ 
+	{
 		ft_putstr_fd(tgetstr("do", NULL), 1);
 		edl->multiline++;
 	}

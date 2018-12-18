@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   select_mode.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/18 09:16:54 by pespalie          #+#    #+#             */
+/*   Updated: 2018/12/18 09:23:11 by pespalie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 void	rewrite_line(t_edl *edl, char *line)
 {
-	int	i;
+	int				i;
 
 	i = 0;
 	while (i < (int)ft_strlen(line))
@@ -59,9 +71,9 @@ void	select_letter(unsigned long key, t_edl *edl, char *line)
 
 void	clear_space(t_edl *edl, char *line)
 {
-	size_t	len;
-	int	i;
-	size_t	j;
+	size_t			len;
+	int				i;
+	size_t			j;
 
 	i = -1;
 	len = ft_strlen(line);
@@ -77,9 +89,9 @@ void	clear_space(t_edl *edl, char *line)
 void	select_mode(t_edl *edl, unsigned long key, char *line)
 {
 	unsigned long	key_2;
-	int		i;
-	t_data		*data;
-	
+	int				i;
+	t_data			*data;
+
 	data = get_data();
 	while (key == SELECT)
 	{

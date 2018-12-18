@@ -6,14 +6,18 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 19:47:44 by hwolff            #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2018/12/18 09:54:16 by pespalie         ###   ########.fr       */
+=======
 /*   Updated: 2018/12/18 09:31:38 by hwolff           ###   ########.fr       */
+>>>>>>> ce676614389f0715b2150bfce076468f5249e744
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 void	loop_enter(t_edl *edl, char **line, t_hist *hist)
-{	
+{
 	if (ft_strcmp(*line, "\0") != 0)
 	{
 		hist->list = add_history(*line, hist);
@@ -32,34 +36,41 @@ void	loop_enter(t_edl *edl, char **line, t_hist *hist)
 	hist->h_current = 0;
 }
 
-void	read_line()
+int		printable(unsigned long key)
+{
+	if (key == TABU || key == CTRLD || (key > 31 && key < 128
+		&& key != DOWN_FN && key != UP_FN && key != LEFT && key != RIGHT
+		&& key != HOME && key != END && key != UP && key != DOWN
+		&& key != LINE_UP && key != LINE_DOWN && key != COPY && key != PASTE
+		&& key != CUT && key != SELECT))
+		return (0);
+	return (1);
+}
+
+void	read_line(void)
 {
 	unsigned long	key;
-	t_data		*data;
+	t_data			*data;
 
 	data = get_data();
-
 	init_term(data);
 	setup_edl(&data->edl);
 	signal_list();
 	display_prompt(data->prompt);
-	while (key = 0, (read(STDIN_FILENO, &key, 10)) != 0)
+	key = 0;
+	while ((read(STDIN_FILENO, &key, 10)) != 0)
 	{
 		if (key == ENTER)
 		{
 			loop_enter(&data->edl, &data->edl.line, &data->hist);
 			break ;
 		}
-		else if (key == TABU || key == CTRLD || (key > 31 && key < 128
-				&& key != DOWN_FN && key != UP_FN 
-				&& key != LEFT && key != RIGHT && key != HOME
-				&& key != END && key != UP && key !=DOWN
-				&& key != LINE_UP && key != LINE_DOWN && key != COPY
-				&& key != PASTE && key != CUT && key != SELECT))
+		else if (printable(key) == 0)
 			print_line(&data->edl, &data->edl.line, key);
 		else
-			data->edl.line = ft_termcaps(&data->edl, data->edl.line, key, &data->hist);
+			data->edl.line = ft_termcaps(&data->edl, data->edl.line, key,
+					&data->hist);
+		key = 0;
 	}
 	reset_term(data);
 }
-

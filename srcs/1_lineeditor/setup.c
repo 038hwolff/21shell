@@ -6,15 +6,28 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 19:45:59 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/17 21:44:37 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 09:23:38 by pespalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int	len_line(t_edl *edl)
+int		prompt_len(void)
 {
-	int	i;
+	int		i;
+	t_data	*data;
+
+	data = get_data();
+	if (data->prompt_len)
+		i = data->prompt_len;
+	else
+		i = 2;
+	return (i);
+}
+
+int		len_line(t_edl *edl)
+{
+	int		i;
 	t_data	*data;
 
 	data = get_data();
@@ -36,7 +49,7 @@ t_hist	*setup_hist(t_hist *hist)
 
 t_edl	*setup_edl(t_edl *edl)
 {
-	struct winsize ws;
+	struct winsize	ws;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
 	if (edl->line)

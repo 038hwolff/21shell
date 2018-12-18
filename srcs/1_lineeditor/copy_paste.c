@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   copy_paste.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/18 08:49:43 by pespalie          #+#    #+#             */
+/*   Updated: 2018/12/18 08:51:10 by pespalie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 /*
 ** COPY = alt + c
 */
 
-void		copy_high(t_edl *edl, t_hist *hist, char *line)
+void	copy_high(t_edl *edl, t_hist *hist, char *line)
 {
 	size_t	i;
 	int		j;
@@ -25,9 +37,9 @@ void		copy_high(t_edl *edl, t_hist *hist, char *line)
 	hist->copy[++j] = '\0';
 }
 
-void		clear_line(t_edl *edl, char *n_line)
+void	clear_line(t_edl *edl, char *n_line)
 {
-	int	i;
+	int		i;
 	t_data	*data;
 
 	i = -1;
@@ -43,17 +55,18 @@ void		clear_line(t_edl *edl, char *n_line)
 	ft_putstr_fd(n_line, 1);
 }
 
-char		*create_newline(t_edl *edl, char *line, t_hist *hist)
+char	*create_newline(t_edl *edl, char *line, t_hist *hist)
 {
-	int	i;
-	int	j;
-	int	l;
+	int		i;
+	int		j;
+	int		l;
 	char	*new_line;
 
 	i = -1;
 	j = -1;
 	l = -1;
-	try_m(new_line = (char *)ft_memalloc(ft_strlen(line) + ft_strlen(hist->copy) + 1));
+	try_m(new_line = (char *)ft_memalloc(ft_strlen(line)
+				+ ft_strlen(hist->copy) + 1));
 	while (++i < edl->index)
 		new_line[i] = line[++l];
 	while (hist->copy[++j])
@@ -71,9 +84,9 @@ char		*create_newline(t_edl *edl, char *line, t_hist *hist)
 ** PASTE = alt + p
 */
 
-char		*paste_char(t_edl *edl, t_hist *hist, char *line)
+char	*paste_char(t_edl *edl, t_hist *hist, char *line)
 {
-	char		*new_line;
+	char	*new_line;
 	int		i;
 
 	new_line = NULL;
