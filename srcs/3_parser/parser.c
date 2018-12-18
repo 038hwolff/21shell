@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 23:15:23 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 08:43:16 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int		check_heredocs(t_data *data)
 	{
 		if (token->type == DOUBLELESS && token->next)
 		{
-
 			if ((car = has_quotes_or_backslash(token->next->val)))
 			{
 				remove_quotes_and_backslash(&token->next->val);
@@ -91,10 +90,7 @@ int		check_heredocs(t_data *data)
 			if (!get_heredoc_lines(data, token, car))
 				return (0);
 			if (!car)
-			{
 				exp_vars(&token->heredoc, data, 1);
-				//pop_backslash_in_heredoc(&token->heredoc);
-			}
 		}
 		token = token->next;
 	}

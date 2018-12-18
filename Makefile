@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/12/18 08:34:44 by hwolff            #+#    #+#              #
+#    Updated: 2018/12/18 09:04:15 by hwolff           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME			=	21sh
 
 COMP			=	clang
@@ -6,7 +18,7 @@ FLAGDEGUG		=	$(FLAG) -fsanitize=address
 
 # Files names
 SHELL_N			=	shell.c free.c data.c init.c putchar.c \
-					signals.c term.c var.c exception.c exit.c reset.c \
+					signals.c term.c exception.c exit.c reset.c \
 					exception2.c
 EDITLINE_N		=	read_line.c mouve.c term.c \
 					history.c setup.c ft_enter.c signal.c print_line.c \
@@ -17,7 +29,7 @@ PARSER_N		=	parser.c command_completion.c completion_checkers.c \
 					helper.c heredoc.c heredoc_getter.c operators.c \
 					pop_char.c special_prompt.c tokendel.c
 ASTBUILDER_N	=	build_ast.c print_ast.c
-EXECUTOR_N		=	executor.c arithmetics.c fd_agregator.c \
+EXECUTOR_N		=	executor.c fd_agregator.c \
 					pipes.c redirections.c exec_cmd_line.c semicolon.c \
 					local_variable.c operator.c tools.c env_get.c \
 					exp_goto_next_quote.c exp_tilde.c exp_vars_assign.c \

@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/17 18:43:25 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 08:39:54 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 /*
 ** interception de signaux pour ne rien faire
 */
-
-void	init_sig(void)
-{
-	int	i;
-
-	i = 1;
-	//while (i < 32)
-	//	signal(i++, SIG_IGN);
-	//signal(SIGTERM, SIG_DFL);
-	//signal(SIGINT, SIG_DFL);
-}
 
 int		check_if_sigint(t_data *data, char **line)
 {

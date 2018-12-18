@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   executor.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/18 08:51:07 by hwolff            #+#    #+#             */
+/*   Updated: 2018/12/18 08:55:29 by hwolff           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "shell.h"
 
-char			**get_path(char **env, char **arg)
+char		**get_path(char **env, char **arg)
 {
 	char	**path;
 	int		i;
@@ -34,7 +45,6 @@ int			ex_exec_core(char **env, char **table, char **paths)
 	int		q;
 
 	i = 0;
-//	signal(SIGINT, SIG_DFL);
 	while (paths[i])
 	{
 		if (access(paths[i], X_OK) == 0)
@@ -73,25 +83,10 @@ int			exec_noast(char **env, char **table)
 		ft_putchar('\n');
 		return (WIFEXITED(status));
 	}
-	// signal(SIGINT, handle_signal);
-	//childpid = 0;
 	return (WIFEXITED(status) ? WEXITSTATUS(status) : -1);
 }
 
-int				ex_exec(char **env, char **arg)
+int			ex_exec(char **env, char **arg)
 {
-	//int		i;
-
-	// if(SHPRINT)
-	// {
-	// 	i = 0;
-	// 	ft_printf("exec :");
-	// 	while (arg[i])
-	// 	{
-	// 		ft_printf(" %s", arg[i]);
-	// 		++i;
-	// 	}
-	// 	ft_printf("\n");
-	// }
 	return (exec_noast(env, arg));
 }

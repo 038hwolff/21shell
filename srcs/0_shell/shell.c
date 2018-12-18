@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   shell.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/18 08:38:24 by hwolff            #+#    #+#             */
+/*   Updated: 2018/12/18 08:39:29 by hwolff           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "shell.h"
 
@@ -37,7 +47,6 @@ void		command_line_loop(void)
 	while (!data->shell_exit)
 	{
 		read_line();
-		
 		lexical_analysis(&data->token, data->edl.line);
 		SHPRINT && print_lex(data->token, "LEXER");
 		if (parser(data))

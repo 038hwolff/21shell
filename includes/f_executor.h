@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:27:53 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 08:25:22 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 09:01:37 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 */
 
 int					exec_redirect(t_data *data, t_ast *ast, int rafter);
+int					exec_redirect2(t_data *data, t_ast *ast);
 int					exec_back_redirect(t_data *data, t_ast *ast);
 int					and_or(t_data *data, t_ast *ast);
 
