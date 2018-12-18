@@ -1,9 +1,4 @@
 POINTS D'ATTENTION AVANT PUSH
-- 3 fonctions trop longues (exec_cmd_line, add_node, complete_command_quote)
-- Norme srcs/line_editor
-- virer visualisateur lexeur/parser/execution
-- leaks de split / get_path/ noast
-
 
 TODO 42 JANVIER
 - unset/export/var loc
