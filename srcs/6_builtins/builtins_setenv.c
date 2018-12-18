@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_setenv.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:53:49 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/17 18:53:50 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 15:03:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	**check_key(char **ret, int i, char *key, char *value)
 	char	*tmp;
 
 	try_m((tmp = ft_strjoin(key, value)));
-	free(ret[i]);
+	ft_strdel(&ret[i]);
 	ret[i] = tmp;
 	return (ret);
 }

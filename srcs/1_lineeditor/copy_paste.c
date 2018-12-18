@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_paste.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:49:43 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 08:51:10 by pespalie         ###   ########.fr       */
+/*   Updated: 2018/12/18 14:57:47 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,6 @@ char	*paste_char(t_edl *edl, t_hist *hist, char *line)
 	else
 		edl->multiline = ((int)ft_strlen(new_line) + 2) / edl->col;
 	try_m(edl->light = (int *)ft_memalloc(ft_strlen(new_line) * sizeof(int)));
-	free(line);
+	ft_strdel(&line);
 	return (new_line);
 }

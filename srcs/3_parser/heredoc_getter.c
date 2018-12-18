@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_getter.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 08:44:16 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 15:00:33 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ static int
 			return (0);
 		tmp1 = *line;
 		try_m((*line = ft_strjoin(tmp1, tmp2)));
-		free(tmp1);
-		free(tmp2);
+		ft_strdel(&tmp1);
+		ft_strdel(&tmp2);
 	}
 	return (1);
 }

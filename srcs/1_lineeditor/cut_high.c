@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cut_high.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:51:35 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 08:52:01 by pespalie         ###   ########.fr       */
+/*   Updated: 2018/12/18 14:57:59 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ char	*cut_high(t_edl *edl, t_hist *hist, char *line)
 	c = (int)ft_strlen(new_line);
 	while (--c >= edl->index)
 		ft_putstr_fd(tgetstr("le", NULL), 1);
-	free(line);
+	ft_strdel(&line);
 	return (new_line);
 }

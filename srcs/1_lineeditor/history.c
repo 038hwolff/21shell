@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:55:14 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 13:28:54 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 15:04:46 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	history_dmove(t_edl *edl, char **line, t_hist *hist)
 	ft_putstr_fd(tgetstr("ce", NULL), 1);
 	ft_putstr_fd(hist->list[j], 1);
 	hist->h_current = j;
-	free(*line);
+	ft_strdel(line);
 	try_m(*line = ft_strdup(hist->list[j]));
 	edl->index = ft_strlen(*line);
 	edl->multiline = edl->index / edl->col;
@@ -60,7 +60,7 @@ void	history_umove(t_edl *edl, char **line, t_hist *hist)
 	ft_putstr_fd(tgetstr("ce", NULL), 1);
 	ft_putstr_fd(hist->list[j], 1);
 	hist->h_current = j;
-	free(*line);
+	ft_strdel(line);
 	try_m(*line = ft_strdup(hist->list[j]));
 	edl->index = ft_strlen(*line);
 	edl->multiline = edl->index / edl->col;
@@ -73,7 +73,7 @@ char	**free_cases(char **value)
 	i = 0;
 	while (value[i])
 	{
-		free(value[i]);
+		ft_strdel(&value[i]);
 		value[i] = NULL;
 		i++;
 	}

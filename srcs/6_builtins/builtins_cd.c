@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_cd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:29:51 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/16 13:14:00 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 15:01:50 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int		change_dir(char *path, char **arg, char **cdenv)
 		getcwd(buff, 1024);
 		arg[1] = ft_strjoin("PWD=", buff);
 		arg[2] = ft_strjoin("OLDPWD=", cdenv[2]);
-		free(buff);
+		ft_strdel(&buff);
 		if (!arg[1] || !arg[2])
 			return (0);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   supp_char.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:24:15 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 09:24:24 by pespalie         ###   ########.fr       */
+/*   Updated: 2018/12/18 15:00:21 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ char	*supp_char(char *line, int *index)
 	ret[i] = '\0';
 	(*index)--;
 	if (*line || line)
-		free(line);
+		ft_strdel(&line);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:51:07 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 13:40:42 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 15:01:03 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char		**get_path(char **env, char **arg)
 			tmp = path[i];
 			if (!(path[i] = tristrjoin(path[i], "/", arg[0])))
 				return (NULL);
-			free(tmp);
+			ft_strdel(&tmp);
 		}
 	}
 	return (path ? path : ft_tabdup(&arg[0], 0));

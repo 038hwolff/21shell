@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 14:51:12 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 15:00:12 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*insert_end(char *line, char *value, t_edl *edl)
 		ft_memdel((void **)&edl->light);
 	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(ret) * sizeof(int)));
 	if (*line || line)
-		free(line);
+		ft_strdel(&line);
 	edl->c_light = 0;
 	return (ret);
 }
@@ -71,7 +71,7 @@ char	*insert_char(char *line, unsigned long key, int *index, t_edl *edl)
 	try_m(edl->light = (int *)ft_memalloc(((int)ft_strlen(ret)) * sizeof(int)));
 	edl->c_light = 0;
 	if (*line || line)
-		free(line);
+		ft_strdel(&line);
 	return (ret);
 }
 
