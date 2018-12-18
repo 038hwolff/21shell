@@ -57,6 +57,18 @@ void	line_moves(t_edl *edl, char *line, unsigned long key)
 ** PASTE = fn + p
 */
 
+void	term_moves(unsigned long key, t_edl *edl, size_t len, char *line)
+{
+	if (key == LEFT || key == RIGHT || key == HOME || key == END)
+		left_or_right(edl, key, len);
+	if (key == UP_FN)
+		prev_word(edl, line);
+	if (key == DOWN_FN)
+		next_word(edl, line, len);
+	if (key == LINE_UP || key == LINE_DOWN)
+		line_moves(edl, line, key);
+}
+
 char	*ft_termcaps(t_edl *edl, char *line, unsigned long key, t_hist *hist)
 {
 	size_t		len;
@@ -69,16 +81,9 @@ char	*ft_termcaps(t_edl *edl, char *line, unsigned long key, t_hist *hist)
 		history_umove(edl, &line, hist);
 	if (key == DOWN)
 		history_dmove(edl, &line, hist);
-	if (key == LEFT || key == RIGHT || key == HOME || key == END)
-		left_or_right(edl, key, len);
-	if (key == UP_FN)
-		prev_word(edl, line);
-	if (key == DOWN_FN)
-		next_word(edl, line, len);
-	if (key == LINE_UP || key == LINE_DOWN)
-		line_moves(edl, line, key);
+	term_moves(key, edl, len, line);
 	if (key == SELECT && ft_strcmp(line, "\0") != 0)
-		select_mode(edl, key);
+		select_mode(edl, key, line);
 	if (key == COPY && ft_strcmp(line, "\0"))
 		copy_high(edl, hist, line);
 	if (key == CUT && ft_strcmp(line, "\0"))

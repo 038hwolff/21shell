@@ -58,17 +58,17 @@ void	command_line_loop(void)
 		{
 			lexical_analysis(&data->token, data->edl.line);
 			// print le lex
-			SHPRINT && print_lex(data->token, "LEXER");
+		//	SHPRINT && print_lex(data->token, "LEXER");
 			//data->shell_exit = 1;
 			if (parser(data))
 			{
-				SHPRINT && print_lex(data->token, "PARSER");
+		//		SHPRINT && print_lex(data->token, "PARSER");
 				//ft_printf("%s\n", data->cmd_line);	*/
 				build_ast(data);
-				SHPRINT && print_ast(data->ast);
-				SHPRINT && ft_printf("\n--- EXECUTION ---\n");
+		//		SHPRINT && print_ast(data->ast);
+		//		SHPRINT && ft_printf("\n--- EXECUTION ---\n");
 				exec_cmd_line(data, data->ast);
-				SHPRINT && ft_printf("\n----------------\n");
+		//		SHPRINT && ft_printf("\n----------------\n");
 			}
 		}
 		data->token = NULL;  // FAUT FREE EN FAIT, A FAIRE PLUS TARD

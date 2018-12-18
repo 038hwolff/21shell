@@ -19,6 +19,7 @@ void	signal_handler(int signall)
 	data = get_data();
 	if (signall == SIGINT)
 	{
+		data->sigint = 1;
 		ft_putchar_fd('\n', 1);
 		display_prompt(data->prompt);
 		free(data->edl.line);
