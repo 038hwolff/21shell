@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 19:47:44 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/17 18:55:53 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 09:31:38 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	read_line()
 
 	init_term(data);
 	setup_edl(&data->edl);
+	signal_list();
 	display_prompt(data->prompt);
 	while (key = 0, (read(STDIN_FILENO, &key, 10)) != 0)
 	{
