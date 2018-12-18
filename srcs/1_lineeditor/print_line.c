@@ -6,7 +6,7 @@
 /*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:05:18 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 11:41:31 by pespalie         ###   ########.fr       */
+/*   Updated: 2018/12/18 11:42:37 by pespalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,9 @@ char	*insert_end(char *line, char *value, t_edl *edl)
 	char	*ret;
 
 	try_m(ret = ft_strjoin(line, value));
-<<<<<<< HEAD
 	if (edl->light)
 		ft_memdel((void **)&edl->light);
 	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(ret) * sizeof(int)));
-=======
-	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(line) * sizeof(int)));
->>>>>>> d5137bcfa4082027c84fb3d82e2170e7285eb610
 	if (*line || lne)
 		free(line);
 	edl->c_light = 0;
