@@ -6,7 +6,11 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:05:18 by pespalie          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/12/18 10:56:30 by hwolff           ###   ########.fr       */
+=======
+/*   Updated: 2018/12/18 11:41:31 by pespalie         ###   ########.fr       */
+>>>>>>> a5ce89813489e66478e7716f1427bd2d201f0418
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +21,19 @@ char	*insert_end(char *line, char *value, t_edl *edl)
 	char	*ret;
 	
 	try_m(ret = ft_strjoin(line, value));
+<<<<<<< HEAD
 	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(ret) * sizeof(int) + 1));
 	if (*line || line)
+=======
+<<<<<<< HEAD
+	if (edl->light)
+		ft_memdel((void **)&edl->light);
+	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(ret) * sizeof(int)));
+=======
+	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(line) * sizeof(int)));
+>>>>>>> d5137bcfa4082027c84fb3d82e2170e7285eb610
+	if (*line || lne)
+>>>>>>> a5ce89813489e66478e7716f1427bd2d201f0418
 		free(line);
 	edl->c_light = 0;
 	return (ret);
@@ -64,7 +79,13 @@ char	*insert_char(char *line, unsigned long key, int *index, t_edl *edl)
 		return (insert_end(line, value, edl));
 	ret = NULL;
 	ret = create_ret(index, value, len, line);
+<<<<<<< HEAD
 	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(ret) * sizeof(int) + 1));
+=======
+	if (edl->light)
+		ft_memdel((void **)&edl->light);
+	try_m(edl->light = (int *)ft_memalloc(((int)ft_strlen(ret)) * sizeof(int)));
+>>>>>>> a5ce89813489e66478e7716f1427bd2d201f0418
 	edl->c_light = 0;
 	if (*line || line)
 		free(line);
