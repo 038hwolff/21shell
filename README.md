@@ -1,8 +1,12 @@
 POINTS D'ATTENTION AVANT PUSH
-- srcs/0_shell/var.c --> on garde ou on vire?
-- signal.c : fonction init_sig on garde?
-- divers C++ coments
-- ast -> fonction add_node a 27 lignes
+- 3 fonctions trop longues (exec_cmd_line, add_node, complete_command_quote)
+- Norme srcs/line_editor
+- base64 /dev/urandom | head -c 1000 | grep 42 | wc -l | sed -e s/1/Yes/g -e s/0/No/g --> incorrect checksum for freed object apres 19 fois
+- Setenv --> meme erreur de free (incorrect checksum for freed object - object was probably modified after being freed.) (pas reproduit)
+- exit --> brancher le builtins!
+- virer visualisateur lexeur/parser/execution
+- CTRL C ignoré
+
 
 TODO 42 JANVIER
 - unset/export/var loc
