@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 15:43:19 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 16:33:33 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ char	*insert_end(char *line, char *value, t_edl *edl)
 	if (*line || line)
 		ft_strdel(&line);
 	edl->c_light = 0;
-	//ft_strdel(&value);
 	return (ret);
 }
 
@@ -33,16 +32,21 @@ char	*create_ret(int *index, char *value, size_t len, char *line)
 	int		i;
 
 	ret = NULL;
-	try_m(ret = ft_strnew(len));
-	i = -1;
-	while (++i < *index)
+	try_m(ret = (char *)ft_memalloc(sizeof(char) * (len + 1)));
+	i = 0;
+	while (i < *index)
+	{
 		ret[i] = line[i];
+		++i;
+	}
 	if (ft_strlen(value) == 1)
-		ret[i] = value[0];
-	while (++i <= (int)len)
+		ret[i++] = value[0];
+	while (i < (int)len)
+	{
 		ret[i] = line[i - ft_strlen(value)];
+		++i;
+	}
 	ret[i] = '\0';
-	//ft_strdel(&value);
 	return (ret);
 }
 
@@ -54,21 +58,20 @@ char	*insert_char(char *line, unsigned long key, int *index, t_edl *edl)
 {
 	size_t	len;
 	char	*ret;
-	unsigned char	*value;
+	char	*value;
 	int		i;
 
 	value = NULL;
-	value = (unsigned char *)&key;
-	//try_m(value = ft_strsub(&key, 0, 1));
+	value = (char *)&key;
 	len = ft_strlen(line);
 	i = -1;
-	if (*index == (int)len && ft_strlen((char *)value) >= 1)
-		*index = *index + ft_strlen((char *)value) - 1;
-	len = ft_strlen(line) + ft_strlen((char *)value) - 1;
+	if (*index == (int)len && ft_strlen(value) >= 1)
+		*index = *index + ft_strlen(value) - 1;
+	len = ft_strlen(line) + ft_strlen(value);
 	if (*index == (int)len)
-		return (insert_end(line, (char *)value, edl));
+		return (insert_end(line, value, edl));
 	ret = NULL;
-	ret = create_ret(index, (char *)value, len, line);
+	ret = create_ret(index, value, len, line);
 	if (edl->light)
 		ft_memdel((void **)&edl->light);
 	try_m(edl->light = (int *)ft_memalloc(((int)ft_strlen(ret)) * sizeof(int)));
