@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 13:38:08 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 14:51:12 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*insert_end(char *line, char *value, t_edl *edl)
 {
 	char	*ret;
-	
+
 	try_m(ret = ft_strjoin(line, value));
 	if (edl->light)
 		ft_memdel((void **)&edl->light);
