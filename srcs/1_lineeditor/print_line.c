@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 11:44:55 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 11:45:46 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,9 @@ char	*insert_char(char *line, unsigned long key, int *index, t_edl *edl)
 		return (insert_end(line, value, edl));
 	ret = NULL;
 	ret = create_ret(index, value, len, line);
-<<<<<<< HEAD
-	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(ret) * sizeof(int) + 1));
-=======
 	if (edl->light)
 		ft_memdel((void **)&edl->light);
 	try_m(edl->light = (int *)ft_memalloc(((int)ft_strlen(ret)) * sizeof(int)));
->>>>>>> a5ce89813489e66478e7716f1427bd2d201f0418
 	edl->c_light = 0;
 	if (*line || line)
 		free(line);
