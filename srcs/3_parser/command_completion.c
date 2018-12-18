@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   command_completion.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 09:10:26 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 14:41:04 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-int		check_cancel(t_data *data, char **line)
-{
-	if (check_if_sigint(data, line))
-		return (1);
-	if (check_eof(data))
-	{
-		eof_exception();
-		ft_strdel(line);
-		return (1);
-	}
-	return (0);
-}
 
 void	complete_command_backslash(t_token *token, char **line)
 {
@@ -46,6 +33,26 @@ void	complete_command_backslash(t_token *token, char **line)
 	}
 }
 
+static	int get_next_word_len(char *line, char quotetype)
+{
+	int len;
+
+	len = 0;
+	while (line[len])
+	{
+		if (line[len] == '\\' && quotetype == '"')
+			++len && line[len] && ++len;
+		else if (line[len] == quotetype)
+		{
+			++len;
+			break ;
+		}
+		else
+			++len;
+	}
+	return (len);
+}
+
 void	complete_command_quote(t_token *token, char **line, char quotetype)
 {
 	int			len;
@@ -55,19 +62,7 @@ void	complete_command_quote(t_token *token, char **line, char quotetype)
 
 	if (!token || !line || !*line)
 		return ;
-	len = 0;
-	while ((*line)[len])
-	{
-		if ((*line)[len] == '\\' && quotetype == '"')
-			++len && (*line)[len] && ++len;
-		else if ((*line)[len] == quotetype)
-		{
-			++len;
-			break ;
-		}
-		else
-			++len;
-	}
+	len = get_next_word_len(*line, quotetype);
 	append_token_value(token, len, line);
 	try_m((dupline = ft_strdup(*line)));
 	dupline2 = dupline;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_ast.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:46:19 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 09:10:03 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 14:24:41 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ static void
 	t_token *chosen;
 	int		type;
 
-	expansion(data, token);
-	chosen_prev = NULL;
 	if (!token)
 		return ;
+	expansion(data, token);
+	chosen_prev = NULL;
 	chosen = get_primary_prev_token(&chosen_prev, token);
 	if (chosen_prev)
 		chosen_prev->next = NULL;
@@ -95,10 +95,8 @@ static void
 			token = chosen->next;
 		chosen->next = NULL;
 	}
-	if (token)
-		add_node(data, &(*ast)->left, token);
-	if (chosen->next)
-		add_node(data, &(*ast)->right, chosen->next);
+	add_node(data, &(*ast)->left, token);
+	add_node(data, &(*ast)->right, chosen->next);
 }
 
 void

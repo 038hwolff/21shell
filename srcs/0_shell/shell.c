@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:38:24 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 08:39:29 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 14:49:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ void		command_line_loop(void)
 	{
 		read_line();
 		lexical_analysis(&data->token, data->edl.line);
-		SHPRINT && print_lex(data->token, "LEXER");
+		data->dev && print_lex(data->token, "LEXER");
 		if (parser(data))
 		{
-			SHPRINT && print_lex(data->token, "PARSER");
+			data->dev && print_lex(data->token, "PARSER");
 			build_ast(data);
-			SHPRINT && print_ast(data->ast);
-			SHPRINT && ft_printf("\n--- EXECUTION ---\n");
+			data->dev && print_ast(data->ast);
+			data->dev && ft_printf("\n--- EXECUTION ---\n");
 			exec_cmd_line(data, data->ast);
-			SHPRINT && ft_printf("-----------------\n");
+			data->dev && ft_printf("-----------------\n");
 		}
 		reset_command(data);
 	}
@@ -66,7 +66,7 @@ int			main(int ac, char **av, char **env)
 {
 	if (ac && av && env)
 	{
-		init_shell(env);
+		init_shell(env, (ac > 1 && ft_strequ(av[1], "-dev")));
 		command_line_loop();
 	}
 	return (EXIT_SUCCESS);

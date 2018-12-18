@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   a_shell.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 08:40:16 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 14:47:28 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int					check_if_arithmetics(char *data);
 ** init.c
 */
 
-void				init_shell(char **env);
+void				init_shell(char **env, int debug);
 /*
 ** term.c
 */

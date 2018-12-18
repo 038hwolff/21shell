@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:51:07 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 11:55:44 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 13:40:42 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			ex_exec_core(char **env, char **table, char **paths)
 	exit(1);
 }
 
-int			exec_noast(char **env, char **table)
+int			ex_exec(char **env, char **table)
 {
 	int		status;
 	char	**paths;
@@ -85,9 +85,4 @@ int			exec_noast(char **env, char **table)
 		return (WIFEXITED(status));
 	}
 	return (WIFEXITED(status) ? WEXITSTATUS(status) : -1);
-}
-
-int			ex_exec(char **env, char **arg)
-{
-	return (exec_noast(env, arg));
 }
