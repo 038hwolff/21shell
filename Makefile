@@ -6,7 +6,7 @@
 #    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 08:34:44 by hwolff            #+#    #+#              #
-#    Updated: 2018/12/18 09:04:15 by hwolff           ###   ########.fr        #
+#    Updated: 2018/12/18 13:40:26 by hwolff           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ PARSER_N		=	parser.c command_completion.c completion_checkers.c \
 ASTBUILDER_N	=	build_ast.c print_ast.c
 EXECUTOR_N		=	executor.c fd_agregator.c \
 					pipes.c redirections.c exec_cmd_line.c semicolon.c \
-					local_variable.c operator.c tools.c env_get.c \
+					operator.c tools.c env_get.c \
 					exp_goto_next_quote.c exp_tilde.c exp_vars_assign.c \
 					exp_vars_get.c exp_vars_substitute.c exp_vars.c \
 					expansion.c env_set.c heredoc.c exp_quotes.c
