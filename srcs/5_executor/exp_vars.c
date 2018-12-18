@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exp_vars.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/18 08:49:10 by hwolff            #+#    #+#             */
+/*   Updated: 2018/12/18 08:52:42 by hwolff           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 static char		*exp_vars_pos(char *str, int heredoc)
@@ -52,7 +64,7 @@ static char		*exp_get_key(char *s)
 	return (ft_strsub(s, 0, end - s));
 }
 
-int				exp_vars_exec(char *pos, int *i, char **str, t_data *data)
+int				exp_vars_exec(char *pos, int *i, char **s, t_data *data)
 {
 	int		ret;
 	int		lkey;
@@ -61,12 +73,12 @@ int				exp_vars_exec(char *pos, int *i, char **str, t_data *data)
 
 	ret = 0;
 	*pos = 0;
-	if ((key = exp_get_key(&(*str)[*i])))
+	if ((key = exp_get_key(&(*s)[*i])))
 	{
 		lkey = ft_strlen(key);
 		if ((val = exp_vars_get(key, data)))
 		{
-			(*str) = ft_3strjoinfree((*str), val, &(*str)[*i + lkey], FREE_LEFT);
+			(*s) = ft_3strjoinfree((*s), val, &(*s)[*i + lkey], FREE_LEFT);
 			ret = ft_strlen(val) - 1;
 			ft_strdel(&val);
 		}

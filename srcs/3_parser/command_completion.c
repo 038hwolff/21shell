@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_completion.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 22:32:03 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 09:10:26 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	complete_command_backslash(t_token *token, char **line)
 {
 	char		*dupline;
 	char		*dupline2;
-	t_token     *nexttok;
+	t_token		*nexttok;
 
 	if (!token || !line || !*line)
 		return ;
@@ -51,14 +51,13 @@ void	complete_command_quote(t_token *token, char **line, char quotetype)
 	int			len;
 	char		*dupline;
 	char		*dupline2;
-	t_token     *nexttok;
+	t_token		*nexttok;
 
 	if (!token || !line || !*line)
 		return ;
 	len = 0;
 	while ((*line)[len])
 	{
-
 		if ((*line)[len] == '\\' && quotetype == '"')
 			++len && (*line)[len] && ++len;
 		else if ((*line)[len] == quotetype)
@@ -84,7 +83,6 @@ void	complete_command_quote(t_token *token, char **line, char quotetype)
 
 void	complete_tokens(t_token *token, int incomp_type, char **line)
 {
-	
 	token = get_last_token(token);
 	if (incomp_type == INC_QUOTE)
 		complete_command_quote(token, line, '\'');

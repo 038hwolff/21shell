@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:36:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 20:38:50 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 08:43:49 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-// besoin de verifier newline ???
-// tester sans
 
 t_token		*get_next_relevant_token(t_token *token)
 {

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fd_agregator.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/18 08:48:02 by hwolff            #+#    #+#             */
+/*   Updated: 2018/12/18 08:48:03 by hwolff           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 /*
@@ -9,26 +21,6 @@
 ** >& : est egal a 2>&1, mais ne fonctionne que sur csh ou tcsh
 ** 1>&2
 */
-
-// static int		exec_rederr_err(t_data *data)
-// {
-// 	(void)data;
-// 	return (0);
-// }
-
-// static int		exec_rederr_std(t_data *data, char *operator)
-// {
-// 	(void)data;
-// 	if (ft_strequ(operator, "2>&-") == 1)
-// 	{
-// 		return (1);
-// 	}
-// 	else if (ft_strequ(operator, "2>&1") == 1 || ft_strequ(operator, ">&") == 1)
-// 	{
-// 		return (1);
-// 	}
-// 	return (0);
-// }
 
 static int		check_fd(int fd)
 {
@@ -67,5 +59,3 @@ int				main_agregator(t_data *data, t_ast *ast)
 	close(dfd);
 	return (ret);
 }
-
-

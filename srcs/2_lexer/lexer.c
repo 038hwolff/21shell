@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/18 08:42:02 by hwolff            #+#    #+#             */
+/*   Updated: 2018/12/18 08:42:24 by hwolff           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "shell.h"
 
@@ -33,10 +44,7 @@ t_token
 	token = NULL;
 	while (!(delim_token = get_delimitor_token(line))
 		&& **line && !is_space_or_tab(**line))
-	{
-		//**line == '=' && (assign = 1);
 		len += crawl_word(line);
-	}
 	if (len)
 		token = token_new(ft_strsub(begin, 0, len), len,
 			(assign ? ASSIGNEMENT_WORD : WORD), delim_token);

@@ -6,7 +6,7 @@
 /*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:57:00 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/17 18:57:54 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 08:47:13 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static void
 
 	dup2(fildes[0], 0);
 	close(fildes[1]);
-	//signal(SIGINT, SIG_IGN);
-	//signal(SIGTSTP, SIG_IGN);
 	ret = exec_cmd_line(data, ast->right);
 	dup2(std, 0);
 	close(std);

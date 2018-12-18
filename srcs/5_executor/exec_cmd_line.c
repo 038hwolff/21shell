@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_cmd_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/18 08:54:08 by hwolff            #+#    #+#             */
+/*   Updated: 2018/12/18 09:10:01 by hwolff           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 /*
@@ -22,8 +34,6 @@ int		exec_cmd_line(t_data *data, t_ast *ast)
 	if (ast->token->type == WORD && (table = token_to_tab(ast))
 		&& !is_builtins(data, table))
 		ret = ex_exec(data->env, table);
-	//if (ast->token->type == ASSIGNEMENT_WORD)
-	//	ret = set_local_var(data, ast);
 	else if (ast->token->type == GREAT || ast->token->type == DOUBLEGREAT)
 		ret = exec_redirect(data, ast, ast->token->type);
 	else if (ast->token->type == LESS)

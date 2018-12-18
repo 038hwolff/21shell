@@ -1,8 +1,13 @@
 POINTS D'ATTENTION AVANT PUSH
-- srcs/0_shell/var.c --> on garde ou on vire?
-- signal.c : fonction init_sig on garde?
-- divers C++ coments
-- ast -> fonction add_node a 27 lignes
+- 3 fonctions trop longues (exec_cmd_line, add_node, complete_command_quote)
+- Norme srcs/line_editor
+- base64 /dev/urandom | head -c 1000 | grep 42 | wc -l | sed -e s/1/Yes/g -e s/0/No/g --> incorrect checksum for freed object apres 19 fois
+- Setenv --> meme erreur de free (incorrect checksum for freed object - object was probably modified after being freed.) (pas reproduit)
+- exit --> brancher le builtins!
+- virer visualisateur lexeur/parser/execution
+- << n'affiche plus le prompt heredoc et le mot de fin ne fait pas sortir du read et un CTRL C pete l'edition de ligne + erreur de free
+- cat + taper une ligne + CTRLD reaffiche la ligne mais a la suite, devrait retourner a la ligne
+
 
 TODO 42 JANVIER
 - unset/export/var loc

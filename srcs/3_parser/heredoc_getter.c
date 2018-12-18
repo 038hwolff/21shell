@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_getter.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 23:22:14 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 08:44:16 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,12 @@ static int
 	char	*tmp1;
 	char	*tmp2;
 
-
 	while ((*len = ft_strlen(*line)) > 1
 			&& (*line)[*len - 2] == '\\')
 	{
 		data->incomp_type = INC_BKSLASH;
 		set_special_prompt(data);
 		*len = pop_backslashed_nl(line);
-
 		try_m((tmp1 = ft_strdup(data->edl.line)));
 		read_line();
 		try_m((tmp2 = ft_strdup(data->edl.line)));
