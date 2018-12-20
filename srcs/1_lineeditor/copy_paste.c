@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_paste.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:49:43 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 14:57:47 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 20:49:19 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	copy_high(t_edl *edl, t_hist *hist, char *line)
 	while (++i < len)
 		if (edl->light[i] == 1)
 			j++;
+	if (hist->copy)
+		ft_strdel(&hist->copy);
 	try_m(hist->copy = (char *)ft_memalloc(j * sizeof(char) + 1));
 	j = -1;
 	i = -1;
@@ -62,20 +64,16 @@ char	*create_newline(t_edl *edl, char *line, t_hist *hist)
 	int		l;
 	char	*new_line;
 
-	i = -1;
-	j = -1;
-	l = -1;
-	try_m(new_line = (char *)ft_memalloc(ft_strlen(line)
-				+ ft_strlen(hist->copy) + 1));
-	while (++i < edl->index)
-		new_line[i] = line[++l];
-	while (hist->copy[++j])
-	{
-		new_line[i++] = hist->copy[j];
-		edl->index++;
-	}
-	while (line[++l])
-		new_line[i++] = line[l];
+	i = 0;
+	j = 0;
+	l = 0;
+	try_m(new_line = ft_strnew(ft_strlen(line) + ft_strlen(hist->copy)));
+	while (i < edl->index)
+		new_line[i++] = line[l++];
+	while (hist->copy[j])
+		(new_line[i++] = hist->copy[j++]) && edl->index++;
+	while (line[l])
+		new_line[i++] = line[l++];
 	new_line[i] = '\0';
 	return (new_line);
 }
@@ -100,7 +98,10 @@ char	*paste_char(t_edl *edl, t_hist *hist, char *line)
 		edl->multiline = (edl->index + 2) / edl->col;
 	else
 		edl->multiline = ((int)ft_strlen(new_line) + 2) / edl->col;
-	try_m(edl->light = (int *)ft_memalloc(ft_strlen(new_line) * sizeof(int)));
+	if (edl->light)
+		ft_memdel((void**)&edl->light);
+	try_m(edl->light = (int *)ft_memalloc((ft_strlen(new_line) + 1)
+		* sizeof(int)));
 	ft_strdel(&line);
 	return (new_line);
 }

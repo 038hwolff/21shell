@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 18:50:59 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/18 18:39:39 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ int		expand_dquote(char **line, int cur)
 			|| (*line)[cur + 1] == '"' || (*line)[cur + 1] == '\\'
 			|| (*line)[cur + 1] == '\n'))
 			cur = pop_char(line, cur);
-		else
-			++cur;
+		++cur;
 	}
 	remove_enclosing_chars(line, begin, cur);
 	return (cur - 1);

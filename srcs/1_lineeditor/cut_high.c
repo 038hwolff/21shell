@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cut_high.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:51:35 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 14:57:59 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 20:48:48 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ char	*stock_line(char *line, t_edl *edl, t_hist *hist)
 	while (++i < len)
 		if (edl->light[i] == 1)
 			j++;
-	try_m(hist->copy = (char *)ft_memalloc(j * sizeof(char)));
-	hist->copy[j] = '\0';
+	if (hist->copy)
+		ft_strdel(&hist->copy);
+	try_m(hist->copy = ft_strnew(j));
 	i = -1;
 	j = -1;
 	while (++i < len)
@@ -48,8 +49,7 @@ char	*cut_high(t_edl *edl, t_hist *hist, char *line)
 
 	len = ft_strlen(line);
 	hist->copy = stock_line(line, edl, hist);
-	try_m(new_line = (char *)ft_memalloc((ft_strlen(line) -
-					ft_strlen(hist->copy)) * sizeof(char)));
+	try_m(new_line = ft_strnew((ft_strlen(line) - ft_strlen(hist->copy))));
 	i = -1;
 	j = -1;
 	while (++i < len)

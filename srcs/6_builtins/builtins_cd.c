@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:29:51 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 15:01:50 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 18:47:47 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ static int		change_dir(char *path, char **arg, char **cdenv)
 		ft_printf("cd: permission denied: %s\n", path);
 	else
 	{
-		try_m(buff = ft_strnew(1024));
+		buff = NULL;
 		chdir(path);
-		getcwd(buff, 1024);
+		try_m(buff = getcwd(buff, 0));
 		arg[1] = ft_strjoin("PWD=", buff);
 		arg[2] = ft_strjoin("OLDPWD=", cdenv[2]);
 		ft_strdel(&buff);

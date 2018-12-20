@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   completion_checkers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 22:25:19 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 20:20:14 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		check_backslash(t_token *token)
 		token = token->next;
 	if (token->type == NEWLINE)
 		return (1);
-	if (token->val[token->length - 2] == '\\')
+	if (token->val[token->length - 1] == '\\')
 		return (0);
 	return (1);
 }

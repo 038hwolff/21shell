@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:55:14 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 16:28:24 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 17:27:45 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,6 @@ void	history_umove(t_edl *edl, char **line, t_hist *hist)
 	edl->multiline = edl->index / edl->col;
 }
 
-char	**free_cases(char **value)
-{
-	int i;
-
-	i = 0;
-	while (value[i])
-	{
-		ft_strdel(&value[i]);
-		value[i] = NULL;
-		i++;
-	}
-	free(value);
-	value = NULL;
-	return (value);
-}
-
 char	**ft_realloc(t_hist *hist, char *value)
 {
 	int		i;
@@ -96,7 +80,7 @@ char	**ft_realloc(t_hist *hist, char *value)
 		i++;
 	}
 	try_m(new_env[i] = ft_strdup(value));
-	free_cases(hist->list);
+	ft_tabdel((void ***)&hist->list);
 	return (new_env);
 }
 

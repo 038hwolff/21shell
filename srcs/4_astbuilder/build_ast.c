@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_ast.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:46:19 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 14:24:41 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 20:54:25 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,13 @@ static void
 			*chosen = (*chosen)->next;
 		}
 	}
-	else if (is_redir_op((*chosen)->type))
+	else if (is_redir_op((*chosen)->type) || is_agreg_op((*chosen)->type))
 	{
-		(*ast)->right_arg = (*chosen)->next;
-		*chosen = (*chosen)->next;
+		if ((*chosen)->next)
+		{
+			(*ast)->right_arg = (*chosen)->next;
+			*chosen = (*chosen)->next;
+		}
 	}
 }
 
@@ -87,7 +90,7 @@ static void
 		token = NULL;
 	type = chosen->type;
 	fill_node(ast, &chosen);
-	if (is_redir_op(type))
+	if (is_redir_op(type) || is_agreg_op(type))
 	{
 		if (chosen_prev)
 			chosen_prev->next = chosen->next;

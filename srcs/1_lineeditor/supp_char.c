@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:24:15 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 15:00:21 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 19:35:53 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ char	*supp_char(char *line, int *index)
 		return (line);
 	len = ft_strlen(line);
 	len < 2 ? len = 2 : 0;
-	try_m(ret = (char *)ft_memalloc(sizeof(char) * len));
-	i = -1;
-	while (++i < *index - 1)
+	try_m(ret = ft_strnew(len));
+	i = 0;
+	while (i < *index - 1)
+	{
 		ret[i] = line[i];
+		++i;
+	}
 	while (i < len - 1)
 	{
 		ret[i] = line[i + 1];

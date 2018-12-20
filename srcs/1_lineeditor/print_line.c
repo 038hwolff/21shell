@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 16:33:33 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 20:48:35 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*insert_end(char *line, char *value, t_edl *edl)
 	try_m(ret = ft_strjoin(line, value));
 	if (edl->light)
 		ft_memdel((void **)&edl->light);
-	try_m(edl->light = (int *)ft_memalloc((int)ft_strlen(ret) * sizeof(int)));
+	try_m(edl->light = (int *)ft_memalloc(((int)ft_strlen(ret) + 1)
+		* sizeof(int)));
 	if (*line || line)
 		ft_strdel(&line);
 	edl->c_light = 0;
@@ -65,8 +66,6 @@ char	*insert_char(char *line, unsigned long key, int *index, t_edl *edl)
 	value = (char *)&key;
 	len = ft_strlen(line);
 	i = -1;
-	if (*index == (int)len && ft_strlen(value) >= 1)
-		*index = *index + ft_strlen(value) - 1;
 	len = ft_strlen(line) + ft_strlen(value);
 	if (*index == (int)len)
 		return (insert_end(line, value, edl));
@@ -74,7 +73,8 @@ char	*insert_char(char *line, unsigned long key, int *index, t_edl *edl)
 	ret = create_ret(index, value, len, line);
 	if (edl->light)
 		ft_memdel((void **)&edl->light);
-	try_m(edl->light = (int *)ft_memalloc(((int)ft_strlen(ret)) * sizeof(int)));
+	try_m(edl->light = (int *)ft_memalloc(((int)ft_strlen(ret) + 1)
+		* sizeof(int)));
 	edl->c_light = 0;
 	if (*line || line)
 		ft_strdel(&line);

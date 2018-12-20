@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 12:13:01 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/11 13:24:51 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 19:17:06 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ int		is_redir_op(int op)
 
 int		is_agreg_op(int op)
 {
-	return (op >= LESSAND && op <= GREATAND);
+	return (op == GREATAND);
 }
 
 int		is_unsupported_op(int op)
 {
 	return (op == DOUBLESEMICOLON || op == GREATPIPE
-			|| op == LESSGREAT || op == DOUBLELESSDASH);
+			|| op == LESSGREAT || op == DOUBLELESSDASH
+			|| op == LESSAND || op == AND);
 }

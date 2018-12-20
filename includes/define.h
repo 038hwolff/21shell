@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 14:48:13 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/18 18:51:24 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@
 # define GREATAND				7
 
 # define PIPE					8
-# define DOUBLEAND				9
-# define DOUBLEPIPE				10
+# define DOUBLEPIPE				9
+# define DOUBLEAND				10
 # define AND					11
 # define SEMICOLON				12
 

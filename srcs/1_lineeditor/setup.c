@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 19:45:59 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 09:23:38 by pespalie         ###   ########.fr       */
+/*   Updated: 2018/12/18 20:08:27 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		len_line(t_edl *edl)
 
 t_hist	*setup_hist(t_hist *hist)
 {
-	try_m(hist->list = (char **)ft_memalloc(sizeof(char *)));
+	try_m(hist->list = (char **)ft_memalloc(sizeof(char *) * 2));
 	hist->h_count = 0;
 	hist->h_current = 0;
 	try_m(hist->copy = ft_strnew(0));
