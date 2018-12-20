@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:29:51 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 18:47:47 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/20 13:44:48 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static int		change_dir(char *path, char **arg, char **cdenv)
 	char	*buff;
 
 	if (access(path, F_OK) != 0)
-		ft_printf("cd: no such file or directory: %s\n", path);
+		file_not_found_exception(path);
 	else if (access(path, X_OK) != 0)
-		ft_printf("cd: permission denied: %s\n", path);
+		file_permission_exception(path);
 	else
 	{
 		buff = NULL;

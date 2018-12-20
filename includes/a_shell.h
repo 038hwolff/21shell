@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 15:23:43 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/20 13:45:33 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int					fork_exception(void);
 int					file_permission_exception(char *file);
 int					fd_exception(char *fd);
 int					cmd_not_found_exception(char *cmd);
+int					file_not_found_exception(char *file);
 
 /*
 ** var.c

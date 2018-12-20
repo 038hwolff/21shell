@@ -6,13 +6,13 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:53:49 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 15:03:08 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/20 14:43:51 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	add_to_env(char **nenv, char **arg, int i)
+void	add_to_env(char ***nenv, char **arg, int i)
 {
 	char *key;
 	char *value;
@@ -22,7 +22,7 @@ void	add_to_env(char **nenv, char **arg, int i)
 	try_m((key = ft_strsub(arg[i], 0,
 			pequal - arg[i] + 1)));
 	try_m((value = ft_strdup(pequal + 1)));
-	ft_setline(key, value, &nenv);
+	ft_setline(key, value, nenv);
 	ft_strdel(&key);
 	ft_strdel(&value);
 }
@@ -31,9 +31,7 @@ int		ft_setline(char *key, char *value, char ***env)
 {
 	int		i;
 
-	i = 0;
-	while ((*env)[i])
-		++i;
+	i = ft_strtablen(*env);
 	try_m((ft_strtabrealloc(env, i + 1)));
 	i = 0;
 	while ((*env)[i])

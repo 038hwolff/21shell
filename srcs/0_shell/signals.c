@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 20:21:05 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/20 13:59:24 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	signal_handler(int signall)
 
 void	signal_list(void)
 {
-	int	i;
+	//int	i;
 
-	i = -1;
-	while (++i < 32)
-		signal(i, signal_handler);
+	//i = -1;
+	//while (++i < 32)
+	//	signal(i, signal_handler);
 }
