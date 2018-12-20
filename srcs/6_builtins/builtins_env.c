@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:19:07 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/20 14:41:39 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/20 15:04:34 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ int		b_env(char **env, char **arg)
 	try_m((nenv = ft_strtabdup(env)));
 	while (arg[i] && ft_strchr(arg[i], '='))
 		add_to_env(&nenv, arg, i++);
-	ft_printf("debut - %d\n", ft_strtablen(nenv));
-	ft_putstrtab(nenv);
-	ft_printf("fin - %d\n", ft_strtablen(nenv));
 	if (arg[i])
 	{
 		try_m((narg = ft_strtabdup(arg + i)));	

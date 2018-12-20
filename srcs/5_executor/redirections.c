@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 15:08:32 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 09:01:07 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/20 15:58:29 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,24 @@
 int		exec_back_redirect(t_data *data, t_ast *ast)
 {
 	int		ret;
+	int		fd_g;
+	int		fd_d;
 	int		stdin;
 
-	ret = open(ast->right_arg->val, O_RDONLY);
-	if (ret >= 0)
+	fd_d = open(ast->right_arg->val, O_RDONLY);
+	if (fd_d >= 0)
 	{
-		stdin = dup(0);
-		dup2(ret, 0);
-		ret = 0;
-		if (ast->right)
-			ret = exec_cmd_line(data, ast->right);
-		if (ast->left)
-			ret = exec_cmd_line(data, ast->left);
-		dup2(stdin, 0);
-		close(ret);
+		fd_g = (ast->left_arg ? ft_atoi(ast->left_arg->val) : 0);
+		stdin = dup(fd_g);
+		dup2(fd_d, fd_g);
+		ret = exec_redirect2(data, ast);
+		dup2(stdin, fd_g);
+		close(fd_d);
 		return (ret);
 	}
 	else
 	{
-		ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"error -- %s\n");
+		file_permission_exception(ast->right_arg ? ast->right_arg->val : "");
 		return (1);
 	}
 }
@@ -63,23 +62,23 @@ int		exec_redirect2(t_data *data, t_ast *ast)
 int		exec_redirect(t_data *data, t_ast *ast, int rafter)
 {
 	int		ret;
-	int		fd;
+	int		fd_g;
+	int		fd_d;
 	int		stdin;
 
-	ret = 0;
+	fd_d = 0;
 	if (rafter == GREAT)
-		ret = open(ast->right_arg->val, O_CREAT | O_WRONLY, 0644);
+		fd_d = open(ast->right_arg->val, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	else if (rafter == DOUBLEGREAT)
-		ret = open(ast->right_arg->val, O_CREAT | O_WRONLY | O_APPEND, 0644);
-	if (ret >= 0)
+		fd_d = open(ast->right_arg->val, O_CREAT | O_WRONLY | O_APPEND, 0644);
+	if (fd_d >= 0)
 	{
-		fd = (ast->left_arg ? ft_atoi(ast->left_arg->val) : 1);
-		stdin = dup(fd);
-		dup2(ret, fd);
-		ret = 0;
+		fd_g = (ast->left_arg ? ft_atoi(ast->left_arg->val) : 1);
+		stdin = dup(fd_g);
+		dup2(fd_d, fd_g);
 		ret = exec_redirect2(data, ast);
-		dup2(stdin, fd);
-		close(stdin);
+		dup2(stdin, fd_g);
+		close(fd_d);
 		return (ret);
 	}
 	else
