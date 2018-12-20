@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:38:11 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 08:38:12 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/20 18:53:09 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	reset_shell(t_data *data)
 {
 	reset_term(data);
 	reset_command(data);
-	free_tab(&data->env);
+	if (data->env)
+		free_tab(&data->env);
+	if (data->loc)
 	free_tab(&data->loc);
 }
 

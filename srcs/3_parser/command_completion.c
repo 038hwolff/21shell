@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_completion.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 14:57:20 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/20 19:07:47 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void		complete_tokens(t_token *token, int incomp_type, char **line)
 		complete_command_quote(token, line, '"');
 	else if (incomp_type == INC_BKSLASH)
 		complete_command_backslash(token, line);
+	get_data()->dev && print_lex(get_data()->token, "PARSER INCOMPLETE");
 	del_tokens_if(&token, &token_is_newline);
 	token = get_last_token(token);
 	lexical_analysis(&token, *line);
