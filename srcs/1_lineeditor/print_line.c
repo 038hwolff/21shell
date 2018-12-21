@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/21 18:29:01 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/21 19:17:13 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ char	*complete_word(t_data *data, char *line)
 void	print_line(t_data *data, char **line, unsigned long key)
 {
 	struct winsize	ws;
+
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
 	data->edl.col = ws.ws_col;
 	if (key == TABU)

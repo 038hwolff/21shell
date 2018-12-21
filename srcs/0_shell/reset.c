@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:38:11 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/20 18:53:09 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/21 19:17:47 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	reset_shell(t_data *data)
 	if (data->env)
 		free_tab(&data->env);
 	if (data->loc)
-	free_tab(&data->loc);
+		free_tab(&data->loc);
 }
 
 void	reset_command(t_data *data)
