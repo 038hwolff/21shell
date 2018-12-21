@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 20:48:35 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/21 18:29:01 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,23 +109,46 @@ void	reprint_line(unsigned long key, t_edl *edl, char **line)
 		ft_putstr_fd(tgetstr("le", NULL), 1);
 }
 
-void	print_line(t_edl *edl, char **line, unsigned long key)
+char	*complete_word(t_data *data, char *line)
+{
+	char	*ret;
+	char	*end;
+	int		len;
+
+	if (!line || !*line)
+		return (line);
+	end = completion(data);
+	if (end)
+	{
+		len = ft_strlen(end);
+		try_m((ret = ft_strjoin(line, end)));
+		if (data->edl.light)
+			ft_memdel((void **)&data->edl.light);
+		try_m(data->edl.light = (int *)ft_memalloc(((int)ft_strlen(ret) + 1)
+			* sizeof(int)));
+		data->edl.c_light = 0;
+		if (*line || line)
+			ft_strdel(&line);
+		data->edl.index += len;
+		return (ret);
+	}
+	return (line);
+}
+
+void	print_line(t_data *data, char **line, unsigned long key)
 {
 	struct winsize	ws;
-
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
-	edl->col = ws.ws_col;
-	if (key == TABU && edl->index == 0)
-		key = SPACE;
-	else if (key == TABU)
-		return ;
-	if (key != SUPP && key != CTRLD)
-		*line = insert_char(*line, key, &edl->index, edl);
+	data->edl.col = ws.ws_col;
+	if (key == TABU)
+		*line = complete_word(data, *line);
+	if (key != SUPP && key != CTRLD && key != TABU)
+		*line = insert_char(*line, key, &data->edl.index, &data->edl);
 	if (key == SUPP)
-		*line = supp_char(*line, &edl->index);
+		*line = supp_char(*line, &data->edl.index);
 	if (key == CTRLD)
-		*line = control_d(*line, &edl->index);
-	if (key != SUPP && key != CTRLD)
-		edl->index++;
-	reprint_line(key, edl, line);
+		*line = control_d(*line, &data->edl.index);
+	if (key != SUPP && key != CTRLD && key != TABU)
+		data->edl.index++;
+	reprint_line(key, &data->edl, line);
 }

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:26:21 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 15:23:32 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/21 18:15:42 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			next_word(t_edl *edl, char *line, size_t len);
 ** print_line.c
 */
 
-void			print_line(t_edl *edl, char **line, unsigned long key);
+void			print_line(t_data *data, char **line, unsigned long key);
 
 /*
 ** term.c

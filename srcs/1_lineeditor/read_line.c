@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 10:20:58 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 14:51:03 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/21 18:21:42 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	read_line(void)
 			break ;
 		}
 		else if (printable(key) == 0)
-			print_line(&data->edl, &data->edl.line, key);
+			print_line(data, &data->edl.line, key);
 		else
 			data->edl.line = ft_termcaps(&data->edl, data->edl.line, key,
 					&data->hist);
