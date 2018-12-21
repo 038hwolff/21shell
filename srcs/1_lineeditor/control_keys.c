@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:49:38 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/20 18:48:57 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/21 18:47:15 by pespalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ char	*control_d(char *line, int *index)
 	len = ft_strlen(line);
 	if (len < 2)
 		len = 2;
+	if (data->incomp_type > 0)
+	{
+		if (!*line || *index == (int)len)
+			return (line);
+		ret = delete_char(&index, line, len);
+		ft_strdel(&line);
+		return (ret);
+	}
 	if (!*line)
 		exit_program(NULL);
 	if (*index == (int)len)
