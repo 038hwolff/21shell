@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:29:51 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/20 13:44:48 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/23 17:16:51 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ int				b_cd(t_data *data, char **env, char **arg)
 	else
 		change_dir(arg[1], narg, &cdenv[0]);
 	try_m((narg[0] = ft_strdup("setenv")));
-	b_setenv(&nenv, narg);
+	var_set_line(&nenv, narg[1]);
+	var_set_line(&nenv, narg[2]);
 	tmp = data->env;
 	if (!(data->env = ft_strtabdup(nenv)))
 		return (0);

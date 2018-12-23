@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:51:07 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/20 14:14:06 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/23 16:33:49 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char		**get_path(char **env, char **arg)
 			ft_strdel(&tmp);
 		}
 	}
-	return (path ? path : ft_tabdup(&arg[0], 0));
+	return (path ? path : ft_strtabdup(&arg[0]));
 }
 
 int			ex_exec_core(char **env, char **table, char **paths)

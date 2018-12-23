@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/21 17:45:51 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/23 13:21:52 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int					fd_exception(char *fd);
 int					cmd_not_found_exception(char *cmd);
 int					file_not_found_exception(char *file);
 
+char				*remove_backslash_before_spechar(char *s);
 /*
 ** var.c
 */
@@ -112,6 +113,10 @@ void				reset_command(t_data *data);
 
 void				free_ast(t_ast **ast);
 void				free_token(t_token **token);
-char				*completion(t_data *data);
+char				*completion(t_data *data, char *line);
+char				*complete_from_given_path(char *input);
+int					is_a_directory(char *dir, char *file);
+
+int					check_file(char **ret, char *entry, char *file, char *path);
 
 #endif

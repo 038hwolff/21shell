@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:27:23 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 16:53:58 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/23 17:04:02 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,11 @@ void	check_term(t_data *data)
 {
 	char	buff[1024];
 	int		ret;
-	char	**dflt;
 
 	if (!(data->term_name = getenv("TERM")))
 	{
-		try_m((dflt = ft_strtabnew(2)));
-		dflt[0] = "setenv";
-		dflt[1] = "TERM=xterm-256color";
-		data->term_name = "xterm-256color";
-		b_setenv(&data->env, dflt);
-		free(dflt);
+		data->term_name = DEFAULT_TERM;
+		var_set(&data->env, "TERM", data->term_name);
 	}
 	if (!isatty(STDIN_FILENO)
 		|| !isatty(STDOUT_FILENO)

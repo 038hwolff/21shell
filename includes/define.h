@@ -6,19 +6,31 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 18:51:24 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/23 17:29:43 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_H
 # define DEFINE_H
 
+
+
+// macro de debug, à virer au moment de mettre à la norme
+# define M1 ft_printf("\nMARQUEUR 1\n");
+# define M2 ft_printf("\nMARQUEUR 2\n");
+# define M3 ft_printf("\nMARQUEUR 3\n");
+# define M4 ft_printf("\nMARQUEUR 4\n");
+# define M5 ft_printf("\nMARQUEUR 5\n");
+# define Ms(x) ft_printf("\n%s\n", x);
+# define Md(x) ft_printf("\n%d\n", x);
+
+
 /*
 ** Defines
 */
 
 # define ERR_PREFIX "21sh: "
-
+# define DEFAULT_TERM "xterm-256color"
 /*
 **	Flag utilise lors de l'expansion des variables
 */

@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 08:34:44 by hwolff            #+#    #+#              #
-#    Updated: 2018/12/21 19:18:36 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/12/23 18:28:11 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ FLAGDEGUG		=	$(FLAG) -fsanitize=address
 # Files names
 SHELL_N			=	shell.c free.c data.c init.c putchar.c \
 					signals.c term.c exception.c exit.c reset.c \
-					exception2.c cancel.c completion.c exception3.c
+					exception2.c cancel.c completion.c completion2.c exception3.c
 EDITLINE_N		=	read_line.c mouve.c term.c \
 					history.c setup.c ft_enter.c print_line.c \
 					prompt.c select_mode.c copy_paste.c cut_high.c \
@@ -31,14 +31,16 @@ PARSER_N		=	parser.c command_completion.c completion_checkers.c \
 ASTBUILDER_N	=	build_ast.c print_ast.c
 EXECUTOR_N		=	executor.c fd_agregator.c \
 					pipes.c redirections.c exec_cmd_line.c semicolon.c \
-					operator.c tools.c env_get.c \
+					operator.c tools.c var_get.c \
 					exp_goto_next_quote.c exp_tilde.c exp_vars_assign.c \
 					exp_vars_get.c exp_vars_substitute.c exp_vars.c \
-					expansion.c env_set.c heredoc.c exp_quotes.c
+					expansion.c var_set.c heredoc.c exp_quotes.c \
+					assignement.c
 BUILTINS_N		=	builtins_cd.c builtins_echo.c builtins_env.c \
 					builtins_exit.c builtins_main.c \
 					builtins_setenv.c builtins_tools.c \
-					builtins_unsetenv.c
+					builtins_unsetenv.c builtins_export.c builtins_unset.c \
+					builtins_set.c
 
 # Sources paths
 FILES_C			=	$(addprefix 0_shell/, $(SHELL_N)) \

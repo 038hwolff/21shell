@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:03:53 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 18:28:20 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/23 01:09:06 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <termios.h>
 # include <fcntl.h>
 # include <signal.h>
+# include <sys/stat.h>
 
 /*
 ** Bonus headers

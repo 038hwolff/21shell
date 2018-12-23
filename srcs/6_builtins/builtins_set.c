@@ -1,38 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins_unsetenv.c                                :+:      :+:    :+:   */
+/*   builtins_set.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/30 13:36:43 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/23 18:12:55 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/12/22 16:35:53 by hben-yah          #+#    #+#             */
+/*   Updated: 2018/12/23 17:30:39 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-// void	ft_rmvline(int j, t_data *data)
-// {
-// 	ft_strdel(data->env + j);
-// 	while (data->env[j + 1])
-// 	{
-// 		data->env[j] = data->env[j + 1];
-// 		data->env[j + 1] = NULL;
-// 		j++;
-// 	}
-// }
 
-int		b_unsetenv(t_data *data, char **arg)
+int		b_set(t_data *data, char **arg)
 {
+	char	*key;
+	char	*value;
 	int		i;
 
 	i = 1;
+	if (!arg[i])
+	{
+		ft_putstrtab(data->loc);
+		ft_putstrtab(data->env);
+		return (0);
+	}
 	while (arg[i])
 	{
-		if (var_get_ptr(data->env, arg[i]))
-			var_unset(&data->env, arg[i]);
+		value = ft_strchr(arg[i], '=');
+		if (value)
+		{
+			++value;
+			try_m((key = ft_strsub(arg[i], 0, value - 1 - arg[i])));
+			if (var_get_ptr(data->env, key))
+				var_set(&data->env, key, value);
+			else
+				var_set(&data->loc, key, value);
+			ft_strdel(&key);
+		}
 		i++;
 	}
-	return (1);
+	return (0);
 }

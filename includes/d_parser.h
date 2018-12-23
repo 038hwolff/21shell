@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   d_parser.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:20:29 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 08:20:47 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/23 00:27:51 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void	append_token_value(t_token *token, int i, char **line);
 
 int		expand_dquote(char **line, int cur);
 int		expand_quote(char **line, int cur);
+char	*insert_backslash_before_spechar(char *s);
 
 #endif

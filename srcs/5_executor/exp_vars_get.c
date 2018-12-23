@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_vars_get.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 19:01:16 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/17 19:01:16 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/23 15:19:13 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void				apply_rule(t_varsexp *vexp)
 	pos = ft_strstr(vexp->str, vexp->rule->op);
 	*pos = 0;
 	word = &pos[ft_strlen(vexp->rule->op)];
-	val = env_get(vexp->data->env, vexp->str);
+	val = var_get_val(vexp->data->env, vexp->str);
 	if (!val)
 		vexp->res = vexp->rule->unset(vexp, vexp->str, val, word);
 	else if (val && !*val)
@@ -74,7 +74,7 @@ static	char			*exp_res_rules(t_varsexp *vexp)
 		apply_rule(vexp);
 	else
 	{
-		tmp = env_get(vexp->data->env, vexp->str);
+		tmp = var_get_val(vexp->data->env, vexp->str);
 		vexp->res = (tmp) ? ft_strdup(tmp) : ft_strdup("");
 	}
 	if (vexp->res && vexp->format == NBR_FORMAT)
@@ -90,7 +90,7 @@ static char				*exp_res_norules(t_varsexp *vexp)
 {
 	char	*tmp;
 
-	tmp = env_get(vexp->data->env, vexp->str);
+	tmp = var_get_val(vexp->data->env, vexp->str);
 	vexp->res = (tmp) ? ft_strdup(tmp) : ft_strdup("");
 	return (vexp->res);
 }

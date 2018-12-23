@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_ast.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:46:19 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 20:54:25 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/22 16:30:27 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int
 {
 	if (type >= IO_NUMBER && type <= GREATAND)
 		type = IO_NUMBER;
+	if (type == ASSIGNEMENT_WORD)
+		type = WORD;
 	return (type);
 }
 

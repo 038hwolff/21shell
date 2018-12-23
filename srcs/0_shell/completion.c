@@ -6,44 +6,14 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:54:01 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/21 19:10:05 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/23 13:56:28 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 static char
-	*complete_from_given_path(char *input)
-{
-	DIR				*dir;
-	struct dirent	*ent;
-	char			*n;
-	char			*path;
-	char			*ret;
-
-	n = ft_strrchr(input, '/');
-	try_m((path = (n ? ft_strsub(input, 0, ft_strrchr(input, '/') - input + 1)
-					: ft_strdup("."))));
-	ret = NULL;
-	if (path && (dir = opendir(path)))
-	{
-		!(n && ++n) && (n = input);
-		while ((ent = readdir(dir)))
-			if (ft_strnequ(ent->d_name, n, ft_strlen(n)))
-				if (ret
-					|| !try_m((ret = ft_strdup(ent->d_name + ft_strlen(n)))))
-				{
-					ft_strdel(&ret);
-					break ;
-				}
-		closedir(dir);
-	}
-	ft_strdel(&path);
-	return (ret);
-}
-
-static char
-	*complete_from_path_n(char **path, char *input)
+	*complete_from_path_var_n(char **path, char *input)
 {
 	DIR				*dir;
 	struct dirent	*ent;
@@ -52,18 +22,15 @@ static char
 
 	i = 0;
 	ret = NULL;
-	while (path[i] && (dir = opendir(path[i])))
+	remove_backslash_before_spechar(input);
+	while (path[i] && (dir = opendir(remove_backslash_before_spechar(path[i]))))
 	{
+		ft_printf("\n%s\n", path[i]);
 		while ((ent = readdir(dir)))
-			if (ft_strnequ(ent->d_name, input, ft_strlen(input)))
+			if (!check_file(&ret, ent->d_name, input, path[i]))
 			{
-				if (ret)
-				{
-					closedir(dir);
-					ft_strdel(&ret);
-					return (NULL);
-				}
-				try_m(ret = ft_strdup(ent->d_name + ft_strlen(input)));
+				closedir(dir);
+				return (NULL);
 			}
 		closedir(dir);
 		++i;
@@ -72,7 +39,7 @@ static char
 }
 
 static char
-	*complete_from_paths(char **env, char *input)
+	*complete_from_path_var(char **env, char *input)
 {
 	char			**path;
 	char			*ret;
@@ -88,7 +55,7 @@ static char
 	if (path && *path)
 	{
 		*path = ft_strncpy(*path, (*path + 5), ft_strlen(*path));
-		ret = complete_from_path_n(path, input);
+		ret = complete_from_path_var_n(path, input);
 	}
 	ft_tabdel((void***)&path);
 	return (ret);
@@ -98,22 +65,22 @@ static char
 	*complete_bin(char **env, t_token *token)
 {
 	if (token->val[0] != '/' && !(ft_strnequ(token->val, "./", 2)))
-		return (complete_from_paths(env, token->val));
+		return (complete_from_path_var(env, token->val));
 	else
 		return (complete_from_given_path(token->val));
 }
 
 char
-	*completion(t_data *data)
+	*completion(t_data *data, char *line)
 {
 	t_token *lex;
 	char	*ret;
 
-	if (!data->edl.line || !*data->edl.line)
+	if (!line || !*line)
 		return (NULL);
 	ret = NULL;
 	lex = NULL;
-	lexical_analysis(&lex, data->edl.line);
+	lexical_analysis(&lex, line);
 	if (lex)
 	{
 		while (lex->next && lex->next->next)

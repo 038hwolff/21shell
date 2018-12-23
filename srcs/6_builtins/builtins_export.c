@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins_setenv.c                                  :+:      :+:    :+:   */
+/*   builtins_export.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/17 18:53:49 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/23 18:32:40 by hben-yah         ###   ########.fr       */
+/*   Created: 2018/12/23 14:24:23 by hben-yah          #+#    #+#             */
+/*   Updated: 2018/12/23 18:32:50 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,29 +83,7 @@
 // 	return (ret);
 // }
 
-// int		b_setenv(char ***env, char **arg)
-// {
-// 	char	*key;
-// 	char	*value;
-// 	int		i;
-
-// 	i = 1;
-// 	while (arg[i])
-// 	{
-// 		value = ft_strchr(arg[i], '=') + 1;
-// 		if ((long)value > 1)
-// 		{
-// 			if (!(key = ft_strsub(arg[i], 0, value - arg[i]))
-// 				|| !(ft_setline(key, value, env)))
-// 				return (0);
-// 			ft_strdel(&key);
-// 		}
-// 		i++;
-// 	}
-// 	return (0);
-// }
-
-int		b_setenv(t_data *data, char **arg)
+int		b_export(t_data *data, char **arg)
 {
 	char	*key;
 	char	*value;
@@ -126,7 +104,11 @@ int		b_setenv(t_data *data, char **arg)
 		else
 		{	
 			value = var_get_val(data->loc, arg[i]);
-			var_set(&data->env, arg[i], value);
+			if (value)
+			{
+				var_set(&data->env, arg[i], value);
+				var_unset(&data->loc, arg[i]);
+			}
 		}
 		i++;
 	}

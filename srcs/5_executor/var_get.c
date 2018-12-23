@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   env_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:55:05 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 08:55:06 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/23 15:18:31 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-char	**sh_env_get_ref(char **arr, char *key)
+char	**var_get_ptr(char **arr, char *key)
 {
-	int	klen;
+	int	keylen;
 	int	i;
 
 	if (!arr)
 		return (0);
-	klen = ft_strlen(key);
+	keylen = ft_strlen(key);
 	i = 0;
 	if (arr)
 	{
 		while (arr[i])
 		{
-			if (!ft_strncmp(arr[i], key, klen) && arr[i][klen] == '=')
+			if (ft_strnequ(arr[i], key, keylen) && arr[i][keylen] == '=')
 				return (&arr[i]);
 			i++;
 		}
@@ -33,18 +33,18 @@ char	**sh_env_get_ref(char **arr, char *key)
 	return (0);
 }
 
-char	*env_get(char **arr, char *key)
+char	*var_get_val(char **vars, char *key)
 {
-	int	klen;
+	int	keylen;
 
-	if (!arr || !key)
+	if (!vars || !key)
 		return (0);
-	klen = ft_strlen(key);
-	while (*arr)
+	keylen = ft_strlen(key);
+	while (*vars)
 	{
-		if (!ft_strncmp(*arr, key, klen) && (*arr)[klen] == '=')
-			return (ft_strchr(*arr, '=') + 1);
-		arr++;
+		if (ft_strnequ(*vars, key, keylen) && (*vars)[keylen] == '=')
+			return (ft_strchr(*vars, '=') + 1);
+		++vars;
 	}
 	return (0);
 }

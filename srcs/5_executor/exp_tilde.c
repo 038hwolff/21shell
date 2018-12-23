@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_tilde.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:54:47 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 08:54:48 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/23 15:18:52 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			exp_tilde(char **str, t_data *data)
 
 	if ((*str)[0] == '~' && ((*str)[1] == '/' || !(*str)[1]))
 	{
-		if ((home = env_get(data->env, "HOME")))
+		if ((home = var_get_val(data->env, "HOME")))
 		{
 			tmp = *str;
 			(*str) = ft_3strjoinfree(home, 0, &tmp[1], 0);

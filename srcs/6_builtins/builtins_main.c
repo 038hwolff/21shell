@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_main.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 10:49:42 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/16 16:09:42 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/23 16:41:46 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,24 @@ int		is_builtins(t_data *data, char **arg)
 {
 	if (data && arg)
 	{
-		if (ft_strcmp(*arg, "exit") == 0)
+		if (ft_strequ(*arg, "exit"))
 			b_exit();
-		else if (ft_strcmp(*arg, "cd") == 0)
+		else if (ft_strequ(*arg, "cd"))
 			b_cd(data, data->env, arg);
-		else if (ft_strcmp(*arg, "echo") == 0)
+		else if (ft_strequ(*arg, "echo"))
 			b_echo(arg);
-		else if (ft_strcmp(*arg, "env") == 0)
-			b_env(data->env, arg);
-		else if (ft_strcmp(*arg, "setenv") == 0)
-			b_setenv(&data->env, arg);
-		else if (ft_strcmp(*arg, "unsetenv") == 0)
+		else if (ft_strequ(*arg, "env"))
+			b_env(data, arg);
+		else if (ft_strequ(*arg, "setenv"))
+			b_setenv(data, arg);
+		else if (ft_strequ(*arg, "unsetenv"))
 			b_unsetenv(data, arg);
+		else if (ft_strequ(*arg, "unset"))
+			b_unset(data, arg);
+		else if (ft_strequ(*arg, "export"))
+			b_export(data, arg);
+		else if (ft_strequ(*arg, "set"))
+			b_set(data, arg);
 		else
 			return (0);
 		return (1);

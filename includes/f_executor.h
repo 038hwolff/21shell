@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_executor.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:27:53 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 09:01:37 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/23 18:27:50 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,15 @@ void				exp_goto_next_quote(char **str);
 **	Environment tools
 */
 
-char				*env_get(char **arr, char *key);
-int					env_set(char ***arr, char *key, char *value, char flag);
-char				**sh_env_get_ref(char **arr, char *key);
+char				*var_get_val(char **arr, char *key);
+int					var_set(char ***vars, char *key, char *value);
+char				**var_get_ptr(char **arr, char *key);
+
+int					var_set_line(char ***vars, char *line);
+void				var_unset(char ***vars, char *key);
+
+
+int					exec_assignement(t_data *data, t_ast *ast);
 
 int					exp_quotes(char **str);
 

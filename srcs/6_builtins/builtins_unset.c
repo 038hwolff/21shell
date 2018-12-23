@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_set.c                                          :+:      :+:    :+:   */
+/*   builtins_unset.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/18 08:54:17 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 08:54:18 by hwolff           ###   ########.fr       */
+/*   Created: 2018/12/22 16:36:04 by hben-yah          #+#    #+#             */
+/*   Updated: 2018/12/23 18:10:55 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		env_set(char ***arr, char *key, char *value, char flag)
+int		b_unset(t_data *data, char **args)
 {
-	char	**env;
-	char	*new;
+	int		i;
 
-	if (!key || !value)
-		return (0);
-	if (!(new = ft_3strjoinfree(key, "=", value, flag)))
-		return (0);
-	if ((env = sh_env_get_ref(*arr, key)))
+	i = 0;
+	while (args[++i])
 	{
-		free(*env);
-		*env = new;
+		var_unset(&data->env, args[i]);
+		var_unset(&data->loc, args[i]);
+		++i;
 	}
-	else if (!ft_strtab_add(arr, new))
+	if (i == 1)
 	{
-		free(new);
+		ft_dprintf(STDERR_FILENO, "unset: not enough arguments\n");
 		return (0);
 	}
 	return (1);
