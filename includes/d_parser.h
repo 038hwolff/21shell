@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:20:29 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/23 00:27:51 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/28 17:48:31 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ int		is_control_op(int i);
 int		is_redir_op(int i);
 int		is_agreg_op(int i);
 int		is_unsupported_op(int op);
+int		is_word(int op);
+int		is_sub_cmd(int op);
+
 
 int		parser(t_data *data);
 
@@ -80,5 +83,6 @@ void	append_token_value(t_token *token, int i, char **line);
 int		expand_dquote(char **line, int cur);
 int		expand_quote(char **line, int cur);
 char	*insert_backslash_before_spechar(char *s);
+int		check_parentheses(t_token *token);
 
 #endif

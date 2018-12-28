@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/23 17:29:43 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/28 17:43:52 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define SPACE 32
 # define TABU 9
 # define SUPP 127
+# define DELETE 2117294875
 # define UP 4283163
 # define DOWN 4348699
 # define UP_FN 2117425947
@@ -86,20 +87,34 @@
 # define DOUBLEGREAT			6
 # define GREATAND				7
 
+/*
+** Control Operators
+*/
+
 # define PIPE					8
-# define DOUBLEPIPE				9
-# define DOUBLEAND				10
+# define CLOSED_PAR				9
+# define OPEN_PAR				10
 # define AND					11
-# define SEMICOLON				12
+# define DOUBLEPIPE				12
+# define DOUBLEAND				13
+# define SEMICOLON				14
+# define NEWLINE				15
 
-# define LESSGREAT				15
-# define LESSAND				16
-# define GREATPIPE				17
-# define DOUBLELESSDASH			18
-# define DOUBLESEMICOLON		19
+/*
+** Unsupported operators (syntax error)
+*/
 
-# define NEWLINE				20
-# define HDOCDELIM				21
+# define LESSGREAT				20
+# define LESSAND				21
+# define GREATPIPE				22
+# define DOUBLELESSDASH			23
+# define DOUBLESEMICOLON		24
+
+/*
+** Heredoc end of here
+*/
+
+# define HDOCDELIM				31
 
 /*
 ** Incomplete command types ("dquote>")
@@ -113,15 +128,21 @@
 # define INC_DAND			5
 # define INC_BKSLASH		6
 # define INC_HEREDOC		7
+# define INC_PARENT			8
+# define INC_BKQUOTE		9
 
 # define PQUOTE 				"quote » "
 # define PQUOTE_LEN				8
 # define PDQUOTE 				"dquote » "
 # define PDQUOTE_LEN			9
+# define PBQUOTE 				"` » "
+# define PBQUOTE_LEN			4
 # define PBACKSLASH 			"\\ » "
 # define PBACKSLASH_LEN			4
 # define PHEREDOC 				"heredoc » "
 # define PHEREDOC_LEN			10
+# define PPARENT 				"( » "
+# define PPARENT_LEN			4
 # define PDEFAULT				"» "
 # define PDEFAULT_LEN			2
 

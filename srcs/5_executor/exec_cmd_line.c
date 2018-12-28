@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:54:08 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/23 18:25:32 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/28 17:54:44 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static int
 		ret = execute_semicolon(data, ast);
 	else if (ast->token->type == ASSIGNEMENT_WORD)
 	 	ret = exec_assignement(data, ast);
+	else if (ast->token->type == OPEN_PAR)
+	 	ret = exec_subcmd(data, ast);
 	return (ret);
 }
 

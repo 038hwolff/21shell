@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/20 19:09:29 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/28 17:48:43 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,22 @@ int		check_and(t_token *token)
 		if (token->type == DOUBLEAND
 			&& !get_next_relevant_token(token))
 			return (0);
+		token = token->next;
+	}
+	return (1);
+}
+
+int		check_parentheses(t_token *token)
+{
+	while (token)
+	{
+		if (token->type == OPEN_PAR)
+		{
+			while (token && token->type != CLOSED_PAR)
+				token = token->next;
+			if (!token)
+				return (0);
+		}
 		token = token->next;
 	}
 	return (1);

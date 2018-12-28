@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:46:19 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/22 16:30:27 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/28 19:42:13 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int
 {
 	if (type >= IO_NUMBER && type <= GREATAND)
 		type = IO_NUMBER;
-	if (type == ASSIGNEMENT_WORD)
+	if (type == ASSIGNEMENT_WORD || type == OPEN_PAR || type == CLOSED_PAR)
 		type = WORD;
 	return (type);
 }
@@ -39,8 +39,14 @@ static t_token
 			*primary_prev = tmp;
 			primary = token;
 		}
-		tmp = token;
-		token = token->next;
+		if (token->type == OPEN_PAR)
+			while (token && token->type != CLOSED_PAR)
+				token = token->next;
+		if (token)
+		{
+			tmp = token;
+			token = token->next;
+		}
 	}
 	return (primary);
 }
@@ -92,7 +98,10 @@ static void
 		token = NULL;
 	type = chosen->type;
 	fill_node(ast, &chosen);
-	if (is_redir_op(type) || is_agreg_op(type))
+	if (type == OPEN_PAR)
+		while (chosen && chosen->type != CLOSED_PAR)
+			chosen = chosen->next;
+	if (chosen && (is_redir_op(type) || is_agreg_op(type)))
 	{
 		if (chosen_prev)
 			chosen_prev->next = chosen->next;
@@ -101,7 +110,8 @@ static void
 		chosen->next = NULL;
 	}
 	add_node(data, &(*ast)->left, token);
-	add_node(data, &(*ast)->right, chosen->next);
+	if (chosen)
+		add_node(data, &(*ast)->right, chosen->next);
 }
 
 void

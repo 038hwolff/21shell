@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/23 13:21:52 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/28 20:19:04 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void				signal_list(void);
 int					print_lex(t_token *token, char *name);
 
 void				reset_term(t_data *data);
-void				reset_shell(t_data *data);
 void				init_term(t_data *data);
 
 int					check_if_sigint(t_data *data, char **line);
@@ -118,5 +117,6 @@ char				*complete_from_given_path(char *input);
 int					is_a_directory(char *dir, char *file);
 
 int					check_file(char **ret, char *entry, char *file, char *path);
+void	reset_subshell(t_data *data);
 
 #endif

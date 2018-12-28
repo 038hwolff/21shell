@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:10:16 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 18:49:37 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/28 16:37:13 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static const char *g_delim[17] = {"<<-", "<<", ">>", "<>", "<&", ">&", ">|",
-	"&&", "||", ";;", "|", "&", ";", "<", ">", 0};
+static const char *g_delim[20] = {"<<-", "<<", ">>", "<>", "<&", ">&", ">|",
+	"&&", "||", ";;", "|", "&", ";", "<", ">", "(", ")", "\n", 0};
 
-static const int g_type[17] = {DOUBLELESSDASH, DOUBLELESS, DOUBLEGREAT,
+static const int g_type[20] = {DOUBLELESSDASH, DOUBLELESS, DOUBLEGREAT,
 	LESSGREAT, LESSAND, GREATAND, GREATPIPE, DOUBLEAND, DOUBLEPIPE,
-	DOUBLESEMICOLON, PIPE, AND, SEMICOLON, LESS, GREAT, 0};
+	DOUBLESEMICOLON, PIPE, AND, SEMICOLON, LESS, GREAT, OPEN_PAR, CLOSED_PAR,
+	NEWLINE, 0};
 
 static void
 	check_for_io_number(t_token *token, char **line)
@@ -76,22 +77,22 @@ static void
 	}
 }
 
-static void
-	check_newline(t_token *token, char **line)
-{
-	size_t len;
+// static void
+// 	check_newline(t_token *token, char **line)
+// {
+// 	size_t len;
 
-	if (**line == '\n')
-	{
-		len = 1;
-		while ((*(*line + len)) == '\n')
-			++len;
-		try_m((token->val = ft_strsub(*line, 0, len)));
-		token->type = NEWLINE;
-		token->length = len;
-		*line = *line + len;
-	}
-}
+// 	if (**line == '\n')
+// 	{
+// 		len = 1;
+// 		while ((*(*line + len)) == '\n')
+// 			++len;
+// 		try_m((token->val = ft_strsub(*line, 0, len)));
+// 		token->type = NEWLINE;
+// 		token->length = len;
+// 		*line = *line + len;
+// 	}
+// }
 
 static void
 	check_io_number(t_token *token, char **line)
@@ -119,7 +120,7 @@ t_token
 	t_token *new;
 
 	new = token_new(NULL, 0, 0, NULL);
-	check_newline(new, line);
+	//check_newline(new, line);
 	check_operators(new, line);
 	check_io_number(new, line);
 	if (!new->val)

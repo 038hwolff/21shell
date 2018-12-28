@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/23 14:02:58 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/28 17:09:00 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,13 +138,13 @@ void	print_line(t_data *data, char **line, unsigned long key)
 	data->edl.col = ws.ws_col;
 	if (key == TABU)
 		*line = complete_word(data, *line);
-	if (key != SUPP && key != CTRLD && key != TABU)
+	if (key != SUPP && key != DELETE && key != CTRLD && key != TABU)
 		*line = insert_char(*line, key, &data->edl.index, &data->edl);
-	if (key == SUPP)
+	if (key == SUPP || (key == DELETE && ++data->edl.index))
 		*line = supp_char(*line, &data->edl.index);
 	if (key == CTRLD)
 		*line = control_d(*line, &data->edl.index);
-	if (key != SUPP && key != CTRLD && key != TABU)
+	if (key != SUPP && key != DELETE && key != CTRLD && key != TABU)
 		data->edl.index++;
 	reprint_line(key, &data->edl, line);
 }

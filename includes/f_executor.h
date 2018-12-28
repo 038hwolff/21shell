@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:27:53 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/23 18:27:50 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/28 17:55:46 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ void				var_unset(char ***vars, char *key);
 int					exec_assignement(t_data *data, t_ast *ast);
 
 int					exp_quotes(char **str);
+char			exec_subcmd(t_data *data, t_ast *ast);
 
 #endif

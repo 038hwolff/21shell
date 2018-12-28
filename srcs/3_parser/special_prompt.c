@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt_special.c                                   :+:      :+:    :+:   */
+/*   special_prompt.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 17:25:36 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/06 18:45:16 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/28 17:49:26 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	set_special_prompt(t_data *data)
 		set_prompt(data, PBACKSLASH, PBACKSLASH_LEN);
 	else if (data->incomp_type == INC_HEREDOC)
 		set_prompt(data, PHEREDOC, PHEREDOC_LEN);
+	else if (data->incomp_type == INC_PARENT)
+		set_prompt(data, PPARENT, PPARENT_LEN);
+	else if (data->incomp_type == INC_BKQUOTE)
+		set_prompt(data, PBQUOTE, PBQUOTE_LEN);
 	else if (data->incomp_type == COMPLETE)
 		set_prompt(data, NULL, 0);
 	else
