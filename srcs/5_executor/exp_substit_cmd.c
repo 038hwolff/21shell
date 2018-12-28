@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 22:13:17 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/29 00:35:57 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/29 00:44:00 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static char		*get_substit_result(t_data *data, char *cmd)
 	else if (pid == 0)
 	{
 		dup2(fd[1], 1);
+		write(1, " ", 1);
 		close(fd[1]);
 		exit(subshell(1, &cmd, data->env));
 		// changer subshell en une version qui ne renvoie pas d'erreur
@@ -99,12 +100,9 @@ void			exp_substit_cmd(char **str, t_data *data)
 	{
 		try_m((cmd = ft_strsub((*str), start, end - start - 1)));
 
-		ft_printf("cmd : -%s-\n", cmd);
 		ret = get_substit_result(data, cmd);
-		ft_printf("ret : -%s-\n", ret);
 		ft_strdel(&cmd);
-		sustitute_cmd(str, ret, start - 1, end + 1);
-		ft_printf("sub : -%s-\n", *str);
+		sustitute_cmd(str, ret + 1, start - 1, end + 1);
 		ft_strdel(&ret);
 	}
 }
