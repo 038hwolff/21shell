@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/28 17:48:43 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/28 22:10:06 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ char	check_quote(t_token *token)
 		{
 			if (!*(s = strdquote(s + 1)))
 				return ('"');
+		}
+		else if (*s == '`')
+		{
+			if (!*(s = strbackquote(s + 1)))
+				return (0);
 		}
 		*s && ++s;
 	}
@@ -100,3 +105,25 @@ int		check_parentheses(t_token *token)
 	}
 	return (1);
 }
+
+char	check_bkquote(t_token *token)
+{
+	char	*s;
+
+	while (token->next && token->next->type != NEWLINE)
+		token = token->next;
+	s = token->val;
+	while (*s)
+	{
+		if (*s == '\\')
+			++s;
+		else if (*s == '`')
+		{
+			if (!*(s = strbackquote(s + 1)))
+				return (0);
+		}
+		*s && ++s;
+	}
+	return (1);
+}
+

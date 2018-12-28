@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:42:02 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/22 16:29:01 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/28 20:39:56 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int
 		*line = strdquote(*line + 1);
 	else if (**line == '\'')
 		*line = strquote(*line + 1);
+	else if (**line == '`')
+		*line = strbackquote(*line + 1);
 	if (**line)
 		++(*line);
 	return (*line - begin);

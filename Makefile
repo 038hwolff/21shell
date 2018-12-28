@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 08:34:44 by hwolff            #+#    #+#              #
-#    Updated: 2018/12/28 17:55:01 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/12/29 00:33:56 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ EXECUTOR_N		=	executor.c fd_agregator.c \
 					exp_goto_next_quote.c exp_tilde.c exp_vars_assign.c \
 					exp_vars_get.c exp_vars_substitute.c exp_vars.c \
 					expansion.c var_set.c heredoc.c exp_quotes.c \
-					assignement.c exec_subcmd.c
+					assignement.c exec_subcmd.c exp_substit_cmd.c
 BUILTINS_N		=	builtins_cd.c builtins_echo.c builtins_env.c \
 					builtins_exit.c builtins_main.c \
 					builtins_setenv.c builtins_tools.c \

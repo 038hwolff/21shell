@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/28 17:51:14 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/28 20:36:31 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void		complete_tokens(t_token *token, int incomp_type, char **line)
 		complete_command_quote(token, line, '\'');
 	else if (incomp_type == INC_DQUOTE)
 		complete_command_quote(token, line, '"');
+	else if (incomp_type == INC_BKQUOTE)
+		complete_command_quote(token, line, '`');
 	else if (incomp_type == INC_BKSLASH)
 		complete_command_backslash(token, line);
 	get_data()->dev && print_lex(get_data()->token, "PARSER INCOMPLETE");
@@ -101,6 +103,8 @@ int			is_command_incomplete(t_token *token)
 		return (INC_BKSLASH);
 	if (!check_parentheses(token))
 		return (INC_PARENT);
+	if (!check_bkquote(token))
+		return (INC_BKQUOTE);
 	quotetype = check_quote(token);
 	if (quotetype == '"')
 		return (INC_DQUOTE);

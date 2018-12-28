@@ -6,13 +6,13 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 17:54:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/28 20:31:02 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/29 00:13:52 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int		subshell(int ac, char **av, char **env)
+int		subshell(int ac, char **av, char **env)
 {
 	t_data		*data;
 	int			status;
@@ -24,7 +24,7 @@ static int		subshell(int ac, char **av, char **env)
 	try_m((data->loc = ft_strtabnew(0)));
 	try_m((data->edl.line = ft_strnew(0)));
 	status = 0;
-	i = 1;
+	i = 0;
 	while (i < ac)
 	{
 		ft_asprintf(&tmp, "%s %s", data->edl.line, av[i]);
@@ -89,7 +89,7 @@ char			exec_subcmd(t_data *data, t_ast *ast)
 	if ((pid = fork()) == -1)
 		return (2);
 	else if (pid == 0)
-		exit(subshell(ft_strtablen(table) - 1, table, data->env));
+		exit(subshell(ft_strtablen(table) - 2, table + 1, data->env));
 	else
 	{
 		signal(SIGINT, SIG_IGN);

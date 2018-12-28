@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/28 18:51:20 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/28 20:58:44 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*check_syntax_errors(t_token *token)
 			return (next->val);
 		if (token->type == OPEN_PAR
 			&& (next = get_next_relevant_token(token))
-			&& next->type == CLOSED_PAR)
+			&& (next->type == CLOSED_PAR || is_control_op(next->type)))
 			return (next->val);	
 		token = token->next;
 	}
