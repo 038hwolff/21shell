@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 15:00:33 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/29 22:23:00 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int
 	}
 	if (check_eof(data))
 	{
-		eof_exception();
+		eof_exception(data->subcmd);
 		ft_strdel(copy);
 		ft_strdel(line);
 		return (0);
@@ -99,6 +99,11 @@ int
 {
 	int		ret;
 
+	if (data->subcmd)
+	{
+		try_m((token->heredoc = ft_strnew(0)));
+		return (1);
+	}
 	while (1)
 	{
 		data->incomp_type = INC_HEREDOC;

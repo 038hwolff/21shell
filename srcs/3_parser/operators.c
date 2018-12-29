@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 12:13:01 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/28 17:27:38 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/29 21:03:49 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		is_control_op(int op)
 {
-	return (op == PIPE || (op >= AND && op <= NEWLINE));
+	return (op == PIPE || (op >= AND && op <= SEMICOLON));
 }
 
 int		is_redir_op(int op)

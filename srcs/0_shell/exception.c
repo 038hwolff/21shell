@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exception.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 14:27:05 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 08:30:59 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/29 18:25:19 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,20 @@ void	tent_exception(char *ent)
 	exit(EXIT_FAILURE);
 }
 
-int		syntax_exception(char *word)
+int		syntax_exception(char *word, int subcmd)
 {
 	if (word)
 	{
-		ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"parse error near `%s'\n", word);
+		ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"%sparse error near `%s'\n",
+									(subcmd ? "command substitution: " : ""), word);
 		return (1);
 	}
 	return (0);
 }
 
-int		eof_exception(void)
+int		eof_exception(int subcmd)
 {
-	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"abrupt end of file\n");
+	ft_dprintf(STDERR_FILENO, ""ERR_PREFIX"%sunexpected end of file\n",
+									(subcmd ? "command substitution: " : ""));
 	return (0);
 }

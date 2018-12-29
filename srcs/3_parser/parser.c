@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/28 20:58:44 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/29 22:13:36 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,15 @@ int		check_command_completion(t_data *data)
 	while (data->token
 		&& (data->incomp_type = is_command_incomplete(data->token)) != COMPLETE)
 	{
+		if (data->subcmd)
+			return (eof_exception(1));
 		set_special_prompt(data);
 		read_line();
 		if (check_cancel(data, &data->edl.line))
 			return (0);
 		complete_tokens(data->token, data->incomp_type, &data->edl.line);
 		del_tokens_if(&data->token, &token_is_empty);
-		if (data->token && syntax_exception(check_syntax_errors(data->token)))
+		if (data->token && syntax_exception(check_syntax_errors(data->token), data->subcmd))
 			return (0);
 	}
 	data->incomp_type = COMPLETE;
@@ -125,7 +127,7 @@ int		parser(t_data *data)
 {
 	if (data->token)
 	{
-		if (syntax_exception(check_syntax_errors(data->token))
+		if (syntax_exception(check_syntax_errors(data->token), data->subcmd)
 			|| !check_command_completion(data))
 			return (0);
 		del_tokens_if(&data->token, &token_is_newline);

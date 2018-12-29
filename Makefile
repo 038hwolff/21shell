@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 08:34:44 by hwolff            #+#    #+#              #
-#    Updated: 2018/12/29 00:33:56 by hben-yah         ###   ########.fr        #
+#    Updated: 2018/12/29 18:39:30 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ FILES_C			=	$(addprefix 0_shell/, $(SHELL_N)) \
 					$(addprefix 6_builtins/, $(BUILTINS_N)) \
 
 FILES_O			=	$(FILES_C:.c=.o)
-FILES_H			=	shell.h
+FILES_H			=	a_shell.h b_lineeditor.h c_lexer.h d_parser.h define.h e_astbuilder.h f_executor.h g_builtins.h shell.h struct.h
 
 # Directories
 SRCS_SD			= 	0_shell 1_lineeditor 2_lexer 3_parser 4_astbuilder 5_executor 6_builtins

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/28 19:49:10 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/29 18:34:22 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	signal_list(void)
 	int	i;
 
 	i = -1;
-	while (++i < 32)
-		signal(i, signal_handler);
+	//while (++i < 32)
+	//	signal(i, signal_handler);
 }

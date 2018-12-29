@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 17:54:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/29 00:13:52 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/29 22:19:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ int		subshell(int ac, char **av, char **env)
 	try_m((data->loc = ft_strtabnew(0)));
 	try_m((data->edl.line = ft_strnew(0)));
 	status = 0;
+	data->subcmd = 1;
 	i = 0;
 	while (i < ac)
 	{
-		ft_asprintf(&tmp, "%s %s", data->edl.line, av[i]);
+		ft_asprintf(&tmp, "%s %s%s", data->edl.line, av[i], (i + 1 == ac ? "\n" : ""));
 		try_m(tmp);
 		ft_strdel(&data->edl.line);
 		data->edl.line = tmp;

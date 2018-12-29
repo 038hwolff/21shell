@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/28 20:19:04 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/29 18:27:53 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,16 @@ void				exit_program(char *message);
 void				*try_m(void *ptr);
 void				term_exception(char *message);
 void				tent_exception(char *ent);
-int					syntax_exception(char *word);
 int					pipe_exception(void);
 int					fork_exception(void);
 int					file_permission_exception(char *file);
 int					fd_exception(char *fd);
 int					cmd_not_found_exception(char *cmd);
 int					file_not_found_exception(char *file);
+
+
+int		syntax_exception(char *word, int subcmd);
+int		eof_exception(int subcmd);
 
 char				*remove_backslash_before_spechar(char *s);
 /*
@@ -102,7 +105,6 @@ void				reset_term(t_data *data);
 void				init_term(t_data *data);
 
 int					check_if_sigint(t_data *data, char **line);
-int					eof_exception(void);
 
 int					print_lex(t_token *token, char *name);
 
