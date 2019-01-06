@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:38:24 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/28 20:25:22 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/30 16:19:33 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,20 @@ int			print_lex(t_token *token, char *name)
 ** 5 - execute the commands with priorities
 */
 
+void	set_return_value(t_data *data, int ret)
+{
+	char	*s;
+
+	s = NULL;
+	ft_asprintf(&s, "%d", ret);
+	var_set(&data->spe, "?", s);
+	ft_strdel(&s);
+}
+
 void		command_line_loop(void)
 {
 	t_data		*data;
+	int			ret;
 
 	data = get_data();
 	setup_hist(&data->hist);
@@ -55,8 +66,9 @@ void		command_line_loop(void)
 			build_ast(data);
 			data->dev && print_ast(data->ast);
 			data->dev && ft_printf("\n--- EXECUTION ---\n");
-			exec_cmd_line(data, data->ast);
+			ret = exec_cmd_line(data, data->ast);
 			data->dev && ft_printf("-----------------\n");
+			set_return_value(data, ret);
 		}
 		reset_command(data);
 	}

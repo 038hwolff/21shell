@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_echo.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:53:04 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/17 18:53:04 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/30 22:32:55 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ int				b_echo(char **arg)
 		if (flag == 1)
 			ft_putchar('\n');
 	}
-	return (1);
+	return (RET_OK);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_vars.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:49:10 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 08:52:42 by hwolff           ###   ########.fr       */
+/*   Updated: 2018/12/30 15:34:36 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char		*exp_vars_pos(char *str, int heredoc)
 		else if (*str == '\'' && !heredoc)
 			exp_goto_next_quote(&str);
 		else if (*str == '$' && (ft_isalpha(*(str + 1))
-			|| *(str + 1) == '?' || *(str + 1) == '{'))
+			|| *(str + 1) == '?' || *(str + 1) == '{' || *(str + 1) == '$'))
 			return (str);
 		if (*str)
 			str++;
@@ -78,7 +78,7 @@ int				exp_vars_exec(char *pos, int *i, char **s, t_data *data)
 		lkey = ft_strlen(key);
 		if ((val = exp_vars_get(key, data)))
 		{
-			(*s) = ft_3strjoinfree((*s), val, &(*s)[*i + lkey], FREE_LEFT);
+			(*s) = ft_strjoin3f((*s), val, &(*s)[*i + lkey], FREE_LEFT);
 			ret = ft_strlen(val) - 1;
 			ft_strdel(&val);
 		}

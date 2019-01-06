@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/29 18:27:53 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 17:28:02 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void				free_data(t_data *data);
 ** exit.c
 */
 
-void				exit_program(char *message);
+void				exit_program(int ret);
 
 /*
 ** prompt.c
@@ -120,5 +120,9 @@ int					is_a_directory(char *dir, char *file);
 
 int					check_file(char **ret, char *entry, char *file, char *path);
 void	reset_subshell(t_data *data);
+int		put_exception(int ret, char *prog, char *arg, char *message);
+
+int		ft_is_number(char *s);
+
 
 #endif

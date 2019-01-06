@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exception3.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/21 19:18:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/21 19:18:20 by hben-yah         ###   ########.fr       */
+/*   Created: 2019/01/06 17:43:01 by hben-yah          #+#    #+#             */
+/*   Updated: 2019/01/06 17:51:47 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "libft.h"
 
-int		file_not_found_exception(char *file)
+char	*ft_strjoin3(char const *s1, char const *s2, char const *s3)
 {
-	ft_dprintf(STDERR_FILENO,
-						""ERR_PREFIX"%s: No such file or directory\n", file);
-	return (0);
+	char	*tmp;
+	char	*ret;
+
+	if (!(ret = ft_strjoin(s1, s2)))
+		return (NULL);
+	tmp = ret;
+	if (!(ret = ft_strjoin(ret, s3)))
+		return (NULL);
+	ft_strdel(&tmp);
+	return (ret);
 }

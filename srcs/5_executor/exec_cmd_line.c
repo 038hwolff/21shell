@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:54:08 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/28 17:54:44 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 15:44:27 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int
 	char	**table;
 
 	if (!ast)
-		return (0);
-	ret = 0;
+		return (RET_OK);
+	ret = RET_OK;
 	if (ast->token->type == WORD && (table = token_to_tab(ast))
-		&& !is_builtins(data, table))
+		&& (ret = is_builtins(data, table)) == -1)
 		ret = ex_exec(data->env, table);
 	else if (ast->token->type == GREAT || ast->token->type == DOUBLEGREAT)
 		ret = exec_redirect(data, ast, ast->token->type);
@@ -59,6 +59,8 @@ int
 		ret = exec_heredoc(data, ast);
 	else if (ast->token->type == GREATAND)
 		ret = main_agregator(data, ast);
+	else if (ast->token->type == LESSAND)
+		ret = main_back_agregator(data, ast);
 	else
 		ret = sub_exec_cmd_line(data, ast, ret);
 	if (ast->token->type == WORD)

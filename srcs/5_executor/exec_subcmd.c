@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 17:54:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/29 22:19:08 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/30 22:52:06 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ char			exec_subcmd(t_data *data, t_ast *ast)
 
 	status = 0;
 	if (!ast || !ast->token)
-		return (0);
+		return (RET_OK);
 	if (!(table = ast_to_tab(ast->token)))
-		return (2);
+		return (RET_MAJ_ERROR);
 	if ((pid = fork()) == -1)
-		return (2);
+		return (RET_MAJ_ERROR);
 	else if (pid == 0)
 		exit(subshell(ft_strtablen(table) - 2, table + 1, data->env));
 	else
@@ -100,5 +100,5 @@ char			exec_subcmd(t_data *data, t_ast *ast)
 			return (WEXITSTATUS(status));
 	}
 	ft_tabdel((void ***)&table);
-	return (0);
+	return (RET_OK);
 }

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/28 17:43:52 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 15:31:29 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 ** Defines
 */
 
-# define ERR_PREFIX "21sh: "
+# define SH_NAME "21sh"
 # define DEFAULT_TERM "xterm-256color"
 /*
 **	Flag utilise lors de l'expansion des variables
@@ -85,27 +85,27 @@
 # define GREAT					4
 # define DOUBLELESS				5
 # define DOUBLEGREAT			6
-# define GREATAND				7
+# define LESSAND				7
+# define GREATAND				8
 
 /*
 ** Control Operators
 */
 
-# define PIPE					8
-# define CLOSED_PAR				9
-# define OPEN_PAR				10
-# define AND					11
-# define DOUBLEPIPE				12
-# define DOUBLEAND				13
-# define SEMICOLON				14
-# define NEWLINE				15
+# define PIPE					9
+# define CLOSED_PAR				10
+# define OPEN_PAR				11
+# define AND					12
+# define DOUBLEPIPE				13
+# define DOUBLEAND				14
+# define SEMICOLON				15
+# define NEWLINE				16
 
 /*
 ** Unsupported operators (syntax error)
 */
 
 # define LESSGREAT				20
-# define LESSAND				21
 # define GREATPIPE				22
 # define DOUBLELESSDASH			23
 # define DOUBLESEMICOLON		24
@@ -145,5 +145,15 @@
 # define PPARENT_LEN			4
 # define PDEFAULT				"» "
 # define PDEFAULT_LEN			2
+
+/*
+** Return codes
+*/
+
+# define RET_OK		            0
+# define RET_ERROR	            1
+# define RET_MAJ_ERROR          2
+# define RET_PERM_DENIED		126
+# define RET_NOT_FOUND		    127
 
 #endif

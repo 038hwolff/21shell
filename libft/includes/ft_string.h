@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 17:58:50 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/10/31 11:44:51 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 17:47:18 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "ft_stringbuffer.h"
 
 /*
-**	Flag used by ft_3strjoinfree
+**	Flag used by ft_strjoin3f
 */
 
 # define FREE_LEFT 0x01
@@ -38,6 +38,7 @@ int		ft_strequ(char const *s1, char const *s2);
 void	ft_striter(char *s, void (*f)(char *));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin3(char const *s1, char const *s2, char const *s3);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
@@ -62,6 +63,6 @@ int		ft_toupper(int c);
 size_t	ft_wrdcnt(const char *s, char c);
 void	ft_strrmvchr(char *s);
 char	*ft_strlastchr(char *s);
-char	*ft_3strjoinfree(char *s1, char *s2, char *s3, char flag);
+char	*ft_strjoin3f(char *s1, char *s2, char *s3, char flag);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:23:22 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/23 16:42:08 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/30 21:18:57 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int					b_env(t_data *data, char **arg);
 ** builtins_exit.c
 */
 
-void				b_exit(void);
+int					b_exit(t_data *data, char **arg);
 
 /*
 ** builtins_setenv.c

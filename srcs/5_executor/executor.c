@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:51:07 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/23 16:33:49 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 17:47:13 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@ char		**get_path(char **env, char **arg)
 	{
 		while (env[i] && (ft_strncmp(env[i], "PATH=", 5) != 0))
 			i++;
-		if (!env[i] || !(path = ft_strsplit(env[i], ':')))
+		if (!env[i] || !try_m(path = ft_strsplit(env[i], ':')))
 			return (NULL);
 		path[0] = ft_strncpy(path[0], path[0] + 5, ft_strlen(path[0]));
 		i = -1;
 		while (path[++i])
 		{
 			tmp = path[i];
-			if (!(path[i] = tristrjoin(path[i], "/", arg[0])))
-				return (NULL);
+			try_m((path[i] = ft_strjoin3(path[i], "/", arg[0])));
 			ft_strdel(&tmp);
 		}
 	}
@@ -42,21 +41,19 @@ char		**get_path(char **env, char **arg)
 int			ex_exec_core(char **env, char **table, char **paths)
 {
 	int		i;
-	int		q;
 
 	i = 0;
 	while (paths[i])
 	{
 		if (access(paths[i], X_OK) == 0)
 		{
-			if ((q = execve(paths[i], table, env)) == -1)
+			if ((execve(paths[i], table, env)) == -1)
 				;
 			break ;
 		}
-		i++;
+		++i;
 	}
-	cmd_not_found_exception(*table);
-	exit(1);
+	exit(put_exception(RET_NOT_FOUND, NULL, *table, "command not found"));
 }
 
 int			ex_exec(char **env, char **table)
@@ -64,17 +61,13 @@ int			ex_exec(char **env, char **table)
 	int		status;
 	char	**paths;
 	int		childpid;
-	int		ret;
 
 	if (!(paths = get_path(env, table)))
-	{
-		cmd_not_found_exception(*table);
-		return (1);
-	}
-	ret = 0;
-	childpid = fork();
+		return (put_exception(RET_NOT_FOUND, NULL, *table, "command not found"));
+	if ((childpid = fork()) == -1)
+		return (RET_MAJ_ERROR);
 	if (childpid == 0)
-		ret = ex_exec_core(env, table, paths);
+		ex_exec_core(env, table, paths);
 	else
 		signal(SIGINT, SIG_IGN);
 	wait(&status);
@@ -84,5 +77,5 @@ int			ex_exec(char **env, char **table)
 		ft_putchar('\n');
 		return (WIFEXITED(status));
 	}
-	return (WIFEXITED(status) ? WEXITSTATUS(status) : -1);
+	return (WIFEXITED(status) ? WEXITSTATUS(status) : RET_ERROR);
 }

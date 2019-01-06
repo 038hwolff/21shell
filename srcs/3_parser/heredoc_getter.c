@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/29 22:23:00 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/04 15:01:56 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 static int
 	check_heredoc_cancel(t_data *data, char **line)
 {
+
 	if (check_if_sigint(data, line) == 1)
 		return (1);
-	if (check_eof(data) || !*line)
+	if (check_eof(data))
 		return (2);
 	return (0);
 }
@@ -32,9 +33,9 @@ static int
 	}
 	if (check_eof(data))
 	{
-		eof_exception(data->subcmd);
-		ft_strdel(copy);
-		ft_strdel(line);
+		//eof_exception(data->subcmd);
+		//ft_strdel(copy);
+		//ft_strdel(line);
 		return (0);
 	}
 	return (1);
@@ -111,6 +112,7 @@ int
 		read_line();
 		data->incomp_type = COMPLETE;
 		set_special_prompt(data);
+		try_m(token->heredoc = ft_strnew(0));
 		if ((ret = handle_heredoc_line(data, token, quoted)) == 1)
 			return (0);
 		else if (ret == 2)

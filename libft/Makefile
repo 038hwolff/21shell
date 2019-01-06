@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2018/11/05 17:21:59 by hben-yah         ###   ########.fr        #
+#    Updated: 2019/01/06 17:45:16 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ STR_FILES_N		=	ft_hasnodupl.c ft_strcat.c ft_strchr.c ft_wrdcnt.c \
 					ft_strrev.c ft_strsplit.c ft_strstr.c ft_strsub.c \
 					ft_strtolower.c ft_strtoupper.c ft_strtrim.c \
 					ft_printabilize.c ft_split_chars.c stringbuffer/stringbuffer.c \
-					ft_3strjoinfree.c ft_strlastchr.c ft_strrmvchr.c
+					ft_strjoin3f.c ft_strlastchr.c ft_strrmvchr.c ft_strjoin3.c
 TAB_FILES_N		=	ft_strtabdup.c ft_strtablen.c ft_strtabncpy.c \
 					ft_strtabnew.c ft_strtabrealloc.c ft_tabdel.c \
 					ft_strtab_add.c ft_strtab_new.c

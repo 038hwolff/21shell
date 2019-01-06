@@ -3,25 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 14:28:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/17 18:43:44 by hwolff           ###   ########.fr       */
+/*   Updated: 2019/01/06 14:11:20 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	exit_program(char *message)
+void	exit_program(int ret)
 {
 	t_data *data;
 
 	data = get_data();
 	reset_shell(data);
-	if (message)
-	{
-		ft_dprintf(STDERR_FILENO, message);
-		exit(EXIT_FAILURE);
-	}
-	exit(EXIT_SUCCESS);
+	exit(ret);
 }

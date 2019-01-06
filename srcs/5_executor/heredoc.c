@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:47:21 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 08:47:22 by hwolff           ###   ########.fr       */
+/*   Updated: 2019/01/06 15:26:40 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@ static char	exec_heredoc_redir(
 	int		stat[2];
 
 	if ((pid[0] = fork()) == -1)
-		return (!fork_exception());
+		return (put_exception(RET_ERROR, NULL, NULL, "fork error"));
 	else if (!pid[0])
 		exec_heredoc_reading(data, ast, fildes, std[0]);
 	if ((pid[1] = fork()) == -1)
-		return (!fork_exception());
+		return (put_exception(RET_ERROR, NULL, NULL, "fork error"));
 	else if (!pid[1])
 		exec_heredoc_writing(ast, fildes, std[1]);
 	close(fildes[0]);
 	close(fildes[1]);
 	waitpid(pid[0], &stat[0], 0);
 	waitpid(pid[1], &stat[1], 0);
-	if ((WIFEXITED(stat[0])))
+	if (WIFEXITED(stat[0]))
 		return (WEXITSTATUS(stat[0]));
-	return (WIFEXITED(stat[1]) ? WEXITSTATUS(stat[0]) : -1);
+	return (WIFEXITED(stat[1]) ? WEXITSTATUS(stat[0]) : RET_ERROR);
 }
 
 int			exec_heredoc(t_data *data, t_ast *ast)
@@ -68,7 +68,7 @@ int			exec_heredoc(t_data *data, t_ast *ast)
 	int		std[2];
 
 	if (pipe(fildes) == -1)
-		return (!pipe_exception());
+		return (put_exception(RET_ERROR, NULL, NULL, "pipe error"));
 	std[0] = dup(0);
 	std[1] = dup(1);
 	return (exec_heredoc_redir(data, ast, fildes, std));

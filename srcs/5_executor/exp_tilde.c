@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:54:47 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/23 15:18:52 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 17:47:10 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			exp_tilde(char **str, t_data *data)
 		if ((home = var_get_val(data->env, "HOME")))
 		{
 			tmp = *str;
-			(*str) = ft_3strjoinfree(home, 0, &tmp[1], 0);
+			(*str) = ft_strjoin3f(home, 0, &tmp[1], 0);
 			free(tmp);
 		}
 	}

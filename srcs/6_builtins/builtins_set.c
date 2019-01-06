@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 16:35:53 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/23 17:30:39 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/30 22:41:51 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		b_set(t_data *data, char **arg)
 	{
 		ft_putstrtab(data->loc);
 		ft_putstrtab(data->env);
-		return (0);
+		return (RET_OK);
 	}
 	while (arg[i])
 	{
@@ -41,5 +41,5 @@ int		b_set(t_data *data, char **arg)
 		}
 		i++;
 	}
-	return (0);
+	return (RET_OK);
 }

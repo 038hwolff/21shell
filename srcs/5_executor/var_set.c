@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:54:17 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/23 18:31:12 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 12:51:05 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int		var_set_line(char ***vars, char *line)
 	char	*value;
 	int		ret;
 
+	if (!line)
+		return (0);
 	ret = 1;
 	if (!(value = ft_strchr(line, '=')))
 		return (0);

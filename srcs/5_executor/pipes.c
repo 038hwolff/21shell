@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:57:00 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 08:47:13 by hwolff           ###   ########.fr       */
+/*   Updated: 2019/01/06 15:26:33 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static int
 	int		stat[2];
 
 	if ((pid[0] = fork()) == -1)
-		return (!fork_exception());
+		return (put_exception(RET_ERROR, NULL, NULL, "fork error"));
 	else if (!pid[0])
 		exec_next_cmd(data, ast, fildes, std[0]);
 	if ((pid[1] = fork()) == -1)
-		return (!fork_exception());
+		return (put_exception(RET_ERROR, NULL, NULL, "fork error"));
 	else if (!pid[1])
 		exec_cmd(data, ast, fildes, std[1]);
 	close(fildes[0]);
@@ -61,6 +61,18 @@ static int
 	return (WIFEXITED(stat[1]) ? WEXITSTATUS(stat[0]) : -1);
 }
 
+// int		pipe_exception(void)
+// {
+// 	ft_dprintf(STDERR_FILENO, ""SH_NAME": pipe error\n");
+// 	return (0);
+// }
+
+// int		fork_exception(void)
+// {
+// 	ft_dprintf(STDERR_FILENO, ""SH_NAME": fork error\n");
+// 	return (0);
+// }
+
 int
 	exec_pipes(t_data *data, t_ast *ast)
 {
@@ -68,7 +80,7 @@ int
 	int		std[2];
 
 	if (pipe(fildes) == -1)
-		return (!pipe_exception());
+		return (put_exception(RET_ERROR, NULL, NULL, "pipe error"));
 	std[0] = dup(0);
 	std[1] = dup(1);
 	return (exec_one_pipe(data, ast, fildes, std));

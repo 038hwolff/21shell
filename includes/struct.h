@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/29 18:17:24 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/30 13:45:55 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct		s_data
 
 	char			**env;
 	char			**loc;
+	char			**spe;
 
 	t_token			*token;
 	t_ast			*ast;
@@ -98,7 +99,7 @@ typedef struct		s_data
 	struct termios	term_dft_config;
 
 	short			shell_exit;
-	int				errno;
+	int				errno; // garder ???
 	int				subcmd;
 
 	int				sigint;

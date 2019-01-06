@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:27:23 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/23 17:04:02 by hben-yah         ###   ########.fr       */
+/*   Updated: 2018/12/30 22:17:49 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	check_term(t_data *data)
 	if (!isatty(STDIN_FILENO)
 		|| !isatty(STDOUT_FILENO)
 		|| !isatty(STDERR_FILENO))
-		term_exception(""ERR_PREFIX"std I/O doesn't refer to a terminal\n");
+		term_exception(""SH_NAME"std I/O doesn't refer to a terminal\n");
 	if ((ret = tgetent(buff, data->term_name)) == 0)
 		tent_exception(data->term_name);
 	else if (ret == -1)
-		term_exception(""ERR_PREFIX"terminfo database not found\n");
+		term_exception(""SH_NAME"terminfo database not found\n");
 }

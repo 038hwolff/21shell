@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:27:53 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/29 00:09:31 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 15:48:58 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,8 @@ int					exp_quotes(char **str);
 char			exec_subcmd(t_data *data, t_ast *ast);
 void			exp_substit_cmd(char **str, t_data *data);
 int		subshell(int ac, char **av, char **env);
+
+int				main_back_agregator(t_data *data, t_ast *ast);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/29 22:13:36 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 17:32:02 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*check_syntax_errors(t_token *token)
 			&& token->next && token->next->type != WORD)
 			return (token->next->val);
 		if (is_agreg_op(token->type)
-			&& (!token->next || token->next->type != IO_NUMBER))
+			&& (!token->next || (token->next->type != IO_NUMBER && token->next->type != WORD)))
 			return (token->next->val);
 		if (is_control_op(token->type)
 			&& (next = get_next_relevant_token(token))
@@ -67,7 +67,7 @@ int		check_command_completion(t_data *data)
 		&& (data->incomp_type = is_command_incomplete(data->token)) != COMPLETE)
 	{
 		if (data->subcmd)
-			return (eof_exception(1));
+			return (put_exception(0, "command substitution", NULL, "unexpected end of file"));
 		set_special_prompt(data);
 		read_line();
 		if (check_cancel(data, &data->edl.line))
