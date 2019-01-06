@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 12:17:27 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/29 21:47:04 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 22:04:56 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		free_token(t_token **token)
 				ft_strdel(&tmp->val);
 			if (tmp->heredoc)
 				ft_strdel(&tmp->heredoc);
-			tok = NULL; // BIZARRE A VERIFIER EN CAS DE LEAKS
+			tok = tmp->next;
 			free(tmp);
 		}
 		*token = NULL;

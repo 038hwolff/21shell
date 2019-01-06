@@ -3,16 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/15 17:29:44 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/17 18:56:15 by hwolff           ###   ########.fr       */
+/*   Updated: 2019/01/06 22:14:34 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int		count_word(t_token *token)
+int		get_rank(int type)
+{
+	if (is_redir_op(type) || is_agreg_op(type))
+		type = IO_NUMBER;
+	if (type == ASSIGNEMENT_WORD || type == OPEN_PAR || type == CLOSED_PAR)
+		type = WORD;
+	return (type);
+}
+
+int		count_token(t_token *token)
 {
 	int		i;
 
@@ -23,22 +32,4 @@ static int		count_word(t_token *token)
 		token = token->next;
 	}
 	return (i);
-}
-
-char			**token_to_tab(t_ast *ast)
-{
-	char	**table;
-	char	**p;
-	int		nbword;
-
-	nbword = count_word(ast->token);
-	try_m((table = (char **)ft_memalloc(sizeof(char *) * (nbword + 1))));
-	p = table;
-	while (ast)
-	{
-		try_m((*p = ft_strdup(ast->token->val)));
-		ast = ast->right;
-		++p;
-	}
-	return (table);
 }

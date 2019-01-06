@@ -6,21 +6,11 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:46:19 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/29 22:20:10 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 22:11:10 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-int
-	get_rank(int type)
-{
-	if (type >= IO_NUMBER && type <= GREATAND)
-		type = IO_NUMBER;
-	if (type == ASSIGNEMENT_WORD || type == OPEN_PAR || type == CLOSED_PAR)
-		type = WORD;
-	return (type);
-}
 
 static t_token
 	*get_primary_prev_token(t_token **primary_prev, t_token *token)
@@ -81,6 +71,20 @@ static void
 }
 
 static void
+	pop_chosen_from_token_if_redir(t_token **chosen, t_token **chosen_prev,
+								t_token **token, int type)
+{
+	if (*chosen && (is_redir_op(type) || is_agreg_op(type)))
+	{
+		if (*chosen_prev)
+			(*chosen_prev)->next = (*chosen)->next;
+		else
+			*token = (*chosen)->next;
+		(*chosen)->next = NULL;
+	}
+}
+
+static void
 	add_node(t_data *data, t_ast **ast, t_token *token)
 {
 	t_token *chosen_prev;
@@ -101,17 +105,13 @@ static void
 	if (type == OPEN_PAR)
 		while (chosen && chosen->type != CLOSED_PAR)
 			chosen = chosen->next;
-	if (chosen && (is_redir_op(type) || is_agreg_op(type)))
-	{
-		if (chosen_prev)
-			chosen_prev->next = chosen->next;
-		else
-			token = chosen->next;
-		chosen->next = NULL;
-	}
+	pop_chosen_from_token_if_redir(&chosen, &chosen_prev, &token, type);
 	add_node(data, &(*ast)->left, token);
-	if (chosen)
+	if (chosen && type != WORD)
+	{
 		add_node(data, &(*ast)->right, chosen->next);
+		(*ast)->token->next = NULL;
+	}
 }
 
 void
@@ -119,4 +119,5 @@ void
 {
 	if (data->token)
 		add_node(data, &data->ast, data->token);
+	data->token = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/29 20:48:04 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:14:47 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,11 +110,11 @@ int			is_command_incomplete(t_token *token)
 		return (INC_PARENT);
 	if (!check_backslash(token))
 		return (INC_BKSLASH);
-	if (!check_pipe(token))
+	if (!check_control_op(token, PIPE))
 		return (INC_PIPE);
-	if (!check_or(token))
+	if (!check_control_op(token, DOUBLEPIPE))
 		return (INC_DPIPE);
-	if (!check_and(token))
+	if (!check_control_op(token, DOUBLEAND))
 		return (INC_DAND);
 	return (COMPLETE);
 }

@@ -6,13 +6,34 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/06 17:32:02 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:11:07 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-char	*check_syntax_errors(t_token *token)
+static t_token
+	*sub_check_syntax_errors(t_token *token)
+{
+	t_token	*next;
+
+	if (is_control_op(token->type)
+		&& (next = get_next_relevant_token(token))
+		&& is_control_op(next->type))
+		return (next);
+	if (token->type == CLOSED_PAR
+		&& (next = get_next_relevant_token(token))
+		&& is_word(next->type))
+		return (next);
+	if (token->type == OPEN_PAR
+		&& (next = get_next_relevant_token(token))
+		&& (next->type == CLOSED_PAR || is_control_op(next->type)))
+		return (next);
+	return (0);
+}
+
+char
+	*check_syntax_errors(t_token *token)
 {
 	t_token	*next;
 
@@ -22,28 +43,17 @@ char	*check_syntax_errors(t_token *token)
 	{
 		if (is_unsupported_op(token->type))
 			return (token->val);
-		if (is_redir_op(token->type)
-			&& token->next && token->next->type != WORD)
+		if ((is_redir_op(token->type) && token->next
+			&& token->next->type != WORD)
+			|| (is_agreg_op(token->type) && (!token->next
+			|| (token->next->type != IO_NUMBER && token->next->type != WORD))))
 			return (token->next->val);
-		if (is_agreg_op(token->type)
-			&& (!token->next || (token->next->type != IO_NUMBER && token->next->type != WORD)))
-			return (token->next->val);
-		if (is_control_op(token->type)
-			&& (next = get_next_relevant_token(token))
-			&& is_control_op(next->type))
+		if ((next = sub_check_syntax_errors(token)))
 			return (next->val);
 		if (is_word(token->type)
 			&& (next = get_next_relevant_token(token))
 			&& next->type == OPEN_PAR)
 			return (next->next->val);
-		if (token->type == CLOSED_PAR
-			&& (next = get_next_relevant_token(token))
-			&& is_word(next->type))
-			return (next->val);
-		if (token->type == OPEN_PAR
-			&& (next = get_next_relevant_token(token))
-			&& (next->type == CLOSED_PAR || is_control_op(next->type)))
-			return (next->val);	
 		token = token->next;
 	}
 	return (NULL);
@@ -59,7 +69,8 @@ char	*check_syntax_errors(t_token *token)
 **           Verifier les erreurs de syntaxes
 */
 
-int		check_command_completion(t_data *data)
+int
+	check_command_completion(t_data *data)
 {
 	if (!data->token)
 		return (0);
@@ -67,14 +78,19 @@ int		check_command_completion(t_data *data)
 		&& (data->incomp_type = is_command_incomplete(data->token)) != COMPLETE)
 	{
 		if (data->subcmd)
-			return (put_exception(0, "command substitution", NULL, "unexpected end of file"));
+		{
+			put_exception(0, "command substitution", NULL,
+													"unexpected end of file");
+			return (RET_OK);
+		}
 		set_special_prompt(data);
 		read_line();
 		if (check_cancel(data, &data->edl.line))
 			return (0);
 		complete_tokens(data->token, data->incomp_type, &data->edl.line);
 		del_tokens_if(&data->token, &token_is_empty);
-		if (data->token && syntax_exception(check_syntax_errors(data->token), data->subcmd))
+		if (data->token
+			&& syntax_exception(check_syntax_errors(data->token), data->subcmd))
 			return (0);
 	}
 	data->incomp_type = COMPLETE;
@@ -86,7 +102,8 @@ int		check_command_completion(t_data *data)
 ** CHECK_HEREDOCS
 */
 
-int		check_heredocs(t_data *data)
+int
+	check_heredocs(t_data *data)
 {
 	int		car;
 	t_token *token;
@@ -123,7 +140,8 @@ int		check_heredocs(t_data *data)
 ** Si oui, pour chaque heredoc recupere les inputs
 */
 
-int		parser(t_data *data)
+int
+	parser(t_data *data)
 {
 	if (data->token)
 	{

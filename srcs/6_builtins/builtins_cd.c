@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:29:51 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 12:51:15 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 20:27:14 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ static int		change_dir(char *path, char **arg, char **cdenv)
 	char	*buff;
 
 	if (access(path, F_OK) != 0)
-		return (put_exception(RET_ERROR, "cd", path,
-												"No such file or directory"));
+	{
+		put_exception(RET_ERROR, "cd", path, "No such file or directory");
+		return (RET_ERROR);
+	}
 	if (access(path, X_OK) != 0)
 		return (put_exception(RET_ERROR, "cd", path, "Permission denied"));
 	buff = NULL;

@@ -6,13 +6,13 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:38:24 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/30 16:19:33 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 22:12:28 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int			print_lex(t_token *token, char *name)
+int		print_lex(t_token *token, char *name)
 {
 	int			ret;
 
@@ -48,7 +48,7 @@ void	set_return_value(t_data *data, int ret)
 	ft_strdel(&s);
 }
 
-void		command_line_loop(void)
+void	command_line_loop(void)
 {
 	t_data		*data;
 	int			ret;
@@ -74,7 +74,7 @@ void		command_line_loop(void)
 	}
 }
 
-int			main(int ac, char **av, char **env)
+int		main(int ac, char **av, char **env)
 {
 	if (ac && av && env)
 	{

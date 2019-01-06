@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 16:36:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/30 22:38:59 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 19:42:46 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ int		b_unset(t_data *data, char **args)
 		++i;
 	}
 	if (i == 1)
-	{
-		ft_dprintf(STDERR_FILENO, "unset: not enough arguments\n");
-		return (0);
-	}
+		return (put_exception(RET_OK, "unset", NULL, "not enough arguments"));
 	return (RET_OK);
 }

@@ -6,26 +6,23 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/29 17:59:39 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:15:04 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		check_backslash(t_token *token)
+int
+	check_backslash(t_token *token)
 {
 	while (token->next)
 		token = token->next;
 	return (token->type == NEWLINE);
 }
 
-char	check_quote(t_token *token)
+static char
+	check_str_quote(char *s)
 {
-	char	*s;
-
-	while (token->next && token->next->type != NEWLINE)
-		token = token->next;
-	s = token->val;
 	while (*s)
 	{
 		if (*s == '\\')
@@ -50,11 +47,20 @@ char	check_quote(t_token *token)
 	return (0);
 }
 
-int		check_pipe(t_token *token)
+char
+	check_quote(t_token *token)
+{
+	while (token->next && token->next->type != NEWLINE)
+		token = token->next;
+	return (check_str_quote(token->val));
+}
+
+int
+	check_control_op(t_token *token, int type)
 {
 	while (token)
 	{
-		if (token->type == PIPE
+		if (token->type == type
 			&& !get_next_relevant_token(token))
 			return (0);
 		token = token->next;
@@ -62,31 +68,8 @@ int		check_pipe(t_token *token)
 	return (1);
 }
 
-int		check_or(t_token *token)
-{
-	while (token)
-	{
-		if (token->type == DOUBLEPIPE
-			&& !get_next_relevant_token(token))
-			return (0);
-		token = token->next;
-	}
-	return (1);
-}
-
-int		check_and(t_token *token)
-{
-	while (token)
-	{
-		if (token->type == DOUBLEAND
-			&& !get_next_relevant_token(token))
-			return (0);
-		token = token->next;
-	}
-	return (1);
-}
-
-int		check_parentheses(t_token *token)
+int
+	check_parentheses(t_token *token)
 {
 	while (token)
 	{
@@ -101,25 +84,3 @@ int		check_parentheses(t_token *token)
 	}
 	return (1);
 }
-
-// char	check_bkquote(t_token *token)
-// {
-// 	char	*s;
-
-// 	while (token->next && token->next->type != NEWLINE)
-// 		token = token->next;
-// 	s = token->val;
-// 	while (*s)
-// 	{
-// 		if (*s == '\\')
-// 			++s;
-// 		else if (*s == '`')
-// 		{
-// 			if (!*(s = strbackquote(s + 1)))
-// 				return (0);
-// 		}
-// 		*s && ++s;
-// 	}
-// 	return (1);
-// }
-

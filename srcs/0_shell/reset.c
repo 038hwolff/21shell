@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:38:11 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/28 20:30:50 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 22:12:17 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	reset_command(t_data *data)
 {
 	if (data->ast)
 		free_ast(&data->ast);
-	else if (data->token)
+	if (data->token)
 		free_token(&data->token);
 	data->ast = NULL;
 	data->token = NULL;

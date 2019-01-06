@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:27:53 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 15:48:58 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:56:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char				**get_path(char **env, char **arg);
 int					exec_cmd_line(t_data *data, t_ast *ast);
 int					ex_exec(char **env, char **arg);
 int					ex_exec_core(char **env, char **table, char **paths);
-char				**token_to_tab(t_ast *ast);
+char				**ast_right_to_tab(t_ast *ast);
 
 int					exec_heredoc(t_data *data, t_ast *ast);
 
@@ -82,5 +82,8 @@ int		subshell(int ac, char **av, char **env);
 
 int				main_back_agregator(t_data *data, t_ast *ast);
 
+int		count_token(t_token *token);
+
+char	**tokens_to_tab(t_token *token);
 
 #endif

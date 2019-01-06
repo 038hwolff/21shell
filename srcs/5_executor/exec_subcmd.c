@@ -6,29 +6,40 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 17:54:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/30 22:52:06 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 20:32:42 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		subshell(int ac, char **av, char **env)
+static t_data
+	*init_subshell(char **env)
+{
+	t_data *data;
+
+	try_m(data = (t_data*)ft_memalloc(sizeof(t_data)));
+	try_m((data->env = ft_strtabdup(env)));
+	try_m((data->loc = ft_strtabnew(0)));
+	try_m((data->edl.line = ft_strnew(0)));
+	data->subcmd = 1;
+	return (data);
+}
+
+int
+	subshell(int ac, char **av, char **env)
 {
 	t_data		*data;
 	int			status;
 	char		*tmp;
 	int			i;
 
-	try_m(data = (t_data*)ft_memalloc(sizeof(t_data)));
-	try_m((data->env = ft_strtabdup(env)));
-	try_m((data->loc = ft_strtabnew(0)));
-	try_m((data->edl.line = ft_strnew(0)));
+	data = init_subshell(env);
 	status = 0;
-	data->subcmd = 1;
 	i = 0;
 	while (i < ac)
 	{
-		ft_asprintf(&tmp, "%s %s%s", data->edl.line, av[i], (i + 1 == ac ? "\n" : ""));
+		ft_asprintf(&tmp, "%s %s%s", data->edl.line, av[i],
+													(i + 1 == ac ? "\n" : ""));
 		try_m(tmp);
 		ft_strdel(&data->edl.line);
 		data->edl.line = tmp;
@@ -44,27 +55,14 @@ int		subshell(int ac, char **av, char **env)
 	return (status);
 }
 
-//doublon
-static int		count_word2(t_token *token)
-{
-	int		i;
-
-	i = 0;
-	while (token)
-	{
-		i++;
-		token = token->next;
-	}
-	return (i);
-}
-
-char			**ast_to_tab(t_token *token)
+char
+	**tokens_to_tab(t_token *token)
 {
 	char	**table;
 	char	**p;
 	int		nbword;
 
-	nbword = count_word2(token);
+	nbword = count_token(token);
 	try_m((table = (char **)ft_memalloc(sizeof(char *) * (nbword + 1))));
 	p = table;
 	while (token)
@@ -76,7 +74,8 @@ char			**ast_to_tab(t_token *token)
 	return (table);
 }
 
-char			exec_subcmd(t_data *data, t_ast *ast)
+char
+	exec_subcmd(t_data *data, t_ast *ast)
 {
 	pid_t		pid;
 	int			status;
@@ -85,7 +84,7 @@ char			exec_subcmd(t_data *data, t_ast *ast)
 	status = 0;
 	if (!ast || !ast->token)
 		return (RET_OK);
-	if (!(table = ast_to_tab(ast->token)))
+	if (!(table = tokens_to_tab(ast->token)))
 		return (RET_MAJ_ERROR);
 	if ((pid = fork()) == -1)
 		return (RET_MAJ_ERROR);

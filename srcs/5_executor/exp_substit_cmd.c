@@ -6,13 +6,14 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 22:13:17 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/29 18:06:23 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 20:18:53 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static char		*read_substit_result(int fd)
+static char
+	*read_substit_result(int fd)
 {
 	char		buff[1025];
 	int			len;
@@ -41,8 +42,8 @@ static char		*read_substit_result(int fd)
 	return (ret);
 }
 
-
-static char		*get_substit_result(t_data *data, char *cmd)
+static char
+	*get_substit_result(t_data *data, char *cmd)
 {
 	int		fd[2];
 	int		std;
@@ -60,7 +61,6 @@ static char		*get_substit_result(t_data *data, char *cmd)
 		write(1, "=", 1);
 		close(fd[1]);
 		exit(subshell(1, &cmd, data->env));
-		// changer subshell en une version qui ne renvoie pas d'erreur
 	}
 	else if ((int)(pid = wait(&status)))
 		ret = read_substit_result(fd[0]);
@@ -71,7 +71,8 @@ static char		*get_substit_result(t_data *data, char *cmd)
 	return (ret);
 }
 
-void		sustitute_cmd(char **str, char *sub, int start, int end)
+void
+	sustitute_cmd(char **str, char *sub, int start, int end)
 {
 	char *p1;
 	char *p2;
@@ -85,19 +86,18 @@ void		sustitute_cmd(char **str, char *sub, int start, int end)
 	ft_strdel(&p2);
 }
 
-void			exp_substit_cmd(char **str, t_data *data)
+void
+	exp_substit_cmd(char **str, t_data *data)
 {
 	char	*start;
 	char	*end;
 	char	*cmd;
 	char	*ret;
 
-	//start = 0;
-	//while ((*str)[start] && (*str)[start] != '`')
-	//	++start;
-
-	while (*(start = strbackquote(*str)) && *(start + 1) && *(end = strbackquote(start + 1)))
+	while (*(start = strbackquote(*str)) && *(start + 1))
 	{
+		if (!*(end = strbackquote(start + 1)))
+			break ;
 		try_m((cmd = ft_strsub(start, 1, end - start - 1)));
 		ret = get_substit_result(data, cmd);
 		ft_strdel(&cmd);

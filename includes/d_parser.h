@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:20:29 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/28 20:37:18 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:12:55 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,7 @@ void	set_special_prompt(t_data *data);
 
 int		check_backslash(t_token *token);
 char	check_quote(t_token *token);
-int		check_pipe(t_token *token);
-int		check_or(t_token *token);
-int		check_and(t_token *token);
+int		check_control_op(t_token *token, int type);
 void	pop_backslash_in_heredoc(char **s);
 
 int		check_cancel(t_data *data, char **line);

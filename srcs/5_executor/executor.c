@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:51:07 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 17:47:13 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 20:20:58 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ int			ex_exec(char **env, char **table)
 	int		childpid;
 
 	if (!(paths = get_path(env, table)))
-		return (put_exception(RET_NOT_FOUND, NULL, *table, "command not found"));
+	{
+		put_exception(RET_NOT_FOUND, NULL, *table, "command not found");
+		return (RET_NOT_FOUND);
+	}
 	if ((childpid = fork()) == -1)
 		return (RET_MAJ_ERROR);
 	if (childpid == 0)

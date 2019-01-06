@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/28 17:09:00 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:16:31 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,27 +107,6 @@ void	reprint_line(unsigned long key, t_edl *edl, char **line)
 	c = ft_strlen(*line);
 	while (--c >= edl->index)
 		ft_putstr_fd(tgetstr("le", NULL), 1);
-}
-
-char	*complete_word(t_data *data, char *line)
-{
-	char	*ret;
-	char	*end;
-
-	if (!line || (data->edl.index > 0 && line[data->edl.index - 1] == ' '))
-		return (line);
-	try_m((ret = ft_strsub(line, 0, data->edl.index)));
-	end = completion(data, ret);
-	ft_strdel(&ret);
-	if (end)
-	{
-		while (*end)
-		{
-			line = insert_char(line, *(end++), &data->edl.index, &data->edl);
-			++data->edl.index;
-		}
-	}
-	return (line);
 }
 
 void	print_line(t_data *data, char **line, unsigned long key)

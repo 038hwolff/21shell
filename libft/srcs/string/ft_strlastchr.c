@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlastchr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 11:12:25 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/17 11:12:27 by hwolff           ###   ########.fr       */
+/*   Updated: 2019/01/06 19:46:06 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strlastchr(char *s)
 		if (*s)
 		{
 			while (*s)
-				s++;
+				++s;
 			return (s - 1);
 		}
 		return (s);

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 10:20:58 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/29 15:40:14 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:16:00 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	loop_enter(t_edl *edl, char **line, t_hist *hist)
 
 int		printable(unsigned long key)
 {
-	if (key == TABU || key == CTRLD || (((key > 31 && key < 128) || key == DELETE)
+	if (key == TABU || key == CTRLD
+		|| (((key > 31 && key < 128) || key == DELETE)
 		&& key != DOWN_FN && key != UP_FN && key != LEFT && key != RIGHT
 		&& key != HOME && key != END && key != UP && key != DOWN
 		&& key != LINE_UP && key != LINE_DOWN && key != COPY && key != PASTE

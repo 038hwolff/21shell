@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/06 15:31:29 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 19:41:03 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define M5 ft_printf("\nMARQUEUR 5\n");
 # define Ms(x) ft_printf("\n%s\n", x);
 # define Md(x) ft_printf("\n%d\n", x);
+// a virer
+//a virer
 
 
 /*

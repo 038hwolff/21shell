@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins_setenv.c                                  :+:      :+:    :+:   */
+/*   complete_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/17 18:53:49 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 19:47:08 by hben-yah         ###   ########.fr       */
+/*   Created: 2019/01/06 21:17:05 by hben-yah          #+#    #+#             */
+/*   Updated: 2019/01/06 21:17:17 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		b_setenv(t_data *data, char **arg)
+char	*complete_word(t_data *data, char *line)
 {
-	char	*key;
-	char	*value;
-	int		i;
+	char	*ret;
+	char	*end;
 
-	i = 1;
-	while (arg[i])
+	if (!line || (data->edl.index > 0 && line[data->edl.index - 1] == ' '))
+		return (line);
+	try_m((ret = ft_strsub(line, 0, data->edl.index)));
+	end = completion(data, ret);
+	ft_strdel(&ret);
+	if (end)
 	{
-		value = ft_strchr(arg[i], '=');
-		if (value)
+		while (*end)
 		{
-			try_m((key = ft_strsub(arg[i], 0, value - arg[i])));
-			++value;
-			var_set(&data->env, key, value);
-			var_unset(&data->loc, key);
-			ft_strdel(&key);
+			line = insert_char(line, *(end++), &data->edl.index, &data->edl);
+			++data->edl.index;
 		}
-		else
-		{
-			value = var_get_val(data->loc, arg[i]);
-			var_set(&data->env, arg[i], value);
-		}
-		i++;
 	}
-	return (RET_OK);
+	return (line);
 }

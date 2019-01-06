@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:28:15 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/06 13:19:12 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:20:20 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	set_pwd_value(t_data *data)
 	var_set(&data->env, "PWD", s);
 	ft_strdel(&s);
 }
-
 
 void	init_shell(char **env, int dev)
 {

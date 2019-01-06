@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 15:08:32 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 15:23:05 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 19:44:12 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,8 @@ int		exec_back_redirect(t_data *data, t_ast *ast)
 	}
 	else
 		return (put_exception(RET_ERROR, NULL,
-			ast->right_arg ? ast->right_arg->val : "", "Permission denied"));
+			ast->right_arg ? ast->right_arg->val : NULL, "Permission denied"));
 }
-
-// int		file_permission_exception(char *file)
-// {
-// 	ft_dprintf(STDERR_FILENO, ""SH_NAME": %s: Permission denied\n", file);
-// 	return (0);
-// }
 
 int		exec_redirect2(t_data *data, t_ast *ast)
 {

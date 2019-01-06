@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/04 15:01:56 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:03:23 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static int
 	check_heredoc_cancel(t_data *data, char **line)
 {
-
 	if (check_if_sigint(data, line) == 1)
 		return (1);
 	if (check_eof(data))
@@ -32,12 +31,7 @@ static int
 		return (0);
 	}
 	if (check_eof(data))
-	{
-		//eof_exception(data->subcmd);
-		//ft_strdel(copy);
-		//ft_strdel(line);
 		return (0);
-	}
 	return (1);
 }
 

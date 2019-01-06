@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:10:16 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/28 16:37:13 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:15:32 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,23 +77,6 @@ static void
 	}
 }
 
-// static void
-// 	check_newline(t_token *token, char **line)
-// {
-// 	size_t len;
-
-// 	if (**line == '\n')
-// 	{
-// 		len = 1;
-// 		while ((*(*line + len)) == '\n')
-// 			++len;
-// 		try_m((token->val = ft_strsub(*line, 0, len)));
-// 		token->type = NEWLINE;
-// 		token->length = len;
-// 		*line = *line + len;
-// 	}
-// }
-
 static void
 	check_io_number(t_token *token, char **line)
 {
@@ -120,7 +103,6 @@ t_token
 	t_token *new;
 
 	new = token_new(NULL, 0, 0, NULL);
-	//check_newline(new, line);
 	check_operators(new, line);
 	check_io_number(new, line);
 	if (!new->val)

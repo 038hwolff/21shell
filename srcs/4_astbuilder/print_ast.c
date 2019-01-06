@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:38:09 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/28 19:47:18 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:44:45 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 static int
 	print_node(t_ast *ast, char *name, int depth)
 {
-	int ret;
-	t_token *tok;
+	int		ret;
+	t_token	*tok;
 
-	ret = 0;
-	if (!ast || !name)
-		return (ret);
+	if ((ret = 0) || !ast || !name)
+		return (0);
 	if (ast->right)
 		ret += print_node(ast->right, "right", depth + 1);
 	ret += ft_printf("%*s", depth * 14, "");
@@ -28,21 +27,13 @@ static int
 	ret += ft_printf("%*s", (depth * 14) + 1, "");
 	if (ast->left_arg)
 		ret += ft_printf("%s ", ast->left_arg->val);
-	if (ast->token)
-	{
-		tok = ast->token;
+	if (ast->token && (tok = ast->token))
 		ret += ft_printf("%s ", tok->val);
-	}
 	if (ast->right_arg)
 		ret += ft_printf(" %s", ast->right_arg->val);
-	if (ast->token->type == OPEN_PAR)
-	{
-		while (tok->next)
-		{
-			tok = tok->next;
-			ret += ft_printf("%s ", tok->val);
-		}
-	}
+	if (ast->token)
+		while (tok->next && (tok = tok->next))
+			ret += ft_printf(" %s", tok->val);
 	ret += ft_printf("\n");
 	ret += ft_printf("%*s", depth * 14, "");
 	ret += ft_printf(".............%s\n", "");

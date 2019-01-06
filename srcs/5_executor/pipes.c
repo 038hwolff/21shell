@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:57:00 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 15:26:33 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/06 19:43:34 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,6 @@ static int
 		return (WEXITSTATUS(stat[0]));
 	return (WIFEXITED(stat[1]) ? WEXITSTATUS(stat[0]) : -1);
 }
-
-// int		pipe_exception(void)
-// {
-// 	ft_dprintf(STDERR_FILENO, ""SH_NAME": pipe error\n");
-// 	return (0);
-// }
-
-// int		fork_exception(void)
-// {
-// 	ft_dprintf(STDERR_FILENO, ""SH_NAME": fork error\n");
-// 	return (0);
-// }
 
 int
 	exec_pipes(t_data *data, t_ast *ast)
