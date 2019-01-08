@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pespalie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:04:22 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 09:05:08 by pespalie         ###   ########.fr       */
+/*   Updated: 2019/01/08 15:11:07 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,42 @@ void	next_word(t_edl *edl, char *line, size_t len)
 ** "le" = String to move the cursor left one column.
 */
 
+int get_current_line_len(char *s, int index)
+{
+	int len;
+
+	len = 0;
+	while (*s && index--)
+	{
+		if (*s == '\n')
+			len = 0;
+		else
+			++len;
+		++s;
+	}
+	return (len);
+}
+
 void	mouve_left(t_edl *edl)
 {
+	int i;
+
 	ft_putstr_fd(tgetstr("vs", NULL), 1);
 	edl->index--;
-	ft_putstr_fd(tgetstr("le", NULL), 1);
-	if (((edl->index + 2) % edl->col) == 0 && edl->multiline)
+	if (edl->multiline > 0 && (((edl->index + prompt_len()) % edl->col) == 0 || edl->line[edl->index] == '\n'))
+	{
 		edl->multiline--;
+		ft_putstr_fd(tgetstr("up", NULL), 1);
+		i = get_current_line_len(edl->line, edl->index);
+		if (edl->multiline == 0)
+			i += prompt_len();
+		while (i--)
+			ft_putstr_fd(tgetstr("nd", NULL), 1);
+	}
+	else
+		ft_putstr_fd(tgetstr("le", NULL), 1);
 	ft_putstr_fd(tgetstr("ve", NULL), 1);
+	//ft_printf("\ni : %d, line : %d\n", edl->index, edl->multiline);
 }
 
 /*
@@ -70,9 +98,9 @@ void	mouve_right(t_edl *edl)
 	if (data->prompt != NULL)
 		p_len = data->prompt_len;
 	else
-		p_len = 2;
+		p_len = prompt_len();
 	edl->index++;
-	if ((edl->index + p_len) % edl->col == 0)
+	if ((edl->index + p_len) % edl->col == 0 || edl->line[edl->index - 1] == '\n')
 	{
 		ft_putstr_fd(tgetstr("do", NULL), 1);
 		edl->multiline++;

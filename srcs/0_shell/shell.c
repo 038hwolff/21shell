@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:38:24 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 22:12:28 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/07 18:15:07 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,18 @@ void	set_return_value(t_data *data, int ret)
 	ft_strdel(&s);
 }
 
+void	add_command_to_history(t_data *data)
+{
+	char *new;
+
+	try_m(new = ft_strsub(data->command, 0, ft_strlen(data->command) - 1));
+	if (data->hist.h_count == 0
+		|| !ft_strequ(data->hist.list[data->hist.h_count - 1], new))
+		data->hist.list = add_history(new, &data->hist);
+	else
+		ft_strdel(&new);
+}
+
 void	command_line_loop(void)
 {
 	t_data		*data;
@@ -62,6 +74,7 @@ void	command_line_loop(void)
 		data->dev && print_lex(data->token, "LEXER");
 		if (parser(data))
 		{
+			add_command_to_history(data);
 			data->dev && print_lex(data->token, "PARSER");
 			build_ast(data);
 			data->dev && print_ast(data->ast);

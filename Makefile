@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 08:34:44 by hwolff            #+#    #+#              #
-#    Updated: 2019/01/06 21:17:29 by hben-yah         ###   ########.fr        #
+#    Updated: 2019/01/08 13:25:44 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SHELL_N			=	shell.c free.c data.c init.c putchar.c \
 EDITLINE_N		=	read_line.c mouve.c term.c \
 					history.c setup.c ft_enter.c print_line.c \
 					prompt.c select_mode.c copy_paste.c cut_high.c \
-					control_keys.c supp_char.c complete_word.c
+					control_keys.c supp_char.c complete_word.c multiline.c
 LEXER_N			=	lexer.c checker.c token.c helper.c 
 PARSER_N		=	parser.c command_completion.c completion_checkers.c \
 					helper.c heredoc.c heredoc_getter.c operators.c \

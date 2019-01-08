@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 10:20:58 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/06 21:16:00 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 14:00:38 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ void	loop_enter(t_edl *edl, char **line, t_hist *hist)
 {
 	if (ft_strcmp(*line, "\0") != 0)
 	{
-		hist->list = add_history(*line, hist);
 		while (edl->index < (int)ft_strlen(*line))
 			mouve_right(edl);
-		edl->multiline = len_line(edl) / edl->col;
+		edl->multiline = get_cursor_line(edl, edl->index, edl->line);
 		ft_enter(&(*line), edl);
 		ft_putstr_fd("\n", 1);
 	}
@@ -42,6 +41,20 @@ int		printable(unsigned long key)
 		&& key != CUT && key != SELECT))
 		return (0);
 	return (1);
+}
+
+void	add_line_to_command(t_data *data)
+{
+	char *tmp;
+
+	if (!data->command)
+		try_m(data->command = ft_strdup(data->edl.line));
+	else
+	{
+		try_m(tmp = ft_strjoin(data->command, data->edl.line));
+		ft_strdel(&data->command);
+		data->command = tmp;
+	}
 }
 
 void	read_line(void)
@@ -70,4 +83,5 @@ void	read_line(void)
 		key = 0;
 	}
 	reset_term(data);
+	add_line_to_command(data);
 }

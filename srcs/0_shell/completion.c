@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:54:01 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/23 13:56:28 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/07 13:59:26 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static char
 	remove_backslash_before_spechar(input);
 	while (path[i] && (dir = opendir(remove_backslash_before_spechar(path[i]))))
 	{
-		ft_printf("\n%s\n", path[i]);
 		while ((ent = readdir(dir)))
 			if (!check_file(&ret, ent->d_name, input, path[i]))
 			{

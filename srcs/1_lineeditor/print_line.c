@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 21:16:31 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 14:01:29 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	reprint_line(unsigned long key, t_edl *edl, char **line)
 		write(1, "\b", 1);
 	display_prompt(data->prompt);
 	ft_putstr_fd(*line, 1);
-	edl->multiline = edl->index / edl->col;
+	edl->multiline = get_cursor_line(edl, edl->index, *line);
 	c = ft_strlen(*line);
 	while (--c >= edl->index)
 		ft_putstr_fd(tgetstr("le", NULL), 1);

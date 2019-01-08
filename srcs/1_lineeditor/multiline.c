@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exp_quotes.c                                       :+:      :+:    :+:   */
+/*   multiline.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/18 08:54:57 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/08 15:16:18 by hben-yah         ###   ########.fr       */
+/*   Created: 2019/01/08 13:25:12 by hben-yah          #+#    #+#             */
+/*   Updated: 2019/01/08 14:02:21 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		exp_quotes(char **str)
+int		get_cursor_line(t_edl *edl, int i, char *s)
 {
-	remove_quotes_and_backslash(str);
-	return (1);
+	int ncol;
+	int nline;
+
+	nline = 0;
+	ncol = prompt_len();
+	while (i-- && *s)
+	{
+		if (*s == '\n' || ncol / edl->col)
+		{
+			++nline;
+			ncol = 0;
+		}
+		++s;
+	}
+	return (nline);
 }

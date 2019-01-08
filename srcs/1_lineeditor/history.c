@@ -6,64 +6,88 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:55:14 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 17:27:45 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 14:47:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	history_dmove(t_edl *edl, char **line, t_hist *hist)
+
+void	history_move(t_edl *edl, char **line, char *nline)
 {
-	int		j;
 	int		i;
 
 	i = prompt_len();
-	j = hist->h_current + 1;
-	if (hist->h_count == 0 || j >= hist->h_count)
-	{
-		ft_putstr_fd(tgetstr("bl", NULL), 1);
-		return ;
-	}
+	// ft_putstr_fd(tgetstr("up", NULL), 1);
+	// while (edl->multiline > 0)
+	// {
+	// 	ft_putstr_fd(tgetstr("up", NULL), 1);
+	// 	--edl->multiline;
+	// }
+	// j = 0;
+	// while (j < i)
+	// 	mouve_right(edl);
 	while (edl->index > 0)
-		mouve_left(edl);
+	 	mouve_left(edl);
 	ft_putstr_fd(tgetstr("cd", NULL), 1);
 	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, i), 1);
 	ft_putstr_fd(tgetstr("ce", NULL), 1);
-	ft_putstr_fd(hist->list[j], 1);
-	hist->h_current = j;
+	ft_putstr_fd(nline, 1);
 	ft_strdel(line);
-	try_m(*line = ft_strdup(hist->list[j]));
+	try_m(*line = ft_strdup(nline));
 	edl->index = ft_strlen(*line);
-	edl->multiline = edl->index / edl->col;
+
+	//ft_putstr_fd(*line + edl->index, 1);
+	edl->multiline = get_cursor_line(edl, edl->index, *line);
+	//while ((*line)[edl->index] && (*line)[edl->index] != '\n')
+	//	++edl->index;
+}
+
+void	history_dmove(t_edl *edl, char **line, t_hist *hist)
+{
+	int		j;
+	char	*to_display;
+
+	j = hist->h_current;
+	if (hist->h_count == 0 || j == 0)
+	{
+		hist->h_current = 0;
+		ft_putstr_fd(tgetstr("bl", NULL), 1);
+		return ;
+	}
+	else if (j == hist->h_count)
+	{
+		to_display = edl->linecpy;
+		edl->linecpy = NULL;
+		hist->h_current = 0;
+	}
+	else
+	{
+		to_display = hist->list[j];
+		hist->h_current = j + 1;
+	}
+	history_move(edl, line, to_display);
 }
 
 void	history_umove(t_edl *edl, char **line, t_hist *hist)
 {
 	int		j;
-	int		i;
 
-	i = prompt_len();
-	j = 0;
 	if (hist->h_current == 0)
+	{
+		try_m(edl->linecpy = ft_strdup(*line));
 		j = hist->h_count - 1;
+	}
 	else
-		j = hist->h_current - 1;
+		j = hist->h_current - 2;
 	if (j < 0)
 	{
 		ft_putstr_fd(tgetstr("bl", NULL), 1);
 		return ;
 	}
-	while (edl->index > 0)
-		mouve_left(edl);
-	ft_putstr_fd(tgetstr("cd", NULL), 1);
-	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, i), 1);
-	ft_putstr_fd(tgetstr("ce", NULL), 1);
-	ft_putstr_fd(hist->list[j], 1);
-	hist->h_current = j;
-	ft_strdel(line);
-	try_m(*line = ft_strdup(hist->list[j]));
-	edl->index = ft_strlen(*line);
-	edl->multiline = edl->index / edl->col;
+	hist->h_current = j + 1;
+	history_move(edl, line, hist->list[j]);
+
 }
 
 char	**ft_realloc(t_hist *hist, char *value)
@@ -77,7 +101,7 @@ char	**ft_realloc(t_hist *hist, char *value)
 	while (i < hist->h_count)
 	{
 		try_m(new_env[i] = ft_strdup(hist->list[i]));
-		i++;
+		++i;
 	}
 	try_m(new_env[i] = ft_strdup(value));
 	ft_tabdel((void ***)&hist->list);
@@ -86,10 +110,9 @@ char	**ft_realloc(t_hist *hist, char *value)
 
 char	**add_history(char *value, t_hist *hist)
 {
-	if (hist->h_count == 0)
-		try_m(hist->list[0] = ft_strdup(value));
-	else
-		hist->list = ft_realloc(hist, value);
-	hist->h_count++;
+	if (hist->h_count > 0)
+		try_m(ft_strtabrealloc(&hist->list, hist->h_count + 1));
+	hist->list[hist->h_count] = value;
+	++hist->h_count;
 	return (hist->list);
 }

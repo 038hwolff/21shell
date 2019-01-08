@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_paste.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:49:43 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 20:49:19 by hwolff           ###   ########.fr       */
+/*   Updated: 2019/01/08 13:53:12 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,7 @@ char	*paste_char(t_edl *edl, t_hist *hist, char *line)
 	i = ft_strlen(new_line);
 	while (--i >= edl->index)
 		ft_putstr_fd(tgetstr("le", NULL), 1);
-	if (edl->index < (int)ft_strlen(new_line))
-		edl->multiline = (edl->index + 2) / edl->col;
-	else
-		edl->multiline = ((int)ft_strlen(new_line) + 2) / edl->col;
+	edl->multiline = get_cursor_line(edl, edl->index, new_line);
 	if (edl->light)
 		ft_memdel((void**)&edl->light);
 	try_m(edl->light = (int *)ft_memalloc((ft_strlen(new_line) + 1)

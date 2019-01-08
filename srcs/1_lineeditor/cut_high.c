@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cut_high.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:51:35 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/18 20:48:48 by hwolff           ###   ########.fr       */
+/*   Updated: 2019/01/08 14:01:42 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*cut_high(t_edl *edl, t_hist *hist, char *line)
 	while (++i < len)
 		if (edl->light[i] == 0)
 			new_line[++j] = line[i];
-	edl->multiline = edl->index / edl->col;
+	edl->multiline = get_cursor_line(edl, edl->index, newline);
 	clear_line(edl, new_line);
 	c = (int)ft_strlen(new_line);
 	while (--c >= edl->index)

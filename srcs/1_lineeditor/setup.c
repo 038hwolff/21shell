@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 19:45:59 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/18 20:08:27 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 13:44:07 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ t_edl	*setup_edl(t_edl *edl)
 	try_m(edl->line = ft_strnew(0));
 	edl->index = 0;
 	edl->col = ws.ws_col;
-	edl->multiline = edl->index / edl->col;
+	edl->multiline = 0;
 	return (edl);
 }
