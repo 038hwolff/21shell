@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:46:19 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/08 19:48:39 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:56:21 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,19 @@ static void
 	pop_chosen_from_token_if_redir(t_token **chosen, t_token **chosen_prev,
 								t_token **token, int type)
 {
-	t_token *nextok;
+	t_token *dtok;
 
-	nextok = (*chosen)->next;
+	dtok = (*chosen);
 	if (type == OPEN_PAR)
-		while (nextok->type != CLOSED_PAR)
-			nextok = nextok->next;
+		while (dtok->type != CLOSED_PAR)
+			dtok = dtok->next;
 	if (*chosen && (is_redir_op(type) || is_agreg_op(type) || type == OPEN_PAR))
 	{
 		if (*chosen_prev)
-			(*chosen_prev)->next = nextok->next;
+			(*chosen_prev)->next = dtok->next;
 		else
-			*token = nextok->next;
-		nextok->next = NULL;
+			*token = dtok->next;
+		dtok->next = NULL;
 	}
 }
 
@@ -99,7 +99,6 @@ static void
 
 	if (!token)
 		return ;
-	//expansion(data, token);
 	chosen_prev = NULL;
 	chosen = get_primary_prev_token(&chosen_prev, token);
 	if (chosen_prev)

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 17:25:36 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/28 17:49:26 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:08:45 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	set_prompt(t_data *data, char *prompt, size_t prompt_len)
 {
-	data->prompt = prompt;
-	data->prompt_len = prompt_len;
+	data->edl.prompt = prompt;
+	data->edl.prompt_len = prompt_len;
 }
 
 void	set_special_prompt(t_data *data)
@@ -33,7 +33,5 @@ void	set_special_prompt(t_data *data)
 	else if (data->incomp_type == INC_BKQUOTE)
 		set_prompt(data, PBQUOTE, PBQUOTE_LEN);
 	else if (data->incomp_type == COMPLETE)
-		set_prompt(data, NULL, 0);
-	else
 		set_prompt(data, PDEFAULT, PDEFAULT_LEN);
 }

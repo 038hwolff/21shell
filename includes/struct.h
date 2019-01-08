@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/07 17:10:31 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:02:55 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ typedef struct		s_edl
 	char			*linecpy;
 	int				multiline;
 	int				col;
+	char			*prompt;
+	size_t			prompt_len;
 }					t_edl;
 
 typedef struct		s_cdenv
@@ -86,8 +88,6 @@ typedef struct		s_cdenv
 typedef struct		s_data
 {
 	char			*term_name;
-	char			*prompt;
-	size_t			prompt_len;
 	int				incomp_type;
 
 	char			*command;

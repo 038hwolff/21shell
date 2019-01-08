@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 10:20:58 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/08 14:00:38 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:19:52 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,8 @@ void	read_line(void)
 	init_term(data);
 	setup_edl(&data->edl);
 	signal_list();
-	display_prompt(data->prompt);
-	key = 0;
-	while ((read(STDIN_FILENO, &key, 10)) != 0)
+	display_prompt(&data->edl);
+	while ((key = 0) || (read(STDIN_FILENO, &key, 10)) != 0)
 	{
 		if (key == ENTER)
 		{
@@ -80,7 +79,6 @@ void	read_line(void)
 		else
 			data->edl.line = ft_termcaps(&data->edl, data->edl.line, key,
 					&data->hist);
-		key = 0;
 	}
 	reset_term(data);
 	add_line_to_command(data);

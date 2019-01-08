@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:26:21 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/08 13:54:11 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:36:56 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** loop.c
 */
 
-void			display_prompt(char *prompt);
+void			display_prompt(t_edl *edl);
 
 /*
 ** mouve.c
@@ -68,7 +68,6 @@ void			read_additional_line(char **line);
 */
 
 t_hist			*setup_hist(t_hist *hist);
-int				prompt_len();
 
 /*
 ** select_mode.c

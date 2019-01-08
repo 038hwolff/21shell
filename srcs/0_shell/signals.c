@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/07 17:43:48 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:38:48 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	signal_handler(int signall)
 	{
 		data->sigint = 1;
 		ft_putchar_fd('\n', 1);
-		display_prompt(data->prompt);
+		display_prompt(&data->edl);
 		ft_strdel(&data->edl.line);
 		try_m(data->edl.line = ft_strnew(0));
 		data->edl.index = 0;
@@ -34,6 +34,6 @@ void	signal_list(void)
 	int	i;
 
 	i = -1;
-	//while (++i < 32)
-	//	signal(i, signal_handler);
+	while (++i < 32)
+		signal(i, signal_handler);
 }

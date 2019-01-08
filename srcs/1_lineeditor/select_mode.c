@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:16:54 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/08 13:56:14 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:34:43 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	clear_space(t_edl *edl, char *line)
 {
 	size_t			len;
 	int				i;
-	size_t			j;
+	int				j;
 
 	i = -1;
 	len = ft_strlen(line);
@@ -82,7 +82,7 @@ void	clear_space(t_edl *edl, char *line)
 	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 0), 1);
 	ft_putstr_fd(tgetstr("cd", NULL), 1);
 	j = -1;
-	while (++j <= (len_line(edl) + len))
+	while (++j <= (int)(ft_strlen(edl->line) + edl->prompt_len + len))
 		write(1, "\b", 1);
 }
 
@@ -105,7 +105,7 @@ void	select_mode(t_edl *edl, unsigned long key, char *line)
 			break ;
 		select_letter(key_2, edl, line);
 		clear_space(edl, line);
-		display_prompt(data->prompt);
+		display_prompt(edl);
 		rewrite_line(edl, line);
 		edl->multiline = get_cursor_line(edl, edl->index, line);
 		i = (int)ft_strlen(line);

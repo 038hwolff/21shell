@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:33:34 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/21 17:49:33 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:41:32 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	line_moves(t_edl *edl, char *line, unsigned long key)
 			i++;
 		}
 	}
-	if (key == LINE_DOWN && (len_line(edl) / edl->col) > 0)
+	if (key == LINE_DOWN
+		&& ((ft_strlen(edl->line) + edl->prompt_len) / edl->col) > 0)
 	{
 		while (i < edl->col && edl->index < (int)ft_strlen(line))
 		{

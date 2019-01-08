@@ -1,0 +1,197 @@
+Vérification de la librairie Libft
+make[1]: Nothing to be done for `all'.
+$>echo `echo lol`
+lol
+$>cat srcs/5_executor/
+cat: srcs/5_executor/: Is a directory
+$>cd srcs/5_executor/
+$>ls
+assignement.c		exp_vars.c		pipes.c
+exec_cmd_line.c		exp_vars_assign.c	redirections.c
+exec_subcmd.c		exp_vars_get.c		semicolon.c
+executor.c		exp_vars_substitute.c	tools.c
+exp_goto_next_quote.c	expansion.c		var_get.c
+exp_quotes.c		fd_agregator.c		var_set.c
+exp_substit_cmd.c	heredoc.c
+exp_tilde.c		operator.c
+$>cat exe_cmd_line.c
+cat: exe_cmd_line.c: No such file or directory
+$>cat exec_cmd_line.c
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_cmd_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/18 08:54:08 by hwolff            #+#    #+#             */
+/*   Updated: 2019/01/06 21:55:46 by hben-yah         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "shell.h"
+
+/*
+** 7 - ; or &(jobs)
+** 6 - ||
+** 5 - &&
+** 4 - |
+** 3 - >&
+** 2 - < or <<
+** 1 - > or >>
+** 0 - CMD
+*/
+
+static int
+	sub_exec_cmd_line(t_data *data, t_ast *ast, int ret)
+{
+	if (ast->token->type == DOUBLELESS)
+		ret = exec_heredoc(data, ast);
+	else if (ast->token->type == PIPE)
+		ret = exec_pipes(data, ast);
+	else if (ast->token->type == DOUBLEPIPE || ast->token->type == DOUBLEAND)
+		ret = and_or(data, ast);
+	else if (ast->token->type == SEMICOLON)
+		ret = execute_semicolon(data, ast);
+	else if (ast->token->type == ASSIGNEMENT_WORD)
+		ret = exec_assignement(data, ast);
+	else if (ast->token->type == OPEN_PAR)
+		ret = exec_subcmd(data, ast);
+	return (ret);
+}
+
+int
+	exec_cmd_line(t_data *data, t_ast *ast)
+{
+	int		ret;
+	char	**table;
+
+	if (!ast)
+		return (RET_OK);
+	ret = RET_OK;
+	if (ast->token->type == WORD && (table = tokens_to_tab(ast->token))
+		&& (ret = is_builtins(data, table)) == -1)
+		ret = ex_exec(data->env, table);
+	else if (ast->token->type == GREAT || ast->token->type == DOUBLEGREAT)
+		ret = exec_redirect(data, ast, ast->token->type);
+	else if (ast->token->type == LESS)
+		ret = exec_back_redirect(data, ast);
+	else if (ast->token->type == GREATAND)
+		ret = main_agregator(data, ast);
+	else if (ast->token->type == LESSAND)
+		ret = main_back_agregator(data, ast);
+	else
+		ret = sub_exec_cmd_line(data, ast, ret);
+	if (ast->token->type == WORD)
+	{
+		data->exe_return = ret;
+		free_tab(&table);
+	}
+	return (ret);
+}
+$>cat exec_subcmd.c
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_subcmd.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/28 17:54:54 by hben-yah          #+#    #+#             */
+/*   Updated: 2019/01/06 20:32:42 by hben-yah         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "shell.h"
+
+static t_data
+	*init_subshell(char **env)
+{
+	t_data *data;
+
+	try_m(data = (t_data*)ft_memalloc(sizeof(t_data)));
+	try_m((data->env = ft_strtabdup(env)));
+	try_m((data->loc = ft_strtabnew(0)));
+	try_m((data->edl.line = ft_strnew(0)));
+	data->subcmd = 1;
+	return (data);
+}
+
+int
+	subshell(int ac, char **av, char **env)
+{
+	t_data		*data;
+	int			status;
+	char		*tmp;
+	int			i;
+
+	data = init_subshell(env);
+	status = 0;
+	i = 0;
+	while (i < ac)
+	{
+		ft_asprintf(&tmp, "%s %s%s", data->edl.line, av[i],
+										(i + 1 == ac ? "\n" : ""));
+		try_m(tmp);
+		ft_strdel(&data->edl.line);
+		data->edl.line = tmp;
+		++i;
+	}
+	lexical_analysis(&data->token, data->edl.line);
+	if (parser(data))
+	{
+		build_ast(data);
+		status = exec_cmd_line(data, data->ast);
+	}
+	reset_subshell(data);
+	return (status);
+}
+
+char
+	**tokens_to_tab(t_token *token)
+{
+	char	**table;
+	char	**p;
+	int		nbword;
+
+	nbword = count_token(token);
+	try_m((table = (char **)ft_memalloc(sizeof(char *) * (nbword + 1))));
+	p = table;
+	while (token)
+	{
+		try_m((*p = ft_strdup(token->val)));
+		token = token->next;
+		++p;
+	}
+	return (table);
+}
+
+char
+	exec_subcmd(t_data *data, t_ast *ast)
+{
+	pid_t		pid;
+	int			status;
+	char		**table;
+
+	status = 0;
+	if (!ast || !ast->token)
+		return (RET_OK);
+	if (!(table = tokens_to_tab(ast->token)))
+		return (RET_MAJ_ERROR);
+	if ((pid = fork()) == -1)
+		return (RET_MAJ_ERROR);
+	else if (pid == 0)
+		exit(subshell(ft_strtablen(table) - 2, table + 1, data->env));
+	else
+	{
+		signal(SIGINT, SIG_IGN);
+		pid = wait(&status);
+		ft_tabdel((void ***)&table);
+		if (WIFEXITED(status))
+			return (WEXITSTATUS(status));
+	}
+	ft_tabdel((void ***)&table);
+	return (RET_OK);
+}
+$>exit
+[1]    42905 segmentation fault  ./21sh

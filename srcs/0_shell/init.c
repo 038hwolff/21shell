@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:28:15 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/06 21:20:20 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:14:37 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,5 @@ void	init_shell(char **env, int dev)
 	var_set(&data->spe, "?", "0");
 	check_term(data);
 	init_term(data);
+	set_prompt(data, PDEFAULT, PDEFAULT_LEN);
 }

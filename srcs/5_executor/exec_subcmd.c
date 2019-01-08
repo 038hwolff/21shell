@@ -6,17 +6,18 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 17:54:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/08 19:24:46 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:57:17 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static void	args_to_cmd_line(t_data *data, int ac, char **av)
+static void
+	args_to_cmd_line(t_data *data, int ac, char **av)
 {
 	char	*tmp;
 	int		i;
-	
+
 	try_m((data->edl.line = ft_strnew(0)));
 	i = 0;
 	while (i < ac)
@@ -75,19 +76,14 @@ char
 	int			status;
 	char		**table;
 
-	status = 0;
-	if (!ast || !ast->token)
+	if ((status = 0) || !ast || !ast->token)
 		return (RET_OK);
 	if (!(table = tokens_to_tab(ast->token)))
 		return (RET_MAJ_ERROR);
 	if ((pid = fork()) == -1)
 		status = RET_MAJ_ERROR;
 	else if (pid == 0)
-	{
 		status = subshell(data, ft_strtablen(table) - 2, table + 1);
-		ft_tabdel((void ***)&table);
-		exit(status);
-	}
 	else
 	{
 		signal(SIGINT, SIG_IGN);
@@ -97,5 +93,7 @@ char
 			return (WEXITSTATUS(status));
 	}
 	ft_tabdel((void ***)&table);
+	if (!pid)
+		exit(status);
 	return (RET_OK);
 }

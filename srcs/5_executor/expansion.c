@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:59:41 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/08 19:37:57 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:37:44 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,3 @@ void	expansion(t_data *data, t_token *tkn)
 		tkn = tkn->next;
 	}
 }
-
-//echo `POUET=gne; echo $POUET`

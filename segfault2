@@ -1,0 +1,10 @@
+
+$>echo `echo lol`
+$>cat srcs/5_executor/
+$>cd srcs/5_executor/
+$>ls
+$>cat exe_cmd_line.c
+$>cat exec_cmd_line.c
+$>cat exec_subcmd.c
+$>exit
+[1]    42905 segmentation fault  ./21sh

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/06 17:28:02 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:15:24 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,6 @@ int		put_exception(int ret, char *prog, char *arg, char *message);
 
 int		ft_is_number(char *s);
 
+void	set_prompt(t_data *data, char *prompt, size_t prompt_len);
 
 #endif

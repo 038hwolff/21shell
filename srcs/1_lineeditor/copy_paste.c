@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:49:43 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/08 13:53:12 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:39:44 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ void	clear_line(t_edl *edl, char *n_line)
 	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 0), 1);
 	ft_putstr_fd(tgetstr("cd", NULL), 1);
 	i = -1;
-	while (++i < len_line(edl) + (int)ft_strlen(n_line))
+	while (++i < (int)(ft_strlen(edl->line)
+		+ edl->prompt_len + ft_strlen(n_line)))
 		write(1, "\b", 1);
-	display_prompt(data->prompt);
+	display_prompt(edl);
 	ft_putstr_fd(n_line, 1);
 }
 

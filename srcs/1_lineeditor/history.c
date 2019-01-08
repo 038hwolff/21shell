@@ -6,29 +6,19 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:55:14 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/08 14:47:08 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:47:25 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-
 void	history_move(t_edl *edl, char **line, char *nline)
 {
 	int		i;
 
-	i = prompt_len();
-	// ft_putstr_fd(tgetstr("up", NULL), 1);
-	// while (edl->multiline > 0)
-	// {
-	// 	ft_putstr_fd(tgetstr("up", NULL), 1);
-	// 	--edl->multiline;
-	// }
-	// j = 0;
-	// while (j < i)
-	// 	mouve_right(edl);
+	i = edl->prompt_len;
 	while (edl->index > 0)
-	 	mouve_left(edl);
+		mouve_left(edl);
 	ft_putstr_fd(tgetstr("cd", NULL), 1);
 	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, i), 1);
 	ft_putstr_fd(tgetstr("ce", NULL), 1);
@@ -36,11 +26,7 @@ void	history_move(t_edl *edl, char **line, char *nline)
 	ft_strdel(line);
 	try_m(*line = ft_strdup(nline));
 	edl->index = ft_strlen(*line);
-
-	//ft_putstr_fd(*line + edl->index, 1);
 	edl->multiline = get_cursor_line(edl, edl->index, *line);
-	//while ((*line)[edl->index] && (*line)[edl->index] != '\n')
-	//	++edl->index;
 }
 
 void	history_dmove(t_edl *edl, char **line, t_hist *hist)
@@ -87,7 +73,6 @@ void	history_umove(t_edl *edl, char **line, t_hist *hist)
 	}
 	hist->h_current = j + 1;
 	history_move(edl, line, hist->list[j]);
-
 }
 
 char	**ft_realloc(t_hist *hist, char *value)
