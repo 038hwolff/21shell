@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:38:11 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/07 17:11:23 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 17:00:02 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	reset_term(t_data *data)
 
 void	reset_shell(t_data *data)
 {
-	reset_term(data);
+	if (!data->subcmd)
+		reset_term(data);
 	reset_subshell(data);
 }
 

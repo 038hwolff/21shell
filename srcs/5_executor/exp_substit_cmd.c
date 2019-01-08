@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 22:13:17 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/06 20:18:53 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 15:37:36 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static char
 		dup2(fd[1], 1);
 		write(1, "=", 1);
 		close(fd[1]);
-		exit(subshell(1, &cmd, data->env));
+		exit(subshell(data, 1, &cmd));
 	}
 	else if ((int)(pid = wait(&status)))
 		ret = read_substit_result(fd[0]);

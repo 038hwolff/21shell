@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 19:01:16 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/30 13:52:12 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 19:50:01 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static char				*exp_res_norules(t_varsexp *vexp)
 	(tmp = var_get_val(vexp->data->spe, vexp->str))
 	|| (tmp = var_get_val(vexp->data->loc, vexp->str))
 	|| (tmp = var_get_val(vexp->data->env, vexp->str));
-	vexp->res = (tmp) ? ft_strdup(tmp) : ft_strdup("");
+	try_m(vexp->res = (tmp) ? ft_strdup(tmp) : ft_strdup(""));
 	return (vexp->res);
 }
 
@@ -107,7 +107,7 @@ char					*exp_vars_get(char *str, t_data *data)
 
 	vexp.format = STR_FORMAT;
 	if (!str)
-		return (ft_strdup(""));
+		return (try_m(ft_strdup("")));
 	vexp.data = data;
 	vexp.str = str;
 	vexp.res = 0;

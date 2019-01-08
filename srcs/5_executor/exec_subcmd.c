@@ -6,35 +6,18 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 17:54:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/06 20:32:42 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 19:24:46 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static t_data
-	*init_subshell(char **env)
+static void	args_to_cmd_line(t_data *data, int ac, char **av)
 {
-	t_data *data;
-
-	try_m(data = (t_data*)ft_memalloc(sizeof(t_data)));
-	try_m((data->env = ft_strtabdup(env)));
-	try_m((data->loc = ft_strtabnew(0)));
+	char	*tmp;
+	int		i;
+	
 	try_m((data->edl.line = ft_strnew(0)));
-	data->subcmd = 1;
-	return (data);
-}
-
-int
-	subshell(int ac, char **av, char **env)
-{
-	t_data		*data;
-	int			status;
-	char		*tmp;
-	int			i;
-
-	data = init_subshell(env);
-	status = 0;
 	i = 0;
 	while (i < ac)
 	{
@@ -45,13 +28,24 @@ int
 		data->edl.line = tmp;
 		++i;
 	}
+}
+
+int
+	subshell(t_data *data, int ac, char **av)
+{
+	int			status;
+
+	reset_command(data);
+	data->subcmd = 1;
+	status = 0;
+	args_to_cmd_line(data, ac, av);
 	lexical_analysis(&data->token, data->edl.line);
 	if (parser(data))
 	{
 		build_ast(data);
 		status = exec_cmd_line(data, data->ast);
 	}
-	reset_subshell(data);
+	reset_shell(data);
 	return (status);
 }
 
@@ -87,9 +81,13 @@ char
 	if (!(table = tokens_to_tab(ast->token)))
 		return (RET_MAJ_ERROR);
 	if ((pid = fork()) == -1)
-		return (RET_MAJ_ERROR);
+		status = RET_MAJ_ERROR;
 	else if (pid == 0)
-		exit(subshell(ft_strtablen(table) - 2, table + 1, data->env));
+	{
+		status = subshell(data, ft_strtablen(table) - 2, table + 1);
+		ft_tabdel((void ***)&table);
+		exit(status);
+	}
 	else
 	{
 		signal(SIGINT, SIG_IGN);

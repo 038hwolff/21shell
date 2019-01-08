@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:54:08 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 21:55:46 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 19:51:41 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int
 
 	if (!ast)
 		return (RET_OK);
+	if (ast->token->type != OPEN_PAR)
+		expansion(data, ast->token);
 	ret = RET_OK;
 	if (ast->token->type == WORD && (table = tokens_to_tab(ast->token))
 		&& (ret = is_builtins(data, table)) == -1)

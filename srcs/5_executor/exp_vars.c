@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:49:10 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/30 15:34:36 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/08 18:23:07 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char		*exp_vars_pos(char *str, int heredoc)
 	{
 		if (*str == '\\')
 			str++;
-		else if (*str == '\'' && !heredoc)
+		else if ((*str == '\'' || *str == '`') && !heredoc)
 			exp_goto_next_quote(&str);
 		else if (*str == '$' && (ft_isalpha(*(str + 1))
 			|| *(str + 1) == '?' || *(str + 1) == '{' || *(str + 1) == '$'))
