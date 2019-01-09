@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/09 17:48:19 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:54:34 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@
 
 void	put_signal(t_data *data, int sig)
 {
-	static const char *mes[30] = {"hangup", "", "",
+	static const char *mes[31] = {"hangup", "", "",
 		"illegal hardware instruction", "trace trap", "abort",
-		"EMT instruction", "floating point exception", "bus error",
+		"EMT instruction", "floating point exception", "", "bus error",
 		"segmentation fault", "invalid system call", "", "alarm", "", "",
 		"suspended", "", "continued", "", "", "", "", "cpu limit exceeded",
 		"file size limit exceeded", "virtual time alarm", "profile signal",
@@ -74,7 +74,7 @@ void	signal_handler(int sig)
 		|| (sig >= 4 && sig <= 8)
 		|| (sig >= 10 && sig <= 14)
 		|| (sig == 19)
-		|| (sig >= 24 && sig <= 17)
+		|| (sig >= 24 && sig <= 27)
 		|| (sig >= 30 || sig <= 31))
 	{
 		put_signal(data, sig);
@@ -98,6 +98,6 @@ void	signal_list(void)
 	int	i;
 
 	i = 0;
-	while (++i < 32 && i != SIGTRAP)
+	while (++i < 32)
 		signal(i, signal_handler);
 }
