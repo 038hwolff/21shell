@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/08 21:15:24 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:29:49 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int					check_if_arithmetics(char *data);
 ** init.c
 */
 
-void				init_shell(char **env, int debug);
+void				init_shell(char **env, int ac, char **av, int debug);
 /*
 ** term.c
 */
@@ -125,5 +125,6 @@ int		put_exception(int ret, char *prog, char *arg, char *message);
 int		ft_is_number(char *s);
 
 void	set_prompt(t_data *data, char *prompt, size_t prompt_len);
+void		handle_sigint(t_data *data);
 
 #endif

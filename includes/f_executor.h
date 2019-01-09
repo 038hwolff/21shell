@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:27:53 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/08 15:37:01 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/09 13:42:36 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ int				main_back_agregator(t_data *data, t_ast *ast);
 int		count_token(t_token *token);
 
 char	**tokens_to_tab(t_token *token);
+char	*read_fd(int fd);
 
 #endif

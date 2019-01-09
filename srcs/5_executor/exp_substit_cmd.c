@@ -6,14 +6,14 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 22:13:17 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/08 15:37:36 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/09 13:42:25 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static char
-	*read_substit_result(int fd)
+char
+	*read_fd(int fd)
 {
 	char		buff[1025];
 	int			len;
@@ -63,7 +63,7 @@ static char
 		exit(subshell(data, 1, &cmd));
 	}
 	else if ((int)(pid = wait(&status)))
-		ret = read_substit_result(fd[0]);
+		ret = read_fd(fd[0]);
 	dup2(fd[1], std);
 	close(std);
 	close(fd[0]);

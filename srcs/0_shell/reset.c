@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:38:11 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/08 17:00:02 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:45:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	reset_term(t_data *data)
 
 void	reset_shell(t_data *data)
 {
-	if (!data->subcmd)
+	if (!data->subcmd && data->term_name)
 		reset_term(data);
 	reset_subshell(data);
 }
@@ -31,6 +31,10 @@ void	reset_subshell(t_data *data)
 		free_tab(&data->env);
 	if (data->loc)
 		free_tab(&data->loc);
+	if (data->spe)
+		free_tab(&data->spe);
+	if (data->arguments)
+		ft_strdel(&data->arguments);
 	free(data);
 }
 

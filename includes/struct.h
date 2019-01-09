@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/08 21:02:55 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:40:29 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct		s_data
 	int				incomp_type;
 
 	char			*command;
+	char			*arguments;
 
 	char			**env;
 	char			**loc;

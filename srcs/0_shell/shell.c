@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:38:24 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/07 18:15:07 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:30:12 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int		main(int ac, char **av, char **env)
 {
 	if (ac && av && env)
 	{
-		init_shell(env, (ac > 1 && ft_strequ(av[1], "-dev")));
+		init_shell(env, ac, av, (ac > 1 && ft_strequ(av[1], "-dev")));
 		command_line_loop();
 	}
 	return (EXIT_SUCCESS);

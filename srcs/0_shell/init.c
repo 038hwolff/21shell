@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:28:15 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/08 21:14:37 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:48:49 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,51 @@ void	set_pwd_value(t_data *data)
 	ft_strdel(&s);
 }
 
-void	init_shell(char **env, int dev)
+char *inline_args(int ac, char **av)
+{
+	char 	*res;
+	char 	*tmp;
+	int		i;
+
+	res = NULL;
+	if (ac > 0)
+	{
+		try_m(res = ft_strnew(0));
+		i = 0;
+		while (i < ac)
+		{
+
+			try_m(tmp = ft_strjoin(res, av[i]));
+			ft_strdel(&res);
+			res = tmp;
+			++i;
+		}
+	}
+	return (res);
+}
+
+void	init_shell(char **env, int ac, char **av, int dev)
 {
 	t_data			*data;
 	struct termios	term;
+	char			*input;
 
 	data = get_data();
-	if (tcgetattr(STDIN_FILENO, &term) == -1)
-		term_exception(""SH_NAME"could not get terminal config\n");
-	data->term_dft_config = term;
+	input = NULL;
+	if (!isatty(STDIN_FILENO))
+		input = read_fd(0);
+	if (tcgetattr(STDIN_FILENO, &term) == -1 && !input)
+		term_exception("could not get terminal config");
 	dev && (data->dev = 1);
 	try_m((data->env = ft_strtabdup(env)));
 	try_m((data->loc = ft_strtabnew(0)));
 	try_m((data->spe = ft_strtabnew(0)));
 	var_set(&data->spe, "?", "0");
+	data->arguments = inline_args(ac, av);
+	var_set(&data->spe, "?", "0");
+	if (input)
+		exit(subshell(data, 1, &input));
+	data->term_dft_config = term;
 	check_term(data);
-	init_term(data);
 	set_prompt(data, PDEFAULT, PDEFAULT_LEN);
 }
