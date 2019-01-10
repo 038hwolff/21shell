@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:19:07 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/30 22:31:31 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 17:42:41 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		b_env(t_data *data, char **arg)
 	if (arg[i])
 	{
 		try_m((narg = ft_strtabdup(arg + i)));
-		ret = ex_exec(nenv, narg);
+		ret = ex_exec(data, nenv, narg);
 		free_tab(&narg);
 	}
 	else

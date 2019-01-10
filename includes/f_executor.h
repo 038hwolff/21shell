@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:27:53 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/10 16:12:58 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 17:43:05 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int					execute_semicolon(t_data *data, t_ast *ast);
 
 char				**get_path(char **env, char **arg);
 int					exec_cmd_line(t_data *data, t_ast *ast);
-int					ex_exec(char **env, char **arg);
+int					ex_exec(t_data *data, char **env, char **arg);
 int					ex_exec_core(char **env, char **table, char **paths);
 char				**ast_right_to_tab(t_ast *ast);
 

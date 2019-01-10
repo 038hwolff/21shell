@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:54:08 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/10 16:17:22 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 17:43:50 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int
 	ret = RET_OK;
 	if (ast->token->type == WORD && (table = tokens_to_tab(ast->token))
 		&& (ret = is_builtins(data, table)) == -1)
-		ret = ex_exec(data->env, table);
+		ret = ex_exec(data, data->env, table);
 	else if (ast->token->type == GREAT || ast->token->type == DOUBLEGREAT)
 		ret = exec_redirect(data, ast, ast->token->type);
 	else if (ast->token->type == LESS)

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/10 12:11:31 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 17:52:10 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ void	put_signal(t_data *data, int sig)
 		"file size limit exceeded", "virtual time alarm", "profile signal",
 		"", "", "user-defined signal 1", "user-defined signal 2"};
 
-	ft_dprintf(STDERR_FILENO, "  %s %s  %s\n", "", mes[sig - 1],
-		data->arguments ? data->arguments : "");
+	if (*mes[sig - 1])
+		ft_dprintf(STDERR_FILENO, "%s: %d   %s", mes[sig - 1], sig,
+			data->arguments ? data->arguments : "");
 }
 
 void	signal_handler(int sig)

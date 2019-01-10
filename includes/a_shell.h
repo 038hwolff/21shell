@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/10 11:59:39 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 17:43:32 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,6 @@ int					ft_is_number(char *s);
 
 void				set_prompt(t_data *data, char *prompt, size_t prompt_len);
 void				handle_sigint(t_data *data);
+void				put_signal(t_data *data, int sig);
 
 #endif

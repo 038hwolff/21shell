@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:51:07 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/10 16:16:01 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 17:42:58 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			ex_exec_core(char **env, char **table, char **paths)
 	exit(put_exception(RET_NOT_FOUND, NULL, *table, "command not found"));
 }
 
-int			ex_exec(char **env, char **table)
+int			ex_exec(t_data *data, char **env, char **table)
 {
 	int		status;
 	char	**paths;
@@ -77,6 +77,7 @@ int			ex_exec(char **env, char **table)
 	free_tab(&paths);
 	if (WIFSIGNALED(status))
 	{
+		put_signal(data, status);
 		ft_putchar('\n');
 		return (128 + status);
 	}
