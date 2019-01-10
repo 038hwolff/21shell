@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/10 17:52:10 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 18:13:11 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	put_signal(t_data *data, int sig)
 		"", "", "user-defined signal 1", "user-defined signal 2"};
 
 	if (*mes[sig - 1])
-		ft_dprintf(STDERR_FILENO, "%s: %d   %s", mes[sig - 1], sig,
+		ft_dprintf(STDERR_FILENO, " => %s: %d   %s", mes[sig - 1], sig,
 			data->arguments ? data->arguments : "");
 }
 

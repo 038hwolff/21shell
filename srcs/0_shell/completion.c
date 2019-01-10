@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:54:01 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/10 17:33:26 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 19:54:16 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,25 @@ static char
 	i = 0;
 	if (ft_strnequ(token->val, "cd", token->length) && ++i)
 		ret = (("cd ") + token->length);
-	if (ft_strnequ(token->val, "echo", token->length) && ++i)
+	else if (ft_strnequ(token->val, "echo", token->length) && ++i)
 		ret = (("echo ") + token->length);
-	if (ft_strnequ(token->val, "env", token->length) && ++i)
+	else if (ft_strnequ(token->val, "env", token->length) && ++i)
 		ret = (("env ") + token->length);
-	if (ft_strnequ(token->val, "exit", token->length) && ++i)
+	else if (ft_strnequ(token->val, "exit", token->length) && ++i)
 		ret = (("exit ") + token->length);
-	if (ft_strnequ(token->val, "export", token->length) && ++i)
+	else if (ft_strnequ(token->val, "export", token->length) && ++i)
 		ret = (("export ") + token->length);
-	if (ft_strnequ(token->val, "set", token->length) && ++i)
+	else if (ft_strnequ(token->val, "set", token->length) && ++i)
 		ret = (("set ") + token->length);
-	if (ft_strnequ(token->val, "setenv", token->length) && ++i)
+	else if (ft_strnequ(token->val, "setenv", token->length) && ++i)
 		ret = (("setenv ") + token->length);
-	if (ft_strnequ(token->val, "unset", token->length) && ++i)
+	else if (ft_strnequ(token->val, "unset", token->length) && ++i)
 		ret = (("unset ") + token->length);
-	if (ft_strnequ(token->val, "unsetenv", token->length) && ++i)
+	else if (ft_strnequ(token->val, "unsetenv", token->length) && ++i)
 		ret = (("unsetenv ") + token->length);
-	return (i > 1 ? "+++" : ret);
+	else
+		return (NULL);
+	return (i < 0 ? try_m(ft_strdup(ret)) : "+++");
 }
 
 static char
@@ -107,27 +109,57 @@ static char
 		return (complete_from_given_path(token->val));
 }
 
+static char
+	*complete_var(t_data *data, t_token *token)
+{
+	int		i;
+	int		j;
+	int		k;
+	int		len;
+
+	k = 1;
+	if (token->val[1] == '{')
+		++k;
+	i = 0;
+	len = ft_strlen(token->val + k);
+	while (data->env[i] && !ft_strnequ(data->env[i], token->val + k, len))
+		++i;
+	j = 0;
+	while (data->loc[j] && !ft_strnequ(data->loc[j], token->val + k, len))
+		++j;
+	if (data->env[i] && !data->loc[j])
+		return (try_m(ft_strsub(data->env[i], len, ft_strchr(data->env[i], '=') - data->env[i] + 1)));
+	if (!data->env[i] && data->loc[j])
+		return (try_m(ft_strsub(data->loc[j], len, ft_strchr(data->loc[j], '=') - data->loc[j] + 1)));
+	return (NULL);
+}
+
 char
 	*completion(t_data *data, char *line)
 {
 	t_token *lex;
+	t_token *cpy;
+	t_token *prev;
 	char	*ret;
 
 	if (!line || !*line)
 		return (NULL);
 	ret = NULL;
 	lex = NULL;
+	prev = NULL;
 	lexical_analysis(&lex, line);
-	if (lex)
+	if ((cpy = lex))
 	{
-		while (lex->next && lex->next->next)
+		while (lex->next && (prev = lex))
 			lex = lex->next;
-		if (!lex->next)
+		if (ft_strchr(lex->val, '$') || ft_strstr(lex->val, "${"))
+			ret = complete_var(data, lex);
+		else if (!prev)
 			ret = (lex->type == WORD ? complete_bin(data->env, lex) : NULL);
-		else if (lex->next->type == WORD)
-			ret = (lex->type != WORD ? complete_bin(data->env, lex->next)
-								: complete_from_given_path(lex->next->val));
-		free_token(&lex);
+		else if (lex->type == WORD)
+			ret = (prev->type != WORD ? complete_bin(data->env, lex)
+								: complete_from_given_path(lex->val));
+		free_token(&cpy);
 	}
 	return (ret);
 }
