@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/10 12:02:21 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 12:10:58 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	signal_handler(int sig)
 {
 	t_data	*data;
 
+	ft_printf("%d\n", sig);
 	data = get_data();
 	if (sig == SIGINT)
 		handle_sigint(data);
@@ -71,7 +72,7 @@ void	signal_handler(int sig)
 		|| (sig >= 4 && sig <= 8)
 		|| (sig >= 10 && sig <= 14)
 		|| (sig >= 24 && sig <= 27)
-		|| (sig >= 30 || sig <= 31))
+		|| (sig >= 30 && sig <= 31))
 	{
 		put_signal(data, sig);
 		exit_program(128 + sig);
