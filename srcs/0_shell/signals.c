@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/10 12:10:58 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 12:11:31 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	signal_handler(int sig)
 {
 	t_data	*data;
 
-	ft_printf("%d\n", sig);
 	data = get_data();
 	if (sig == SIGINT)
 		handle_sigint(data);
