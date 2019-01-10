@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/06 21:11:07 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 13:44:50 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ int
 	while (data->token
 		&& (data->incomp_type = is_command_incomplete(data->token)) != COMPLETE)
 	{
-		if (data->subcmd)
+		if (data->oneshot)
 		{
-			put_exception(0, "command substitution", NULL,
-													"unexpected end of file");
+			put_exception(0, data->subcmd ? "command substitution" : NULL,
+				NULL, "unexpected end of file");
 			return (RET_OK);
 		}
 		set_special_prompt(data);

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:57:00 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 19:43:34 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 14:25:36 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int
 	waitpid(pid[1], &stat[1], 0);
 	if ((WIFEXITED(stat[0])))
 		return (WEXITSTATUS(stat[0]));
-	return (WIFEXITED(stat[1]) ? WEXITSTATUS(stat[0]) : -1);
+	return (WIFEXITED(stat[1]) ? WEXITSTATUS(stat[1]) : RET_ERROR);
 }
 
 int

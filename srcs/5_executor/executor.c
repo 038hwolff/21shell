@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:51:07 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 20:20:58 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 16:16:01 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ int			ex_exec(char **env, char **table)
 		ex_exec_core(env, table, paths);
 	else
 		signal(SIGINT, SIG_IGN);
-	wait(&status);
+	waitpid(childpid, &status, 0);
 	free_tab(&paths);
 	if (WIFSIGNALED(status))
 	{
 		ft_putchar('\n');
-		return (WIFEXITED(status));
+		return (128 + status);
 	}
 	return (WIFEXITED(status) ? WEXITSTATUS(status) : RET_ERROR);
 }

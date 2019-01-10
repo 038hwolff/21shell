@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/06 21:03:23 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 13:50:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int
 {
 	int		ret;
 
-	if (data->subcmd)
+	if (data->oneshot)
 	{
 		try_m((token->heredoc = ft_strnew(0)));
 		return (1);

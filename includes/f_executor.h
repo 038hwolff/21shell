@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:27:53 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/09 13:42:36 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 16:12:58 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void				var_unset(char ***vars, char *key);
 int					exec_assignement(t_data *data, t_ast *ast);
 
 int					exp_quotes(char **str);
-char			exec_subcmd(t_data *data, t_ast *ast);
+int				exec_subcmd(t_data *data, t_ast *ast);
 void			exp_substit_cmd(char **str, t_data *data);
 int				subshell(t_data *data, int ac, char **av);
 

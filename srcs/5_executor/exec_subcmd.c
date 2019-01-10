@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 17:54:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/08 21:57:17 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 16:17:33 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int
 	int			status;
 
 	reset_command(data);
-	data->subcmd = 1;
 	status = 0;
+	data->oneshot = 1;
 	args_to_cmd_line(data, ac, av);
 	lexical_analysis(&data->token, data->edl.line);
 	if (parser(data))
@@ -69,7 +69,7 @@ char
 	return (table);
 }
 
-char
+int
 	exec_subcmd(t_data *data, t_ast *ast)
 {
 	pid_t		pid;
@@ -87,10 +87,9 @@ char
 	else
 	{
 		signal(SIGINT, SIG_IGN);
-		pid = wait(&status);
+		pid = waitpid(pid, &status, 0);
 		ft_tabdel((void ***)&table);
-		if (WIFEXITED(status))
-			return (WEXITSTATUS(status));
+		return (WIFEXITED(status) ? WEXITSTATUS(status) : RET_ERROR);
 	}
 	ft_tabdel((void ***)&table);
 	if (!pid)

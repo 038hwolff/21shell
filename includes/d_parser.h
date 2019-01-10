@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:20:29 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 21:12:55 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 16:14:44 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,5 @@ int		expand_dquote(char **line, int cur);
 int		expand_quote(char **line, int cur);
 char	*insert_backslash_before_spechar(char *s);
 int		check_parentheses(t_token *token);
-char	check_bkquote(t_token *token);
 
 #endif

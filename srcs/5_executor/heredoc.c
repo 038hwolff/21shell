@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:47:21 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 15:26:40 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 14:26:02 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static char	exec_heredoc_redir(
 	waitpid(pid[1], &stat[1], 0);
 	if (WIFEXITED(stat[0]))
 		return (WEXITSTATUS(stat[0]));
-	return (WIFEXITED(stat[1]) ? WEXITSTATUS(stat[0]) : RET_ERROR);
+	return (WIFEXITED(stat[1]) ? WEXITSTATUS(stat[1]) : RET_ERROR);
 }
 
 int			exec_heredoc(t_data *data, t_ast *ast)

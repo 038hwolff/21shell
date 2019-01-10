@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/09 17:40:29 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 13:42:09 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct		s_data
 	short			shell_exit;
 	int				errno; // garder ???
 	int				subcmd;
+	int				oneshot;
 
 	int				sigint;
 	int				eof;

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:28:15 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/10 12:01:45 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 13:35:36 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	init_shell(char **env, int ac, char **av, int dev)
 	try_m((data->spe = ft_strtabnew(0)));
 	var_set(&data->spe, "?", "0");
 	data->arguments = inline_args(ac, av);
-	var_set(&data->spe, "?", "0");
 	if (input)
 		exit(subshell(data, 1, &input));
 	data->term_dft_config = term;
