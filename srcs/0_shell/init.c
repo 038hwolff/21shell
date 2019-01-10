@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:28:15 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/09 17:48:49 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 12:01:45 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	set_pwd_value(t_data *data)
 	ft_strdel(&s);
 }
 
-char *inline_args(int ac, char **av)
+char	*inline_args(int ac, char **av)
 {
-	char 	*res;
-	char 	*tmp;
+	char	*res;
+	char	*tmp;
 	int		i;
 
 	res = NULL;
@@ -53,7 +53,6 @@ char *inline_args(int ac, char **av)
 		i = 0;
 		while (i < ac)
 		{
-
 			try_m(tmp = ft_strjoin(res, av[i]));
 			ft_strdel(&res);
 			res = tmp;

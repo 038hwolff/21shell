@@ -6,26 +6,12 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/08 21:08:39 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 12:00:07 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_H
 # define DEFINE_H
-
-
-
-// macro de debug, à virer au moment de mettre à la norme
-# define M1 ft_printf("\nMARQUEUR 1\n");
-# define M2 ft_printf("\nMARQUEUR 2\n");
-# define M3 ft_printf("\nMARQUEUR 3\n");
-# define M4 ft_printf("\nMARQUEUR 4\n");
-# define M5 ft_printf("\nMARQUEUR 5\n");
-# define Ms(x) ft_printf("\n%s\n", x);
-# define Md(x) ft_printf("\n%d\n", x);
-// a virer
-//a virer
-
 
 /*
 ** Defines

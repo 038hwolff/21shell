@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/09 17:29:49 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/10 11:59:39 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,8 @@ int					fd_exception(char *fd);
 int					cmd_not_found_exception(char *cmd);
 int					file_not_found_exception(char *file);
 
-
-int		syntax_exception(char *word, int subcmd);
-int		eof_exception(int subcmd);
+int					syntax_exception(char *word, int subcmd);
+int					eof_exception(int subcmd);
 
 char				*remove_backslash_before_spechar(char *s);
 /*
@@ -119,12 +118,12 @@ char				*complete_from_given_path(char *input);
 int					is_a_directory(char *dir, char *file);
 
 int					check_file(char **ret, char *entry, char *file, char *path);
-void	reset_subshell(t_data *data);
-int		put_exception(int ret, char *prog, char *arg, char *message);
+void				reset_subshell(t_data *data);
+int					put_exception(int ret, char *prog, char *arg, char *message);
 
-int		ft_is_number(char *s);
+int					ft_is_number(char *s);
 
-void	set_prompt(t_data *data, char *prompt, size_t prompt_len);
-void		handle_sigint(t_data *data);
+void				set_prompt(t_data *data, char *prompt, size_t prompt_len);
+void				handle_sigint(t_data *data);
 
 #endif
