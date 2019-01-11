@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:24:15 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/11 14:18:38 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 15:59:00 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,28 @@ char	*supp_char(char *line, int *index)
 
 void	move_cursor_to_index(t_edl *edl)
 {
-	int i;
+	int iline;
 	int	len;
+	int	i;
 
 	ft_putstr_fd(tgetstr("vs", NULL), 1);
 	len = ft_strlen(edl->line);
-	i = get_cursor_line(edl, len, edl->line);
-	if (i > edl->multiline)
+	iline = get_cursor_line(edl, len, edl->line);
+	while (len-- > edl->index)
 	{
-		while (i > edl->multiline)
+		if (iline > 0
+			&& (((edl->index + edl->prompt_len) % edl->col) == 0
+				|| edl->line[len] == '\n'))
 		{
 			ft_putstr_fd(tgetstr("up", NULL), 1);
-			--i;
+			i = get_current_line_len(edl->line, len);
+			if (--iline == 0)
+				i += edl->prompt_len;
+			while (i--)
+				ft_putstr_fd(tgetstr("nd", NULL), 1);
 		}
-		i = get_current_line_len(edl->line, edl->index);
-		if (edl->multiline == 0)
-			i += edl->prompt_len;
-		while (--i)
-			ft_putstr_fd(tgetstr("nd", NULL), 1);
-	}
-	else
-		while (len-- > edl->index)
+		else
 			ft_putstr_fd(tgetstr("le", NULL), 1);
+	}
 	ft_putstr_fd(tgetstr("ve", NULL), 1);
 }
