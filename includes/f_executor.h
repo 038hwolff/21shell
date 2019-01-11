@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:27:53 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/10 17:43:05 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 15:06:12 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,18 @@ char				**var_get_ptr(char **arr, char *key);
 int					var_set_line(char ***vars, char *line);
 void				var_unset(char ***vars, char *key);
 
-
 int					exec_assignement(t_data *data, t_ast *ast);
 
 int					exp_quotes(char **str);
-int				exec_subcmd(t_data *data, t_ast *ast);
-void			exp_substit_cmd(char **str, t_data *data);
-int				subshell(t_data *data, int ac, char **av);
+int					exec_subcmd(t_data *data, t_ast *ast);
+void				exp_substit_cmd(char **str, t_data *data);
+int					subshell(t_data *data, int ac, char **av);
 
-int				main_back_agregator(t_data *data, t_ast *ast);
+int					main_back_agregator(t_data *data, t_ast *ast);
 
-int		count_token(t_token *token);
+int					count_token(t_token *token);
 
-char	**tokens_to_tab(t_token *token);
-char	*read_fd(int fd);
+char				**tokens_to_tab(t_token *token);
+char				*read_fd(int fd);
 
 #endif

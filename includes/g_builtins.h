@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:23:22 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/30 21:18:57 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 15:11:36 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void				add_to_env(char ***nenv, char **arg, int i);
 int					ft_setline(char *key, char *value, char ***env);
 char				**ft_tabdup(char **table, size_t z);
 char				**check_key(char **ret, int i, char *key, char *value);
-int		b_setenv(t_data *data, char **arg);
+int					b_setenv(t_data *data, char **arg);
 
 /*
 ** builtins_tools.c
@@ -72,6 +72,5 @@ void				unset_one(char ***vars, char *arg, size_t len);
 int					b_unset(t_data *data, char **args);
 int					b_export(t_data *data, char **arg);
 int					b_set(t_data *data, char **arg);
-
 
 #endif

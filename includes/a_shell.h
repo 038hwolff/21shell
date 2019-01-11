@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:37:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/10 17:43:32 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 15:12:12 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,14 @@ int					is_a_directory(char *dir, char *file);
 
 int					check_file(char **ret, char *entry, char *file, char *path);
 void				reset_subshell(t_data *data);
-int					put_exception(int ret, char *prog, char *arg, char *message);
+int					put_exception(int ret, char *prog, char *arg,
+																char *message);
 
 int					ft_is_number(char *s);
 
 void				set_prompt(t_data *data, char *prompt, size_t prompt_len);
 void				handle_sigint(t_data *data);
 void				put_signal(t_data *data, int sig);
+char				*complete_from_builtins(t_token *token);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:26:21 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/08 21:36:56 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 15:11:01 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,11 @@ int				check_eof(t_data *data);
 */
 
 char			*supp_char(char *line, int *index);
-char			*insert_char(char *line, unsigned long key, int *index, t_edl *edl);
+char			*insert_char(char *line, unsigned long key,
+										int *index, t_edl *edl);
 char			*complete_word(t_data *data, char *line);
 int				get_cursor_line(t_edl *edl, int i, char *s);
+void			move_cursor_to_index(t_edl *edl);
+int				get_current_line_len(char *s, int index);
 
 #endif

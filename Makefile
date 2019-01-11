@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 08:34:44 by hwolff            #+#    #+#              #
-#    Updated: 2019/01/08 13:25:44 by hben-yah         ###   ########.fr        #
+#    Updated: 2019/01/11 15:07:39 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ FLAGDEGUG		=	$(FLAG) -fsanitize=address
 # Files names
 SHELL_N			=	shell.c free.c data.c init.c putchar.c \
 					signals.c term.c exception.c exit.c reset.c \
-					cancel.c completion.c completion2.c
+					cancel.c completion.c completion2.c completion3.c
 EDITLINE_N		=	read_line.c mouve.c term.c \
 					history.c setup.c ft_enter.c print_line.c \
 					prompt.c select_mode.c copy_paste.c cut_high.c \

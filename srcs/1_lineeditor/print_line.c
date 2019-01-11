@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/08 21:26:29 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 14:18:02 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*insert_char(char *line, unsigned long key, int *index, t_edl *edl)
 	return (ret);
 }
 
-void	reprint_line(unsigned long key, t_edl *edl, char **line)
+void	reprint_line(t_edl *edl, char **line)
 {
 	t_data		*data;
 	int			c;
@@ -90,11 +90,8 @@ void	reprint_line(unsigned long key, t_edl *edl, char **line)
 
 	data = get_data();
 	c = -1;
-	if (key == SUPP)
-	{
-		while (++c < edl->multiline)
-			ft_putstr_fd(tgoto(tgetstr("up", NULL), 0, 0), 1);
-	}
+	while (++c < edl->multiline)
+		ft_putstr_fd(tgoto(tgetstr("up", NULL), 0, 0), 1);
 	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 0), 1);
 	ft_putstr_fd(tgetstr("cd", NULL), 1);
 	j = -1;
@@ -104,9 +101,7 @@ void	reprint_line(unsigned long key, t_edl *edl, char **line)
 	display_prompt(edl);
 	ft_putstr_fd(*line, 1);
 	edl->multiline = get_cursor_line(edl, edl->index, *line);
-	c = ft_strlen(*line);
-	while (--c >= edl->index)
-		ft_putstr_fd(tgetstr("le", NULL), 1);
+	move_cursor_to_index(edl);
 }
 
 void	print_line(t_data *data, char **line, unsigned long key)
@@ -125,5 +120,5 @@ void	print_line(t_data *data, char **line, unsigned long key)
 		*line = control_d(*line, &data->edl.index);
 	if (key != SUPP && key != DELETE && key != CTRLD && key != TABU)
 		data->edl.index++;
-	reprint_line(key, &data->edl, line);
+	reprint_line(&data->edl, line);
 }

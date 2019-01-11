@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:20:29 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/10 16:14:44 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 15:11:11 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		is_agreg_op(int i);
 int		is_unsupported_op(int op);
 int		is_word(int op);
 int		is_sub_cmd(int op);
-
 
 int		parser(t_data *data);
 

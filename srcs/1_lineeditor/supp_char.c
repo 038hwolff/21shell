@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:24:15 by pespalie          #+#    #+#             */
-/*   Updated: 2018/12/28 17:07:56 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 14:18:38 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,31 @@ char	*supp_char(char *line, int *index)
 	if (*line || line)
 		ft_strdel(&line);
 	return (ret);
+}
+
+void	move_cursor_to_index(t_edl *edl)
+{
+	int i;
+	int	len;
+
+	ft_putstr_fd(tgetstr("vs", NULL), 1);
+	len = ft_strlen(edl->line);
+	i = get_cursor_line(edl, len, edl->line);
+	if (i > edl->multiline)
+	{
+		while (i > edl->multiline)
+		{
+			ft_putstr_fd(tgetstr("up", NULL), 1);
+			--i;
+		}
+		i = get_current_line_len(edl->line, edl->index);
+		if (edl->multiline == 0)
+			i += edl->prompt_len;
+		while (--i)
+			ft_putstr_fd(tgetstr("nd", NULL), 1);
+	}
+	else
+		while (len-- > edl->index)
+			ft_putstr_fd(tgetstr("le", NULL), 1);
+	ft_putstr_fd(tgetstr("ve", NULL), 1);
 }

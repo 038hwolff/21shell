@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:54:01 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/10 19:54:16 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 15:09:34 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,37 +55,6 @@ static char
 }
 
 static char
-	*complete_from_builtins(t_token *token)
-{
-	char	*ret;
-	int		i;
-
-	ret = NULL;
-	i = 0;
-	if (ft_strnequ(token->val, "cd", token->length) && ++i)
-		ret = (("cd ") + token->length);
-	else if (ft_strnequ(token->val, "echo", token->length) && ++i)
-		ret = (("echo ") + token->length);
-	else if (ft_strnequ(token->val, "env", token->length) && ++i)
-		ret = (("env ") + token->length);
-	else if (ft_strnequ(token->val, "exit", token->length) && ++i)
-		ret = (("exit ") + token->length);
-	else if (ft_strnequ(token->val, "export", token->length) && ++i)
-		ret = (("export ") + token->length);
-	else if (ft_strnequ(token->val, "set", token->length) && ++i)
-		ret = (("set ") + token->length);
-	else if (ft_strnequ(token->val, "setenv", token->length) && ++i)
-		ret = (("setenv ") + token->length);
-	else if (ft_strnequ(token->val, "unset", token->length) && ++i)
-		ret = (("unset ") + token->length);
-	else if (ft_strnequ(token->val, "unsetenv", token->length) && ++i)
-		ret = (("unsetenv ") + token->length);
-	else
-		return (NULL);
-	return (i < 0 ? try_m(ft_strdup(ret)) : "+++");
-}
-
-static char
 	*complete_bin(char **env, t_token *token)
 {
 	char *ret;
@@ -98,7 +67,7 @@ static char
 			return (NULL);
 		ret2 = complete_from_path_var(env, token->val);
 		if (ret && !ret2)
-			return (ret);	
+			return (ret);
 		if (!ret && ret2)
 			return (ret2);
 		if (ret && ret2 && ft_strequ(ret, ret2))
@@ -116,6 +85,7 @@ static char
 	int		j;
 	int		k;
 	int		len;
+	char	*ret;
 
 	k = 1;
 	if (token->val[1] == '{')
@@ -127,11 +97,14 @@ static char
 	j = 0;
 	while (data->loc[j] && !ft_strnequ(data->loc[j], token->val + k, len))
 		++j;
+	ret = NULL;
 	if (data->env[i] && !data->loc[j])
-		return (try_m(ft_strsub(data->env[i], len, ft_strchr(data->env[i], '=') - data->env[i] + 1)));
+		ret = try_m(ft_strsub(data->env[i], len,
+			ft_strchr(data->env[i], '=') - data->env[i] + 1));
 	if (!data->env[i] && data->loc[j])
-		return (try_m(ft_strsub(data->loc[j], len, ft_strchr(data->loc[j], '=') - data->loc[j] + 1)));
-	return (NULL);
+		ret = try_m(ft_strsub(data->loc[j], len,
+			ft_strchr(data->loc[j], '=') - data->loc[j] + 1));
+	return (ret);
 }
 
 char
