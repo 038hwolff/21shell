@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/11 15:10:48 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 21:02:15 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ typedef struct		s_data
 
 	struct termios	term_dft_config;
 
-	short			shell_exit;
 	int				subcmd;
 	int				oneshot;
 

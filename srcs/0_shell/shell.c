@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:38:24 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/10 16:19:44 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 21:06:18 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,13 @@ void	command_line_loop(void)
 
 	data = get_data();
 	setup_hist(&data->hist);
-	while (!data->shell_exit)
+	while ((ret = -1))
 	{
 		read_line();
 		lexical_analysis(&data->token, data->edl.line);
-		data->dev && print_lex(data->token, "LEXER");
-		if (parser(data))
+		while ((ret = parser(data)) == -1)
+			lexical_analysis(&data->token, data->edl.line);
+		if (ret)
 		{
 			add_command_to_history(data);
 			data->dev && print_lex(data->token, "PARSER");

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/10 13:44:50 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 21:08:23 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,21 +72,19 @@ char
 int
 	check_command_completion(t_data *data)
 {
+	int ret;
+
 	if (!data->token)
 		return (0);
 	while (data->token
 		&& (data->incomp_type = is_command_incomplete(data->token)) != COMPLETE)
 	{
 		if (data->oneshot)
-		{
-			put_exception(0, data->subcmd ? "command substitution" : NULL,
-				NULL, "unexpected end of file");
-			return (RET_OK);
-		}
+			return (put_eof_exception(data));
 		set_special_prompt(data);
 		read_line();
-		if (check_cancel(data, &data->edl.line))
-			return (0);
+		if ((ret = check_cancel(data, &data->edl.line)))
+			return (ret == 1 ? -1 : 0);
 		complete_tokens(data->token, data->incomp_type, &data->edl.line);
 		del_tokens_if(&data->token, &token_is_empty);
 		if (data->token
@@ -114,10 +112,7 @@ int
 		if (token->type == DOUBLELESS && token->next)
 		{
 			if ((car = has_quotes_or_backslash(token->next->val)))
-			{
 				remove_quotes_and_backslash(&token->next->val);
-				token->next->type = HDOCDELIM;
-			}
 			if (!get_heredoc_lines(data, token, car))
 				return (0);
 			if (!car)
@@ -143,14 +138,18 @@ int
 int
 	parser(t_data *data)
 {
+	int ret;
+
+	data->dev && print_lex(data->token, "LEXER");
+	ret = 0;
 	if (data->token)
 	{
 		if (syntax_exception(check_syntax_errors(data->token), data->subcmd)
-			|| !check_command_completion(data))
-			return (0);
+			|| (ret = check_command_completion(data)) < 1)
+			return (ret);
 		del_tokens_if(&data->token, &token_is_newline);
 		if (!check_heredocs(data))
-			return (0);
+			return (-1);
 	}
 	return (1);
 }

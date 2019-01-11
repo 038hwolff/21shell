@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:36:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/23 13:37:38 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 21:10:19 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,11 @@ void		merge_tokens(t_token *t1, t_token *t2)
 		t1->next = t2->next;
 		ft_memdel((void**)&t2);
 	}
+}
+
+int			put_eof_exception(t_data *data)
+{
+	put_exception(0, data->subcmd ? "command substitution" : NULL,
+				NULL, "unexpected end of file");
+	return (RET_OK);
 }

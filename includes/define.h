@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/10 12:00:07 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 20:55:25 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,6 @@
 # define GREATPIPE				22
 # define DOUBLELESSDASH			23
 # define DOUBLESEMICOLON		24
-
-/*
-** Heredoc end of here
-*/
-
-# define HDOCDELIM				31
 
 /*
 ** Incomplete command types ("dquote>")

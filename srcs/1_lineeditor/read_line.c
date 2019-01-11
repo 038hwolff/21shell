@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 10:20:58 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/08 21:19:52 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 21:00:35 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,11 @@
 
 void	loop_enter(t_edl *edl, char **line, t_hist *hist)
 {
-	if (ft_strcmp(*line, "\0") != 0)
-	{
-		while (edl->index < (int)ft_strlen(*line))
-			mouve_right(edl);
-		edl->multiline = get_cursor_line(edl, edl->index, edl->line);
-		ft_enter(&(*line), edl);
-		ft_putstr_fd("\n", 1);
-	}
-	else
-	{
-		ft_putstr_fd("\n", 1);
-		ft_strdel(line);
-		try_m(*line = ft_strnew(0));
-	}
+	while (edl->index < (int)ft_strlen(*line))
+		mouve_right(edl);
+	edl->multiline = get_cursor_line(edl, edl->index, edl->line);
+	ft_enter(&(*line), edl);
+	ft_putstr_fd("\n", 1);
 	hist->h_current = 0;
 }
 
@@ -67,7 +58,7 @@ void	read_line(void)
 	setup_edl(&data->edl);
 	signal_list();
 	display_prompt(&data->edl);
-	while ((key = 0) || (read(STDIN_FILENO, &key, 10)) != 0)
+	while ((key = 0) || (data->eof == 0 && (read(STDIN_FILENO, &key, 10)) != 0))
 	{
 		if (key == ENTER)
 		{

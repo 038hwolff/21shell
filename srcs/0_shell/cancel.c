@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 14:53:55 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 14:03:52 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/11 19:22:15 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 int		check_eof(t_data *data)
 {
-	return (data->eof != 0
-		&& !(data->shell_exit = 0)
-		&& !(data->eof = 0));
+	return (data->eof);
 }
 
 int		check_if_sigint(t_data *data, char **line)
@@ -24,9 +22,7 @@ int		check_if_sigint(t_data *data, char **line)
 	if (line && *line
 		&& data->sigint == 1)
 	{
-		ft_strdel(&data->edl.line);
-		try_m(data->edl.line = ft_strdup(*line));
-		ft_strdel(line);
+		data->sigint = 0;
 		return (1);
 	}
 	return (0);
@@ -36,7 +32,13 @@ int		check_cancel(t_data *data, char **line)
 {
 	if (check_if_sigint(data, line))
 		return (1);
-	if (check_eof(data))
-		return (1);
+	if (data->eof)
+	{
+		ft_putchar('\n');
+		put_exception(0, "syntax error", NULL, "unexpected end of file");
+		data->eof = 0;
+		set_prompt(data, PDEFAULT, PDEFAULT_LEN);
+		return (2);
+	}
 	return (0);
 }
