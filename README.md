@@ -1,23 +1,34 @@
-POINTS D'ATTENTION AVANT PUSH
-
 TODO 42 JANVIER
-- unset/export/var loc
-- backquotes
-<!-- - builtins POSIX -->
-<!-- + history + ! + options -->
+- builtins POSIX (type, echo, exit (avec valeur de retour), cd) HELENE
+- La création de variable d’environnement pour une commande unique, exemple : HOME=/tmp cd
+- Gestion du job control, avec les built-ins jobs, fg, bg et l’opérateur &
+(partie modulaire:)
+- Les commandes groupées et sous-shell
+- La substitution de commande (backquotes)
+- Arithmetiques HELENE
+- table de hashage HEIDY et builtins hash HELENE
+(en plus si envie)
+- La substitution de processus
+- La gestion des alias via les built-ins alias et unalias
+
+PARTIE MODULAIRE 42 OK
+- Inhibiteurs
+- Completion dynamique
 
 
-BONUS OK 21SH
+# BONUS OK 21SH
 - option -dev
 - Heredoc
-- operateurs logiques
-- multi setenv et unsetenv
+- operateurs logiques && ||
+- backquotes
+- subshells
+- variable locale
+- auto completion
+- gestion des sorties
+- expansions des inhibiteurs
+- Gestion des erreurs
+- Execution en entree standard
 
-
-
-Lecture AST: 
-- http://www.gaudry.be/programmer-arbres.html
-- https://ruslanspivak.com/lsbasi-part7/
 
 1) lecture/edition de ligne => chaine de caractères
 2) lexer => liste chainée avec un type pour chaque maillon
@@ -26,57 +37,8 @@ Lecture AST:
 5) Executeur de commande => ben rien c'est fini. :smile:
 6) repeat
 
-# TODO GROUPE (voir onglet PROJECTS - "Valider 21/42sh")
-- OBLIGATOIRE (21sh a 100%)
-  - BUILTINS POSIX: (Hélène)
-    - cd
-    - cd path/to/dir
-    - exit
-    - echo
-    - env
-    - setenv
-    - unsetenv
-  - GESTION DU PATH + VIM .c + MESSAGES ERREUR SHELL + PROMPT (Hélène)
-  - GESTION DES SIGNAUX (Pauline)
-  - LEXEUR PARSEUR (Heidy)
-  - PIPES ET REDIRECTIONS (> < >> << | ; &> &<)
-  - EDITION DE LIGNES (deplacement gauche droite, fin debut, historique fleches; copier coller; edition sur plusieurs lignes) (Pauline)
-  - GESTION DES PARENTHESES: si non fermées, le shell attend
-- BONUS (+5% pour chaque)
-  - Droits dans le path (notre programme ne doit pas chercher a executer des fichier qui ne sont pas des binaires)
-  - Completion
-  - Table de hashage pour les binaires
-  - Recherche dans l'historique avec ctrl + R
-  - +9 bonus que je suggère (qui nous valident 42sh directement):
-    - opérateurs logiques
-    - multi commandes avec ;
-    - Inhibiteurs "" '' \
-    - Gestion des backquotes
-    - Variables locales + builtins unset et export
-    - Agregation des fd de sortie (2>&- par exemple)
-    - Globing (* [] {})
-    - Mode bindings Emacs et/ou Vim activable et désactivable à loisir
-    - Coloration syntaxique du shell activable et désactivable à loisir
-  
-  - Pour info, les points du corrigé de 42sh:
-    - opérateurs logiques
-    - multi commandes avec ;
-    - [OPTIONNEL 42SH]
-    - Inhibiteurs "" '' \
-    - Heredoc
-    - Agregation des fd de sortie (2>&- par exemple)
-    - Gestion des backquotes
-    - Globing (* [] {})
-    - Variables locales + builtins unset et export
-    - Sous shell ()
-    - Builtin read avec toutes ses options
-    - Job control (20 points sur le 42sh)
-    - [BONUS 42sh]
-    - scripts shell (20 points sur le 42sh)
-    + autres (inutile pour les points)
 
-
-# 21sh - Points-clés
+# 21sh - Points-clés pedago
 - Lecture et édition de ligne avancée avec Termcaps
 - Analyse lexicale ("Lexing")
 - Analyse syntaxique ("Parsing")
@@ -88,6 +50,8 @@ Lecture AST:
 # Sources et recherches
 - https://fr.wikipedia.org/wiki/Arbre_de_la_syntaxe_abstraite
 - http://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html
+- http://www.gaudry.be/programmer-arbres.html
+- https://ruslanspivak.com/lsbasi-part7/
 
 # Fonctions autorisées
 - malloc, free
@@ -112,6 +76,7 @@ Lecture AST:
 - tgetstr
 - tgoto
 - tputs
+- tgetnam
 
 # Last minute to-do avant push (voir PROJECT "Check last minute")
 - Norminette?
