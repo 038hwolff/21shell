@@ -11,15 +11,6 @@
 - Gestion des erreurs
 - Execution en entree standard
 
-
-1) lecture/edition de ligne => chaine de caractères
-2) lexer => liste chainée avec un type pour chaque maillon
-3) parser, erreurs, inhibiteurs, expansion, etc => liste réduite
-4) arbre syntaxique => arbre
-5) Executeur de commande => ben rien c'est fini. :smile:
-6) repeat
-
-
 # 21sh - Points-clés pedago
 - Lecture et édition de ligne avancée avec Termcaps
 - Analyse lexicale ("Lexing")
