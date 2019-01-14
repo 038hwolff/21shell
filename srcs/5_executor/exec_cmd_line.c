@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:54:08 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/11 19:35:55 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/14 16:10:41 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int
 		ret = sub_exec_cmd_line(data, ast, ret);
 	if (ast->token->type == WORD)
 	{
+		var_set(&data->env, "_", table[ft_strtablen(table) - 1]);
 		data->exe_return = ret;
 		free_tab(&table);
 	}

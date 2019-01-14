@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 22:13:17 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/10 14:08:28 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/14 16:33:28 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ static char
 		data->subcmd = 1;
 		exit(subshell(data, 1, &cmd));
 	}
-	else if ((int)(pid = waitpid(pid, &status, 0)))
-		ret = read_fd(fd[0]);
+	signal(SIGINT, SIG_IGN);
+	waitpid(pid, &status, 0);
+	ret = read_fd(fd[0]);
+	signal(SIGINT, signal_handler);
 	dup2(fd[1], std);
 	close(std);
 	close(fd[0]);

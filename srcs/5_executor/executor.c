@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:51:07 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/14 11:12:34 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/14 16:28:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ int			ex_exec(t_data *data, char **env, char **table)
 		return (RET_MAJ_ERROR);
 	if (childpid == 0)
 		ex_exec_core(env, table, paths);
-	else
-		signal(SIGINT, SIG_IGN);
+	signal(SIGINT, SIG_IGN);
 	waitpid(childpid, &status, 0);
+	signal(SIGINT, signal_handler);
 	free_tab(&paths);
 	if (WIFSIGNALED(status))
 	{

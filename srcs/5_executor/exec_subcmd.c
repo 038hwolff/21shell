@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 17:54:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/10 16:17:33 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/14 16:34:12 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int
 	reset_command(data);
 	status = 0;
 	data->oneshot = 1;
+	data->dev = 0;
 	args_to_cmd_line(data, ac, av);
 	lexical_analysis(&data->token, data->edl.line);
 	if (parser(data))
@@ -88,6 +89,7 @@ int
 	{
 		signal(SIGINT, SIG_IGN);
 		pid = waitpid(pid, &status, 0);
+		signal(SIGINT, signal_handler);
 		ft_tabdel((void ***)&table);
 		return (WIFEXITED(status) ? WEXITSTATUS(status) : RET_ERROR);
 	}

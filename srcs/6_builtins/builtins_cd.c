@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:29:51 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 20:27:14 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/14 14:27:25 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static int		change_dir(char *path, char **arg, char **cdenv)
 	chdir(path);
 	try_m(buff = getcwd(buff, 0));
 	try_m(arg[1] = ft_strjoin("PWD=", buff));
-	try_m(arg[2] = ft_strjoin("OLDPWD=", cdenv[2]));
+	if (cdenv[2])
+		try_m(arg[2] = ft_strjoin("OLDPWD=", cdenv[2]));
 	ft_strdel(&buff);
 	return (RET_OK);
 }
