@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 10:49:42 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 19:53:44 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/14 11:12:48 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		is_builtins(t_data *data, char **arg)
 {
 	if (data && arg && *arg)
 	{
+		var_set(&data->env, "_", arg[ft_strtablen(arg) - 1]);
 		if (ft_strequ(*arg, "exit"))
 			return (b_exit(data, arg));
 		if (ft_strequ(*arg, "cd"))

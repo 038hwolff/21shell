@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:46:19 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/08 21:56:21 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/14 14:16:55 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@ static void
 		(*ast)->left_arg = (*chosen);
 		(*ast)->token = (*chosen)->next;
 		*chosen = (*chosen)->next;
+		(*ast)->left_arg->next = NULL;
 		if (*chosen && (*chosen)->next
 			&& ((*chosen)->next->type == IO_NUMBER
 			|| (*chosen)->next->type == WORD))
 		{
 			(*ast)->right_arg = (*chosen)->next;
+			(*ast)->right_arg->next = NULL;
 			*chosen = (*chosen)->next;
 		}
 	}
@@ -66,6 +68,7 @@ static void
 		{
 			(*ast)->right_arg = (*chosen)->next;
 			*chosen = (*chosen)->next;
+			(*ast)->right_arg->next = NULL;
 		}
 	}
 }
