@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:51:35 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/08 14:01:42 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/14 19:34:02 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,23 @@ char	*stock_line(char *line, t_edl *edl, t_hist *hist)
 char	*cut_high(t_edl *edl, t_hist *hist, char *line)
 {
 	char	*new_line;
-	size_t	len;
+	size_t	len[2];
 	size_t	i;
 	size_t	j;
 	int		c;
 
-	len = ft_strlen(line);
+	len[0] = ft_strlen(line);
 	hist->copy = stock_line(line, edl, hist);
-	try_m(new_line = ft_strnew((ft_strlen(line) - ft_strlen(hist->copy))));
+	len[1] = ft_strlen(line) - ft_strlen(hist->copy);
+	try_m(new_line = ft_strnew(len[1]));
 	i = -1;
 	j = -1;
-	while (++i < len)
+	while (++i < len[0])
 		if (edl->light[i] == 0)
 			new_line[++j] = line[i];
-	edl->multiline = get_cursor_line(edl, edl->index, newline);
+	while (edl->index > (int)len[1])
+		mouve_left(edl);
+	edl->multiline = get_cursor_line(edl, edl->index, new_line);
 	clear_line(edl, new_line);
 	c = (int)ft_strlen(new_line);
 	while (--c >= edl->index)

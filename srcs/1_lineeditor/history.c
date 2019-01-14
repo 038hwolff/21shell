@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:55:14 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/08 21:47:25 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/14 20:08:16 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	history_dmove(t_edl *edl, char **line, t_hist *hist)
 	else if (j == hist->h_count)
 	{
 		to_display = edl->linecpy;
-		edl->linecpy = NULL;
 		hist->h_current = 0;
 	}
 	else
@@ -61,6 +60,8 @@ void	history_umove(t_edl *edl, char **line, t_hist *hist)
 
 	if (hist->h_current == 0)
 	{
+		if (edl->linecpy)
+			ft_strdel(&edl->linecpy);
 		try_m(edl->linecpy = ft_strdup(*line));
 		j = hist->h_count - 1;
 	}

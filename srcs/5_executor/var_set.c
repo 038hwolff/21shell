@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:54:17 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 12:51:05 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/14 20:59:03 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,27 @@ int		var_set_line(char ***vars, char *line)
 
 void	var_unset(char ***vars, char *key)
 {
-	char	**env;
 	int		decal;
 	int		i;
+	int 	keylen;
 
-	if (!(env = var_get_ptr(*vars, key)))
+	if (!vars || !*vars || !key)
 		return ;
+	keylen = ft_strlen(key);
 	decal = 0;
 	i = 0;
-	while ((*vars)[i])
+	while ((*vars)[i + decal])
 	{
-		if ((*vars)[i] == *env)
+		if (ft_strnequ((*vars)[i], key, keylen) && (*vars)[i][keylen] == '=')
 		{
-			free((*vars)[i]);
+			ft_strdel(&(*vars)[i]);
 			++decal;
 		}
-		(*vars)[i] = (*vars)[i + decal];
-		++i;
+		else
+		{
+			(*vars)[i] = (*vars)[i + decal];
+			++i;
+		}
 	}
+	(*vars)[i] = NULL;
 }

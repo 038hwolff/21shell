@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:38:24 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/14 16:14:53 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/14 20:15:27 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,16 @@ void	add_command_to_history(t_data *data)
 {
 	char *new;
 
-	try_m(new = ft_strsub(data->command, 0, ft_strlen(data->command) - 1));
-	if (data->hist.h_count == 0
-		|| !ft_strequ(data->hist.list[data->hist.h_count - 1], new))
-		data->hist.list = add_history(new, &data->hist);
-	else
-		ft_strdel(&new);
+	if (data->command
+		&& (ft_strlen(data->command) > 1 || *data->command != '\n'))
+	{
+		try_m(new = ft_strsub(data->command, 0, ft_strlen(data->command) - 1));
+		if (data->hist.h_count == 0
+			|| !ft_strequ(data->hist.list[data->hist.h_count - 1], new))
+			data->hist.list = add_history(new, &data->hist);
+		else
+			ft_strdel(&new);
+	}
 }
 
 void	command_line_loop(void)

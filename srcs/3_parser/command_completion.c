@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/06 21:14:47 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/14 18:31:13 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void		complete_command_backslash(t_token *token, char **line)
 		ft_strdel(line);
 		try_m(*line = ft_strdup(dupline));
 		ft_strdel(&dupline2);
+		return ;
 	}
+	ft_strdel(&dupline2);
+	free_token(&nexttok);
 }
 
 static int	get_next_word_len(char *line, char quotetype)
@@ -73,7 +76,10 @@ void		complete_command_quote(t_token *token, char **line, char quotetype)
 		ft_strdel(line);
 		try_m(*line = ft_strdup(dupline));
 		ft_strdel(&dupline2);
+		return ;
 	}
+	free_token(&nexttok);
+	ft_strdel(&dupline2);
 }
 
 void		complete_tokens(t_token *token, int incomp_type, char **line)
