@@ -1,6 +1,5 @@
 # BONUS OK 21SH
 - option -dev
-- Heredoc
 - operateurs logiques && ||
 - backquotes
 - subshells
