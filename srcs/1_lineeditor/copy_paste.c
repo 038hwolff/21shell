@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:49:43 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/08 21:39:44 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/15 21:35:30 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,10 @@ void	clear_line(t_edl *edl, char *n_line)
 
 char	*create_newline(t_edl *edl, char *line, t_hist *hist)
 {
-	int		i;
-	int		j;
-	int		l;
 	char	*new_line;
 
-	i = 0;
-	j = 0;
-	l = 0;
-	try_m(new_line = ft_strnew(ft_strlen(line) + ft_strlen(hist->copy)));
-	while (i < edl->index)
-		new_line[i++] = line[l++];
-	while (hist->copy[j])
-		(new_line[i++] = hist->copy[j++]) && edl->index++;
-	while (line[l])
-		new_line[i++] = line[l++];
-	new_line[i] = '\0';
+	try_m(new_line = ft_strjoin(line, hist->copy));
+	edl->index += ft_strlen(hist->copy);
 	return (new_line);
 }
 
@@ -89,15 +77,20 @@ char	*paste_char(t_edl *edl, t_hist *hist, char *line)
 	int		i;
 
 	new_line = NULL;
-	new_line = create_newline(edl, line, hist);
+	new_line = create_newline(edl, edl->line, hist);
 	ft_putstr_fd(tgetstr("se", NULL), 1);
 	clear_line(edl, new_line);
 	i = ft_strlen(new_line);
+	ft_putstr_fd(tgetstr("vs", NULL), 1);
 	while (--i >= edl->index)
 		ft_putstr_fd(tgetstr("le", NULL), 1);
+	ft_putstr_fd(tgetstr("ve", NULL), 1);
 	edl->multiline = get_cursor_line(edl, edl->index, new_line);
 	if (edl->light)
+	{
+		ft_bzero((void*)edl->light, ft_strlen(line) + 1);
 		ft_memdel((void**)&edl->light);
+	}
 	try_m(edl->light = (int *)ft_memalloc((ft_strlen(new_line) + 1)
 		* sizeof(int)));
 	ft_strdel(&line);

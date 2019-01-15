@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:16:54 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/08 21:34:43 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/15 21:31:02 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	select_mode(t_edl *edl, unsigned long key, char *line)
 	int				i;
 	t_data			*data;
 
+	(void)line; // virer cça
 	data = get_data();
 	while (key == SELECT)
 	{
@@ -103,13 +104,15 @@ void	select_mode(t_edl *edl, unsigned long key, char *line)
 			next_word(edl, edl->line, ft_strlen(edl->line));
 		if (key_2 == SELECT)
 			break ;
-		select_letter(key_2, edl, line);
-		clear_space(edl, line);
+		select_letter(key_2, edl, edl->line);
+		clear_space(edl, edl->line);
 		display_prompt(edl);
-		rewrite_line(edl, line);
-		edl->multiline = get_cursor_line(edl, edl->index, line);
-		i = (int)ft_strlen(line);
+		rewrite_line(edl, edl->line);
+		edl->multiline = get_cursor_line(edl, edl->index, edl->line);
+		i = (int)ft_strlen(edl->line);
+		ft_putstr_fd(tgetstr("vs", NULL), 1);
 		while (--i >= edl->index)
 			ft_putstr_fd(tgetstr("le", NULL), 1);
+		ft_putstr_fd(tgetstr("ve", NULL), 1);
 	}
 }
