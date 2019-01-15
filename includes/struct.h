@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:20 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/11 21:02:15 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/15 14:19:23 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ typedef struct		s_ast
 	t_token			*token;
 	t_token			*left_arg;
 	t_token			*right_arg;
-
 	struct s_ast	*right;
 	struct s_ast	*left;
-	int				type;
 }					t_ast;
 
 typedef struct		s_var

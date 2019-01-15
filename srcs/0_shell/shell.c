@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:38:24 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/14 20:15:27 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/15 16:00:32 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,7 @@ void	command_line_loop(void)
 		read_line();
 		lexical_analysis(&data->token, data->edl.line);
 		while ((ret = parser(data)) == -1)
-		{	
-			ft_printf("%d\n", ret);
 			lexical_analysis(&data->token, data->edl.line);
-		}
 		if (ret)
 		{
 			add_command_to_history(data);

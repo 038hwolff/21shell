@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins_unset.c                                   :+:      :+:    :+:   */
+/*   ft_strtabcpy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/22 16:36:04 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/15 18:38:59 by hben-yah         ###   ########.fr       */
+/*   Created: 2019/01/15 18:34:07 by hben-yah          #+#    #+#             */
+/*   Updated: 2019/01/15 18:34:47 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "libft.h"
 
-int		b_unset(t_data *data, char **args)
+void	ft_strtabcpy(char **src, char **dst)
 {
-	int		i;
-
-	i = 1;
-	while (args[i])
+	while (*src)
 	{
-		var_unset(&data->env, args[i]);
-		var_unset(&data->loc, args[i]);
-		++i;
+		*dst = *src;
+		++src;
+		++dst;
 	}
-	if (i == 1)
-		return (put_exception(RET_OK, "unset", NULL, "not enough arguments"));
-	return (RET_OK);
+	*dst = 0;
 }

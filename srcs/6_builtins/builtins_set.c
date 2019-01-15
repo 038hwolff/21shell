@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 16:35:53 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/06 19:54:35 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/15 17:54:03 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		b_set(t_data *data, char **arg)
 	{
 		if ((value = ft_strchr(arg[i], '=')))
 		{
-			try_m((key = ft_strsub(arg[i], 0, ++value - 1 - arg[i])));
+			try_m((key = ft_strsub(arg[i], 0, value++ - arg[i])));
 			if (var_get_ptr(data->env, key))
 				var_set(&data->env, key, value);
 			else

@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/14 13:21:32 by hben-yah          #+#    #+#              #
-#    Updated: 2019/01/06 17:45:16 by hben-yah         ###   ########.fr        #
+#    Updated: 2019/01/15 18:34:58 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ STR_FILES_N		=	ft_hasnodupl.c ft_strcat.c ft_strchr.c ft_wrdcnt.c \
 					ft_strjoin3f.c ft_strlastchr.c ft_strrmvchr.c ft_strjoin3.c
 TAB_FILES_N		=	ft_strtabdup.c ft_strtablen.c ft_strtabncpy.c \
 					ft_strtabnew.c ft_strtabrealloc.c ft_tabdel.c \
-					ft_strtab_add.c ft_strtab_new.c
+					ft_strtab_add.c ft_strtab_new.c ft_strtabcpy.c
 
 # Sources paths
 FILES_C			=	$(addprefix boolean/, $(BOOL_FILES_N)) \
