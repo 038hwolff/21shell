@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:49:43 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/15 21:35:30 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 11:10:02 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,13 @@ void	clear_line(t_edl *edl, char *n_line)
 char	*create_newline(t_edl *edl, char *line, t_hist *hist)
 {
 	char	*new_line;
+	int		cpylen;
 
-	try_m(new_line = ft_strjoin(line, hist->copy));
-	edl->index += ft_strlen(hist->copy);
+	cpylen = ft_strlen(hist->copy);
+	try_m(new_line = ft_strnew(ft_strlen(line) + cpylen));
+	ft_strncpy(new_line, line, edl->index);
+	ft_strcpy(new_line + edl->index, hist->copy);
+	ft_strcpy(new_line + edl->index + cpylen, line + edl->index);
 	return (new_line);
 }
 
