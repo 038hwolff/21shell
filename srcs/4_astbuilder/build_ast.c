@@ -6,95 +6,44 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:46:19 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/16 17:16:41 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:57:09 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_token
-	*tokendup(t_token *tok)
+static void
+	fill_node_io_number(t_ast **ast, t_token **chosen, t_token **prev)
 {
-	t_token *new;
-
-	try_m(new = ft_memalloc(sizeof(t_token)));
-	if (tok->val)
-		try_m(new->val = ft_strdup(tok->val));
-	new->length = tok->length;
-	new->type = tok->type;
-	if (tok->heredoc)
-		try_m(new->heredoc = ft_strdup(tok->heredoc));
-	new->next = NULL;
-	return (new);
-}
-
-void
-	tokendel(t_token **tok)
-{
-	t_token *todel;
-
-	todel = *tok;
-	*tok = (*tok)->next;
-	if (todel->val)
-		ft_strdel(&todel->val);
-	if (todel->heredoc)
-		ft_strdel(&todel->heredoc);
-	todel->next = NULL;
-	free(todel);
-}
-
-static t_token
-	*get_primary_prev_token(t_token **primary_prev, t_token *token)
-{
-	t_token *primary;
-	t_token *tmp;
-
-	if (!token)
-		return (NULL);
-	primary = token;
-	tmp = NULL;
-	while (token)
+	(*ast)->left_arg = tokendup(*chosen);
+	tokendel(chosen);
+	(*ast)->token = tokendup(*chosen);
+	tokendel(chosen);
+	if (*chosen
+		&& ((*chosen)->type == IO_NUMBER
+		|| (*chosen)->type == WORD))
 	{
-		if (get_rank(token->type) > get_rank(primary->type))
-		{
-			*primary_prev = tmp;
-			primary = token;
-		}
-		if (token->type == OPEN_PAR)
-			while (token && token->type != CLOSED_PAR)
-				token = token->next;
-		if (token)
-		{
-			tmp = token;
-			token = token->next;
-		}
+		(*ast)->right_arg = tokendup(*chosen);
+		tokendel(chosen);
 	}
-	return (primary);
+	if (*prev)
+		(*prev)->next = *chosen;
+	*chosen = NULL;
 }
 
 static void
-	pop_par(t_token *chosen, t_token **chosen_prev)
+	fill_node_redir_agreg(t_ast **ast, t_token **chosen, t_token **prev)
 {
-	t_token *dtok;
-
-	if (chosen->type == OPEN_PAR)
+	(*ast)->token = tokendup(*chosen);
+	tokendel(chosen);
+	if (*chosen)
 	{
-		dtok = chosen;
-		while (dtok->type != CLOSED_PAR)
-			dtok = dtok->next;
-		if (*chosen_prev)
-			(*chosen_prev)->next = dtok->next;
-		dtok->next = NULL;
+		(*ast)->right_arg = tokendup(*chosen);
+		tokendel(chosen);
 	}
-	else if (chosen->type == WORD)
-	{
-		dtok = chosen;
-		while (dtok->next && is_word(dtok->next->type))
-			dtok = dtok->next;
-		if (*chosen_prev)
-			(*chosen_prev)->next = dtok->next;
-		dtok->next = NULL;
-	}
+	if (*prev)
+		(*prev)->next = *chosen;
+	*chosen = NULL;
 }
 
 static void
@@ -108,35 +57,9 @@ static void
 		*chosen = NULL;
 	}
 	else if ((*chosen)->type == IO_NUMBER)
-	{
-		(*ast)->left_arg = tokendup(*chosen);
-		tokendel(chosen);
-		(*ast)->token = tokendup(*chosen);
-		tokendel(chosen);
-		if (*chosen
-			&& ((*chosen)->type == IO_NUMBER
-			|| (*chosen)->type == WORD))
-		{
-			(*ast)->right_arg = tokendup(*chosen);
-			tokendel(chosen);
-		}
-		if (*prev)
-			(*prev)->next = *chosen;
-		*chosen = NULL;
-	}
+		fill_node_io_number(ast, chosen, prev);
 	else if (is_redir_op((*chosen)->type) || is_agreg_op((*chosen)->type))
-	{
-		(*ast)->token = tokendup(*chosen);
-		tokendel(chosen);
-		if (*chosen)
-		{
-			(*ast)->right_arg = tokendup(*chosen);
-			tokendel(chosen);
-		}
-		if (*prev)
-			(*prev)->next = *chosen;
-		*chosen = NULL;
-	}
+		fill_node_redir_agreg(ast, chosen, prev);
 	else
 	{
 		(*ast)->token = tokendup(*chosen);

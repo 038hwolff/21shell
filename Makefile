@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 08:34:44 by hwolff            #+#    #+#              #
-#    Updated: 2019/01/11 15:07:39 by hben-yah         ###   ########.fr        #
+#    Updated: 2019/01/16 17:57:40 by hben-yah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LEXER_N			=	lexer.c checker.c token.c helper.c
 PARSER_N		=	parser.c command_completion.c completion_checkers.c \
 					helper.c heredoc.c heredoc_getter.c operators.c \
 					pop_char.c special_prompt.c tokendel.c
-ASTBUILDER_N	=	build_ast.c print_ast.c
+ASTBUILDER_N	=	build_ast.c print_ast.c helper.c
 EXECUTOR_N		=	executor.c fd_agregator.c \
 					pipes.c redirections.c exec_cmd_line.c semicolon.c \
 					operator.c tools.c var_get.c \
