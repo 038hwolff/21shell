@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/16 19:11:13 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:26:05 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	reprint_line(t_data *data)
 {
 	int			c;
 	size_t		j;
-	//size_t	len;
 
 	c = -1;
 	while (++c < data->edl.multiline)
@@ -93,9 +92,6 @@ void	reprint_line(t_data *data)
 	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 0), 1);
 	ft_putstr_fd(tgetstr("cd", NULL), 1);
 	j = -1;
-	//len = ft_strlen(*line);
-	//while (++j <= (len + data->edl->prompt_len))
-	//	write(1, "\b", 1);
 	display_prompt(&data->edl);
 	ft_putstr_fd(data->edl.line, 1);
 	data->edl.multiline = get_cursor_line(&data->edl, data->edl.index, data->edl.line);
