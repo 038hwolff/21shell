@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:24:15 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/11 15:59:00 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:08:04 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	move_cursor_to_index(t_edl *edl)
 				|| edl->line[len] == '\n'))
 		{
 			ft_putstr_fd(tgetstr("up", NULL), 1);
-			i = get_current_line_len(edl->line, len);
+			i = get_current_line_len(edl, len) - 1;
 			if (--iline == 0)
 				i += edl->prompt_len;
 			while (i--)

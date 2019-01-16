@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/15 19:44:24 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 13:29:14 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,14 @@ void	put_signal(t_data *data, int sig)
 			data->arguments ? data->arguments : "");
 }
 
+void	handle_sigwinch(t_data *data)
+{
+	struct winsize	ws;
+
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
+	data->edl.col = ws.ws_col;
+}
+
 void	signal_handler(int sig)
 {
 	t_data	*data;
@@ -68,6 +76,8 @@ void	signal_handler(int sig)
 	data = get_data();
 	if (sig == SIGINT)
 		handle_sigint(data);
+	if (sig == SIGWINCH)
+		handle_sigwinch(data);
 	else if (sig == 1
 		|| (sig >= 4 && sig <= 8)
 		|| (sig >= 10 && sig <= 14)

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:33:34 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/15 21:35:56 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:50:22 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,49 @@ void	left_or_right(t_edl *edl, unsigned long key, size_t len)
 ** LINE_DOWN = maj + down arrow
 */
 
-void	line_moves(t_edl *edl, char *line, unsigned long key)
+void	line_moves(t_edl *edl, unsigned long key)
 {
 	int	i;
+	int len;
+	int nlen;
+	int l;
 
 	i = 0;
-	if (key == LINE_UP && edl->multiline)
+	l = edl->multiline;
+	len = get_current_line_len(edl, edl->index);
+	if (key == LINE_UP)
 	{
-		while (i < edl->col && edl->index > 0)
-		{
+		//if (edl->multiline)
+		//{
+			while (i++ < len)
+				mouve_left(edl);
 			mouve_left(edl);
-			i++;
-		}
+			nlen = get_current_line_len(edl, edl->index);
+			while (nlen-- > len)
+				mouve_left(edl);
+		// }
+		// else
+		// {
+		// 	len -= (int)edl->prompt_len;
+		// 	while (i++ < len)
+		// 		mouve_left(edl);
+		// }
 	}
-	if (key == LINE_DOWN
-		&& ((ft_strlen(edl->line) + edl->prompt_len) / edl->col) > 0)
+	else if (key == LINE_DOWN)
 	{
-		while (i < edl->col && edl->index < (int)ft_strlen(line))
-		{
+		while (l == edl->multiline && edl->line[edl->index])
 			mouve_right(edl);
-			i++;
-		}
+		nlen = 1;
+		while (nlen++ < len && edl->line[edl->index])
+			mouve_right(edl);
+		// while (l == edl->multiline && edl->line[edl->index])
+		// {
+		// 	mouve_right(edl);
+		// 	i++;
+		// }         
+		// nlen = get_current_line_len(edl, edl->index);
+		// while (nlen-- > len)
+		// 	mouve_right(edl);
 	}
 }
 
@@ -77,7 +99,7 @@ void	term_moves(unsigned long key, t_edl *edl, size_t len, char *line)
 	if (key == DOWN_FN)
 		next_word(edl, line, len);
 	if (key == LINE_UP || key == LINE_DOWN)
-		line_moves(edl, line, key);
+		line_moves(edl, key);
 }
 
 char	*ft_termcaps(t_edl *edl, char *line, unsigned long key, t_hist *hist)

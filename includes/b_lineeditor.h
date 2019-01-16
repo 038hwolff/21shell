@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:26:21 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/11 15:11:01 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 12:35:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void			print_line(t_data *data, char **line, unsigned long key);
 
 char			*ft_termcaps(t_edl *edl, char *line, unsigned long key,
 					t_hist *hist);
-void			line_moves(t_edl *edl, char *line, unsigned long key);
+void			line_moves(t_edl *edl, unsigned long key);
 
 /*
 ** history.c
@@ -106,6 +106,6 @@ char			*insert_char(char *line, unsigned long key,
 char			*complete_word(t_data *data, char *line);
 int				get_cursor_line(t_edl *edl, int i, char *s);
 void			move_cursor_to_index(t_edl *edl);
-int				get_current_line_len(char *s, int index);
+int				get_current_line_len(t_edl *edl, int i);
 
 #endif
