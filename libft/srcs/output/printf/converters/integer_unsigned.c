@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   integer_unsigned.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 15:16:18 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/08/10 12:12:09 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 20:03:51 by hwolff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int	unsigned_integer(t_formatter *fmt, t_strbuffer *sb, va_list ap, int b)
 	if (arg == 0 && is_flag('#', *fmt)
 		&& (fmt->converter == 'x' || fmt->converter == 'X'))
 		sb->length -= 2;
-	if ((arg == 0 && fmt->precision == 0) ||
-	(arg == 0 && fmt->converter == 'o' && is_flag('#', *fmt)))
+	if ((arg == 0 && fmt->precision == 0)
+		|| (arg == 0 && fmt->converter == 'o' && is_flag('#', *fmt)))
 		return (0);
 	ret = uitoa_base(sb, arg, ft_abs(b), ft_isupper(fmt->converter));
 	if (b == 10 && is_flag('\'', *fmt))
