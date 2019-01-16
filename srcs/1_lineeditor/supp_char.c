@@ -6,38 +6,38 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:24:15 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/16 17:08:04 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:03:29 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-char	*supp_char(char *line, int *index)
+char	*supp_char(t_edl *edl)
 {
 	char	*ret;
 	int		len;
 	int		i;
 
-	if (*index == 0)
-		return (line);
-	len = ft_strlen(line);
+	if (edl->index == 0)
+		return (edl->line);
+	len = ft_strlen(edl->line);
 	len < 2 ? len = 2 : 0;
 	try_m(ret = ft_strnew(len));
 	i = 0;
-	while (i < *index - 1)
+	while (i < edl->index - 1)
 	{
-		ret[i] = line[i];
+		ret[i] = edl->line[i];
 		++i;
 	}
 	while (i < len - 1)
 	{
-		ret[i] = line[i + 1];
+		ret[i] = edl->line[i + 1];
 		i++;
 	}
 	ret[i] = '\0';
-	(*index)--;
-	if (*line || line)
-		ft_strdel(&line);
+	--edl->index;
+	if (edl->line)
+		ft_strdel(&edl->line);
 	return (ret);
 }
 

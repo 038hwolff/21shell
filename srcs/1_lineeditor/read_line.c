@@ -6,18 +6,18 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 10:20:58 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/11 21:00:35 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:13:05 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	loop_enter(t_edl *edl, char **line, t_hist *hist)
+void	loop_enter(t_edl *edl, t_hist *hist)
 {
-	while (edl->index < (int)ft_strlen(*line))
+	while (edl->index < (int)ft_strlen(edl->line))
 		mouve_right(edl);
 	edl->multiline = get_cursor_line(edl, edl->index, edl->line);
-	ft_enter(&(*line), edl);
+	ft_enter(edl);
 	ft_putstr_fd("\n", 1);
 	hist->h_current = 0;
 }
@@ -62,14 +62,13 @@ void	read_line(void)
 	{
 		if (key == ENTER)
 		{
-			loop_enter(&data->edl, &data->edl.line, &data->hist);
+			loop_enter(&data->edl, &data->hist);
 			break ;
 		}
 		else if (printable(key) == 0)
-			print_line(data, &data->edl.line, key);
+			print_line(data, key);
 		else
-			data->edl.line = ft_termcaps(&data->edl, data->edl.line, key,
-					&data->hist);
+			data->edl.line = ft_termcaps(&data->edl, key, &data->hist);
 	}
 	reset_term(data);
 	add_line_to_command(data);

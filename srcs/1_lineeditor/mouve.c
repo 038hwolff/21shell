@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:04:22 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/16 17:12:05 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:18:31 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,23 @@
 ** FN + up arrow
 */
 
-void	prev_word(t_edl *edl, char *line)
+void	prev_word(t_edl *edl)
 {
 	if (edl->index - 1 >= 0)
 	{
-		if (!ft_isspace_wnt(line[edl->index - 1]))
+		if (!ft_isspace_wnt(edl->line[edl->index - 1]))
 		{
-			while (edl->index - 1 >= 0 && !ft_isspace_wnt(line[edl->index - 1]))
+			while (edl->index - 1 >= 0
+				&& !ft_isspace_wnt(edl->line[edl->index - 1]))
 				mouve_left(edl);
 		}
 		else
 		{
-			while (edl->index - 1 >= 0 && ft_isspace_wnt(line[edl->index - 1]))
+			while (edl->index - 1 >= 0
+				&& ft_isspace_wnt(edl->line[edl->index - 1]))
 				mouve_left(edl);
-			while (edl->index - 1 >= 0 && !ft_isspace_wnt(line[edl->index - 1]))
+			while (edl->index - 1 >= 0
+				&& !ft_isspace_wnt(edl->line[edl->index - 1]))
 				mouve_left(edl);
 		}
 	}
@@ -39,25 +42,26 @@ void	prev_word(t_edl *edl, char *line)
 ** FN + down arrow
 */
 
-void	next_word(t_edl *edl, char *line, size_t len)
+void	next_word(t_edl *edl, size_t len)
 {
 	if (edl->index < (int)len)
 	{
-		if (line[edl->index + 1] && !ft_isspace_wnt(line[edl->index + 1]))
+		if (edl->line[edl->index + 1]
+			&& !ft_isspace_wnt(edl->line[edl->index + 1]))
 		{
-			while (line[edl->index + 1]
-				&& !ft_isspace_wnt(line[edl->index + 1]))
+			while (edl->line[edl->index + 1]
+				&& !ft_isspace_wnt(edl->line[edl->index + 1]))
 				mouve_right(edl);
 		}
-		else if (!line[edl->index + 1])
+		else if (!edl->line[edl->index + 1])
 			mouve_right(edl);
 		else
 		{
-			while (line[edl->index + 1]
-				&& ft_isspace_wnt(line[edl->index + 1]))
+			while (edl->line[edl->index + 1]
+				&& ft_isspace_wnt(edl->line[edl->index + 1]))
 				mouve_right(edl);
-			while (line[edl->index + 1]
-				&& !ft_isspace_wnt(line[edl->index + 1]))
+			while (edl->line[edl->index + 1]
+				&& !ft_isspace_wnt(edl->line[edl->index + 1]))
 				mouve_right(edl);
 		}
 	}

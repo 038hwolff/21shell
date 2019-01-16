@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:33:34 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/16 17:27:43 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:20:31 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,38 +73,38 @@ void	line_moves(t_edl *edl, unsigned long key)
 ** PASTE = fn + p
 */
 
-void	term_moves(unsigned long key, t_edl *edl, size_t len, char *line)
+void	term_moves(unsigned long key, t_edl *edl, size_t len)
 {
 	if (key == LEFT || key == RIGHT || key == HOME || key == END)
 		left_or_right(edl, key, len);
 	if (key == UP_FN)
-		prev_word(edl, line);
+		prev_word(edl);
 	if (key == DOWN_FN)
-		next_word(edl, line, len);
+		next_word(edl, len);
 	if (key == LINE_UP || key == LINE_DOWN)
 		line_moves(edl, key);
 }
 
-char	*ft_termcaps(t_edl *edl, char *line, unsigned long key, t_hist *hist)
+char	*ft_termcaps(t_edl *edl, unsigned long key, t_hist *hist)
 {
 	size_t			len;
 	struct winsize	ws;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
 	edl->col = ws.ws_col;
-	len = ft_strlen(line);
+	len = ft_strlen(edl->line);
 	if (key == UP)
-		history_umove(edl, &line, hist);
+		history_umove(edl, hist);
 	if (key == DOWN)
-		history_dmove(edl, &line, hist);
-	term_moves(key, edl, len, line);
-	if (key == SELECT && ft_strcmp(line, "\0") != 0)
+		history_dmove(edl, hist);
+	term_moves(key, edl, len);
+	if (key == SELECT && ft_strcmp(edl->line, "\0") != 0)
 		select_mode(edl, key);
-	if (key == COPY && ft_strcmp(line, "\0"))
-		copy_high(edl, hist, line);
-	if (key == CUT && ft_strcmp(line, "\0"))
-		line = cut_high(edl, hist, line);
+	if (key == COPY && ft_strcmp(edl->line, "\0"))
+		copy_high(edl, hist);
+	if (key == CUT && ft_strcmp(edl->line, "\0"))
+		edl->line = cut_high(edl, hist);
 	if (key == PASTE && edl->c_light != 0)
-		line = paste_char(edl, hist, line);
-	return (line);
+		edl->line = paste_char(edl, hist);
+	return (edl->line);
 }

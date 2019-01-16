@@ -6,13 +6,13 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:55:14 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/16 17:48:28 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:16:20 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	history_move(t_edl *edl, char **line, char *nline)
+void	history_move(t_edl *edl, char *nline)
 {
 	int		i;
 
@@ -23,16 +23,16 @@ void	history_move(t_edl *edl, char **line, char *nline)
 	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, i), 1);
 	ft_putstr_fd(tgetstr("ce", NULL), 1);
 	ft_putstr_fd(nline, 1);
-	ft_strdel(line);
-	try_m(*line = ft_strdup(nline));
-	edl->index = ft_strlen(*line);
-	edl->multiline = get_cursor_line(edl, edl->index, *line);
+	ft_strdel(&edl->line);
+	try_m(edl->line = ft_strdup(nline));
+	edl->index = ft_strlen(edl->line);
+	edl->multiline = get_cursor_line(edl, edl->index, edl->line);
 	if (edl->light)
 		ft_memdel((void **)&edl->light);
 	try_m(edl->light = (int *)ft_memalloc((edl->index + 1) * sizeof(int)));
 }
 
-void	history_dmove(t_edl *edl, char **line, t_hist *hist)
+void	history_dmove(t_edl *edl, t_hist *hist)
 {
 	int		j;
 	char	*to_display;
@@ -54,10 +54,10 @@ void	history_dmove(t_edl *edl, char **line, t_hist *hist)
 		to_display = hist->list[j];
 		hist->h_current = j + 1;
 	}
-	history_move(edl, line, to_display);
+	history_move(edl, to_display);
 }
 
-void	history_umove(t_edl *edl, char **line, t_hist *hist)
+void	history_umove(t_edl *edl, t_hist *hist)
 {
 	int		j;
 
@@ -65,7 +65,7 @@ void	history_umove(t_edl *edl, char **line, t_hist *hist)
 	{
 		if (edl->linecpy)
 			ft_strdel(&edl->linecpy);
-		try_m(edl->linecpy = ft_strdup(*line));
+		try_m(edl->linecpy = ft_strdup(edl->line));
 		j = hist->h_count - 1;
 	}
 	else
@@ -76,7 +76,7 @@ void	history_umove(t_edl *edl, char **line, t_hist *hist)
 		return ;
 	}
 	hist->h_current = j + 1;
-	history_move(edl, line, hist->list[j]);
+	history_move(edl, hist->list[j]);
 }
 
 char	**ft_realloc(t_hist *hist, char *value)

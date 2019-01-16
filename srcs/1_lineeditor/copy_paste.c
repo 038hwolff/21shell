@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:49:43 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/16 17:30:26 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:23:06 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** COPY = alt + c
 */
 
-void	copy_high(t_edl *edl, t_hist *hist, char *line)
+void	copy_high(t_edl *edl, t_hist *hist)
 {
 	size_t	i;
 	int		j;
@@ -24,7 +24,7 @@ void	copy_high(t_edl *edl, t_hist *hist, char *line)
 
 	j = 0;
 	i = -1;
-	len = ft_strlen(line);
+	len = ft_strlen(edl->line);
 	while (++i < len)
 		if (edl->light[i] == 1)
 			j++;
@@ -35,7 +35,7 @@ void	copy_high(t_edl *edl, t_hist *hist, char *line)
 	i = -1;
 	while (++i < len)
 		if (edl->light[i] == 1)
-			hist->copy[++j] = line[i];
+			hist->copy[++j] = edl->line[i];
 	hist->copy[++j] = '\0';
 }
 
@@ -58,16 +58,16 @@ void	clear_line(t_edl *edl, char *n_line)
 	ft_putstr_fd(n_line, 1);
 }
 
-char	*create_newline(t_edl *edl, char *line, t_hist *hist)
+char	*create_newline(t_edl *edl, t_hist *hist)
 {
 	char	*new_line;
 	int		cpylen;
 
 	cpylen = ft_strlen(hist->copy);
-	try_m(new_line = ft_strnew(ft_strlen(line) + cpylen));
-	ft_strncpy(new_line, line, edl->index);
+	try_m(new_line = ft_strnew(ft_strlen(edl->line) + cpylen));
+	ft_strncpy(new_line, edl->line, edl->index);
 	ft_strcpy(new_line + edl->index, hist->copy);
-	ft_strcpy(new_line + edl->index + cpylen, line + edl->index);
+	ft_strcpy(new_line + edl->index + cpylen, edl->line + edl->index);
 	edl->index += cpylen;
 	return (new_line);
 }
@@ -76,13 +76,13 @@ char	*create_newline(t_edl *edl, char *line, t_hist *hist)
 ** PASTE = alt + p
 */
 
-char	*paste_char(t_edl *edl, t_hist *hist, char *line)
+char	*paste_char(t_edl *edl, t_hist *hist)
 {
 	char	*new_line;
 	int		i;
 
 	new_line = NULL;
-	new_line = create_newline(edl, edl->line, hist);
+	new_line = create_newline(edl, hist);
 	ft_putstr_fd(tgetstr("se", NULL), 1);
 	clear_line(edl, new_line);
 	i = ft_strlen(new_line);
@@ -93,11 +93,11 @@ char	*paste_char(t_edl *edl, t_hist *hist, char *line)
 	edl->multiline = get_cursor_line(edl, edl->index, new_line);
 	if (edl->light)
 	{
-		ft_bzero((void*)edl->light, ft_strlen(line) + 1);
+		ft_bzero((void*)edl->light, ft_strlen(edl->line) + 1);
 		ft_memdel((void**)&edl->light);
 	}
 	try_m(edl->light = (int *)ft_memalloc((ft_strlen(new_line) + 1)
 		* sizeof(int)));
-	ft_strdel(&line);
+	ft_strdel(&edl->line);
 	return (new_line);
 }
