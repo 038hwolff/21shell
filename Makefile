@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
+#    By: hwolff <hwolff@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 08:34:44 by hwolff            #+#    #+#              #
-#    Updated: 2019/01/16 17:57:40 by hben-yah         ###   ########.fr        #
+#    Updated: 2019/01/16 19:58:35 by hwolff           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ NAME			=	21sh
 
 COMP			=	clang
 FLAG			=	-Wall -Wextra -Werror -g3 -pedantic
-FLAGDEGUG		=	$(FLAG) -fsanitize=address
 
 # Files names
 SHELL_N			=	shell.c free.c data.c init.c putchar.c \
@@ -108,12 +107,6 @@ fclean			:
 					@rm -rf $(OBJS_D)
 					@echo "Nettoyage de l'exécutable $(NAME)"
 					@rm -f $(NAME)
-
-test			:
-					@$(COMP) $(FLAGDEBUG) ${INCL} ${SRCS} $(TRMCP_I) -o ${NAME}
-
-debug			:	test
-					lldb ./${NAME}
 
 re				:	fclean all
 
