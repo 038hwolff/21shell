@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:19:07 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/11 20:55:25 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:40:10 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,12 @@
 # define PHEREDOC_LEN			10
 # define PPARENT 				"( » "
 # define PPARENT_LEN			4
+# define PDAND					"&& » "
+# define PDAND_LEN				5
+# define PDPIPE					"|| » "
+# define PDPIPE_LEN				5
+# define PPIPE					"| » "
+# define PPIPE_LEN				4
 # define PDEFAULT				"$>"
 # define PDEFAULT_LEN			2
 

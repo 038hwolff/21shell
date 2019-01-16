@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 17:25:36 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/16 18:54:08 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:43:42 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ void	set_special_prompt(t_data *data)
 		set_prompt(data, PPARENT, PPARENT_LEN);
 	else if (data->incomp_type == INC_BKQUOTE)
 		set_prompt(data, PBQUOTE, PBQUOTE_LEN);
+	else if (data->incomp_type == INC_DAND)
+		set_prompt(data, PDAND, PDAND_LEN);
+	else if (data->incomp_type == INC_DPIPE)
+		set_prompt(data, PDPIPE, PDPIPE_LEN);
+	else if (data->incomp_type == INC_PIPE)
+		set_prompt(data, PPIPE, PPIPE_LEN);
 	else if (data->incomp_type == COMPLETE)
 		set_prompt(data, PDEFAULT, PDEFAULT_LEN);
 }
