@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/16 19:26:05 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:31:13 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ void	reprint_line(t_data *data)
 	j = -1;
 	display_prompt(&data->edl);
 	ft_putstr_fd(data->edl.line, 1);
-	data->edl.multiline = get_cursor_line(&data->edl, data->edl.index, data->edl.line);
+	data->edl.multiline = get_cursor_line(&data->edl,
+										data->edl.index, data->edl.line);
 	move_cursor_to_index(&data->edl);
 }
 
