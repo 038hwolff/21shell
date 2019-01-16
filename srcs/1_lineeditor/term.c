@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:33:34 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/16 16:50:22 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:27:43 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,12 @@ void	line_moves(t_edl *edl, unsigned long key)
 	len = get_current_line_len(edl, edl->index);
 	if (key == LINE_UP)
 	{
-		//if (edl->multiline)
-		//{
-			while (i++ < len)
-				mouve_left(edl);
+		while (i++ < len)
 			mouve_left(edl);
-			nlen = get_current_line_len(edl, edl->index);
-			while (nlen-- > len)
-				mouve_left(edl);
-		// }
-		// else
-		// {
-		// 	len -= (int)edl->prompt_len;
-		// 	while (i++ < len)
-		// 		mouve_left(edl);
-		// }
+		mouve_left(edl);
+		nlen = get_current_line_len(edl, edl->index);
+		while (nlen-- > len)
+			mouve_left(edl);
 	}
 	else if (key == LINE_DOWN)
 	{
@@ -73,14 +64,6 @@ void	line_moves(t_edl *edl, unsigned long key)
 		nlen = 1;
 		while (nlen++ < len && edl->line[edl->index])
 			mouve_right(edl);
-		// while (l == edl->multiline && edl->line[edl->index])
-		// {
-		// 	mouve_right(edl);
-		// 	i++;
-		// }         
-		// nlen = get_current_line_len(edl, edl->index);
-		// while (nlen-- > len)
-		// 	mouve_right(edl);
 	}
 }
 
@@ -116,7 +99,7 @@ char	*ft_termcaps(t_edl *edl, char *line, unsigned long key, t_hist *hist)
 		history_dmove(edl, &line, hist);
 	term_moves(key, edl, len, line);
 	if (key == SELECT && ft_strcmp(line, "\0") != 0)
-		select_mode(edl, key, line);
+		select_mode(edl, key);
 	if (key == COPY && ft_strcmp(line, "\0"))
 		copy_high(edl, hist, line);
 	if (key == CUT && ft_strcmp(line, "\0"))

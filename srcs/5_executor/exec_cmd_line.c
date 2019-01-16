@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:54:08 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/14 17:07:26 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:25:10 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@
 static int
 	sub_exec_cmd_line(t_data *data, t_ast *ast, int ret)
 {
-	if (ast->token->type == LESSAND)
+	if (ast->token->type == GREATAND)
+		ret = main_agregator(data, ast);
+	else if (ast->token->type == LESSAND)
 		ret = main_back_agregator(data, ast);
 	else if (ast->token->type == DOUBLELESS)
 		ret = exec_heredoc(data, ast);
@@ -61,8 +63,6 @@ int
 		ret = exec_redirect(data, ast, ast->token->type);
 	else if (ast->token->type == LESS)
 		ret = exec_back_redirect(data, ast);
-	else if (ast->token->type == GREATAND)
-		ret = main_agregator(data, ast);
 	else
 		ret = sub_exec_cmd_line(data, ast, ret);
 	if (ast->token->type == WORD)

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:26:21 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/16 12:35:08 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:12:32 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_hist			*setup_hist(t_hist *hist);
 ** select_mode.c
 */
 
-void			select_mode(t_edl *edl, unsigned long key, char *line);
+void			select_mode(t_edl *edl, unsigned long key);
 
 /*
 ** copy_paste.c

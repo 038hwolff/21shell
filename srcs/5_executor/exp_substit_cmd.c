@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 22:13:17 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/14 16:33:28 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:27:12 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static char
 	int		status;
 	char	*ret;
 
-	ret = NULL;
 	std = dup(1);
 	if (!*cmd || (pipe(fd) == -1) || (pid = fork()) == -1)
 		return (try_m(ft_strdup("")));
@@ -60,8 +59,7 @@ static char
 		dup2(fd[1], 1);
 		write(1, "=", 1);
 		close(fd[1]);
-		data->subcmd = 1;
-		exit(subshell(data, 1, &cmd));
+		exit(++data->subcmd - 1 + subshell(data, 1, &cmd));
 	}
 	signal(SIGINT, SIG_IGN);
 	waitpid(pid, &status, 0);

@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 17:57:06 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/15 18:35:08 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:10:25 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ void	ft_strtabcpy(char **src, char **dst);
 
 int		ft_strtab_add(char ***tab, char *n);
 char	**ft_strtab_new(int len);
-
 
 #endif

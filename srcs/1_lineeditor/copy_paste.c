@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:49:43 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/16 11:10:02 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:30:26 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ char	*create_newline(t_edl *edl, char *line, t_hist *hist)
 	ft_strncpy(new_line, line, edl->index);
 	ft_strcpy(new_line + edl->index, hist->copy);
 	ft_strcpy(new_line + edl->index + cpylen, line + edl->index);
+	edl->index += cpylen;
 	return (new_line);
 }
 

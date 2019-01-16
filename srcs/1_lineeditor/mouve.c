@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:04:22 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/16 17:08:14 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:12:05 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,19 @@ void	next_word(t_edl *edl, char *line, size_t len)
 	{
 		if (line[edl->index + 1] && !ft_isspace_wnt(line[edl->index + 1]))
 		{
-			while (line[edl->index + 1] && !ft_isspace_wnt(line[edl->index + 1]))
+			while (line[edl->index + 1]
+				&& !ft_isspace_wnt(line[edl->index + 1]))
 				mouve_right(edl);
 		}
 		else if (!line[edl->index + 1])
-				mouve_right(edl);
+			mouve_right(edl);
 		else
 		{
-			while (line[edl->index + 1] && ft_isspace_wnt(line[edl->index + 1]))
+			while (line[edl->index + 1]
+				&& ft_isspace_wnt(line[edl->index + 1]))
 				mouve_right(edl);
-			while (line[edl->index + 1] && !ft_isspace_wnt(line[edl->index + 1]))
+			while (line[edl->index + 1]
+				&& !ft_isspace_wnt(line[edl->index + 1]))
 				mouve_right(edl);
 		}
 	}
@@ -103,7 +106,6 @@ void	mouve_left(t_edl *edl)
 		&& ((i = get_current_line_len(edl, edl->index)) == edl->col
 			|| edl->line[edl->index] == '\n'))
 	{
-		//ft_printf("--%d--", i);
 		--edl->multiline;
 		ft_putstr_fd(tgetstr("up", NULL), 1);
 		while (--i)

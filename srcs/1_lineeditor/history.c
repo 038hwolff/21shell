@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:55:14 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/14 20:08:16 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:48:28 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ void	history_move(t_edl *edl, char **line, char *nline)
 	try_m(*line = ft_strdup(nline));
 	edl->index = ft_strlen(*line);
 	edl->multiline = get_cursor_line(edl, edl->index, *line);
+	if (edl->light)
+		ft_memdel((void **)&edl->light);
+	try_m(edl->light = (int *)ft_memalloc((edl->index + 1) * sizeof(int)));
 }
 
 void	history_dmove(t_edl *edl, char **line, t_hist *hist)

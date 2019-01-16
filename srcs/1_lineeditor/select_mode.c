@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:16:54 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/15 21:31:02 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:35:55 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,12 @@ void	clear_space(t_edl *edl, char *line)
 		write(1, "\b", 1);
 }
 
-void	select_mode(t_edl *edl, unsigned long key, char *line)
+void	select_mode(t_edl *edl, unsigned long key)
 {
 	unsigned long	key_2;
 	int				i;
 	t_data			*data;
 
-	(void)line; // virer cça
 	data = get_data();
 	while (key == SELECT)
 	{

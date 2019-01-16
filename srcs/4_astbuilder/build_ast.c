@@ -6,13 +6,14 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:46:19 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/15 18:24:00 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:16:41 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_token *tokendup(t_token *tok)
+t_token
+	*tokendup(t_token *tok)
 {
 	t_token *new;
 
@@ -27,7 +28,8 @@ t_token *tokendup(t_token *tok)
 	return (new);
 }
 
-void	tokendel(t_token **tok)
+void
+	tokendel(t_token **tok)
 {
 	t_token *todel;
 
@@ -40,7 +42,6 @@ void	tokendel(t_token **tok)
 	todel->next = NULL;
 	free(todel);
 }
-
 
 static t_token
 	*get_primary_prev_token(t_token **primary_prev, t_token *token)
@@ -81,7 +82,6 @@ static void
 		dtok = chosen;
 		while (dtok->type != CLOSED_PAR)
 			dtok = dtok->next;
-		
 		if (*chosen_prev)
 			(*chosen_prev)->next = dtok->next;
 		dtok->next = NULL;
@@ -146,29 +146,6 @@ static void
 	}
 }
 
-// static void
-// 	pop_chosen_from_token_if_redir(t_token **chosen, t_token **chosen_prev,
-// 								t_token **token, int type)
-// {
-// 	t_token *dtok;
-
-// 	dtok = (*chosen);
-// 	// si c'est une parenthese on englobe jusauq la par fermante
-// 	if (type == OPEN_PAR)
-// 		while (dtok->type != CLOSED_PAR)
-// 			dtok = dtok->next;
-// 	// pour toutes les redir on colle le next de la redir au next du token precedent
-// 	// on recolle la liste apres a voir retirer le ou les tokens de la redir ou de la par
-// 	if (*chosen && (is_redir_op(type) || is_agreg_op(type) || type == OPEN_PAR))
-// 	{
-// 		if (*chosen_prev)
-// 			(*chosen_prev)->next = dtok->next;
-// 		else
-// 			*token = dtok->next;
-// 		dtok->next = NULL;
-// 	}
-// }
-
 static void
 	add_node(t_data *data, t_ast **ast, t_token *beginlist1)
 {
@@ -191,7 +168,6 @@ static void
 		add_node(data, &(*ast)->left, beginlist1);
 	if (chosen)
 		add_node(data, &(*ast)->right, chosen);
-	
 }
 
 void
