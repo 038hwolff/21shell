@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:16:54 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/16 19:19:03 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/21 20:56:34 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	select_mode(t_edl *edl, unsigned long key)
 	data = get_data();
 	while (key == SELECT && !(key_2 = 0))
 	{
-		read(STDIN_FILENO, &key_2, 10);
+		read(STDIN_FILENO, &key_2, sizeof(key_2));
 		if (key_2 == UP_FN)
 			prev_word(edl);
 		if (key_2 == DOWN_FN)
