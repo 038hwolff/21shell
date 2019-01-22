@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:07:11 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/11 15:07:30 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:27:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ char
 	else
 		ret = NULL;
 	return (i < 0 ? try_m(ft_strdup(ret)) : "+++");
+	// a tester i < 0
 }
