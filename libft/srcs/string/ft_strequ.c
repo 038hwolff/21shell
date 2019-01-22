@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 17:19:51 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/03 16:53:43 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:25:19 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int		ft_strequ(char const *s1, char const *s2)
 {
 	if (!s1 || !s2)
 		return (s1 == s2);
-	while (*s1 || *s2)
+	while (*s1 && *s2)
 		if (*(s1++) != *(s2++))
 			return (0);
-	return (1);
+	return (*s1 == *s2);
 }
