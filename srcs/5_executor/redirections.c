@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 15:08:32 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/06 19:44:12 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/23 15:42:52 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int		exec_redirect(t_data *data, t_ast *ast, int rafter)
 		stdin = dup(fd_g);
 		dup2(fd_d, fd_g);
 		ret = exec_redirect2(data, ast);
+		write(fd_g, "\0", 1);
 		dup2(stdin, fd_g);
 		close(fd_d);
 		return (ret);
