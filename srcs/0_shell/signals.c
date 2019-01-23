@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/23 15:46:31 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/23 17:45:57 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,12 @@ void	handle_sigwinch(t_data *data)
 	struct winsize	ws;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
-	data->edl.col = ws.ws_col;
-	data->edl.multiline = get_cursor_line(&data->edl,
+	if (data->edl.col != ws.ws_col)
+	{
+		data->edl.col = ws.ws_col;
+		data->edl.multiline = get_cursor_line(&data->edl,
 										data->edl.index, data->edl.line);
+	}
 }
 
 void	signal_handler(int sig)

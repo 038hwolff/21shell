@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 17:54:54 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/14 16:34:12 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/23 17:00:16 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,7 @@ int
 		status = subshell(data, ft_strtablen(table) - 2, table + 1);
 	else
 	{
-		signal(SIGINT, SIG_IGN);
 		pid = waitpid(pid, &status, 0);
-		signal(SIGINT, signal_handler);
 		ft_tabdel((void ***)&table);
 		return (WIFEXITED(status) ? WEXITSTATUS(status) : RET_ERROR);
 	}

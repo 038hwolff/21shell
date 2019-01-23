@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:57:00 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/14 16:21:07 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/23 17:05:17 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,10 @@ static int
 		return (put_exception(RET_ERROR, NULL, NULL, "fork error"));
 	else if (!pid[1])
 		exec_cmd(data, ast, fildes, std[1]);
-	signal(SIGINT, SIG_IGN);
 	close(fildes[0]);
 	close(fildes[1]);
 	waitpid(pid[0], &stat[0], 0);
 	waitpid(pid[1], &stat[1], 0);
-	signal(SIGINT, signal_handler);
 	if ((WIFEXITED(stat[0])))
 		return (WEXITSTATUS(stat[0]));
 	return (WIFEXITED(stat[1]) ? WEXITSTATUS(stat[1]) : RET_ERROR);
