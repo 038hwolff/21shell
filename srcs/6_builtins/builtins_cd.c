@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:29:51 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/18 15:04:14 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/23 18:14:27 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static void		free_cd_tabs(char **tmp, char **nenv, char **narg)
 		ft_strdel(&narg[1]);
 	if (narg[2])
 		ft_strdel(&narg[2]);
+	free(narg);
 }
 
 int				b_cd(t_data *data, char **env, char **arg)
