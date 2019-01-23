@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/16 19:31:13 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/23 23:31:21 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,15 @@ char	*insert_char(unsigned long key, t_edl *edl)
 	char	*value;
 	int		i;
 
-	value = NULL;
-	value = (char *)&key;
+	try_m(value = ft_strsub((char *)&key, 0, 8));
 	len = ft_strlen(edl->line);
 	i = -1;
 	len = ft_strlen(edl->line) + ft_strlen(value);
 	if (edl->index == (int)len)
+	{
+		ft_strdel(&value);
 		return (insert_end(edl->line, value, edl));
+	}
 	ret = NULL;
 	ret = create_ret(&edl->index, value, len, edl->line);
 	if (edl->light)
@@ -76,6 +78,7 @@ char	*insert_char(unsigned long key, t_edl *edl)
 	try_m(edl->light = (int *)ft_memalloc(((int)ft_strlen(ret) + 1)
 		* sizeof(int)));
 	edl->c_light = 0;
+	ft_strdel(&value);
 	if (edl->line)
 		ft_strdel(&edl->line);
 	return (ret);
@@ -83,15 +86,7 @@ char	*insert_char(unsigned long key, t_edl *edl)
 
 void	reprint_line(t_data *data)
 {
-	int			c;
-	size_t		j;
-
-	c = -1;
-	while (++c < data->edl.multiline)
-		ft_putstr_fd(tgoto(tgetstr("up", NULL), 0, 0), 1);
-	ft_putstr_fd(tgoto(tgetstr("ch", NULL), 0, 0), 1);
-	ft_putstr_fd(tgetstr("cd", NULL), 1);
-	j = -1;
+	erase_line(data);
 	display_prompt(&data->edl);
 	ft_putstr_fd(data->edl.line, 1);
 	data->edl.multiline = get_cursor_line(&data->edl,
@@ -109,8 +104,8 @@ void	print_line(t_data *data, unsigned long key)
 		data->edl.line = complete_word(data);
 	if (key != SUPP && key != DELETE && key != CTRLD && key != TABU)
 		data->edl.line = insert_char(key, &data->edl);
-	if (key == SUPP || (key == DELETE && ++data->edl.index))
-		data->edl.line = supp_char(&data->edl);
+	if (key == SUPP || key == DELETE)
+		data->edl.line = supp_char(&data->edl, key);
 	if (key == CTRLD)
 		data->edl.line = control_d(data);
 	if (key != SUPP && key != DELETE && key != CTRLD && key != TABU)

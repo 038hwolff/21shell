@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/23 20:30:58 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/24 00:27:48 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,14 @@ void	signal_handler(int sig)
 
 void	handle_sigint(t_data *data)
 {
+	while (data->edl.line[data->edl.index])
+		mouve_right(&data->edl);
 	reset_command(data);
 	try_m(data->edl.line = ft_strnew(0));
 	try_m(data->edl.light = (int *)ft_memalloc(sizeof(int)));
-	data->hist.h_current = 0;
-	data->edl.index = 0;
 	data->sigint = 1;
-	set_prompt(data, PDEFAULT, PDEFAULT_LEN);
 	ft_putchar_fd('\n', 1);
+	set_prompt(data, PDEFAULT, PDEFAULT_LEN);
 	display_prompt(&data->edl);
 }
 

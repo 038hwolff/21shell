@@ -6,14 +6,15 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:46:19 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/16 17:57:09 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/24 00:11:57 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 static void
-	fill_node_io_number(t_ast **ast, t_token **chosen, t_token **prev)
+	fill_node_io_number(t_ast **ast, t_token **chosen,
+										t_token **prev, t_token **beginlist)
 {
 	(*ast)->left_arg = tokendup(*chosen);
 	tokendel(chosen);
@@ -28,11 +29,14 @@ static void
 	}
 	if (*prev)
 		(*prev)->next = *chosen;
+	else
+		*beginlist = *chosen;
 	*chosen = NULL;
 }
 
 static void
-	fill_node_redir_agreg(t_ast **ast, t_token **chosen, t_token **prev)
+	fill_node_redir_agreg(t_ast **ast, t_token **chosen,
+										t_token **prev, t_token **beginlist)
 {
 	(*ast)->token = tokendup(*chosen);
 	tokendel(chosen);
@@ -43,11 +47,14 @@ static void
 	}
 	if (*prev)
 		(*prev)->next = *chosen;
+	else
+		*beginlist = *chosen;
 	*chosen = NULL;
 }
 
 static void
-	fill_node(t_ast **ast, t_token **chosen, t_token **prev)
+	fill_node(t_ast **ast, t_token **chosen,
+										t_token **prev, t_token **beginlist)
 {
 	try_m((*ast = (t_ast*)ft_memalloc(sizeof(t_ast))));
 	if ((*chosen)->type == OPEN_PAR || (*chosen)->type == WORD)
@@ -57,9 +64,9 @@ static void
 		*chosen = NULL;
 	}
 	else if ((*chosen)->type == IO_NUMBER)
-		fill_node_io_number(ast, chosen, prev);
+		fill_node_io_number(ast, chosen, prev, beginlist);
 	else if (is_redir_op((*chosen)->type) || is_agreg_op((*chosen)->type))
-		fill_node_redir_agreg(ast, chosen, prev);
+		fill_node_redir_agreg(ast, chosen, prev, beginlist);
 	else
 	{
 		(*ast)->token = tokendup(*chosen);
@@ -86,7 +93,7 @@ static void
 		chosen_prev->next = NULL;
 	else
 		beginlist1 = NULL;
-	fill_node(ast, &chosen, &chosen_prev);
+	fill_node(ast, &chosen, &chosen_prev, &beginlist1);
 	if (beginlist1)
 		add_node(data, &(*ast)->left, beginlist1);
 	if (chosen)

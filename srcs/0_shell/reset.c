@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:38:11 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/15 15:48:30 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/23 23:06:25 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ void	reset_command(t_data *data)
 	data->token = NULL;
 	data->eof = 0;
 	data->sigint = 0;
+	data->incomp_type = 0;
+	data->edl.multiline = 0;
+	data->hist.h_current = 0;
+	data->edl.index = 0;
 	if (data->edl.line)
 		ft_strdel(&data->edl.line);
 	if (data->edl.light)

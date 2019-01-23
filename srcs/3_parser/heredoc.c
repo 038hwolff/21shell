@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/18 18:39:39 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/24 00:11:33 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	remove_quotes_and_backslash(char **line)
 	while ((*line)[i])
 	{
 		if ((*line)[i] == '\\' && (*line)[i + 1])
-			i = pop_char(line, i);
+			i = pop_char(line, i) + 1;
 		else if ((*line)[i] == '\'')
 			i = expand_quote(line, i);
 		else if ((*line)[i] == '"')

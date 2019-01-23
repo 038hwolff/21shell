@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 15:11:43 by hben-yah          #+#    #+#             */
-/*   Updated: 2018/12/29 17:55:59 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/23 21:10:08 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	discard_spaces_tabs(char **line)
 
 char	*strdquote(char *s)
 {
+	char *c;
+
 	while (*s)
 	{
 		if (*s == '\\')
@@ -32,7 +34,12 @@ char	*strdquote(char *s)
 		else if (*s == '"')
 			break ;
 		else if (*s == '`')
-			s = strbackquote(s + 1);
+		{
+			if (!*(c = strbackquote(s + 1)))
+				return (s);
+			else
+				s = c;
+		}
 		*s && ++s;
 	}
 	return (s);

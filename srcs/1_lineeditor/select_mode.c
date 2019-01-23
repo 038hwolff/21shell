@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 09:16:54 by pespalie          #+#    #+#             */
-/*   Updated: 2019/01/21 20:56:34 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/24 00:08:24 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void	clear_space(t_edl *edl, char *line)
 void	select_mode(t_edl *edl, unsigned long key)
 {
 	unsigned long	key_2;
-	int				i;
 	t_data			*data;
 
 	data = get_data();
@@ -107,10 +106,6 @@ void	select_mode(t_edl *edl, unsigned long key)
 		display_prompt(edl);
 		rewrite_line(edl, edl->line);
 		edl->multiline = get_cursor_line(edl, edl->index, edl->line);
-		i = (int)ft_strlen(edl->line);
-		ft_putstr_fd(tgetstr("vs", NULL), 1);
-		while (--i >= edl->index)
-			ft_putstr_fd(tgetstr("le", NULL), 1);
-		ft_putstr_fd(tgetstr("ve", NULL), 1);
+		move_cursor_to_index(&data->edl);
 	}
 }
