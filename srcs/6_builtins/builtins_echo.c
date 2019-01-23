@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:53:04 by hwolff            #+#    #+#             */
-/*   Updated: 2018/12/30 22:32:55 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/23 15:33:06 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int				b_echo(char **arg)
 	int		i;
 	int		flag;
 
+	flag = 1;
 	if (arg[1])
 	{
 		i = 1;
@@ -51,8 +52,8 @@ int				b_echo(char **arg)
 			if (arg[++i])
 				ft_putchar(' ');
 		}
-		if (flag == 1)
-			ft_putchar('\n');
 	}
+	if (flag == 1)
+		ft_putchar('\n');
 	return (RET_OK);
 }
