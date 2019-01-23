@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 16:33:08 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/18 14:43:25 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/23 15:10:31 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		exec_assignement(t_data *data, t_ast *ast)
 			try_m(key = ft_strsub(ast->token->val, 0,
 							val ? val - ast->token->val : ast->token->length));
 			var_unset(&data->loc, key);
-			ft_strdel(&key); 
+			ft_strdel(&key);
 		}
 	}
 	return (ret);
