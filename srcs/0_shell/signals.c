@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:43:23 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/23 17:45:57 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/23 19:37:40 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,13 @@ void	handle_sigint(t_data *data)
 	reset_command(data);
 	if (data->edl.line)
 		ft_strdel(&data->edl.line);
+	if (data->edl.line)
+		ft_memdel((void **)&data->edl.light);
+	if (data->edl.linecpy)
+		ft_strdel(&data->edl.linecpy);
 	try_m(data->edl.line = ft_strnew(0));
+	try_m(data->edl.light = (int *)ft_memalloc((1 * sizeof(int))));
+	data->edl.multiline = 0;
 	data->edl.index = 0;
 	data->sigint = 1;
 	set_prompt(data, PDEFAULT, PDEFAULT_LEN);
