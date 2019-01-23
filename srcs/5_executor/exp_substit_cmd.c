@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 22:13:17 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/23 17:00:41 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/23 19:07:30 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char
 
 	std = dup(1);
 	if (!*cmd || (pipe(fd) == -1) || (pid = fork()) == -1)
-		return (try_m(ft_strdup("")));
+		return (try_m(ft_strdup("=")));
 	else if (pid == 0)
 	{
 		dup2(fd[1], 1);
