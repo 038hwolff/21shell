@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 22:32:14 by hben-yah          #+#    #+#             */
-/*   Updated: 2019/01/23 19:24:01 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/24 11:39:39 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,10 @@ static int
 	set_special_prompt(data);
 	len = ft_strlen(data->edl.line);
 	tmp = ft_strsub(data->edl.line, 0, len - 1);
-	if (ft_strequ(token->next->val, tmp))
-		return (2);
+	len = ft_strequ(token->next->val, tmp);
 	ft_strdel(&tmp);
+	if (len)
+		return (2);
 	if ((tmp = token->heredoc))
 	{
 		try_m((token->heredoc = ft_strjoin(tmp, data->edl.line)));
