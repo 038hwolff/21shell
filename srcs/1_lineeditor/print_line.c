@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:44:27 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/23 23:31:21 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/24 11:57:18 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ char	*create_ret(int *index, char *value, size_t len, char *line)
 	char	*ret;
 	int		i;
 
-	ret = NULL;
-	try_m(ret = (char *)ft_memalloc(sizeof(char) * (len + 1)));
+	try_m(ret = ft_strnew(len));
 	i = 0;
 	while (i < *index)
 	{
@@ -63,15 +62,8 @@ char	*insert_char(unsigned long key, t_edl *edl)
 	int		i;
 
 	try_m(value = ft_strsub((char *)&key, 0, 8));
-	len = ft_strlen(edl->line);
 	i = -1;
 	len = ft_strlen(edl->line) + ft_strlen(value);
-	if (edl->index == (int)len)
-	{
-		ft_strdel(&value);
-		return (insert_end(edl->line, value, edl));
-	}
-	ret = NULL;
 	ret = create_ret(&edl->index, value, len, edl->line);
 	if (edl->light)
 		ft_memdel((void **)&edl->light);
