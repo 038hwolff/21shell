@@ -6,7 +6,7 @@
 /*   By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 08:51:07 by hwolff            #+#    #+#             */
-/*   Updated: 2019/01/23 18:08:00 by hben-yah         ###   ########.fr       */
+/*   Updated: 2019/01/29 18:35:52 by hben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int			ex_exec_core(char **env, char **table, char **paths)
 	int		i;
 
 	i = 0;
+	signal_list();
 	while (paths[i])
 	{
 		if (access(paths[i], X_OK) == 0)
