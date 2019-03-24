@@ -1,16 +1,6 @@
-# BONUS OK 21SH
-- option -dev
-- operateurs logiques && ||
-- backquotes
-- subshells
-- variable locale
-- auto completion
-- gestion des sorties
-- expansions des inhibiteurs
-- Gestion des erreurs
-- Execution en entree standard
+Shell simple, en C, basé sur les features proposées par bash. Projet réalisé en binôme.
 
-# 21sh - Points-clés pedago
+# 21sh - Points-clés pedagogiques
 - Lecture et édition de ligne avancée avec Termcaps
 - Analyse lexicale ("Lexing")
 - Analyse syntaxique ("Parsing")
@@ -25,35 +15,14 @@
 - http://www.gaudry.be/programmer-arbres.html
 - https://ruslanspivak.com/lsbasi-part7/
 
-# Fonctions autorisées
-- malloc, free
-- access
-- open, close, read, write
-- opendir, readdir, closedir
-- getcwd, chdir
-- stat, lstat, fstat
-- fork, execve
-- wait, waitpid, wait3, wait4
-- signal, kill
-- exit
-- pipe
-- dup, dup2
-- isatty, ttyname, ttyslot
-- ioctl
-- getenv
-- tcsetattr, tcgetattr
-- tgetent
-- tgetflag
-- tgetnum
-- tgetstr
-- tgoto
-- tputs
-- tgetnam
-
-# Last minute to-do avant push (voir PROJECT "Check last minute")
-- Norminette?
-- Auteur?
-- Leaks?
-- Makefile? (relink)
-- Nom de l'executable?
-- Git push?
+# BONUS
+- option -dev
+- operateurs logiques && ||
+- backquotes
+- subshells
+- variable locale
+- auto completion
+- gestion des sorties
+- expansions des inhibiteurs
+- Gestion des erreurs
+- Execution en entree standard
